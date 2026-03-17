@@ -21,7 +21,9 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"marzi": "res://marzi.dch"
+}
 directories/dtl_directory={
 "celestial_confectioner_timeline": "res://celestial_confectioner_timeline.dtl",
 "intro_sequence": "res://intro_sequence.dtl"
