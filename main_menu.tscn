@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b78h6nfewsk12"]
 
 [ext_resource type="Script" uid="uid://bm3fk3yw00e0b" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://cl58k620wjxk6" path="res://CC_MAIN_MENUResized.png" id="2_7vrkn"]
 
 [node name="MainMenu" type="Control" unique_id=3100339]
 layout_mode = 3
@@ -14,8 +15,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 1884.0
+offset_bottom = 1039.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_7vrkn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=973500102]
 layout_mode = 1
@@ -31,13 +37,22 @@ offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=919365619]
-layout_mode = 2
-text = "Start Game"
+[node name="StartButton" type="Button" parent="." unique_id=919365619]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 245.0
+offset_right = 440.0
+offset_bottom = 345.0
 
-[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1818799747]
-layout_mode = 2
+[node name="QuitButton" type="Button" parent="." unique_id=1818799747]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 88.0
+offset_top = 802.0
+offset_right = 448.0
+offset_bottom = 902.0
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
