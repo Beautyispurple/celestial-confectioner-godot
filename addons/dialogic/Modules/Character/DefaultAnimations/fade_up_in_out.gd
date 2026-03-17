@@ -3,7 +3,8 @@ extends DialogicAnimation
 func animate() -> void:
 	var tween := (node.create_tween() as Tween)
 
-	var start_height: float = base_position.y + node.get_viewport().size.y / 5
+	# Fixed: Replaced viewport size calculation with a flat 50.0 pixels.
+	var start_height: float = base_position.y + 50.0
 	var end_height := base_position.y
 
 	var start_modulation := 0.0

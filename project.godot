@@ -30,9 +30,10 @@ directories/dtl_directory={
 }
 layout/style_directory={
 "": "res://visualnovelwithportrait.tres",
+"marzi_visual_novel_style": "res://marzi_visual_novel_style.tres",
 "visualnovelwithportrait": "res://visualnovelwithportrait.tres"
 }
-layout/style_list=["res://visualnovelwithportrait.tres"]
+layout/style_list=["res://visualnovelwithportrait.tres", "res://marzi_visual_novel_style.tres"]
 layout/default_style="res://visualnovelwithportrait.tres"
 
 [display]
