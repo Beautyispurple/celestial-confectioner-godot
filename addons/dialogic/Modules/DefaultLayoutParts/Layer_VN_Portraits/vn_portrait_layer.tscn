@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy1y14inwkplb"]
+[gd_scene format=3 uid="uid://cy1y14inwkplb"]
 
 [ext_resource type="Script" uid="uid://cx1i44s2olq2d" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Portraits/vn_portrait_layer.gd" id="1_1i7em"]
 [ext_resource type="Script" uid="uid://d0ptqnbudhkyj" path="res://addons/dialogic/Modules/Character/node_portrait_container.gd" id="1_rxdcc"]
 
-[node name="VN_PortraitLayer" type="Control"]
+[node name="VN_PortraitLayer" type="Control" unique_id=281517439]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_1i7em")
 
-[node name="Portraits" type="Control" parent="."]
+[node name="Portraits" type="Control" parent="." unique_id=276163490]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -23,10 +23,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DialogicNode_PortraitContainer1" type="Control" parent="Portraits"]
+[node name="DialogicNode_PortraitContainer1" type="Control" parent="Portraits" unique_id=239484272]
 layout_mode = 1
-anchor_right = 0.2
-anchor_bottom = 1.0
+anchor_left = -0.06302083
+anchor_top = 0.010185185
+anchor_right = 0.13697918
+anchor_bottom = 1.0101852
 offset_right = -1.52588e-05
 grow_vertical = 2
 pivot_offset = Vector2(115.2, 648)
@@ -35,7 +37,7 @@ script = ExtResource("1_rxdcc")
 container_ids = PackedStringArray("leftmost", "0")
 metadata/_edit_use_anchors_ = true
 
-[node name="DialogicNode_PortraitContainer2" type="Control" parent="Portraits"]
+[node name="DialogicNode_PortraitContainer2" type="Control" parent="Portraits" unique_id=938085359]
 layout_mode = 1
 anchor_left = 0.2
 anchor_right = 0.4
@@ -47,7 +49,7 @@ script = ExtResource("1_rxdcc")
 container_ids = PackedStringArray("left", "1")
 metadata/_edit_use_anchors_ = true
 
-[node name="DialogicNode_PortraitContainer3" type="Control" parent="Portraits"]
+[node name="DialogicNode_PortraitContainer3" type="Control" parent="Portraits" unique_id=498945008]
 layout_mode = 1
 anchor_left = 0.4
 anchor_right = 0.6
@@ -59,7 +61,7 @@ script = ExtResource("1_rxdcc")
 container_ids = PackedStringArray("center", "middle", "2")
 metadata/_edit_use_anchors_ = true
 
-[node name="DialogicNode_PortraitContainer4" type="Control" parent="Portraits"]
+[node name="DialogicNode_PortraitContainer4" type="Control" parent="Portraits" unique_id=213759026]
 layout_mode = 1
 anchor_left = 0.6
 anchor_right = 0.8
@@ -71,7 +73,7 @@ script = ExtResource("1_rxdcc")
 container_ids = PackedStringArray("right", "3")
 metadata/_edit_use_anchors_ = true
 
-[node name="DialogicNode_PortraitContainer5" type="Control" parent="Portraits"]
+[node name="DialogicNode_PortraitContainer5" type="Control" parent="Portraits" unique_id=468796029]
 layout_mode = 1
 anchor_left = 0.8
 anchor_right = 1.0

@@ -35,6 +35,7 @@ layout/style_directory={
 }
 layout/style_list=["res://visualnovelwithportrait.tres", "res://marzi_visual_novel_style.tres"]
 layout/default_style="res://visualnovelwithportrait.tres"
+glossary/default_case_sensitive=true
 
 [display]
 

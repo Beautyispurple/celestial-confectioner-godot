@@ -1,6 +1,6 @@
-[background arg="res://BACKGROUND_Family_Kitchen.jpg" fade="0.0"]
+[background arg="res://backgrounds/BACKGROUND_Marzi_Bedroom_Clean.jpg" fade="0.0"]
 [style name="marzi_visual_novel_style"]
 join marzi left
 marzi: The stars smell of burnt sugar today...
-[background arg="res://SCENE_Kitchen_Family_With_Sweets.jpg" fade="0.0"]
+[background arg="res://backgrounds/BACKGROUND_Marzi_Bedroom_Messy.jpg" fade="0.0"]
 [background fade="0.0"]
