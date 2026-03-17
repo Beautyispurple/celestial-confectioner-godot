@@ -17,7 +17,9 @@ func _on_start_button_pressed():
 	
 	# We move the Dialogic start command to the Game Scene's script 
 	# so it starts once the room is loaded!
-#test
+
 func _on_quit_button_pressed():
 	# This closes the game window.
 	get_tree().quit()
+	
+	

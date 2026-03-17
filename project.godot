@@ -26,7 +26,12 @@ directories/dtl_directory={
 "celestial_confectioner_timeline": "res://celestial_confectioner_timeline.dtl",
 "intro_sequence": "res://intro_sequence.dtl"
 }
-layout/style_directory={}
+layout/style_directory={
+"": "res://visualnovelwithportrait.tres",
+"visualnovelwithportrait": "res://visualnovelwithportrait.tres"
+}
+layout/style_list=["res://visualnovelwithportrait.tres"]
+layout/default_style="res://visualnovelwithportrait.tres"
 
 [editor_plugins]
 
