@@ -22,6 +22,7 @@ Dialogic="*uid://ds2q0uclmolvu"
 [dialogic]
 
 directories/dch_directory={
+"character_taffy": "res://sprite_character/taffy_sprite/character_taffy.dch",
 "marzi": "res://marzi.dch"
 }
 directories/dtl_directory={
