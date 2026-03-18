@@ -23,7 +23,7 @@
 },
 "mirror": false,
 "offset": Vector2(0, 0),
-"scale": 1,
+"scale": 1.0,
 "scene": ""
 },
 "Anticipation": {
@@ -85,8 +85,8 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_idle.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 },
 "Love": {
