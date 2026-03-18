@@ -10,20 +10,713 @@
 "style": "marzi_visual_novel_style",
 "suffix": ""
 },
-&"default_portrait": "marzi_casual",
+&"default_portrait": "Casual Idle",
 &"description": "",
 &"display_name": "Marzipan",
 &"mirror": false,
 &"nicknames": ["Marzi"],
 &"offset": Vector2(0, 0),
 &"portraits": {
-"marzi_casual": {
+"Casual Amazed": {
 "export_overrides": {
-"image": "\"res://addons/marzi_casual.png\""
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_amazed.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Anticipation": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_anticipation.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Apologetic": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_apologetic.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Carefree": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_carefree.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Complimented": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_complimented.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Concerned": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_concerned.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Confident": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_confident.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Cowlick": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_cowlick.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Disgust": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_disgust.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Fear": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_fear.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Happy": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_happy.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Idle": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_idle.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Love": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_love.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Mad": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_mad.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Miffed": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_miffed.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Orz": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_orz.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Rage": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_rage.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Serious": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_serious.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Stressed": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_stressed.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Surprised": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_surprised.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Sweat": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_sweat.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Tears": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_tears.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Trust": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_trust.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Unimpressed": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_unimpressed.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Unsure": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_unsure.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Very Concerned": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_very_concerned.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Wingding": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_wingding.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Casual Worried": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_worried.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Anticipation": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_anticipation.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Apology": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_apology.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Blamed": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_blamed.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Celebrate": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_celebrate.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Defeated": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_defeated.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Disgust": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_disgust.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Fearful": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_fearful.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Harried": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_harried.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Idle": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_idle.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Love": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_love.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Pleased": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_pleased.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Surprised": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_surprised.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Tearful": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_tearful.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Unsure": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_unsure.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Wingdings": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_wingdings.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Angry": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_angry.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Blue": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_blue.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Celebration": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_celebration.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Cold": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_cold.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Defeated": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_defeated.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Delicious": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_delicious.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Eating": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_eating.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Eyaa": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_eyaa.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Fear": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_fear.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Gross": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_gross.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Hot": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_hot.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Idle": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_idle.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Levitate": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_levitate.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Love": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_love.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Pleased": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_pleased.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Popping": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_popping.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Sour": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_sour.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Surprised": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_surprised.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Trust": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_trust.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sales Worried": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_worried.png\""
+},
+"mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Anticipation": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_anticipation.png\""
 },
 "mirror": false,
 "offset": Vector2(0, 0),
-"scale": 1.0,
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Apology": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_apology.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Blamed": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_blamed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Celebrate": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_celebrate.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Defeated": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_defeated.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Disgust": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_disgust.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Fearful": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_fearful.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Harried": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_harried.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Idle": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_idle.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Love": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_love.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Pleased": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_pleased.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Surprised": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_surprised.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Tearful": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_tearful.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Unsure": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_unsure.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"marzi_cleaner_outfit/Wingdings": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner/marzi_sprite_cleaner_wingdings.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
 "scene": ""
 }
 },
