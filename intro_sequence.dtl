@@ -2,5 +2,6 @@
 [style name="marzi_visual_novel_style"]
 join marzi left
 marzi: The stars smell of burnt sugar today...
+join character_taffy right
+character_taffy: I'm testing stuff rn
 [background arg="res://backgrounds/BACKGROUND_Marzi_Bedroom_Messy.jpg" fade="0.0"]
-[background fade="0.0"]

@@ -3,13 +3,128 @@
 "@subpath": NodePath(""),
 &"_translation_id": "",
 &"color": Color(1, 1, 1, 1),
-&"custom_info": {},
-&"default_portrait": "",
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "",
+"suffix": ""
+},
+&"default_portrait": "Idle",
 &"description": "",
 &"display_name": "Character Taffy",
 &"mirror": false,
-&"nicknames": [],
+&"nicknames": [""],
 &"offset": Vector2(0, 0),
-&"portraits": {},
+&"portraits": {
+"Angry": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_angry.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Anticipation": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_anticipation.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Ashamed": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_ashamed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Devious": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_devious.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disgust": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_disgust.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Fear": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_fear.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Haughty": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_haughty.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Idle": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_idle.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Love": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_love.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Phone": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_phone.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Surprise": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_surprise.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Trust": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_trust.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
 &"scale": 1.0
 }
