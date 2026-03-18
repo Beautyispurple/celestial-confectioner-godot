@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DialogicStyle" format=3 uid="uid://pvyb11u7t5lo"]
 
-[ext_resource type="PackedScene" path="res://custom_marzi_visual_novel_style/CustomMarziVisualNovelStyle/custom_marzi_visual_novel_style.tscn" id="1_qrlxr"]
+[ext_resource type="PackedScene" uid="uid://mr4kp14vcsme" path="res://custom_marzi_visual_novel_style/CustomMarziVisualNovelStyle/custom_marzi_visual_novel_style.tscn" id="1_qrlxr"]
 [ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_4do1w"]
 [ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="11_6fbpq"]
 

@@ -39,8 +39,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DialogicNode_PortraitContainer2" type="Control" parent="Portraits" unique_id=938085359]
 layout_mode = 1
-anchor_left = 0.2
-anchor_right = 0.4
+anchor_left = 0.06458333
+anchor_right = 0.26458332
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
