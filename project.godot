@@ -27,6 +27,7 @@ PsxVisualsGd4AutoApply="uid://stww83i1wsru"
 [dialogic]
 
 directories/dch_directory={
+"beatrix": "res://sprite_character/beatrix_sprite/beatrix.dch",
 "huck": "res://sprite_character/huck_sprite/huck.dch",
 "marzi": "res://marzi.dch",
 "taffy": "res://sprite_character/taffy_sprite/taffy.dch"

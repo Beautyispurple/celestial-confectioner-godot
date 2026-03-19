@@ -2,7 +2,7 @@
 "@path": "res://addons/dialogic/Resources/character.gd",
 "@subpath": NodePath(""),
 &"_translation_id": "",
-&"color": Color(1, 1, 1, 1),
+&"color": Color(0.975, 0.94578815, 0.6154688, 1),
 &"custom_info": {
 "prefix": "",
 "sound_mood_default": "",
@@ -10,12 +10,130 @@
 "style": "",
 "suffix": ""
 },
-&"default_portrait": "",
+&"default_portrait": "Idle",
 &"description": "",
 &"display_name": "Huck",
 &"mirror": false,
-&"nicknames": [""],
+&"nicknames": ["Huckleberry Pye"],
 &"offset": Vector2(0, 0),
-&"portraits": {},
+&"portraits": {
+"Angry": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_angry.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Anticipation": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_anticipation.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Apologetic": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_apologetic.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Caring": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_caring.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disgust": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_disgust.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Exasperated": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_exasperated.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Fear": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_fear.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Happy": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_happy.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Idle": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_idle.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Plucky": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_plucky.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sad": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_sad.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sincere": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_sincere.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Trust": {
+"export_overrides": {
+"image": "\"res://sprite_character/huck_sprite/huck_sprite_trust.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
 &"scale": 1.0
 }

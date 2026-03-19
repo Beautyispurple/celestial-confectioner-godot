@@ -1,0 +1,265 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(0.24249022, 0.51784605, 0.871875, 1),
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "",
+"suffix": ""
+},
+&"default_portrait": "Idle Dour",
+&"description": "",
+&"display_name": "Beatrix",
+&"mirror": false,
+&"nicknames": ["Beatrix Von Sweets"],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"Disappointed": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_disappointed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disgust": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_disgust.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Dour": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_dour.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Dour Lookdown": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_dour_lookdown.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Enraged": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_enraged.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Exasperated": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_exasperated.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Grief": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_grief.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Grief Relaxed": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_grief_relaxed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Happy": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_happy.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Harried": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_harried.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Idle Dour": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_idle_dour.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Idle Neutral": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_idle_neutral.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Macaron": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_macaron.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Magic Dour": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_magic_dour.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Magic Relaxed": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_magic_relaxed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Memories": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_memories.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Phone Shocked": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_phone_shocked.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Phone Surprised": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_phone_surprised.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Proud": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_proud.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Relaxed": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_relaxed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Relieved": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_relieved.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Reminisce": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_reminisce.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sad": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_sad.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Tearful": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_tearful.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Trust": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_trust.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Unimpressed": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_unimpressed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Utter Defeat": {
+"export_overrides": {
+"image": "\"res://sprite_character/beatrix_sprite/beatrix_sprite_utter_defeat.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
+&"scale": 1.0
+}

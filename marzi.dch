@@ -12,9 +12,9 @@
 },
 &"default_portrait": "Casual Idle",
 &"description": "",
-&"display_name": "Marzipan",
+&"display_name": "Marzi",
 &"mirror": false,
-&"nicknames": ["Marzi"],
+&"nicknames": ["Marzipan Glace"],
 &"offset": Vector2(0, 0),
 &"portraits": {
 "Casual Amazed": {
