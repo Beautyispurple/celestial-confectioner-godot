@@ -3,7 +3,7 @@
 [wait time="1.0"]
 join marzi left
 marzi: The stars smell of burnt sugar today...
-join character_taffy rightmost
-character_taffy: I'm testing stuff rn
-character_taffy (Ashamed): i feel so bad...
+join taffy rightmost
+taffy: I'm testing stuff rn
+taffy (Ashamed): i feel so bad...
 [background arg="res://backgrounds/BACKGROUND_Marzi_Bedroom_Messy.jpg" fade="0.0"]

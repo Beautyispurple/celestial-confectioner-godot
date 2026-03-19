@@ -12,7 +12,7 @@
 },
 &"default_portrait": "Idle",
 &"description": "",
-&"display_name": "Character Taffy",
+&"display_name": "Taffy",
 &"mirror": false,
 &"nicknames": ["Tiffany Vandermelt"],
 &"offset": Vector2(0, 0),
@@ -62,6 +62,15 @@
 "scale": 0.95,
 "scene": ""
 },
+"Embarassed": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_embarassed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
 "Fear": {
 "export_overrides": {
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_fear.png\""
@@ -89,6 +98,15 @@
 "scale": 0.95,
 "scene": ""
 },
+"Indignant": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_indignant.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
 "Love": {
 "export_overrides": {
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_love.png\""
@@ -105,6 +123,24 @@
 "mirror": false,
 "offset": Vector2(-100, 0),
 "scale": 0.95,
+"scene": ""
+},
+"Remorse": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_remorse.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sad": {
+"export_overrides": {
+"image": "\"res://sprite_character/taffy_sprite/taffy_sprite_sad.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
 "scene": ""
 },
 "Surprise": {
