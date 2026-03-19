@@ -2,7 +2,7 @@
 "@path": "res://addons/dialogic/Resources/character.gd",
 "@subpath": NodePath(""),
 &"_translation_id": "",
-&"color": Color(1, 1, 1, 1),
+&"color": Color(0.5274377, 0.31, 0.8, 1),
 &"custom_info": {
 "prefix": "",
 "sound_mood_default": "",
@@ -14,7 +14,7 @@
 &"description": "",
 &"display_name": "Character Taffy",
 &"mirror": false,
-&"nicknames": [""],
+&"nicknames": ["Tiffany Vandermelt"],
 &"offset": Vector2(0, 0),
 &"portraits": {
 "Angry": {
@@ -22,8 +22,8 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_angry.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1.0,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 },
 "Anticipation": {
@@ -31,17 +31,17 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_anticipation.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 },
 "Ashamed": {
 "export_overrides": {
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_ashamed.png\""
 },
-"mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"mirror": true,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 },
 "Devious": {
@@ -49,8 +49,8 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_devious.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 },
 "Disgust": {
@@ -58,8 +58,8 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_disgust.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 },
 "Fear": {
@@ -67,8 +67,8 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_fear.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 },
 "Haughty": {
@@ -76,8 +76,8 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_haughty.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 },
 "Idle": {
@@ -94,8 +94,8 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_love.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"offset": Vector2(-100, 0),
+"scale": 0.96,
 "scene": ""
 },
 "Phone": {
@@ -103,8 +103,8 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_phone.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 },
 "Surprise": {
@@ -112,8 +112,8 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_surprise.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 },
 "Trust": {
@@ -121,8 +121,8 @@
 "image": "\"res://sprite_character/taffy_sprite/taffy_sprite_trust.png\""
 },
 "mirror": false,
-"offset": Vector2(0, 0),
-"scale": 1,
+"offset": Vector2(-100, 0),
+"scale": 0.95,
 "scene": ""
 }
 },
