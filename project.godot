@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 Dialogic="*uid://ds2q0uclmolvu"
+QuestSystem="*uid://b77kvbliweux5"
+VFX="*uid://ecyiymmaj3jv"
+EnvVFX="*uid://qomyut16hnoi"
+PsxVisualsGd4AutoLoad="uid://dj3bxpmibqxum"
+PsxVisualsGd4AutoApply="uid://stww83i1wsru"
 
 [dialogic]
 
@@ -48,7 +53,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ai_coding_assistant/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/wyvernbox/editor/plugin.cfg")
+enabled=PackedStringArray("res://addons/FancyControls/plugin.cfg", "res://addons/ai_coding_assistant/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/psx_visuals_gd4/plugin.cfg", "res://addons/quest_system/plugin.cfg", "res://addons/uiJuicer/plugin.cfg", "res://addons/vfx_library/plugin.cfg", "res://addons/wyvernbox/editor/plugin.cfg")
 
 [input]
 
@@ -94,3 +99,30 @@ inventory_filter={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+
+[shader_globals]
+
+psx_affine_strength={
+"type": "float",
+"value": 1.0
+}
+psx_bit_depth={
+"type": "int",
+"value": 5
+}
+psx_fog_color={
+"type": "color",
+"value": Color(0.5, 0.5, 0.5, 0)
+}
+psx_fog_far={
+"type": "float",
+"value": 20.0
+}
+psx_fog_near={
+"type": "float",
+"value": 10.0
+}
+psx_snap_distance={
+"type": "float",
+"value": 0.025
+}
