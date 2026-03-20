@@ -89,7 +89,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/FancyControls/plugin.cfg", "res://addons/ai_coding_assistant/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/gloot/plugin.cfg", "res://addons/psx_visuals_gd4/plugin.cfg", "res://addons/quest_system/plugin.cfg", "res://addons/uiJuicer/plugin.cfg", "res://addons/vfx_library/plugin.cfg")
+enabled=PackedStringArray("res://addons/FancyControls/plugin.cfg", "res://addons/ai_coding_assistant/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/psx_visuals_gd4/plugin.cfg", "res://addons/quest_system/plugin.cfg", "res://addons/uiJuicer/plugin.cfg", "res://addons/vfx_library/plugin.cfg")
 
 [input]
 
