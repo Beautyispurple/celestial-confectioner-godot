@@ -1,8 +1,29 @@
-[background arg="res://backgrounds/BACKGROUND_Marzi_Bedroom_Clean.jpg" fade="0.0"]
+[background arg="res://backgrounds/BACKGROUND_attic_clean_better.png" fade="0.0"]
 [style name="marzi_visual_novel_style"]
 [wait time="1.0"]
 join marzi left
-marzi: The stars smell of burnt sugar today...
+marzi (Casual Happy): Hiya! Nice to meetcha!!
+marzi (Casual Idle): My name is Marzipan Glace.
+marzi (Casual Carefree): Everyone just calls me Marzi though.
+marzi (Casual Confident): A month ago, I did the impossible.
+marzi (Casual Amazed): I graduated confectionery trade school with a 4.0 GPA!
+marzi (Casual Stressed): I was the kind of student who needed a map to find the walk-in freezer, but I could stay in the zone for ten hours straight if there was a sugar sculpture on the line.
+marzi (Casual Love): I was officially a real confectioner...
+marzi (Casual Sweat): kind of...
+leave marzi
+(We hear rustling and Marzi has a hand outstretched in a box of candy with strawberry wrappers)
+(It is buried near sketches of tiered cakes, empty mugs, and a glowing tablet.)
+join marzi left
+marzi (Casual Unsure): I thought the hard part was over.
+marzi (Casual Anticipation): I thought the graduation money would be my ticket to my own confectionery.
+marzi (Casual Carefree): I just... needed a little inspiration first...
+leave marzi
+[background arg="res://backgrounds/BACKGROUND_attic_afternoon.png" fade="0.0"]
+(Days go by...)
+[background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="0.0"]
+(Weeks go by...)
+[background arg="res://backgrounds/BACKGROUND_attic_mesy_better.png" fade="0.0"]
+(Months later...)
 join taffy rightmost
 taffy: I'm testing stuff rn
 taffy (Ashamed): i feel so bad...
