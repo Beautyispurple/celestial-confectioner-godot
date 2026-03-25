@@ -1,0 +1,103 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(1, 1, 0.21176471, 1),
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "",
+"suffix": ""
+},
+&"default_portrait": "Approval",
+&"description": "",
+&"display_name": "Rosy",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"Approval": {
+"export_overrides": {
+"image": "\"res://sprite_character/rosy_sprite/sprite_rosy_approval.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Disappointed": {
+"export_overrides": {
+"image": "\"res://sprite_character/rosy_sprite/sprite_rosy_disappointed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Discerning": {
+"export_overrides": {
+"image": "\"res://sprite_character/rosy_sprite/sprite_rosy_discerning.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Hugging": {
+"export_overrides": {
+"image": "\"res://sprite_character/rosy_sprite/sprite_rosy_hugging.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Idle": {
+"export_overrides": {
+"image": "\"res://sprite_character/rosy_sprite/sprite_rosy_idle.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Meddling": {
+"export_overrides": {
+"image": "\"res://sprite_character/rosy_sprite/sprite_rosy_meddling.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Scheming": {
+"export_overrides": {
+"image": "\"res://sprite_character/rosy_sprite/sprite_rosy_scheming.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Shocked": {
+"export_overrides": {
+"image": "\"res://sprite_character/rosy_sprite/sprite_rosy_shocked.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Warm": {
+"export_overrides": {
+"image": "\"res://sprite_character/rosy_sprite/sprite_rosy_warm.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
+&"scale": 1.0
+}

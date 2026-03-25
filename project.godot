@@ -28,9 +28,14 @@ GlobalInventory="*uid://mswyktna5vcr"
 [dialogic]
 
 directories/dch_directory={
+"al": "res://al.dch",
+"al_sprite/al": "res://sprite_character/al_sprite/al.dch",
 "beatrix": "res://sprite_character/beatrix_sprite/beatrix.dch",
+"chai": "res://sprite_character/chai_sprite/chai.dch",
 "huck": "res://sprite_character/huck_sprite/huck.dch",
+"madeline": "res://sprite_character/madeline_sprite/madeline.dch",
 "marzi": "res://marzi.dch",
+"rosy": "res://sprite_character/rosy_sprite/rosy.dch",
 "taffy": "res://sprite_character/taffy_sprite/taffy.dch"
 }
 directories/dtl_directory={

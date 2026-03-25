@@ -1,0 +1,76 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(0.104921855, 0.36981094, 0.49374998, 1),
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "",
+"suffix": ""
+},
+&"default_portrait": "Exasperated",
+&"description": "",
+&"display_name": "Chai",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"Exasperated": {
+"export_overrides": {
+"image": "\"res://sprite_character/chai_sprite/sprite_chai_exasperated.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Idle": {
+"export_overrides": {
+"image": "\"res://sprite_character/chai_sprite/sprite_chai_idle.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Love": {
+"export_overrides": {
+"image": "\"res://sprite_character/chai_sprite/sprite_chai_love.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Relaxed": {
+"export_overrides": {
+"image": "\"res://sprite_character/chai_sprite/sprite_chai_relaxed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Shock": {
+"export_overrides": {
+"image": "\"res://sprite_character/chai_sprite/sprite_chai_shock.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Understanding": {
+"export_overrides": {
+"image": "\"res://sprite_character/chai_sprite/sprite_chai_understanding.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
+&"scale": 1.0
+}

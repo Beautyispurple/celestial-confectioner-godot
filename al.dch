@@ -1,0 +1,94 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(0.3875, 0.22250976, 0.12351563, 1),
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "",
+"suffix": ""
+},
+&"default_portrait": "Bill Disappointed",
+&"description": "",
+&"display_name": "Al",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"Bill Disappointed": {
+"export_overrides": {
+"image": "\"res://sprite_character/al_sprite/sprite_al_bill_disappointed.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Bill Mad": {
+"export_overrides": {
+"image": "\"res://sprite_character/al_sprite/sprite_al_bill_mad.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Bill Shocked": {
+"export_overrides": {
+"image": "\"res://sprite_character/al_sprite/sprite_al_bill_shocked.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Care": {
+"export_overrides": {
+"image": "\"res://sprite_character/al_sprite/sprite_al_care.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Discerning": {
+"export_overrides": {
+"image": "\"res://sprite_character/al_sprite/sprite_al_discerning.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Fatherly": {
+"export_overrides": {
+"image": "\"res://sprite_character/al_sprite/sprite_al_fatherly.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Pleased": {
+"export_overrides": {
+"image": "\"res://sprite_character/al_sprite/sprite_al_pleased.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Worry": {
+"export_overrides": {
+"image": "\"res://sprite_character/al_sprite/sprite_al_worry.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
+&"scale": 1.0
+}
