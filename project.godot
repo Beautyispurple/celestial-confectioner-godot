@@ -51,7 +51,11 @@ layout/style_directory={
 layout/style_list=["res://visualnovelwithportrait.tres", "res://marzi_visual_novel_style.tres", "res://real_marzi_style.tres"]
 layout/default_style="res://visualnovelwithportrait.tres"
 glossary/default_case_sensitive=true
-variables={}
+variables={
+"al_points": "",
+"beatrix_points": "0",
+"rosy_points": ""
+}
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true

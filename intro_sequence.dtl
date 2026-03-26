@@ -1,22 +1,26 @@
+label prologue_attic
 [background arg="res://backgrounds/BACKGROUND_attic_clean_better.png" fade="0.0"]
 [style name="marzi_visual_novel_style"]
 [wait time="1.0"]
-join marzi left
+join marzi (Casual Happy) left
 marzi (Casual Happy): Hiya! Nice to meetcha!!
-marzi (Casual Idle): My name is Marzipan Glace.
+marzi (Casual Happy): My name is Marzipan Glace.
 marzi (Casual Carefree): Everyone just calls me Marzi though.
 marzi (Casual Confident): A month ago, I did the impossible.
 marzi (Casual Amazed): I graduated confectionery trade school with a 4.0 GPA!
-marzi (Casual Stressed): I was the kind of student who needed a map to find the walk-in freezer, but I could stay in the zone for ten hours straight if there was a sugar sculpture on the line.
+marzi (Casual Unsure): I was the kind of student who needed a map to find the walk-in freezer...
+marzi (Casual Confident): ...but I could stay in the zone for ten hours straight if there was a sugar sculpture on the line.
 marzi (Casual Love): I was officially a real confectioner...
-marzi (Casual Sweat): kind of...
+marzi (Casual Sweat): ...well...kind of...
 leave marzi
-(We hear rustling and Marzi has a hand outstretched in a box of candy with strawberry wrappers)
-(It is buried near sketches of tiered cakes, empty mugs, and a glowing tablet.)
-join marzi left
+(We hear rustling.)
+(Marzi has a hand outstretched in a fancy box of candy full with strawberry print wrappers.)
+(It is half buried under sketches of tiered cakes, blown sugar sculptures, and multiple stained copies of Marzi's resume.)
+(She is sitting at her desk typing in recipe measurement adjustments to her portfolio with her free hand.)
+join marzi (Casual Unsure) left
 marzi (Casual Unsure): I thought the hard part was over.
-marzi (Casual Anticipation): I thought the graduation money would be my ticket to my own confectionery.
-marzi (Casual Carefree): I just... needed a little inspiration first...
+marzi (Casual Worried): I thought the graduation money would be my ticket to my own confectionery.
+marzi (Casual Carefree): I just... need a little inspiration first...
 leave marzi
 [background arg="res://backgrounds/BACKGROUND_attic_afternoon.png" fade="0.0"]
 (Days go by...)
@@ -24,7 +28,188 @@ leave marzi
 (Weeks go by...)
 [background arg="res://backgrounds/BACKGROUND_attic_mesy_better.png" fade="0.0"]
 (Months later...)
-join taffy rightmost
-taffy: I'm testing stuff rn
-taffy (Ashamed): i feel so bad...
-[background arg="res://backgrounds/BACKGROUND_Marzi_Bedroom_Messy.jpg" fade="0.0"]
+MARZIPAN! COME DOWNSTAIRS THIS INSTANT!
+join marzi (Casual Fear) left
+marzi (Casual Fear): Uh oh...
+marzi (Casual Concerned): BE RIGHT THERE DAD!
+leave marzi
+[background arg="res://backgrounds/BACKGROUND_Family_Kitchen.jpg" fade="0.0"]
+join marzi (Casual Concerned) left
+marzi (Casual Concerned): Y...yes Dad?
+join al (Bill Shocked) rightmost
+al (Bill Shocked): Marzi. Please tell me the decimal point on this statement is an error!
+al (Bill Mad): Did you really spend your entire graduation fund on...
+al (Bill Disappointed): ...candy?
+marzi (Casual Concerned): It's not just candy, Dad!
+- Appeal to him logically
+	marzi (Casual Miffed): It's research!
+	marzi (Casual Carefree): How am I supposed to revolutionize the confectionery world if I don't study the perfect matcha ganache?
+	leave al
+	join rosy (Shocked) rightmost
+	rosy (Shocked): Marzi?! Really?!
+- Appeal to him emotionally
+	marzi (Casual Tears): I'm nervous about my portfolio quality so I was sniffing out the competition...
+	marzi (Casual Orz): ...AND THERE WAS AN AMAZING SALE!
+	leave al
+	join rosy (Shocked) rightmost
+	rosy (Shocked): Marzi?! Really?!
+	rosy (Scheming): Although...a sale you say...
+	rosy (Disappointed): No, no... nevermind.
+- Own up to it
+	marzi (Casual Apologetic): But you're right, Dad.
+	marzi (Casual Apologetic): I got carried away trying to perfect my portfolio.
+	leave al
+	join rosy (Approval) rightmost
+	rosy (Approval): Well at least you seem to be able to take some accountability.
+	set {rosy_points} += "5"
+	marzi (Casual Serious): ...
+if {rosy_points} == "5":
+	rosy (Disappointed): ...but it's not really enough.
+	marzi (Casual Concerned): ...
+marzi (Casual Apologetic): ...
+rosy (Disappointed): Sweetheart, a flower can't bloom if it doesn't have roots in the dirt.
+rosy (Disappointed): We love your passion, but your 'research' drained your entire savings...
+rosy (Disappointed): ...and you're going to have to deal with the consequences of your childish decision.
+rosy (Disappointed): You've been locked up in your bedroom for months...
+rosy: You've been spending more time shopping for sweets, outfits and fidget toys than you have been applying for jobs.
+leave rosy
+join al (Worry) rightmost
+al (Worry): Mom and I agreed on a timeline, Marzi.
+al (Worry): You need a steady job.
+al (Worry): A real routine.
+al (Worry): If you don't have a paying position by the end of the month...
+al (Worry): ...we are going to kick you out of the house, Marzipan.
+marzi (Casual Very Concerned): !!!
+al (Worry): We can't keep funding this chaos.
+marzi (Casual Very Concerned): E...End of the month? But I-I just need more time to perfect my portfolio-
+leave --All--
+(Chai, Marzi's older brother walks into the room, balancing a squirming Toddler on his hip and a tablet in his other hand. The toddler is Marzi's sister, Madeline)
+join chai rightmost
+chai (Exasperated): I'd say i'm surprised you spent all that money on candy...
+chai (Understanding): But I'm not.
+leave --All--
+join madeline rightmost
+madeline (Happy): CANDY!!! I WANT CANDY TOO MARZI!!
+leave madeline
+join chai (Relaxed) rightmost
+chai (Relaxed): Look, if you're going to blow your entire life savings on sugar, you might as well go straight to the source.
+chai (Relaxed): Have you been to Starlight city before?
+join marzi (Casual Orz) left
+marzi (Casual Orz): No...I..I haven't.
+marzi (Casual Serious): But that's where the legendary confectionery, The Gilded Macaron is.
+marzi (Casual Cowlick): Any confectioner who knows their salt from their sugar knows that...
+marzi (Casual Concerned): ...
+chai (Exasperated): Well you might not have been searching the job boards...
+chai (Relaxed): ...but I have.
+chai (Relaxed): There's a new listing for a job opening.
+marzi (Casual Amazed): Oh wow! That would be my dream job!
+marzi (Casual Worried): B...But what if my portfolio isn't good enough?
+marzi (Casual Wingding): What if they don't like me??
+marzi (Casual Orz): I'll be living in a tent in the woods!!!
+marzi (Casual Orz): ...
+marzi (Casual Tears): I DON'T EVEN OWN A TENT!
+chai (Understanding): Look at me please Marzi.
+chai (Understanding): Let's do three deep breaths together, okay?
+chai (Understanding): In through the nose...2...3...4...
+chai (Understanding): Hold...2...3...4...
+chai (Understanding): Out...2...3...4...
+leave --All--
+(Marzi regains her composure as they box breathe together.)
+join chai (Understanding) rightmost
+join marzi (Casual Trust) left
+chai (Understanding): They'll like you Marzi.
+chai (Understanding): No one has a passion for confectionery arts more intense than you.
+chai (Understanding): You've prepared enough, okay?
+chai (Love): It's time to put that preparation into action.
+join marzi (Casual Confident) left
+marzi (Casual Confident): You're right, Chai...
+marzi (Casual Confident): I can do this!
+leave --All--
+(Chai smiles and tosses her a transit card)
+join chai rightmost
+chai (Relaxed): I already looked up the bus routes for you.
+chai (Relaxed): Go get 'em, confectionery genius.
+leave --All--
+[background arg="res://backgrounds/SCENE_bus_ticket.png" fade="0.0"]
+[wait time="5.0"]
+[background arg="res://backgrounds/SCENE_bus_nervous.png" fade="0.0"]
+[wait time="5.0"]
+label prologue_gm
+[background arg="res://backgrounds/BACKGROUND_gm_outside.png" fade="0.0"]
+[wait time="5.0"]
+join marzi (Casual Amazed) left
+marzi (Casual Anticipation): Omigosh WOW!
+marzi (Casual Anticipation): So this is the legendary Gilded Macaron...
+marzi (Casual Love): It's even better than I'd imagined!
+marzi (Casual Love): Look at that carousel made of sugar!
+marzi (Casual Amazed): it's so intricate...
+marzi (Casual Amazed): I can't wait to make something like that.
+marzi (Casual Confident): Okay Marzi, this is it.
+marzi (Casual Confident): It's your big chance!
+marzi (Casual Sweat): So don't blow it...
+leave marzi
+(Marzi pushes open the heavy door)
+[background arg="res://backgrounds/BACKGROUND_gm_inside.png" fade="0.0"]
+[wait time="1.5"]
+(Marzi gazes wide eyed at all the confections around her.)
+(The shop is breathtaking.)
+join marzi (Casual Love) left
+marzi (Casual Love): (Am...am I dreaming?!)
+marzi (Casual Love): (No, I must have died on the bus ride and gone to heaven!!)
+leave marzi
+(She marvels at the surprisingly massive interior of the shop)
+(it is filled to the brim with perfect quality confections.)
+(Undulating blown sugar globes hang in the air with a curious and brightly colored mist swirls within.)
+(They hang in the air as if by magic.)
+(There are glowing, levitating, and sparkling truffles.)
+(Marzi leans in to have a closer look at the cotton candy.)
+(it swirls and twinkles, like each sugar cloud held it's own galaxy inside.)
+(There are impressive display showpieces of modeling chocolate trees with marzipan fruits hanginng from the branches...)
+(...Pulled sugar birds are in nestled in the branches.)
+(They tilt their heads and fix their shiny button eyes on Marzi, tweeting and cooing at her.)
+(Marzi pinches her wrist)
+join marzi (Casual Surprised) left
+marzi (Casual Surprised): Ouch!
+marzi (Casual Amazed): (I'm not dreaming and I'm not dead.)
+marzi (Casual Anticipation): (This is real.)
+marzi (Casual Anticipation): (THIS IS REEEEAL!!!)
+marzi (Casual Amazed): (I knew The Gilded Macaron was supposed to be legendary...)
+marzi (Casual Amazed): (But I didn't think it was literally magical!
+leave marzi
+(A woman clears her throat and you hear her footsteps encho .)
+join beatrix (Macaron) rightmost
+beatrix (Macaron): Welcome! Welcome to The Gilded Macaron my dear!
+beatrix (Happy): Do step right in, please!
+beatrix (Idle Neutral): I am Madame Beatrix Von Sweets, owner and operator  of this humble establishment.
+beatrix (Idle Neutral): A pleasure to meet you.
+join marzi (Casual Happy) left
+- Um...Um...Hi...Um...
+	set {beatrix_points} -= "3"
+	beatrix (Idle Neutral): Well aren't you such an... interesting girl!
+	beatrix (Idle Neutral): With a fashion sense to match!
+	beatrix (Idle Neutral): You must have a very eclectic palette.
+	beatrix (Idle Neutral): We have an extra fresh batch of turkish delights that I think you'll love.
+	beatrix (Idle Neutral): Our in house confectioners have enchanted them so that you feel the chill of falling snowflakes when you take a bite.
+	beatrix (Idle Neutral): Would you like to try a sample before you purchase?
+- Hiya! Nice to meet you too!
+	set {beatrix_points} += "1"
+	beatrix (Idle Neutral): My, what a confident girl you are!
+	beatrix (Idle Neutral): With a fashion sense to match!
+	beatrix (Idle Neutral): You must have a very bold palette.
+	beatrix (Idle Neutral): Might I recommend our salted soft caramels?
+	beatrix (Idle Neutral): Our in house confectioners have have enchanted them so they don't stick to your teeth!
+	beatrix (Idle Neutral): Would you like to try a sample before you purchase?
+- A pleasure to meet you as well, Madame.
+	set {beatrix_points} += "5"
+	beatrix (Idle Neutral): Ah, such pleasant manners.
+	beatrix (Idle Neutral): A rarity in today's youth.
+	beatrix (Idle Neutral): Impeccable fashion sense as well I see.
+	beatrix (Idle Neutral): You must have a very refined palette.
+	beatrix (Macaron): I must of course then recommend our house made macarons.
+	beatrix (Macaron): You won't find another comparable.
+	beatrix (Macaron): I personally oversee all the enchantments on our macarons.
+	beatrix (Macaron): We rotate the flavor profiles and effects out every day.
+	beatrix (Macaron): Today's theme is weather, so the yellow macarons taste like sundew-nice for warming up in the evening before bed.
+	beatrix (Macaron): The blue ones tastes like a summer shower and you don't need a drink to wash it down.
+	beatrix (Macaron): Green is lightning, white is hail, you get the picture.
+	beatrix (Macaron): Would you like to try a sample before you purchase, young miss?
