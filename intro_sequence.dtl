@@ -213,3 +213,32 @@ join marzi (Casual Happy) left
 	beatrix (Macaron): The blue ones tastes like a summer shower and you don't need a drink to wash it down.
 	beatrix (Macaron): Green is lightning, white is hail, you get the picture.
 	beatrix (Macaron): Would you like to try a sample before you purchase, young miss?
+marzi (Casual Apologetic): Oh wow, that is such a tempting offer Madame Sweets.
+marzi (Casual Serious): But I'm actually not a customer.
+marzi (Casual Serious): I'm Marzipan Glace. Marzi for short.
+marzi (Casual Happy): I saw the job posting about an opening in the confectionery.
+marzi (Casual Happy): I brought my portfolio and my confectionery school diploma!
+leave --All--
+(The temperature in the room suddenly seems to drop ten degrees.)
+(Beatrix's radiant smile vanishes instantly and is replaced by a cold, calculating stare.)
+(She pulls a golden cell phone out of her pocket, her posture stiffening into absolute rigidity.)
+(When she speaks again, her voice is flat and clipped.)
+join beatrix (Unimpressed) rightmost
+beatrix (Unimpressed): A job applicant. I see.
+join marzi (Casual Concerned) left
+marzi (Casual Concerned): (I feel so small right now...what happened to make her switch like that?)
+marzi (Casual Confident): (Come on Marzi, don't let this deter you from your big chance!)
+marzi (Casual Confident): Yes Madame. I just graduated and-
+leave --All--
+(Beatrix holds up a single, immaculate finger to silence her.)
+(She steps closer to Marzi, and takes the portfolio from her hands.)
+(She inspects it like a hawk inspects a very messy mouse.)
+join beatrix (Dour Lookdown) rightmost
+beatrix (Dour Lookdown): Confectionery school. I see. So, no formal magic discipline?
+beatrix (Dour Lookdown): Never been part of a coven...
+beatrix (Dour Lookdown): (Beatrix gestures sharply towards the overstuffed portfolio, which has a few rogue formula sketches sticking out of the zipper.)
+beatrix (Dour Lookdown): Your presentation is chaotic at best.
+beatrix (Dour Lookdown): There is confectioner sugar on your left shoe.
+beatrix (Dour Lookdown): And I don't know If I would have chosen that outfit for introductions with a prospective employer...
+beatrix (Dour Lookdown): But I do think my customers would enjoy your style...
+beatrix (Dour Lookdown): You have ink-or perhaps food coloring-smudged on your wrist.
