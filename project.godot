@@ -52,9 +52,12 @@ layout/style_list=["res://visualnovelwithportrait.tres", "res://marzi_visual_nov
 layout/default_style="res://visualnovelwithportrait.tres"
 glossary/default_case_sensitive=true
 variables={
-"al_points": "",
+"al_points": "100",
 "beatrix_points": "0",
-"rosy_points": ""
+"panic_points": "0",
+"peace_points": "0",
+"rosy_points": "100",
+"social_battery": "5"
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

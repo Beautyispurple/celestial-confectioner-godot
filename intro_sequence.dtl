@@ -241,4 +241,152 @@ beatrix (Dour Lookdown): Your presentation is chaotic at best.
 beatrix (Dour Lookdown): There is confectioner sugar on your left shoe.
 beatrix (Dour Lookdown): And I don't know If I would have chosen that outfit for introductions with a prospective employer...
 beatrix (Dour Lookdown): But I do think my customers would enjoy your style...
+beatrix (Idle Dour): Many of them come in after shopping at the boutique next door.
 beatrix (Dour Lookdown): You have ink-or perhaps food coloring-smudged on your wrist.
+beatrix (Dour Lookdown): I run a tight ship around here, Ms. Glace.
+beatrix (Dour Lookdown): Do you really think you can work to the high standards required to keep The Gilded Macaron's flawless reputation?
+join marzi (Casual Concerned) left
+marzi (Casual Concerned): (Marzi tries to hide her stained wrist behind her back)
+marzi (Casual Concerned): I...I know I look a little scattered, but I'm a fast learner, and I promise I'll work hard!
+marzi (Casual Confident): My methods can be somewhat... unconventional, but the proof is in the pudding, Madame Sweets and I was able to earn a 4.0 GPA.
+marzi (Casual Concerned): I'm also very creative and i have so many ideas for-
+beatrix (Exasperated): Let me stop you right there.
+beatrix (Exasperated): I'm not looking for my junior staff to reinvent the wheel.
+beatrix (Dour Lookdown): The wheel, which as you can see, is rolling flawlessly the way it is.
+beatrix (Idle Dour): No, you must first prove you are even capable of the basics.
+beatrix (Idle Dour): (Her eyes bore into the core of Marzi's soul)
+beatrix (Idle Dour): You have to prove you can follow the blueprint of success.
+beatrix (Dour Lookdown): One bad review on SweetSnap, one misfired enchantment, and my entire legacy crumbles.
+beatrix (Dour Lookdown): The world out there-(She taps her cell phone screen)-is waiting for me to fail.
+marzi (Casual Worried): (Marzi's confidence starts to falter.)
+marzi (Casual Worried): Right. I understand. You're looking for someone more experienced...
+marzi (Casual Worried): I'll just-
+beatrix (Dour Lookdown): Hold.
+beatrix (Unimpressed): (Beatrix sighs, rubbing her temples as if fighting a chronic headache.)
+beatrix (Unimpressed): (She looks Marzi up and down one last time, an exhausted resignation in her eyes.)
+beatrix (Unimpressed): (She looks Marzi up and down one last time, an exhausted resignation in her eyes.)
+beatrix (Dour Lookdown): You're...messy...you lack focus...
+beatrix (Dour Lookdown): I'm going to need to spend considerable time with your training...
+beatrix (Dour Lookdown): However the copper cauldrons require hand-polishing.
+beatrix (Dour Lookdown): The marble floors need scrubbing.
+beatrix (Dour Lookdown): The display cases need daily cleaning.
+beatrix (Dour Lookdown): If you want to stand a chance at surviving in my prep room, we will start by curing you of your lack of discipline.
+beatrix (Dour Lookdown): I will mold you like these chocolate sculptures, Ms. Glace, from the bottom molecule to the top.
+marzi (Casual Amazed): Thank you! I promise, I can work harder than anyone!
+marzi (Casual Amazed): I'll prove to you that I have what it takes to be a world class confectioner!
+marzi (Casual Amazed): I won't let you down!
+beatrix (Dour Lookdown): We shall see...
+beatrix (Dour Lookdown): Your shift starts at 5AM tomorrow morning.
+beatrix (Dour Lookdown): If you are late, I will find another applicants.
+beatrix (Dour Lookdown): That means 15 minutes early, Ms. Glace.
+beatrix (Dour Lookdown): And for heaven's sake, don't you dare touch a single utensil until you have earned it.
+marzi (Casual Fear): Yes, Ma'am!
+leave --All--
+(Beatrix hands Marzi's portfolio over to her and she walks towards the exit, leaving the wonderous scents and mystical confections behind her.)
+(Once more she pushes open the heavy doors to the street.)
+[background arg="res://backgrounds/BACKGROUND_gm_outside.png" fade="0.0"]
+join marzi (Casual Orz) left
+marzi (Casual Orz): (That was so much harder than I thought it would be!)
+marzi (Casual Happy): (But I did it!!)
+marzi (Casual Happy): (I really did it!!)
+marzi (Casual Concerned): (What was up with that lady though?)
+marzi (Casual Concerned): (At first she seemed so nice...)
+marzi (Casual Orz): (Did I do something wrong?)
+marzi (Casual Orz): (I hope she's not going to be a nightmare boss...)
+marzi (Casual Confident): (Even so! This is the opportunity of a lifetime!)
+marzi (Casual Sweat): (And I don't have to go live in a cave!)
+marzi (Casual Happy): I can't wait to tell Chai!
+leave --All--
+[background arg="res://backgrounds/SCENE_bus_ticket.png" fade="0.0"]
+[wait time="5.0"]
+[background arg="res://backgrounds/SCENE_bus_happy.png" fade="0.0"]
+[wait time="5.0"]
+label prologue_kitchen
+[background arg="res://backgrounds/BACKGROUND_Family_Kitchen.jpg" fade="0.0"]
+[wait time="5.0"]
+(Back home the table is set perfectly, though Marzi's side has a few stray sprinkles and a notebook filled with recipes and illustrations of different confections flipped open.)
+(Madeline is smashing peas into her highchair tray while Chai tries to distract her with a spoon airplane.)
+(Rosy is busy serving sanshoku don to the rest of the family, while Al raises his glass in toast.)
+join al (Pleased) rightmost
+al (Pleased): To Marzi!
+al (Pleased): Who managed to land a job at the most prestigious confectionery in Starlight City on her very first try!
+leave al
+join rosy (Hugging) rightmost
+rosy (Hugging): We are so proud of you, sweetheart!
+rosy (Hugging): We knew you just needed a little push.
+leave --All--
+(Marzi stabs a carrot with her fork, looking a little green.)
+join marzi (Casual Unsure) left
+marzi (Casual Unsure): Thanks, guys.
+marzi (Casual Unsure): It's...well, it's going to be a lot of floor scrubbing at first.
+marzi (Casual Unsure): Madame Von Sweets is...intense.
+marzi (Casual Unsure): She doesn't want me touching the cooking utensils until I "prove myself"...
+marzi (Casual Unsure): That's kind of...weird, right?
+join madeline (Mischevious) rightmost
+madeline (Carefree): Marzi!
+madeline (Mischevious): NO TOUCH!
+leave madeline
+join rosy (Idle) rightmost
+rosy (Idle): Maddy, please eat the peas and you can have purin after.
+leave rosy
+join madeline (Happy) rightmost
+madeline (Happy): Waaaah! PURIN! PURIN!
+madeline (Happy): JIGGLE!
+leave madeline
+(Madeline puts her face up to the smushed peas on her highchair table and begins loudly vacuuming them up)
+join rosy (Idle) rightmost
+rosy (Idle): Now, quit complaining Marzi!
+rosy (Idle): This is a great opportunity.
+rosy (Idle): And obviously Madame Sweets knows what she's doing.
+rosy (Idle): So you just do as she says.
+join marzi (Casual Apologetic) left
+marzi (Casual Apologetic): Yes, Mom.
+join al (Pleased) rightmost
+al (Pleased): Since you're working downtown now, the commute from the attic isn't really practical anymore.
+al (Pleased): Your mom and I have decided to cover the security deposit and first month's rent for an apartment near the shop.
+marzi (Casual Surprised): (Marzi drops her fork, her eyes widen)
+marzi (Casual Surprised): Wait, really?
+marzi (Casual Surprised): You'd really do that?!
+marzi (Casual Surprised): I thought you were just going to kick me out high and dry and I'd have to go live in a tent in the woods!
+leave al
+join chai (Exasperated) rightmost
+chai (Exasperated): Marzi, I'm pretty sure Mom and Dad just said that so you'd take getting a job seriously...
+chai (Understanding): ...and I think you kind of catastrophized that whole tent in the woods scenario...
+leave chai
+join rosy (Idle) rightmost
+rosy (Idle): Consider it an investment in your roots.
+rosy (Idle): All we want is for you to grow and really bloom, Marzi.
+rosy (Idle): And you weren't growing all alone up in that attic.
+rosy (Idle): We hope having your own "pot" will give you some space to flourish.
+rosy (Idle): But remember Marzi-
+rosy (Idle): You have to hold this job down to pay the monthly rent.
+rosy (Idle): No impulsive quitting...
+rosy (Idle): No giving up because it's hard or you're having trouble with a coworker...
+rosy (Idle): No blowing your paycheck on imported candy.
+marzi (Casual Sweat): (Marzi swallows hard, the crushing weight of Beatrix's cold stare flashing in her mind.)
+marzi (Casual Sweat): Right.
+marzi (Casual Unsure): Absolutely
+marzi (Casual Unsure): I can be disciplined...
+marzi (Casual Unsure): I can be an adult...
+marzi (Casual Unsure): (I can be...)
+marzi (Casual Unsure): (...normal.)
+leave rosy
+join al (Fatherly) rightmost
+al (Fatherly): Then it's settled.
+al (Fatherly): I'll look in to rentals near the shop.
+leave --All--
+[background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="0.0"]
+[wait time="5.0"]
+(Marzi tosses and turns in bed, staring at the ceiling.)
+join marzi (Casual Unsure) left
+marzi (Casual Unsure): Everything is happening really fast...
+marzi (Casual Unsure): I know I promised Mom and Dad that I could do this...
+marzi (Casual Unsure): But what if I can't?
+marzi (Casual Unsure): What if I let everyone down?
+marzi (Casual Unsure): ...
+marzi (Casual Unsure): What if I let myself down...?
+marzi (Casual Unsure): There's so much riding on me doing well...
+marzi (Casual Unsure): So much pressure...
+marzi (Casual Stressed): I...I...
+marzi (Casual Stressed): M...My chest is feeliing tight
+marzi (Casual Stressed): What do I do??
