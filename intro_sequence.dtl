@@ -498,7 +498,101 @@ marzi (Panic Attack 1): What do I do??
 	leave marzi
 	join marzi (Sleeping) left
 	marzi (Sleeping): (Marzi has a little trouble getting to sleep, but when she does she sleeps soundly and dreamlessly.)
-- Put on a guided meditation and box breathe.
+- Put on a guided meditation and breathe.
+	marzi (Reeling): (Marzi fumbles for her phone, her fingers slick with cold sweat.)
+	marzi (Reeling): (She finds the app Chai installed for her last semester.)
+	marzi (Reeling): (The interface glows with a soft, pulsing light that mirrors a steady heartbeat.)
+	marzi (Reeling): (A calm, recorded voice begins to guide her through the counts.)
+	marzi (Meditation): (She closes her eyes and tries to picture Chai standing on the sidelines of the pitch.)
+	marzi (Meditation): (He’s always so composed when he’s coaching his soccer team.)
+	marzi (Meditation): (He tells his players that if they lose their breath, they lose their focus-)
+	marzi (Meditation): (-And if they lose their focus, they lose the game.)
+	marzi (Meditation): (He’s going to be such an incredible teacher one day.)
+	marzi (Meditation): (In... 2... 3... 4...)
+	marzi (Meditation): (Hold... 2... 3... 4...)
+	marzi (Meditation): (Chai's right... it's just physics... it's just chemistry.)
+	marzi (Meditation): (I'm not dying... I'm just breathing.)
+	marzi (Meditation): (She imagines the air as a steady, cool tide pulling the heat away from her skin.)
+	marzi (Meditation): (Slowly, the tightness begins to unravel like a knot finally loosening.)
+	set {panic_points} = "0"
+	set {tired} = "0"
+	marzi (Meditation): (The rhythm of her breath finally syncs with the pulsing light on her screen.)
+	marzi (Restfulsleep): (She drifts off as the heavy static in her mind settles into a soft, quiet hum.)
+	marzi (Restfulsleep): (Her dreams are filled with the scent of jasmine and the sun warming her shoulders.)
 - Tough it out and just go to bed.
-- Name five things in the room that are Pastel Pink.
+	(Marzi squeezes her eyes shut and pulls the thin quilt up to her chin.)
+	(Her heart is still thudding against her ribs like a trapped bird.)
+	marzi (Dejected): (Just stop. Just stop. It's fine. Everything is fine.)
+	marzi (Dejected): (She tries to force her muscles to go limp, but her shoulders are hiked up to her ears.)
+	marzi (Dejected): (The silence of the attic feels heavy, pressing down on her chest until it hurts to inhale.)
+	marzi (Dejected): (She thinks about the boutique receipt, the empty savings account, and Madame Beatrix’s cold eyes.)
+	marzi (Dejected): (Every time she almost drifts off, a fresh jolt of adrenaline snaps her eyes wide open.)
+	marzi (Exhausted): I can't afford to be this tired tomorrow. I have to work.
+	marzi (Exhausted): (She stares at the dark ceiling, her mind spinning in a loop of 'what-ifs' and 'should-haves'.)
+	marzi (Exhausted): (The 'toughing it out' feels less like strength and more like a slow, exhausting endurance test.)
+	marzi (Exhausted): (The 'toughing it out' feels less like strength and more like a slow, exhausting endurance test.)
+	marzi (Fretfulsleep): (Hours bleed into each other, the gray moonlight shifting across the floorboards.)
+	marzi (Fretfulsleep): (By the time her eyes finally stay shut, the birds outside are already starting their pre-dawn chatter.)
+	set {panic_points} += "5"
+	set {tired} = "1"
+- Name five things.
+	(Marzi presses her hands flat against the floorboards, letting the solid surface anchor her.)
+	marzi (Breathing): Okay. 5-4-3-2-1. Just like Chai showed me.
+	marzi (Breathing): He always said this works anywhere. In this dusty attic, or wherever you happen to be right now.
+	marzi (Breathing): Let's do it together. Look around the room.
+	marzi (Breathing): Five is sight. Let's look for a specific color. What is one yellow thing you can see nearby?
+	[text_input text="Type one yellow thing you see:" var="thing_1"]
+	marzi (Calming): {thing_1}. Right. That's real. That's right in front of us.
+	marzi (Breathing): Four is touch. Reach out your hand. What is something with a distinct texture that you can physically feel?
+	[text_input text="Type something you can touch:" var="thing_2"]
+	marzi (Breathing): {thing_2}. Focus on how solid that is.
+	marzi: Three is sound. Listen closely, past the quiet. What is one sound you can hear happening right now?
+	[text_input text="Type a sound you can hear:" var="thing_3"]
+	marzi (Calming): {thing_3}. Just a normal, everyday sound. The world is still turning.
+	marzi: Two is smell. This one is always tricky. Breathe in. What is a scent you can smell, or a really comforting one you can imagine?
+	[text_input text="Type a scent you can smell or imagine:" var="thing_4"]
+	marzi (Calming): {thing_4}. I can almost smell it too. That helps.
+	marzi (Breathing): One is taste. What is a flavor you can taste right now, or your absolute favorite flavor to remember?
+	[text_input text="Type a flavor:" var="thing_5"]
+	marzi (Calming): {thing_5}. Perfect.
+	(The heavy, crushing weight in her chest finally begins to unravel.)
+	marzi (Restfulsleep): (She takes one last, deep breath, letting the quiet rhythm of the night finally lull her to sleep.)
+	set {panic_points} -= 10
 - Double check my bank app.
+	(Marzi grabs her phone from the nightstand, squinting against the harsh glare of the screen.)
+	marzi (Reeling): (Maybe dad looked at an old statement. Maybe some of the graduation money is still there.)
+	marzi: (Just one or two hundred. Just enough so I'm not completely at zero.)
+	(She opens the banking app, her thumb hovering over the screen as the little loading circle spins.)
+	(The glowing logo pulses, each second dragging out into an eternity.)
+	(The dashboard finally refreshes, the numbers snapping into place.)
+	(Her dad’s printout was outdated, but not in the way she hoped. The final pending charges from the boutique just cleared.)
+	(Available Balance\: -300G)
+	(And right beneath it, a fresh line item in stark, glaring red\: OVERDRAFT FEE -35G)
+	marzi (Bank Account): No. No, no, no.
+	marzi: (They hit me with a fee. I don't even have zero. I have less than zero.)
+	(She aggressively swipes down to refresh the page again, her hands shaking so badly she almost drops the device.)
+	(The red numbers refuse to budge.)
+	(She drops the phone onto the quilt like it burned her, the screen still glowing with her massive mistake.)
+	(A sudden, freezing rush of adrenaline floods her veins, making her fingertips go entirely numb.)
+	(Her throat tightens up, the air in the cramped attic suddenly feeling impossibly thick and useless.)
+	marzi: (I spent it all. I spent money I didn't even actually have on clothes I can't even wear to work.)
+	marzi: (Why did I buy all those stupid dresses? I didn't need any of that stuff. I was just stressed and wanted to feel better.)
+	marzi: (And now it's gone. All of it. For nothing.)
+	(She pulls her knees tight against her chest, wrapping her arms around her legs so hard her joints ache.)
+	(Every frantic pulse of her heart thuds against her eardrums, deafening in the quiet room.)
+	marzi: (If my parents find out I overdrew my account before I even moved out, they're going to completely lose it.)
+	marzi: (Dad is going to do that horrible, quiet sigh, and Mom is going to scream about how I can never do anything right.)
+	marzi: (They’ll tell me I'm totally irresponsible and not ready for the real world. And they'll be right.)
+	(A sharp wave of nausea rolls through her stomach, twisting it into tight knots.)
+	marzi: (The first month's rent at the new place is covered, but what about month two?)
+	marzi: (I have to pay the bank back, somehow buy groceries, and make rent starting from negative three hundred and thirty-five gold?)
+	marzi: (I'm going to be evicted. I haven't even moved in and I'm already going to be homeless.)
+	(The slanted ceiling of the attic seems to press downward, trapping her in the dark.)
+	(She squeezes her eyes shut, but the glowing red numbers are burned into the back of her eyelids.)
+	(There is no escape from the physical weight crushing her chest, no rational thought that can pierce through the deafening rush of terror.)
+	(She spends the rest of the night shivering under the thin blanket, staring blankly at the wall as her mind cycles through every catastrophic failure waiting for her.)
+	(By the time the gray morning light bleeds through the tiny window, she hasn't closed her eyes for a single second.)
+	set {gold_coin} -= 335
+	set {tired} = 1
+	set {panic} = 11
+	# emit trigger_achievement_out_of_sight

@@ -54,10 +54,16 @@ glossary/default_case_sensitive=true
 variables={
 "al_points": "100",
 "beatrix_points": "0",
+"gold_coin": "0",
 "panic_points": "0",
 "peace_points": "0",
 "rosy_points": "100",
 "social_battery": "5",
+"thing_1": "",
+"thing_2": "",
+"thing_3": "",
+"thing_4": "",
+"thing_5": "",
 "tired": "0"
 }
 extensions_folder="res://addons/dialogic_additions"
