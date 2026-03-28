@@ -1,0 +1,114 @@
+label morning_day_0
+[background arg="res://backgrounds/BACKGROUND_attic_mid.png" fade="3.0"]
+(The shrill, mechanical ringing of the alarm clock shatters the quiet of the attic.)
+
+if {tired} == "0":
+	join marzi (Recovered) left
+	marzi (Recovered): (Marzi opens her eyes before the second ring, reaching out to tap the snooze button with a steady hand.)
+	marzi (Recovered): (The grounding exercises actually worked. My chest doesn't feel like it's trapped in a sugar press anymore.)
+	marzi (Recovered): Today is the day.
+	marzi (Recovered): (She tosses the quilt aside, her movements sharp and purposeful.)
+	marzi (Recovered): (I'm going to show Madame Beatrix that I know my way around a copper cauldron.)
+	leave marzi
+	(She spends a few extra minutes reviewing her flashcards on isomalt humidity tolerances while brushing her teeth.)
+	join marzi (Casual Anticipation) left
+	marzi (Casual Anticipation): (Stepping out into the pre-dawn chill, the air feels crisp and full of potential.)
+	leave marzi
+	[background arg="res://backgrounds/SCENE_bus_ticket_4am.png" fade="3.0"]
+	(The bus ride into Starlight City is peaceful.)
+	[background arg="res://backgrounds/SCENE_bus_alert_4am.png" fade="3.0" wait="true"]
+	[wait time="5.0"]
+	(She watches the streetlights reflect off the dewy pavement, visualizing the perfect glossy sheen of tempered chocolate.)
+	[background arg="res://backgrounds/BACKGROUND_gm_outside_4am.png" fade="3.0" transition="Push Left" wait="true"]
+	(She steps off the bus with a spring in her step, the grand silhouette of The Gilded Macaron looming ahead.)
+	join marzi (Casual Confident) left
+	marzi (Casual Confident): (4\:40 AM. Twenty minutes early.)
+	(She approaches the heavy front doors, but they are already propped open.)
+	join beatrix (Idle Neutral) rightmost
+	beatrix (Idle Neutral): Twenty minutes ahead of schedule, Ms. Glace.
+	marzi (Casual Surprised): Oh! Good morning, Madame Sweets!
+	beatrix (Idle Neutral): I see you managed to find the establishment without getting distracted.
+	beatrix (Macaron): I am glad to see you are taking this opportunity seriously.
+	set {beatrix_points} += "10"
+	beatrix (Idle Neutral): Punctuality is the foundation of any respectable confectionery.
+	marzi (Casual Happy): I wouldn't miss it for the world, Madame!
+
+elif {tired} == "1":
+	[background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="0.0"]
+	join marzi (Exhausted) left
+	marzi (Exhausted): (The alarm blares, but it sounds like it's coming from underwater.)
+	marzi (Exhausted): (Marzi groans, her hand blindly smacking the nightstand until it hits the clock.)
+	marzi (Exhausted): (Her limbs feel like they've been submerged in dense nougat. Every muscle aches from the tension of a sleepless night.)
+	marzi (Exhausted): Ugh... my eyes are burning...
+	marzi (Exhausted): I have to get up. I can't be late. I can't afford to be late. Literally.
+	leave marzi
+	(She drags herself out of bed, fumbling in the dark to find her clothes.)
+	(She accidentally puts her shirt on inside out and has to waste precious minutes fixing it, her hands clumsy and shaking.)
+	join marzi (Casual Tired) left
+	marzi (Casual Tired): (The walk to the bus stop is a miserable blur of cold wind and exhaustion.)
+	leave marzi
+	[background arg="res://backgrounds/SCENE_bus_ticket_4am.png" fade="3.0" wait="true"]
+	[wait time="5.0"]
+	[background arg="res://backgrounds/SCENE_bus_tired_4am.png" fade="3.0" wait="true"]
+	(On the bus, her head rests against the freezing, vibrating glass of the window.)
+	(Her eyelids droop, heavy as lead. She keeps nodding off, only to jerk awake in a sheer panic, terrified she missed the Starlight City stop.)
+	(Did I miss it?! No, no, okay, next stop.)
+	(She practically falls out of the bus doors when they finally open, breaking into a desperate sprint down the block.)
+	(Her lungs burn as the grand, imposing facade of The Gilded Macaron comes into view.)
+	[background arg="res://backgrounds/BACKGROUND_gm_outside_4am.png" fade="3.0" wait="true"]
+	(She skids to a halt right in front of the heavy doors, gasping for air.)
+	join marzi (Casual Sweat) left
+	marzi (Casual Sweat): (4\:45 AM. Exactly fifteen minutes early. Not a second to spare.)
+	join beatrix (Unimpressed) rightmost
+	beatrix (Unimpressed): (A sharp click echoes in the quiet morning air.)
+	(Madame Beatrix is standing in the doorway, her thumb resting on the side button of a gleaming golden cell phone.)
+	beatrix (Dour Lookdown): Four forty-five. Precisely.
+	beatrix (Dour Lookdown): Given your chaotic presentation yesterday, Ms. Glace...
+	beatrix (Unimpressed): ...I consider your exact, down-to-the-second arrival a minor miracle.
+	marzi (Casual Tired): (Pant... pant...)
+	marzi (Casual Tired): I'm here, Madame Sweets. Ready to work.
+	beatrix (Dour Lookdown): Try to catch your breath before you contaminate my show room with your panting.
+	beatrix (Dour Lookdown): And stand up straight. You look like an unwrapped caramel that has completely lost its shape.
+	beatrix (Dour Lookdown): If those dark circles under your eyes are any indication, I expect your focus to be as blurry as your vision today.
+	set {beatrix_points} -= "10"
+	marzi (Casual Tired): (A weak, desperate smile flickers across her face.)
+	marzi (Casual Tired): I-I'm perfectly fine, Madame. Just... eager.
+leave --All--
+label after_tired_alert
+join beatrix (Idle Dour) rightmost
+(Madame Beatrix turns on her heel and briskly walks into the depths of the confectionery.)
+[background arg="res://backgrounds/BACKGROUND_gm_inside.png" fade="3.0" wait="true"]
+(Marzi scrambles to follow her inside, the sweet aroma of spun sugar and vanilla beans immediately wrapping around her.)
+(For a moment, she closes her eyes and inhales deeply, taking in the fragrance.)
+join marzi (Casual Trust) left
+marzi (Casual Trust): (Her mind gently spins in pleasure and she feels slightly rejuvenated.)
+set {panic_points} -= "3"
+set {peace_points} += "3"
+set {tired} = "0"
+beatrix (Idle Dour): Follow me to the front counter.
+(Beatrix reaches under the polished display case and retrieves a neatly folded stack of fabric.)
+beatrix (Idle Neutral): This is your official junior sanitation uniform.
+beatrix (Idle Neutral): I expect it to remain pristine.
+(Marzi takes the uniform, her eyes widening as she takes in the familiar pastel pink and blue ruffles.)
+marzi (Casual Amazed): (Wait a second... this matches my exact aesthetic!)
+marzi (Casual Amazed): (Even the little apron pockets are shaped perfectly for holding cleaning supplies...)
+marzi (Casual Amazed): (Did she magically tailor this just for me overnight?)
+beatrix (Dour Lookdown): Stop dawdling and go get changed in the ladies' dressing room down the hall.
+beatrix (Idle Neutral): When you are finished, report to the prep room and find Huck.
+beatrix (Idle Neutral): He will show you to the supply closet so you can begin polishing the copper cauldrons.
+marzi (Casual Happy): Yes, Madame Sweets!
+leave --All--
+(Marzi hurries down the hallway and ducks into the dressing room.)
+[background arg="res://backgrounds/BACKGROUND_gm_changing_room.png" fade="5.0" wait="true"]
+(She unfolds the uniform, taking a deep breath before slipping it on.)
+[background arg="res://marzi_promotion_backgrounds/marzi_promotion_1_cleaner_transformation.png" fade="3.0" transition="Push Up" wait="true"]
+[wait time="5.0"]
+[background arg="res://backgrounds/BACKGROUND_gm_changing_room.png" fade="5.0" wait="true"]
+
+(Marzi spins around to look at herself in the full-length mirror.)
+join marzi (Cleaner Love) left
+marzi (Cleaner Celebrate): (Oh my gosh, I love it!)
+marzi: (The little feather duster hairpins and spray bottle accessories are so incredibly cute.)
+marzi (Cleaner Love): (I might just be scrubbing floors today, but I look like a true confectionery professional!)
+(She adjusts her apron one last time and pushes the dressing room door open to go find Huck.)
+leave marzi

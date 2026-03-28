@@ -40,6 +40,7 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "celestial_confectioner_timeline": "res://celestial_confectioner_timeline.dtl",
+"day_0": "res://day_0.dtl",
 "intro_sequence": "res://intro_sequence.dtl"
 }
 layout/style_directory={
