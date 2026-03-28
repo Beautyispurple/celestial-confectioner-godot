@@ -57,7 +57,8 @@ variables={
 "panic_points": "0",
 "peace_points": "0",
 "rosy_points": "100",
-"social_battery": "5"
+"social_battery": "5",
+"tired": "0"
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

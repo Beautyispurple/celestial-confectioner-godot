@@ -17,6 +17,33 @@
 &"nicknames": ["Marzipan Glace"],
 &"offset": Vector2(0, 0),
 &"portraits": {
+"Bank Account": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_bank_account.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Breathing": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_breathing.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Calming": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_calming.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
 "Casual Amazed": {
 "export_overrides": {
 "image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_amazed.png\""
@@ -404,6 +431,96 @@
 "scale": 1,
 "scene": ""
 },
+"Dejected": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_dejected.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Exhausted": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_exhausted.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Fretfulsleep": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_fretfulsleep.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Hysterical": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_hysterical.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Meditation": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_meditation.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Panic Attack 1": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_panic_attack_1.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Recovered": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_recovered.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Reeling": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_reeling.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Resolve": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_resolve.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Restfulsleep": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_restfulsleep.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
 "Sales Angry": {
 "export_overrides": {
 "image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_angry.png\""
@@ -580,6 +697,15 @@
 "image": "\"res://sprite_character/marzi_sprite/marzi_sprite_sales_worried.png\""
 },
 "mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sleeping": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_sleeping.png\""
+},
+"mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
 "scene": ""
