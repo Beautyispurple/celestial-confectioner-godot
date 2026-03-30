@@ -77,7 +77,7 @@ leave --All--
 label after_tired_alert
 join beatrix (Idle Dour) rightmost
 (Madame Beatrix turns on her heel and briskly walks into the depths of the confectionery.)
-[background arg="res://backgrounds/BACKGROUND_gm_inside.png" fade="3.0" wait="true"]
+[background arg="res://backgrounds/BACKGROUND_gm_inside_empty.png" fade="3.0" wait="true"]
 (Marzi scrambles to follow her inside, the sweet aroma of spun sugar and vanilla beans immediately wrapping around her.)
 (For a moment, she closes her eyes and inhales deeply, taking in the fragrance.)
 join marzi (Casual Trust) left
@@ -154,6 +154,7 @@ leave marzi
 (The small brass plate reads "Break & Hydration Lounge".)
 (She lets out a quiet sigh of relief and reaches for the handle.)
 label huck_intro
+[background arg="res://backgrounds/BACKGROUND_gm_lounge.png" fade="5.0" wait="true"]
 (Marzi pushes open the frosted glass door, letting out a nervous breath.)
 (The air in here is comfortably cool, a sharp contrast to the humid warmth radiating from the kitchen corridors.)
 (Sunlight filters through a geometric stained-glass skylight, casting pale pastel shadows across sleek metal lockers and plush, curved green seating.)
@@ -192,7 +193,8 @@ huck (Happy): But you already know the answer to this one!
 huck (Trust): People also call it magic.
 huck (Anticipation): But don't let Madame Sweets hear you call it that.
 huck (Sincere): Here, we call it manna manipulation.
-marzi (Cleaner Celebrate): So it really was mag...um I mean manna manipulation in the boutique yesterday...
+marzi (Cleaner Celebrate): So it really was mag...
+marzi (Cleaner Thinking): um I mean manna manipulation in the boutique yesterday...
 huck (Idle): Oh, it's actually used everywhere in confectionery.
 huck (Idle): You're going to see a lot of it.
 huck (Apologetic): But it takes a really long time before you get trained in it.
@@ -201,10 +203,12 @@ huck (Idle): It's an important part of the process.
 huck (Plucky): So anyway...
 huck (Caring): Come on, I'll show you the ropes.
 huck (Plucky): Or at least, the mops.
+[background arg="res://backgrounds/BACKGROUND_gm_inside_empty.png" fade="3.0"]
 (Huck leads her back to the hallway, through to the boutique and he pushes on a hidden panel on the wall.)
 (It clicks and the outline of a door appears.)
 (He pulls the heavy wooden door open to reveal a supply closet.)
 marzi (Cleaner Surprised): Ooooo secret entrance. Nice!
+[background arg="res://backgrounds/BACKGROUND_gm_closet.png" fade="3.0" wait="true"]
 (It is surprisingly beautiful, lined with warm oak paneling and impeccably organized.)
 (Brooms and mops hang in perfect alignment on a wooden pegboard.)
 (Sturdy shelves hold rows of labeled spray bottles, and a metal utility cart is stacked with neatly folded microfiber towels.)
@@ -217,44 +221,47 @@ huck (Fear): Oh, and fair warning, Madame Sweets enchants all of the surfaces in
 huck (Caring): The dirt and grime glows bright neon green when you turn off the lights.
 huck (Plucky): And trust me, she checks.
 huck (Idle): Every. Day.
-(Marzi gulps, pressure building on her chest.)
-huck: And here is your secret weapon.
+marzi (Cleaner Fearful): (Marzi gulps, pressure building on her chest.)
+huck (Happy): And here is your secret weapon.
 (He points toward the mop)
-marzi: It just looks like a regular mop to me.
-huck: Oh, it is.
-huck: For now.
-marzi: I have to admit...I really haven't done much mopping before.
-marzi: I'm used to being in the kitchen.
-huck: Don't worry, you'll get there - and I will show you.
-huck: It seems easy when you watch other people do it.
-huck: But the technique is what saves your back.
+marzi (Cleaner Unsure): It just looks like a regular mop to me.
+huck (Idle): Oh, it is.
+huck (Plucky): For now.
+marzi (Cleaner Unsure): I have to admit...I really haven't done much mopping before.
+marzi (Cleaner Unsure): I'm used to being in the kitchen.
+huck (Caring): Don't worry, you'll get there - and I will show you.
+huck (Caring): It seems easy when you watch other people do it.
+huck (Caring): But the technique is what saves your back.
 (He takes a bottle of floor degreaser from the utility cart.)
-huck: First rule - always measure the cleaner.
-huck: Too much, and the marble turns into an ice rink.
-huck: Too little, and you're just spreading the sticky sugar around.
-huck: You want exactly two ounces of the citrus degreaser to one gallon of warm water.
-marzi: Two ounces.
-marzi: Got it.
-huck: (He fills the bucket at the low sink, then demonstrates the grip on the mop handle.)
-huck: Don't push it back and forth like you're vacuuming.
-huck: You want to use a figure-eight motion.
-huck: Keep your wrists straight and let your shoulders do the work, sweeping from side to side.
-huck: Like this.
-huck: (He flawlessly glides the mop in a smooth, continuous figure-eight over the tile floor of the closet.)
-huck: It collects the dirt in the center of the path rather than just pushing it to the edges of the room.
-marzi: Figure-eight.
-marzi: Use the shoulders.
-huck: Exactly.
-huck: Now you try.
+huck (Idle): First rule - always measure the cleaner.
+huck (Idle): Too much, and the marble turns into an ice rink.
+huck (Idle): Too little, and you're just spreading the sticky sugar around.
+huck (Idle): You want exactly two ounces of the citrus degreaser to one gallon of warm water.
+marzi (Cleaner Thinking): Two ounces.
+marzi (Cleaner Idea): Got it.
+huck (Idle): (He fills the bucket at the low sink, then demonstrates the grip on the mop handle.)
+huck (Idle): Don't push it back and forth like you're vacuuming.
+huck (Idle): You want to use a figure-eight motion.
+huck (Idle): Keep your wrists straight and let your shoulders do the work, sweeping from side to side.
+huck (Trust): Like this.
+huck (Trust): (He flawlessly glides the mop in a smooth, continuous figure-eight over the tile floor of the closet.)
+huck (Idle): It collects the dirt in the center of the path rather than just pushing it to the edges of the room.
+marzi (Cleaner Thinking): Figure-eight.
+marzi (Cleaner Thinking): Use the shoulders.
+huck (Happy): Exactly.
+huck (Happy): Now you try.
 (Marzi takes the handle, feeling the weight of the damp cotton head.)
 (She attempts the motion, her movements a bit stiff and jerky at first.)
-huck: Loosen up your grip a little bit.
-huck: You're squeezing it like it owes you money.
+huck (Caring): Loosen up your grip a little bit.
+huck (Plucky): You're squeezing it like it owes you money.
 (She laughs, relaxing her hands, and the motion immediately smooths out.)
-huck: There you go.
-huck: You're a natural.
-huck: Now, let's take this out to the main sales floor before the senior staff has to start stocking and decorating.
+update marzi (Cleaner Pleased)
+huck (Happy): There you go.
+huck (Happy): You're a natural.
+huck (Idle): Now, let's take this out to the main sales floor before the senior staff has to start stocking and decorating.
+leave --All--
 (Marzi pushes the yellow bucket through the swinging doors and out into the main storefront.)
+[background arg="res://backgrounds/BACKGROUND_gm_inside_empty.png" fade="0.0"]
 (Even empty of customers, the room is absolutely breathtaking.)
 (Massive crystal pillars stretch up toward a vaulted ceiling made entirely of intricate stained glass.)
 (Curved glass display cases sit atop polished wooden counters, waiting to be filled with the day's confections.)
@@ -262,106 +269,135 @@ huck: Now, let's take this out to the main sales floor before the senior staff h
 (She takes a deep breath, inhaling the sophisticated aroma of cooling isomalt, toasted cocoa nibs, and a faint hint of crystallized violets.)
 (Gripping the handle, she begins to mop the wide aisles, carefully practicing the figure-eight motion Huck taught her.)
 (Quietly, she sings to herself under her breath.)
-marzi: Scrub the marble, catch the gleam, gotta fund my sugar dreams...!
+join marzi (Cleaner Pleased) left
+marzi (Cleaner Pleased): Scrub the marble, get it clean, gotta fund my sugar dreams...!
 (She moves rhythmically down the center aisle, her eyes focused entirely on the damp trail left by the mop.)
 (Suddenly, the heavy wooden doors leading from the prep room swing open with a sharp creak.)
 (A girl with perfectly coiffed purple hair and a crisp, designer chef's coat strides out.)
-(In her right hand, she is expertly balancing a massive, delicate glass bowl filled to the brim with shimmering Starlight Dragees.)
+join taffy (Phone) rightmost
+(In her right hand, she is expertly balancing a massive, copper bowl filled to the brim with shimmering Starlight Dragees.)
 (In her left hand, she holds her cellphone directly in front of her face, her thumb swiping across the screen.)
-taffy: Ugh, the humidity from those tempering vats is an absolute nightmare today.
-taffy: I swear, my bangs are drooping by the second.
-taffy: If my followers on MyCake see me break a sweat, I will literally delete my account.
-marzi: (Wait—watch out!)
-(Taffy isn't looking up from her screen at all.)
+taffy (Phone): Ugh, the humidity from those tempering vats is an absolute nightmare today.
+taffy (Phone): I swear, my bangs are drooping by the second.
+taffy (Phone): If my followers on MyCake see me break a sweat, I will literally delete my account.
+marzi (Cleaner Fearful): (Wait—watch out!)
+(The purple haired girl isn't looking up from her screen at all.)
 (She marches blindly past the brass cash register, completely engrossed in typing a response to a comment.)
-marzi: Excuse me, the floor is wet—!
-marzi: (It's too late.)
-(Taffy's expensive leather clog catches the thick plastic rim of the yellow mop bucket.)
+marzi (Cleaner Fearful): Excuse me, the floor is wet—!
+marzi (Cleaner Fearful): (It's too late!)
+leave --All--
+(Taffy's expensive leather shoe catches the thick plastic rim of the yellow mop bucket.)
 (She stumbles forward, a high-pitched shriek echoing against the vaulted glass ceiling.)
-(The cellphone flies out of her hand and clatters harmlessly onto a dry patch of wood.)
-(But the massive glass bowl launches into the air, spinning end over end before crashing onto the marble tile with a deafening shatter.)
+(The cellphone flies out of her hand and clatters harmlessly onto a dry patch of marble.)
+(But the massive copper bowl launches into the air, spinning end over end before crashing onto the floor with a deafening clang.)
+[background arg="res://backgrounds/SCENE_trip_1.png" fade="5.0" wait="true"]
+[wait time="3.0"]
 (Hundreds of glossy, perfectly spherical candies bounce, roll, and scatter across the soapy floor.)
-taffy: My Starlight Dragees!
-taffy: Do you have any idea how many hours it took to temper those to a perfect celestial gloss?!
-taffy: What is wrong with you?!
-taffy: You absolute klutz!
-marzi: Oh my gosh, I am so sorry!
-marzi: I was just cleaning the floor, I tried to warn you—!
-taffy: (She snatches her cellphone off the ground and glares at Marzi, her dark eyes narrowing.)
-taffy: You tried to warn me?
-taffy: That's not good enough!
-taffy: YOU'RE not good enough!
-taffy: You are going to have to explain to Madame Von Sweets why the front window display is ruined, you... you little scrub-brush!
-(Marzi stands frozen, her hands gripping the mop handle tightly, her heart pounding against her ribs.)
+leave --All--
+[background arg="res://backgrounds/SCENE_trip_2.png" fade="5.0" wait="true"]
+[wait time="3.0"]
+[background arg="res://backgrounds/BACKGROUND_gm_inside_empty.png" fade="0.0" wait="true"]
+join taffy (Surprise) rightmost
+join marzi (Cleaner Harried) left
+taffy (Surprise): My Starlight Dragees!
+taffy (Angry): Do you have any idea how many hours it took to temper those to a perfect celestial gloss?!
+taffy (Angry): What is wrong with you?!
+taffy (Angry): You absolute klutz!
+marzi (Cleaner Blamed): Oh my gosh, I am so sorry!
+marzi (Cleaner Apology): I was just cleaning the floor, I tried to warn you—!
+taffy (Phone): (She snatches her cellphone off the ground and glares at Marzi, her dark eyes narrowing.)
+taffy (Angry): You tried to warn me?
+update marzi (Cleaner Blamed)
+taffy (Angry): That's not good enough!
+taffy (Angry): YOU'RE not good enough!
+update marzi (Cleaner Tearful)
+taffy (Angry): You are going to have to explain to Madame Von Sweets why the front window display is ruined, you... you little scrub-brush!
+marzi (Cleaner Fearful): (Marzi stands frozen, her hands gripping the mop handle tightly, her heart pounding against her ribs.)
 (She is ten shades of petrified.)
 (Taffy takes a step closer, pointing a manicured finger at Marzi's chest.)
-(The heavy wooden doors swing open again, but this time, the footsteps are slow, deliberate, and entirely silent.)
-(Madame Beatrix Von Sweets stands at the end of the aisle.)
+leave --All--
+(The heavy wooden doors swing open again, but this time, the footsteps are slow and deliberate.)
+join beatrix (Dour) rightmost
+(It's Madame Beatrix Von Sweets.)
 (She wears a pristine tailored coat, her posture rigidly straight, her expression completely unreadable.)
-beatrix: Explain to me what is going on.
+beatrix (Dour): Explain to me what is going on.
 (Her voice is extra icy.)
-marzi: Madame Von Sweets, I am so, so sorry!
+join marzi (Cleaner Apology) left
+marzi (Cleaner Apology): Madame Von Sweets, I am so, so sorry!
 (Marzi frantically bends in a series of deep bows.)
-marzi: I was mopping the aisle, and I didn't get out of the way in time—It's all my fault!
-taffy: Exactly.
-taffy: That is exactly what happened.
-taffy: She’s a total klutz, Madame!
-taffy: Honestly, if this is the standard of help we are hiring now, my followers are going to notice the drop in quality.
-taffy: I can't be expected to work in these hazardous conditions.
-(Beatrix doesn't look at the shattered glass or the ruined candy on the floor.)
+marzi (Cleaner Apology): I was mopping the aisle, and I didn't get out of the way in time—It's all my fault!
+leave beatrix
+join taffy (Angry) rightmost
+taffy (Angry): Exactly.
+taffy (Angry): That is exactly what happened.
+taffy (Haughty): She’s a total klutz, Madame!
+taffy (Haughty): Honestly, if this is the standard of help we are hiring now, my followers are going to notice the drop in quality.
+taffy (Indignant): I can't be expected to work in these hazardous conditions.
+leave --All--
+(Beatrix doesn't look at the empty bowl or the ruined candy on the floor.)
 (She turns her sharp gaze slowly toward Taffy.)
-beatrix: Tiffany VanderMelt.
-beatrix: Do I pay you to curate your MyCake profile, or do I pay you to transport delicate inventory with your eyes facing forward?
-taffy: I—what?
-taffy: But she tripped me!
-beatrix: She was distracted securing the hygiene of the sales floor.
-beatrix: You were distracted by your phone.
-beatrix: I saw the entire incident from the mezzanine.
-beatrix: I do not tolerate excuses, nor do I tolerate my lead decorator destroying three hundred gold coins worth of inventory because she was too busy breaking confectionery policy.
-beatrix: Your lack of awareness is astounding.
-beatrix: Just walk away Ms. Vandermelt.
-beatrix: Before I decide to reassign you to scrubbing the caramel vats for the rest of the week.
-(Taffy's face flushes a deep, angry red.)
-(She lets out an indignant huff, spins on her heel, and storms back toward the prep room, her clogs stomping against the marble.)
-marzi: (Marzi lets out a shaky breath, her shoulders dropping an inch.)
-marzi: Thank you, Madame Von Sweets.
-marzi: I really thought you were going to fire me right then and there.
-beatrix: (Beatrix turns her attention back to Marzi, her voice smooth and devoid of any warmth.)
-beatrix: Do not mistake my lack of patience for Miss Vander-Melt's poor choices as sympathy for you, Miss Glace.
-beatrix: The candies are ruined.
-beatrix: The cost of the ingredients—three hundred gold—will still be deducted from your first paycheck.
-beatrix: An efficient worker anticipates the movements of those around them.
-beatrix: Especially junior workers.
-beatrix: Do better.
+join beatrix (Unimpressed) left
+join taffy (Angry) rightmost
+beatrix (Unimpressed): Tiffany VanderMelt.
+beatrix (Exasperated): Do I pay you to curate your MyCake profile, or do I pay you to transport delicate inventory with your eyes facing forward?
+taffy (Surprise): I—what?
+taffy (Angry): But she tripped me!
+beatrix (Dour): She was distracted securing the hygiene of the sales floor.
+beatrix (Unimpressed): You were distracted by your phone.
+beatrix (Dour): I saw the entire incident from my office.
+beatrix (Dour): I do not tolerate excuses, nor do I tolerate my lead decorator destroying three hundred gold coins worth of inventory because she was too busy breaking confectionery phone policy.
+beatrix (Exasperated): Your lack of awareness is astounding.
+beatrix (Dour): Just walk away, Ms. Vandermelt, and go get cleaned up.
+beatrix (Dour): Before I decide to reassign you to scrubbing the caramel vats for the rest of the week.
+taffy (Angry): (Taffy's face flushes a deep, angry red.)
+taffy (Indignant): (She lets out an indignant huff, spins on her heel, and storms back toward the prep room, her clogs stomping against the marble.)
+leave --All--
+join marzi (Cleaner Apology) left
+marzi (Cleaner Apology): (Marzi lets out a shaky breath, her shoulders dropping an inch.)
+marzi (Cleaner Apology): Thank you, Madame Von Sweets.
+marzi (Cleaner Unsure): I really thought you were going to fire me right then and there.
+beatrix (Dour): (Beatrix turns her attention back to Marzi, her voice smooth and devoid of any warmth.)
+join beatrix (Dour) rightmost
+beatrix (Dour): Do not mistake my lack of patience for Miss Vander-Melt's poor choices as sympathy for you, Miss Glace.
+update marzi (Cleaner Blamed)
+beatrix (Dour): The dragees are ruined.
+beatrix (Dour Lookdown): Half the cost of the ingredients—three hundred gold—will still be deducted from your first paycheck.
+update marzi (Cleaner Fearful)
+beatrix (Dour): An efficient and safe worker must anticipate the movements of those around them.
+beatrix (Dour): Especially junior workers.
+beatrix (Dour): Do better.
+update marzi (Cleaner Defeated)
+leave --All--
 (Beatrix turns gracefully and walks back toward her office, the click of the latch echoing in the quiet room.)
 (Marzi leans against the polished wooden counter, her legs buckling and her body slowly sliding down until she is sitting on the floor beside the yellow bucket.)
 (She pulls her knees tightly to her chest, resting her forehead against them.)
-marzi: First day.
-marzi: First hour.
-marzi: And I'm already three hundred gold in debt!
-marzi: I haven't even earned a single coin yet.
-marzi: My parents are going to kill me...
-marzi: I'm going to be living in the attic until I'm eighty years old.
+join marzi (Cleaner Defeated) left
+marzi (Cleaner Defeated): First day.
+marzi (Cleaner Defeated): First hour.
+marzi (Cleaner Defeated): And I'm already three hundred gold in debt!
+marzi (Cleaner Tearful): I haven't even earned a single coin yet.
+marzi (Cleaner Tearful): My parents are going to kill me...
 (Footsteps approach, and Huck crouches down next to her on the marble floor.)
+join huck (Caring) rightmost
 (He holds out a fresh, dry microfiber towel from the closet.)
-huck: Hey.
-huck: Breathe.
-huck: It's going to be okay.
-marzi: She hates me, Huck.
-marzi: I ruined the front display before we even opened the doors.
-huck: Marz, listen to me.
-huck: Don't let Taffy get to you.
-huck: On my first day?
-huck: I accidentally shattered an entire cooling rack of spun-sugar swans.
-huck: Madame had to close the shop for an extra hour just to sweep up the shards.
-huck: It cost me almost a thousand gold pieces in damages.
+huck (Caring): Hey.
+huck (Caring): Breathe.
+huck (Caring): It's going to be okay.
+marzi (Cleaner Tearful): She hates me, Huck.
+marzi (Cleaner Tearful): I ruined the front display before we even opened the doors.
+huck (Sincere): Marz, listen to me.
+huck (Sincere): Don't let Taffy get to you.
+huck (Sincere): On my first day?
+huck (Plucky): I accidentally shattered an entire cooling rack of spun-sugar swans.
+huck (Plucky): Madame had to close the shop for an extra hour just to sweep up the shards.
+huck (Fear): It cost me almost a thousand gold pieces in damages.
 (Looking up, wiping her eyes with the towel, a tiny, confused smile breaking through.)
-marzi: How do you manage to do that?
-huck: (Winking.)
-huck: Takes a special kind of talent.
-huck: I tried to move the rack while leaning on it like a skateboard.
-huck: The wheels caught a groove in the floor tile.
-huck: So, definitely don't do that either.
-huck: Come on.
-huck: Grab your mop.
-huck: Let's sweep up this glass and start earning that gold back.
+marzi (Cleaner Defeated): How do you manage to do that?
+huck (Sincere): (Winking.)
+huck (Plucky): Takes a special kind of talent.
+huck (Plucky): I tried to move the rack while leaning on it like a skateboard.
+huck (Happy): The wheels caught a groove in the floor tile.
+huck (Idle): So, definitely don't do that either.
+huck (Sincere): Come on.
+huck (Sincere): Grab your mop.
+huck: Let's clean this up and start earning that gold back.
