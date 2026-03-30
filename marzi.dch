@@ -17,6 +17,15 @@
 &"nicknames": ["Marzipan Glace"],
 &"offset": Vector2(0, 0),
 &"portraits": {
+"Asual Akanbe": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_akanbe.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
 "Bank Account": {
 "export_overrides": {
 "image": "\"res://sprite_character/marzi_sprite/marzi_sprite_pjs_bank_account.png\""
@@ -350,6 +359,15 @@
 "scale": 1,
 "scene": ""
 },
+"Cleaner Determined": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_determined.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
 "Cleaner Disgust": {
 "export_overrides": {
 "image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_disgust.png\""
@@ -373,6 +391,15 @@
 "image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_harried.png\""
 },
 "mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Idea": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_idea.png\""
+},
+"mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
 "scene": ""
@@ -418,6 +445,15 @@
 "image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_tearful.png\""
 },
 "mirror": true,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Cleaner Thinking": {
+"export_overrides": {
+"image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_thinking.png\""
+},
+"mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
 "scene": ""
