@@ -56,6 +56,14 @@ variables={
 "al_points": "100",
 "beatrix_points": "0",
 "gold_coin": "0",
+"negative_thought_game": {
+"action_1": "",
+"action_2": "",
+"action_3": "",
+"thought_1": "",
+"thought_2": "",
+"thought_3": ""
+},
 "panic_points": "0",
 "peace_points": "0",
 "rosy_points": "100",
@@ -65,7 +73,8 @@ variables={
 "thing_3": "",
 "thing_4": "",
 "thing_5": "",
-"tired": "0"
+"tired": "0",
+"willing": "0"
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

@@ -377,6 +377,8 @@ marzi (Cleaner Defeated): First hour.
 marzi (Cleaner Defeated): And I'm already three hundred gold in debt!
 marzi (Cleaner Tearful): I haven't even earned a single coin yet.
 marzi (Cleaner Tearful): My parents are going to kill me...
+marzi (Cleaner Tearful): I'm so stupid I can't even mop the floor right!
+marzi (Cleaner Tearful): Taffy was right, I'm not good enough...
 (Footsteps approach, and Huck crouches down next to her on the marble floor.)
 join huck (Caring) rightmost
 (He holds out a fresh, dry microfiber towel from the closet.)
@@ -399,5 +401,117 @@ huck (Plucky): I tried to move the rack while leaning on it like a skateboard.
 huck (Happy): The wheels caught a groove in the floor tile.
 huck (Idle): So, definitely don't do that either.
 huck (Sincere): Come on.
-huck (Sincere): Grab your mop.
-huck: Let's clean this up and start earning that gold back.
+huck (Sincere): Grab that trash can and bring it over.
+huck (Sincere): Let's clean this up and start earning that gold back.
+huck (Sincere): But hey, Marzi...
+huck (Sincere): I noticed that you were being really hard on yourself just now.
+huck (Sincere): Maybe we can talk through it as we clean up these dragees?
+huck (Sincere): Try and clear up some of that negative self talk?
+label negative_thought
+marzi (Cleaner Thinking): (hmm...am I up for this?
+- Yes! Lets do this!
+	marzi (Cleaner Determined): Okay, Huck.
+	marzi (Cleaner Determined): How do we do this?
+	huck (Idle): Alright, lets start by telling me one negative thought that you're having about yourself right now?
+	[text_input text="What is your negative thought?" var="negative_thought_game.thought_1" placeholder="I'm not good enough."]
+	huck (Sad): "{negative_thought_game.thought_1}", thanks for trusting me with that thought.
+	huck (Caring): You did such a great job holding steady through a really tough moment, Marzi.
+	huck (Caring): Identifying our negative thoughts about ourselves isn't easy.
+	huck (Idle): How are you feeling right now?
+	- I feel okay.
+		marzi (Cleaner Determined): I'm feeling okay. Lets keep going
+	- I feel bad.
+		marzi (Cleaner Tearful): It feels pretty bad...It's like there is a hole in the center of my heart.
+		huck (Idle): Okay, lets just notice that for a second without judging it.
+		huck (Idle): Without avoiding it.
+		[wait time="10.0"]
+		huck (Idle): Good.
+	- Actually, I want to stop.
+		jump negative_thought_opt_out
+
+	huck (Idle): Now, looking back on your thought...
+	huck (Trust): ...and being really kind and gentle with yourself...
+	huck (Idle): Is that thought factual and true about you all of the time or is it based on emotion, habit, or things like catastrophization or predicting the future?
+	- No the thought is not true.
+		marzi (Cleaner Tearful): Right now it feels like it is...
+		marzi (Cleaner Thinking): But when I really think about it...
+		marzi (Cleaner Defeated): No. It's not true.
+		huck (Caring): Lets just notice what that brings up for us for a minute, no judgement.
+	- Yes the thought is true.
+		marzi (Cleaner Unsure): Yeah Huck...
+		marzi (Cleaner Unsure): When I really think about it.
+		marzi (Cleaner Unsure): The thought is actually true...
+		huck (Caring): Lets just notice what that brings up for us for a minute, no judgement.
+	- I need to stop, Huck.
+		jump negative_thought_opt_out
+
+	huck (Plucky): Okay, now lets imagine each starlight dragee has your negative thought printed on it with a rubber etch roller.
+	huck (Plucky): Just like a conversation heart, or a logo.
+	(Marzi's brow furrows as she focuses on a sopping wet dragee on the floor.)
+	(The words, "{negative_thought_game.thought_1}" appear on the surface.)
+	marzi (Cleaner Thinking): Okay Huck, I got it.
+	marzi (Cleaner Thinking): Now what?
+	huck (Plucky): Let me ask, does holding on to this thought improve your life, help you reach your goals or live by what you value?
+	huck (Plucky): Is the negative thought "{negative_thought_game.thought_1}" helpful?
+	- No the thought is not helpful.
+		marzi (Cleaner Thinking): No, the thought isn't safe or helpful.
+		huck (Idle): Okay then, what can you do about the thought "{negative_thought_game.thought_1}"?
+		[text_input text="What can I do about the thought?" var="negative_thought_game.action_1" placeholder="I can..."]
+		huck (Idle): Okay, {negative_thought_game.action_1}, that's something you could do.
+	- Yes the thought is helpful.
+		marzi (Cleaner Thinking): Yes, Its is safe.
+		marzi (Cleaner Thinking): And its is pretty helpful.
+		huck (Idle): Okay then, what can you do about the thought "{negative_thought_game.thought_1}"?
+		[text_input text="What can I do about the thought?" var="negative_thought_game.action_2" placeholder="I can..."]
+		huck (Idle): Okay, {negative_thought_game.action_2}, that's something you could do.
+	- Let's stop here.
+		jump negative_thought_opt_out
+
+	huck (Idle): Last question, Marzi...
+	huck (Idle): Do you want to keep the thought or let it go?
+	- Keep it.
+		marzi (Cleaner Thinking): I think i will keep it.
+		huck (Idle): That's completely okay. We don't have to throw everything away immediately.
+		huck (Caring): Why don't you find one of the dragees that didn't get wet?
+		(Marzi scans the marble and finds a single pristine, dry starlight dragee resting near the base of the counter.)
+		(She carefully picks it up.)
+		huck (Trust): You can keep it up on the top shelf in the supply closet.
+		huck (Trust): It can stay there until you decide you are ready to throw it away.
+		(Marzi nods, slipping the dry dragee carefully into her apron pocket.)
+		jump negative_thought_completed
+	- Let it go.
+		marzi (Cleaner Thinking): I think i will let it go.
+		huck (Happy): Alright. Let's physically let it go then.
+		(Marzi grabs the heavy yellow dustpan and the broom.)
+		(With every sweep, she pictures the words "{negative_thought_game.thought_1}" rolling into the pile.)
+		(She scoops up the ruined, sticky dragees and dumps them directly into the trashbin.)
+		(The heavy thud of the candy hitting the bottom of the bin makes her chest feel a little bit lighter.)
+		jump negative_thought_completed
+	- I can't finish this right now.
+		jump negative_thought_opt_out
+
+- No thanks Huck, I'm not really up to it right now.
+	label negative_thought_opt_out
+	huck (Idle): Okay Marzi, no problem.
+	huck (Caring): We can just focus on getting the floor clean.
+	jump negative_thought_end
+
+label negative_thought_completed
+set {willing} = "1"
+set {huck_points} += "10"
+(System Message: You have unlocked "Cognitive Reframing" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
+
+marzi (Cleaner Confident): (Marzi looks at the empty floor, then up at Huck, who is quietly wringing out his own towel.)
+marzi (Cleaner Thinking): Huck... where did you learn how to do all that?
+marzi (Cleaner Unsure): You sounded like a professional.
+huck (Idle): (Huck pauses, his hands stilling on the damp cloth.)
+huck (Sad): When my family first moved to Silken Reach... I didn't handle the transition very well.
+huck (Sad): I was angry all the time. I would snap at people, my hands would shake so badly I couldn't even temper cocoa butter... I was completely ungrounded.
+huck (Sincere): My parents eventually set me up with someone who helped me sort through the mess in my head.
+huck (Sincere): We spent a lot of time talking about how to manage the temperature before the sugar seizes.
+huck (Plucky): It took a lot of practice. Still does.
+huck (Trust): But it helps to have someone walk you through it when you're stuck in the molasses.
+marzi (Cleaner Trust): (Marzi watches him meticulously fold the microfiber towel, realizing his steady hands are a practiced skill, not just natural talent.)
+marzi (Cleaner Trust): Thanks for walking me through it, Huck.
+
+label negative_thought_end
