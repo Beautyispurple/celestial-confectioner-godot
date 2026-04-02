@@ -55,6 +55,7 @@ glossary/default_case_sensitive=true
 variables={
 "al_points": "100",
 "beatrix_points": "0",
+"bonus_received": "0",
 "gold_coin": "0",
 "negative_thought_game": {
 "action_1": "",
@@ -68,6 +69,7 @@ variables={
 "peace_points": "0",
 "rosy_points": "100",
 "social_battery": "5",
+"taffy_points": "",
 "thing_1": "",
 "thing_2": "",
 "thing_3": "",
