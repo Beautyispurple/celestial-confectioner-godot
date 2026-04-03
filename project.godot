@@ -33,6 +33,7 @@ directories/dch_directory={
 "beatrix": "res://sprite_character/beatrix_sprite/beatrix.dch",
 "chai": "res://sprite_character/chai_sprite/chai.dch",
 "huck": "res://sprite_character/huck_sprite/huck.dch",
+"landlord": "res://landlord.dch",
 "madeline": "res://sprite_character/madeline_sprite/madeline.dch",
 "marzi": "res://marzi.dch",
 "rosy": "res://sprite_character/rosy_sprite/rosy.dch",
@@ -45,18 +46,21 @@ directories/dtl_directory={
 }
 layout/style_directory={
 "": "res://visualnovelwithportrait.tres",
+"Style1": "res://Style1.tres",
 "marzi_visual_novel_style": "res://marzi_visual_novel_style.tres",
 "real_marzi_style": "res://real_marzi_style.tres",
+"style2": "res://style2.tres",
 "visualnovelwithportrait": "res://visualnovelwithportrait.tres"
 }
-layout/style_list=["res://visualnovelwithportrait.tres", "res://marzi_visual_novel_style.tres", "res://real_marzi_style.tres"]
+layout/style_list=["res://visualnovelwithportrait.tres", "res://marzi_visual_novel_style.tres", "res://real_marzi_style.tres", "res://Style1.tres", "res://style2.tres"]
 layout/default_style="res://visualnovelwithportrait.tres"
 glossary/default_case_sensitive=true
 variables={
-"al_points": "100",
+"al_points": "50",
 "beatrix_points": "0",
 "bonus_received": "0",
 "gold_coin": "0",
+"huck_points": "0",
 "negative_thought_game": {
 "action_1": "",
 "action_2": "",
@@ -67,7 +71,7 @@ variables={
 },
 "panic_points": "0",
 "peace_points": "0",
-"rosy_points": "100",
+"rosy_points": "50",
 "social_battery": "5",
 "taffy_points": "",
 "thing_1": "",

@@ -363,7 +363,7 @@
 "export_overrides": {
 "image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_determined.png\""
 },
-"mirror": false,
+"mirror": true,
 "offset": Vector2(0, 0),
 "scale": 1,
 "scene": ""
@@ -453,7 +453,7 @@
 "export_overrides": {
 "image": "\"res://sprite_character/marzi_sprite/marzi_sprite_cleaner_thinking.png\""
 },
-"mirror": false,
+"mirror": true,
 "offset": Vector2(0, 0),
 "scale": 1,
 "scene": ""

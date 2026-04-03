@@ -7,6 +7,9 @@
 [sub_resource type="Resource" id="Resource_pmoer"]
 script = ExtResource("2_4do1w")
 scene = ExtResource("1_qrlxr")
+overrides = {
+"global_font_size": "30.0"
+}
 
 [resource]
 script = ExtResource("11_6fbpq")

@@ -462,13 +462,13 @@ marzi (Cleaner Thinking): (hmm...am I up for this?
 		marzi (Cleaner Thinking): No, the thought isn't safe or helpful.
 		huck (Idle): Okay then, what can you do about the thought "{negative_thought_game.thought_1}"?
 		[text_input text="What can I do about the thought?" var="negative_thought_game.action_1" placeholder="I can..."]
-		huck (Idle): Okay, {negative_thought_game.action_1}, that's something you could do.
+		huck (Idle): Okay, "{negative_thought_game.action_1}", that's something you could do.
 	- Yes the thought is helpful.
-		marzi (Cleaner Thinking): Yes, Its is safe.
+		marzi (Cleaner Thinking): Yes, it is safe.
 		marzi (Cleaner Thinking): And its is pretty helpful.
 		huck (Idle): Okay then, what can you do about the thought "{negative_thought_game.thought_1}"?
 		[text_input text="What can I do about the thought?" var="negative_thought_game.action_2" placeholder="I can..."]
-		huck (Idle): Okay, {negative_thought_game.action_2}, that's something you could do.
+		huck (Idle): Okay, "{negative_thought_game.action_2}", that's something you could do.
 	- Let's stop here.
 		jump negative_thought_opt_out
 huck (Idle): Last question, Marzi...
@@ -481,7 +481,7 @@ huck (Idle): Do you want to keep the thought or let it go?
 	(She carefully picks it up.)
 	huck (Trust): You can keep it up on the top shelf in the supply closet.
 	huck (Trust): It can stay there until you decide you are ready to throw it away.
-	(Marzi nods, slipping the dry dragee carefully into her apron pocket.)
+	(Marzi nods, placing the dry dragee carefully onto the top shelf.)
 	jump negative_thought_feeling_check
 - Let it go.
 	marzi (Cleaner Thinking): I think i will let it go.
@@ -518,20 +518,365 @@ jump negative_thought_completed
 label negative_thought_completed
 set {willing} = "1"
 set {huck_points} += "10"
-(System Message: You have unlocked "Cognitive Reframing" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
+(System Message\: You have unlocked "Catch it, Check it, Change it" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
 
-marzi (Cleaner Confident): (Marzi looks at the empty floor, then up at Huck, who is quietly wringing out his own towel.)
+marzi (Cleaner Determined): (Marzi looks at the empty floor, then up at Huck, who is quietly wringing out his own towel.)
 marzi (Cleaner Thinking): Huck... where did you learn how to do all that?
-marzi (Cleaner Unsure): You sounded like a professional.
+marzi (Cleaner Pleased): You sounded like a professional.
 huck (Idle): (Huck pauses, his hands stilling on the damp cloth.)
 huck (Sad): When my family first moved to Silken Reach... I didn't handle the transition very well.
-huck (Sad): I was angry all the time. I would snap at people, my hands would shake so badly I couldn't even temper cocoa butter... I was completely ungrounded.
-huck (Sincere): My parents eventually set me up with someone who helped me sort through the mess in my head.
-huck (Sincere): We spent a lot of time talking about how to manage the temperature before the sugar seizes.
+huck (Sad): I was angry and worried all the time. I would snap at people... I was completely ungrounded.
+huck (Sincere): My parents eventually set me up with someone who helped me sort through the stuff in my head.
+huck (Sincere): We spent a lot of time talking about how to manage negative thoughts.
 huck (Plucky): It took a lot of practice. Still does.
 huck (Trust): But it helps to have someone walk you through it when you're stuck in the molasses.
-marzi (Cleaner Trust): (Marzi watches him meticulously fold the microfiber towel, realizing his steady hands are a practiced skill, not just natural talent.)
-marzi (Cleaner Trust): Thanks for walking me through it, Huck.
+marzi (Cleaner Determined): (Marzi watches him meticulously fold the microfiber towel, realizing his steady hands are a practiced skill, not just natural talent.)
+marzi (Cleaner Determined): Thanks for walking me through it, Huck.
+huck (Trust): Anytime Marzi.
 
 
 label negative_thought_end
+
+label cleanup_done
+(Marzi and Huck finish up the painstaking task of gathering the scattered, soapy candies.)
+huck (Plucky): We better move fast, Marz.
+huck (Anticipation): The senior staff is going to start bringing out the confections for the day any second now.
+marzi (Cleaner Determined): Almost... got it!
+leave --All--
+(Marzi uses the figure-eight motion to consolidate the last of the soapy residue and tosses the final wet dragee into the bucket.)
+(They wheel the yellow bucket into the closet just as the large double doors swing open with a grand creak.)
+(A line of senior confectioners marches out, carrying trays of levitating truffles and glowing spun-sugar clouds.)
+join marzi (Cleaner Pleased) left
+marzi (Cleaner Pleased): Phew. Just in time.
+(Huck gives her a quick thumbs-up before rushing to help the senior confectioners carry out all the sweets.)
+leave --All--
+[background arg="res://backgrounds/BACKGROUND_gm_inside.png" fade="3.0" wait="true"]
+
+if {willing} == "1":
+	(The rest of the day is a blur of efficient, productive labor.)
+	(Marzi feels an unexpected surge of energy, her movements in sync with the soft ambient hum of the shop.)
+	(She anticipates the needs of the decorators, wiping down counters and moving empty trays before they even have to ask.)
+	join marzi (Cleaner Pleased) left
+	marzi (Cleaner Pleased): (I’m actually doing it! I’m holding my own.)
+	leave marzi
+	(By the afternoon, she has polished the glass displays with a microfiber cloth until they gleam like mirrors, without getting in anyone's way.)
+else:
+	(The rest of the day is a grueling, challenging blur of physical labor.)
+	(Marzi's arms ache terribly from scrubbing sticky syrup off the floor tiles.)
+	join marzi (Cleaner Harried) left
+	marzi (Cleaner Harried): (Everything is so heavy and my boots keep slipping...)
+	leave marzi
+	(She struggles to keep up with the fast pace of the decorators, constantly feeling like she is a step behind.)
+	(By the afternoon, she manages to polish the glass displays with a microfiber cloth, but it drains every last ounce of her energy.)
+
+(At the end of the workday, Madame Beatrix Von Sweets calls the staff together for a meeting).
+join marzi (Cleaner Idle) left
+join beatrix (Dour) rightmost
+beatrix (Dour): The floor is acceptable, though this mornings disaster remains a stain on the ledger.
+(She taps the screen of her golden cellphone with a sharp, mechanical rhythm).
+leave beatrix
+join taffy (Haughty) rightmost
+taffy (Haughty): It is ridiculous that my earnings are being cut just because the new girl was in the way.
+(She wears a sharp smirk).
+leave taffy
+join beatrix (Dour) rightmost
+(She fixes Taffy with a cold, silent stare that makes the room feel brittle).
+leave beatrix
+join huck (Idle) rightmost
+huck (Idle): The glass displays are clean, the floor is spotless and the day is done.
+huck (Caring): Marzi already took the hit for the accident earlier.
+huck (Sincere): There's no need to make her feel worse than she already does...
+
+- Take responsibility for the dragees.
+	marzi (Cleaner Apology): I really didn't mean for ANYONE to lose gold, I'm so sorry and I take full responsibility...
+	(Marzi bows deeply three times)
+	(She thinks to herself)
+	(This is so overwhelming, my chest is feeling tight and my mind sounds like static)
+	(I can't let my family down...)
+	leave huck
+	join beatrix (Idle Neutral) rightmost
+	beatrix (Idle Neutral): That is unnecessarily selfless, Marzipan.
+	beatrix (Idle Neutral): No need to prostrate yourself.
+	beatrix (Macaron): Here is your daily pay of 1000 gold pieces. But, your accountability has earned you a small bonus of 350 gold pieces.
+	set {gold_coin} += "1350"
+	set {bonus_received} = "1"
+	update marzi (Cleaner Anticipation)
+	beatrix (Macaron): That is the kind of leadership I like to see in my confectionery.
+	beatrix (Idle Neutral): It doesn't matter if you did or didn't make the mistake
+	beatrix (Idle Neutral): What matters in this kitchen is that you fix it and do better next time.
+	beatrix (Idle Neutral): It shows maturity.
+	beatrix (Dour Lookdown): Be here before the sun rises tomorrow.
+	beatrix (Dour Lookdown): Taffy, you should pay attention, unless your goal is a deeper pay cut?
+	(Taffy gawks at the bag of gold in Marzi's hands but quickly regains her composure)
+	leave beatrix
+	join taffy (Surprise) rightmost
+	taffy (Surprise): No, Madame Sweets. I apologize.
+	update taffy (Indignant)
+	(Taffy bows deeply, but the corner of her mouth betrays her disdain)
+	update taffy (Devious)
+	(She shoots Marzi a quick dirty look before hanging up her apron)
+	(The large double doors swing shut behind her)
+
+- Blame Taffy for the accident.
+	marzi (Cleaner Angry): It really wasn't my fault at all! Taffy was the one staring at her phone instead of watching where she was going!
+	(Marzi stands tall, crossing her arms defensively)
+	(She thinks to herself)
+	(I am not going to let her walk all over me, my family is counting on me)
+	(I need that gold back!)
+	leave huck
+	join beatrix (Dour Lookdown) rightmost
+	beatrix (Dour Lookdown): That is unnecessarily defensive, Marzipan.
+	update marzi (Cleaner Blamed)
+	beatrix (Dour Lookdown): Pointing fingers resolves nothing in my prep room.
+	beatrix (Dour): Here is your daily pay of 1000 gold pieces. Deflecting blame has cost you any chance of earning a bonus.
+	update marzi (Cleaner Defeated)
+	set {gold_coin} += "1000"
+	set {taffy_points} -= "10"
+	beatrix (Dour): That is exactly the kind of immaturity I despise in my confectionery.
+	beatrix (Dour Lookdown): It doesn't matter who caused the spill.
+	beatrix (Dour Lookdown): What matters in this kitchen is that you fix it without complaint.
+	beatrix (Dour Lookdown): It shows a severe lack of discipline.
+	beatrix (Dour Lookdown): Be here before the sun rises tomorrow, and expect to scrub the vats.
+	beatrix (Dour Lookdown): Taffy, if you were paying attention, neither of you would be in this position.
+	(Taffy glares at Marzi, her face turning red with embarrassment and fury)
+	leave beatrix
+	join taffy (Angry) rightmost
+	taffy (Angry): I certainly will be paying attention from now on, Madame Sweets.
+	(Taffy bows stiffly, her knuckles white as she grips her silk cloth)
+	update taffy (Devious)
+	(She shoots Marzi a vicious dirty look before hanging up her apron)
+	(The large double doors swing shut behind her)
+
+leave taffy
+leave beatrix
+join huck (Caring) rightmost
+huck (Caring): You’re running on empty, Marzi.
+huck (Sincere): Come on, Let’s get you home.
+leave --All--
+(Marzi hangs up her apron and follows Huck out the front door.)
+(The bus ride home is a quiet blur.)
+[background arg="res://backgrounds/SCENE_bus_ticket.png" fade="0.0"]
+(Marzi leans her heavy head against the vibrating glass of the window, watching the glowing signs of Starlight City pass by.)
+(Her muscles ache right down to the bone, but her mind races with everything she experienced.)
+
+if {bonus_received} == "1":
+	marzi (Cleaner Pleased): (I survived day one... and I can't believe I earned that much gold!)
+	marzi (Cleaner Pleased): (That bonus completely covers the overdraft fee from my account.)
+	marzi (Cleaner Pleased): (I can actually breathe a little easier now.)
+else:
+	marzi (Cleaner Tired): (I survived day one... barely.)
+	marzi (Cleaner Defeated): (But my paycheck was so severely impacted by the overdraft and the dragee incident with Taffy...)
+	marzi (Cleaner Defeated): (I worked my absolute hardest today, but it feels like I earned next to nothing.)
+
+
+
+label glace_kitchen_return
+[background arg="res://backgrounds/BACKGROUND_Family_Kitchen.jpg" fade="5.0" wait="true"]
+
+(Back at the Glace family kitchen, the scent of dinner still hangs lightly in the air...)
+(...A stark contrast to the sterile citrus degreaser Marzi has been smelling all day.)
+join marzi (Casual Tired) left
+(She slumps against the doorframe and a virtual pet beeps a low-battery warning from her bag).
+marzi (Casual Tired): The floors are mopped so thoroughly you could eat spun sugar right off the marble, but I think my arms have turned into jelly.
+(She drops her bag on the table, wincing as her shoulders pop.)
+join al (Fatherly) rightmost
+(Looking up from a financial ledger with a firm, practical expression, his reading glasses perched on the end of his nose).
+al (Fatherly): You’re late, but at least you’re still upright!
+al (Fatherly): I hope you didn't let the boss work you too hard on the first day.
+(Pinching the bridge of her nose as the hum of the shift still rings in her ears).
+marzi (Casual Sweat): It was awful! A whirlwind of mop buckets and cold stares, Dad.
+marzi (Casual Sweat): Madame Sweets is incredibly strict, and the other confectioners didn't exactly roll out the red carpet for me.
+marzi (Cleaner Tearful): I just want to go to bed and sleep forever!
+marzi (Casual Apologetic): It was so mortifying...
+
+leave al
+join rosy (Idle) rightmost
+(Clasping her hands with an overly-sweetened smile while looking at a sprawling city map spread across the dining table).
+rosy (Idle): It couldn't have been that bad, could it Marzi?
+rosy (Idle): Do you think maybe it's possible you might be overreacting a bit, my little sugar-plum?
+update marzi (Casual Miffed)
+rosy (Idle): Besides, there's no time for sleep anyway.
+rosy (Approval): We have the most wonderful surprise for you.
+
+leave rosy
+join al (Fatherly) rightmost
+(Standing up and tapping a thickly circled address on the map with the back of his pen).
+al (Discerning): While you were at the shop, we went ahead and locked down that rental we talked about yesterday.
+al (Fatherly): It's not even a block away from The Gilded Macaron.
+(Her eyes widen, the exhaustion momentarily replaced by a jolt of pure adrenaline.)
+marzi (Casual Surprised): Wait, you mean you already got the apartment?
+marzi (Casual Concerned): I thought we were going to look at places together!
+
+leave al
+join rosy (Approval) rightmost
+(Beaming as she walks over and tucks a stray pink lock of hair behind Marzi’s ear).
+rosy (Approval): Oh Marzi, we just couldn't wait!
+rosy (Idle): We wanted to help you get settled into your new independence as soon as possible.
+rosy (Approval): Plus we saw the photos of the unit and it was simply too perfect to pass up.
+rosy (Approval): It has the most charming windows, and just wait until you see the kitchen.
+rosy (Idle): It is exactly where a young professional should be starting her adult life.
+
+(Her voice jumping an octave between excitement and a sudden, sharp chill of fear).
+marzi (Casual Concerned): Already? Today?!
+marzi (Casual Mad): But I haven't even packed anything! I'm completely covered in citrus degreaser!
+
+leave rosy
+join al (Fatherly) rightmost
+(Nodding decisively as he folds up the map on the table).
+al (Fatherly): You can pack your things tonight.
+al (Fatherly): Like I promised yesterday, I've got the security deposit and the first month's rent ready to go.
+al (Pleased): I'm really proud of you for making it through your first day and I want you to make the most of it.
+al (Fatherly): Now come on, go take a quick shower and get ready.
+al (Fatherly): The landlord is waiting to show us the place and hand over the keys!
+
+(Marzi stares at him for a second, her mind struggling to process the rapid shift in events.)
+marzi (Casual Unsure): Oh, wow...okay then!
+marzi (Casual Apologetic): Thank you!
+leave --All--
+
+
+label apartment_visit
+[background arg="res://backgrounds/BACKGROUND_apartment_outside.png" fade="5.0" wait="true"]
+[background arg="res://backgrounds/BACKGROUND_Apartment_Kitchen.png" fade="3.0" wait="true"]
+(The empty apartment is filled with the afternoon light, highlighting the dust motes dancing over bare wood floors).
+(The space is small but has a certain historic charm, with exposed brick on one wall and delicate molding near the ceiling.)
+join marzi (Casual Love) left
+marzi (Casual Love): WOW WOW WOW!!! Look at this kitchen!! It is PERFECT!
+(Marzi bounces as she opens cabinets, checks the hinges, and tests the sink to see the water pressure.)
+marzi (Casual Happy): (There is even enough counter space for a small marble tempering slab!)
+join landlord (Idle) rightmost
+landlord (Idle): So your father tells me you're a confectioner at The Gilded Macaron?
+landlord (Idle): I love everything that comes out of that shop.
+landlord (Idle): The confections taste almost magical.
+marzi (Casual Love): (Does she not know that the sweets actually ARE magical?)
+landlord (Idle): Well anyway -
+landlord (Stern): If I find a mess during my inspections, your tenancy is over.
+(Marzi gulps and her stomach twists into a tight knot.)
+update marzi (Casual Very Concerned)
+(Her thoughts race as she remembers the sticky dragee disaster from that morning.)
+(Her palms sweat against the fabric of her dress.)
+landlord (Stern): But we won't have to worry about that, will we?
+marzi (Casual Fear): No Ma'am!
+(Marzi's cheeks flush and she feels a heat rising from her core.)
+leave landlord
+join rosy (Idle) rightmost
+rosy (Idle): We will see to it that it stays clean.
+rosy (Idle): Rest assured.
+update marzi (Casual Unsure)
+leave rosy
+join landlord (Idle) rightmost
+landlord (Idle): This way, this way, come and see.
+[background arg="res://backgrounds/BACKGROUND_Apartment_Bedroom.png" fade="5.0" wait="true"]
+update marzi (Casual Happy)
+landlord (Idle): The furniture comes with the unit, but you're more than welcome to replace it with your own when you get some.
+marzi (Casual Happy): You weren't kidding about the windows, Mom.
+marzi (Casual Happy): They really are nice.
+landlord (Idle): My son installed those.
+landlord (Idle): I think it really gives life to this little efficiency.
+landlord (Idle): This way now, please.
+
+[background arg="res://backgrounds/BACKGROUND_Apartment_Bathroom.png" fade="3.0" wait="true"]
+(They step into the small, surprisingly modern bathroom with sleek tiling.)
+marzi (Casual Carefree): Look at the tub!
+marzi (Casual Carefree): I'm going to take the best bubble baths ever after work!
+marzi (Casual Love): And the toilet has so many buttons...
+(Marzi presses a button on the side panel and a puff of jasmine air freshener emits from the side of the tank.)
+leave landlord
+join rosy (Happy) rightmost
+rosy (Approval): Fancy!
+leave rosy
+join landlord rightmost
+landlord (Idle): You'll need to purchase refills for that, but you can buy them though me at a discount since I buy them in bulk.
+landlord (Idle): Well that's the apartment. What do you think?
+[background arg="res://backgrounds/BACKGROUND_Apartment_Kitchen.png" fade="3.0" wait="true"]
+landlord (Idle): Just the right size for an up and coming young lady, right?
+marzi (Casual Amazed): It really has a lot of potential!
+marzi (Casual Love): I love it.
+leave landlord
+join al (Fatherly) rightmost
+al (Fatherly): Well, it's settled then.
+(Handing over a heavy pouch of gold with a decisive, metallic clunk).
+al (Fatherly): The deposit and the first month are settled.
+(He turns to Marzi, giving her a pointed look.)
+al (Discerning): Now, don't let me down, kiddo!
+al (Discerning): It's important that you keep your new job.
+al (Worry): Keeping a roof over your head is the most important and challenging part of being an Adult.
+al (Worry): You don't want to end up living in a tent in the woods.
+update marzi (Casual Orz)
+leave al
+join rosy (Shocked) rightmost
+rosy (Shocked): AL!
+leave rosy
+join al (Idle) rightmost
+al (Discerning): What Rosy?
+al (Worry): When we're gone, there will be no one to help Marzipan if she isn't married.
+leave al
+join rosy (Idle) rightmost
+rosy (Idle): Well that might be true...
+rosy (Idle): Be sure to make the most of your time in the city after work.
+update marzi (Casual Unimpressed)
+(Rosy winks at Marzi who makes a sour face.)
+leave rosy
+join landlord rightmost
+landlord (Idle): If you need anything, you can call me.
+update marzi (Casual Concerned)
+landlord (Idle): The rent is paid every 10 days through the online portal.
+landlord (Idle): Make sure you have enough, or it's literally game over!
+(Sweat beads down Marzi's forehead as the pressure returns full force.)
+marzi (Casual Fear): Y..Yes Ma'am.
+marzi (Casual Fear): Game over.
+leave landlord
+leave marzi
+
+label packing_attic
+[background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="5.0" wait="true"]
+(Back at the Glacé home, Marzi is struggling to tape a box stuffed with her leftover boutique candies).
+(The attic feels different tonight—less like a cage and more like a shell she is finally outgrowing.)
+join marzi (Casual Happy) left
+(She presses her knee onto the top flap to keep it closed while she rips off a thick piece of packing tape.)
+join al (Fatherly) rightmost
+(Leaning against the doorframe, watching her with a mixture of pride and lingering worry.)
+al (Fatherly): I can't stress this enough, Marzi.
+al (Fatherly): You need to get out there and actually talk to the neighbors.
+al (Fatherly): A city is only as good as the hands you shake, so don't just hide in your kitchen.
+leave al
+join chai (Understanding) rightmost
+(Placing a gentle hand on Marzi’s shoulder, his voice sounding like a quiet, warm room).
+chai (Understanding): You’ve been vibrating with stress all afternoon, Marzi.
+chai (Understanding): I know Dad wants you to get out there and do everything all at once but it's okay to slow down for a little while.
+chai (Understanding): Remember that every "hello" is a little bit of power leaving your social battery.
+(He picks Marzi's virtual pet up off of the desk and puts a new battery into the plastic casing.)
+chai (Understanding): You have to let it recharge.
+chai (Understanding): There is only so much you can do in a day, so it's important to rest and prioritize which neighbors you want to chat with.
+marzi (Casual Unsure): Thank you Dad, Chai. I'll remember that.
+(Marzi finally crams the box shut and tapes the flaps down securely.)
+chai (Love): Congratulations on your new apartment Marzi.
+update marzi (Casual Happy)
+chai (Love): You deserve nice things.
+update marzi (Casual Trust)
+(Chai ruffles Marzi's hair and leaves the room.)
+leave chai
+join rosy (Idle) rightmost
+(Whispering into Marzi's ear).
+rosy (Idle): The city is full of handsome young makers and artisans, you know.
+update marzi (Casual Sweat)
+rosy (Discerning): Just keep your eyes open for more than just new ingredients...
+rosy (Meddling): I would love to see you get married someday.
+marzi (Casual Miffed): Yes, Mom.
+leave rosy
+join madeline (Candy) rightmost
+(Madeline scurries past, giggling as she successfully sneaks a rock-candy sample from Marzi’s open pocket).
+update madeline (Candy)
+marzi (Casual Love): I'll come visit you lots and bring you sweeties from the shop, okay Maddie?
+madeline (Candy): Okay Marzi! Bring lots of candies!
+leave madeline
+(Marzi finally collapses onto her mattress in the attic for the last time.)
+(She feels a bittersweet pang in her chest as she looks around the slanted ceiling and the peeling wallpaper.)
+marzi (Casual Anticipation): This is it.
+marzi (Casual Anticipation): Tomorrow I move into my new apartment, get to explore the city and meet new people.
+marzi (Casual Anticipation): Everything is moving so fast...
+marzi (Casual Confident): [b]Come on Marzi!![/b]
+marzi (Casual Confident): [b][i]You've got this![/i][/b]
+(She half believes it...)
+(Soon her eyes drift shut and her racing mind slows to black, carrying her toward a new beginning.)
+To be continued...
