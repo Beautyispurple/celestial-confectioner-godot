@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bm3fk3yw00e0b" path="res://main_menu.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://cl58k620wjxk6" path="res://ui_elements/CC_MAIN_MENUResized.png" id="2_7vrkn"]
+[ext_resource type="AudioStream" uid="uid://cpwrl856ln0qg" path="res://sounds_music/opening.mp3" id="3_fu7sn"]
 
 [node name="MainMenu" type="Control" unique_id=3100339]
 layout_mode = 3
@@ -53,6 +54,10 @@ offset_top = 802.0
 offset_right = 448.0
 offset_bottom = 902.0
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1747699300]
+stream = ExtResource("3_fu7sn")
+autoplay = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
