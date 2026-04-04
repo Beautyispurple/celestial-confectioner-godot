@@ -4,6 +4,7 @@ label morning_day_0
 
 if {tired} == "0":
 	join marzi (Recovered) left
+	audio music "res://sounds_music/After_School_Shortcut.mp3"
 	marzi (Recovered): (Marzi opens her eyes before the second ring, reaching out to tap the snooze button with a steady hand.)
 	marzi (Recovered): (The grounding exercises actually worked. My chest doesn't feel like it's trapped in a sugar press anymore.)
 	marzi (Recovered): Today is the day.
@@ -36,6 +37,7 @@ if {tired} == "0":
 elif {tired} == "1":
 	[background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="0.0"]
 	join marzi (Exhausted) left
+	audio "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Exhausted): (The alarm blares, but it sounds like it's coming from underwater.)
 	marzi (Exhausted): (Marzi groans, her hand blindly smacking the nightstand until it hits the clock.)
 	marzi (Exhausted): (Her limbs feel like they've been submerged in dense nougat. Every muscle aches from the tension of a sleepless night.)
@@ -76,6 +78,7 @@ elif {tired} == "1":
 leave --All--
 label after_tired_alert
 join beatrix (Idle Dour) rightmost
+audio music "res://sounds_music/After_School_Shortcut.mp3"
 (Madame Beatrix turns on her heel and briskly walks into the depths of the confectionery.)
 [background arg="res://backgrounds/BACKGROUND_gm_inside_empty.png" fade="3.0" wait="true"]
 (Marzi scrambles to follow her inside, the sweet aroma of spun sugar and vanilla beans immediately wrapping around her.)
@@ -280,6 +283,7 @@ join taffy (Phone) rightmost
 taffy (Phone): Ugh, the humidity from those tempering vats is an absolute nightmare today.
 taffy (Phone): I swear, my bangs are drooping by the second.
 taffy (Phone): If my followers on MyCake see me break a sweat, I will literally delete my account.
+audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3"
 marzi (Cleaner Fearful): (Wait—watch out!)
 (The purple haired girl isn't looking up from her screen at all.)
 (She marches blindly past the brass cash register, completely engrossed in typing a response to a comment.)
@@ -318,6 +322,7 @@ marzi (Cleaner Fearful): (Marzi stands frozen, her hands gripping the mop handle
 leave --All--
 (The heavy wooden doors swing open again, but this time, the footsteps are slow and deliberate.)
 join beatrix (Dour) rightmost
+audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 (It's Madame Beatrix Von Sweets.)
 (She wears a pristine tailored coat, her posture rigidly straight, her expression completely unreadable.)
 beatrix (Dour): Explain to me what is going on.
@@ -390,6 +395,7 @@ marzi (Cleaner Tearful): I ruined the front display before we even opened the do
 huck (Sincere): Marz, listen to me.
 huck (Sincere): Don't let Taffy get to you.
 huck (Sincere): On my first day?
+audio music "res://sounds_music/After_School_Shortcut.mp3"
 huck (Plucky): I accidentally shattered an entire cooling rack of spun-sugar swans.
 huck (Plucky): Madame had to close the shop for an extra hour just to sweep up the shards.
 huck (Fear): It cost me almost a thousand gold pieces in damages.
@@ -538,6 +544,7 @@ huck (Trust): Anytime Marzi.
 label negative_thought_end
 
 label cleanup_done
+audio music "res://sounds_music/After_School_Shortcut.mp3"
 (Marzi and Huck finish up the painstaking task of gathering the scattered, soapy candies.)
 huck (Plucky): We better move fast, Marz.
 huck (Anticipation): The senior staff is going to start bringing out the confections for the day any second now.
@@ -561,6 +568,7 @@ if {willing} == "1":
 	leave marzi
 	(By the afternoon, she has polished the glass displays with a microfiber cloth until they gleam like mirrors, without getting in anyone's way.)
 else:
+	audio "res://sounds_music/The_Weight_of_Stillness.mp3"
 	(The rest of the day is a grueling, challenging blur of physical labor.)
 	(Marzi's arms ache terribly from scrubbing sticky syrup off the floor tiles.)
 	join marzi (Cleaner Harried) left
@@ -568,6 +576,7 @@ else:
 	leave marzi
 	(She struggles to keep up with the fast pace of the decorators, constantly feeling like she is a step behind.)
 	(By the afternoon, she manages to polish the glass displays with a microfiber cloth, but it drains every last ounce of her energy.)
+audio music "res://sounds_music/After_School_Shortcut.mp3"
 
 (At the end of the workday, Madame Beatrix Von Sweets calls the staff together for a meeting).
 join marzi (Cleaner Idle) left
@@ -588,6 +597,7 @@ huck (Caring): Marzi already took the hit for the accident earlier.
 huck (Sincere): There's no need to make her feel worse than she already does...
 
 - Take responsibility for the dragees.
+	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Cleaner Apology): I really didn't mean for ANYONE to lose gold, I'm so sorry and I take full responsibility...
 	(Marzi bows deeply three times)
 	(She thinks to herself)
@@ -598,6 +608,7 @@ huck (Sincere): There's no need to make her feel worse than she already does...
 	beatrix (Idle Neutral): That is unnecessarily selfless, Marzipan.
 	beatrix (Idle Neutral): No need to prostrate yourself.
 	beatrix (Macaron): Here is your daily pay of 1000 gold pieces. But, your accountability has earned you a small bonus of 350 gold pieces.
+	audio music "res://sounds_music/After_School_Shortcut.mp3"
 	set {gold_coin} += "1350"
 	set {bonus_received} = "1"
 	update marzi (Cleaner Anticipation)
@@ -618,6 +629,7 @@ huck (Sincere): There's no need to make her feel worse than she already does...
 	(The large double doors swing shut behind her)
 
 - Blame Taffy for the accident.
+	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Cleaner Angry): It really wasn't my fault at all! Taffy was the one staring at her phone instead of watching where she was going!
 	(Marzi stands tall, crossing her arms defensively)
 	(She thinks to herself)
@@ -646,6 +658,7 @@ huck (Sincere): There's no need to make her feel worse than she already does...
 	update taffy (Devious)
 	(She shoots Marzi a vicious dirty look before hanging up her apron)
 	(The large double doors swing shut behind her)
+audio music "res://sounds_music/After_School_Shortcut.mp3"
 
 leave taffy
 leave beatrix
@@ -664,6 +677,7 @@ if {bonus_received} == "1":
 	marzi (Cleaner Pleased): (That bonus completely covers the overdraft fee from my account.)
 	marzi (Cleaner Pleased): (I can actually breathe a little easier now.)
 else:
+	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Cleaner Tired): (I survived day one... barely.)
 	marzi (Cleaner Defeated): (But my paycheck was so severely impacted by the overdraft and the dragee incident with Taffy...)
 	marzi (Cleaner Defeated): (I worked my absolute hardest today, but it feels like I earned next to nothing.)
@@ -672,6 +686,7 @@ else:
 
 label glace_kitchen_return
 [background arg="res://backgrounds/BACKGROUND_Family_Kitchen.jpg" fade="5.0" wait="true"]
+audio music "res://sounds_music/After_School_Shortcut.mp3"
 
 (Back at the Glace family kitchen, the scent of dinner still hangs lightly in the air...)
 (...A stark contrast to the sterile citrus degreaser Marzi has been smelling all day.)
@@ -738,6 +753,7 @@ leave --All--
 label apartment_visit
 [background arg="res://backgrounds/BACKGROUND_apartment_outside.png" fade="5.0" wait="true"]
 [background arg="res://backgrounds/BACKGROUND_Apartment_Kitchen.png" fade="3.0" wait="true"]
+audio music "res://sounds_music/After_School_Shortcut.mp3"
 (The empty apartment is filled with the afternoon light, highlighting the dust motes dancing over bare wood floors).
 (The space is small but has a certain historic charm, with exposed brick on one wall and delicate molding near the ceiling.)
 join marzi (Casual Love) left
@@ -807,7 +823,7 @@ leave al
 join rosy (Shocked) rightmost
 rosy (Shocked): AL!
 leave rosy
-join al (Idle) rightmost
+join al (Discerning) rightmost
 al (Discerning): What Rosy?
 al (Worry): When we're gone, there will be no one to help Marzipan if she isn't married.
 leave al
@@ -817,11 +833,11 @@ rosy (Idle): Be sure to make the most of your time in the city after work.
 update marzi (Casual Unimpressed)
 (Rosy winks at Marzi who makes a sour face.)
 leave rosy
-join landlord rightmost
+join landlord (Idle) rightmost
 landlord (Idle): If you need anything, you can call me.
 update marzi (Casual Concerned)
 landlord (Idle): The rent is paid every 10 days through the online portal.
-landlord (Idle): Make sure you have enough, or it's literally game over!
+landlord (Stern): Make sure you have enough, or it's literally game over!
 (Sweat beads down Marzi's forehead as the pressure returns full force.)
 marzi (Casual Fear): Y..Yes Ma'am.
 marzi (Casual Fear): Game over.
@@ -830,6 +846,7 @@ leave marzi
 
 label packing_attic
 [background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="5.0" wait="true"]
+audio music "res://sounds_music/After_School_Shortcut.mp3"
 (Back at the Glacé home, Marzi is struggling to tape a box stuffed with her leftover boutique candies).
 (The attic feels different tonight—less like a cage and more like a shell she is finally outgrowing.)
 join marzi (Casual Happy) left

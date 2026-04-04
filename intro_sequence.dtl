@@ -1,5 +1,6 @@
 label prologue_attic
 [background arg="res://backgrounds/BACKGROUND_attic_clean_better.png" fade="0.0"]
+audio music "res://sounds_music/After_School_Shortcut.mp3"
 [style name="marzi_visual_novel_style"]
 [wait time="1.0"]
 join marzi (Casual Happy) left
@@ -393,6 +394,7 @@ al (Fatherly): I'll look in to rentals near the shop.
 leave --All--
 label prologue_panic_choice
 [background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="5.0" wait="true"]
+audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 (That night, Marzi tosses and turns in bed, staring at the ceiling.)
 join marzi (Reeling) left
 marzi (Reeling): Everything is happening really fast...
@@ -409,6 +411,7 @@ marzi (Panic Attack 1): What do I do??
 - I'm having a heart attack!! Get Mom and Dad!!
 	label prologue_panic_choice_parents
 	set {panic_points} = "9"
+	audio "res://sounds_music/Seven_Seconds_To_Shock.mp3"
 	marzi (Panic Attack 1): MOM! DAD!
 	marzi (Panic Attack 1): HELP!
 	marzi (Panic Attack 1): HELP ME!
@@ -434,6 +437,7 @@ marzi (Panic Attack 1): What do I do??
 	rosy (Discerning): I think you're having a panic attack.
 	marzi (Hysterical): But what if you're wrong?!
 	marzi (Hysterical): I DON'T WANT TO DIE!!!
+	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	rosy (Discerning): Honey, take a couple deep breaths like Chai taught you okay?
 	rosy (Disappointed): Maybe we asked too much too soon, Al?
 	rosy (Disappointed): Maybe she's really not ready...
@@ -478,6 +482,7 @@ marzi (Panic Attack 1): What do I do??
 - Splash ice cold water on my face.
 	label prologue_panic_choice_water
 	join marzi (Reeling) left
+	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Reeling): (Marzi stumbles out of her bed, her breath coming in ragged hitches.)
 	leave marzi
 	(She needs to break the spiral before her heart actually leaps out of her chest.)
@@ -508,6 +513,7 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Sleeping): (Marzi has a little trouble getting to sleep, but when she does she sleeps soundly and dreamlessly.)
 - Put on a guided meditation and breathe.
 	label prologue_panic_choice_meditation
+	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Reeling): (Marzi fumbles for her phone, her fingers slick with cold sweat.)
 	marzi (Reeling): (She finds the app Chai installed for her last semester.)
 	marzi (Reeling): (The interface glows with a soft, pulsing light that mirrors a steady heartbeat.)
@@ -533,6 +539,7 @@ marzi (Panic Attack 1): What do I do??
 	(System Message\: You have unlocked "Diaphragmatic Breathing" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
 - Tough it out and just go to bed.
 	label prologue_panic_choice_tough
+	audio "res://sounds_music/Seven_Seconds_To_Shock.mp3"
 	(Marzi squeezes her eyes shut and pulls the thin quilt up to her chin.)
 	(Her heart is still thudding against her ribs like a trapped bird.)
 	marzi (Dejected): (Just stop. Just stop. It's fine. Everything is fine.)
@@ -549,6 +556,7 @@ marzi (Panic Attack 1): What do I do??
 	set {tired} = "1"
 - Name five things.
 	label prologue_panic_choice_5things
+	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	(Marzi presses her hands flat against the floorboards, letting the solid surface anchor her.)
 	marzi (Breathing): Okay. 5-4-3-2-1. Just like Chai showed me.
 	marzi (Breathing): He always said this works anywhere. In this dusty attic, or wherever you happen to be right now.
@@ -574,6 +582,7 @@ marzi (Panic Attack 1): What do I do??
 	(System Message\: You have unlocked "Name 5 Things" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
 - Double check my bank app.
 	label prologue_panic_choice_bank
+	audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3"
 	(Marzi grabs her phone from the nightstand, squinting against the harsh glare of the screen.)
 	marzi (Reeling): (Maybe dad looked at an old statement. Maybe some of the graduation money is still there.)
 	marzi: (Just one or two hundred. Just enough so I'm not completely at zero.)
