@@ -82,7 +82,7 @@ columns = 4
 [node name="Slot1" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid"]
 custom_minimum_size = Vector2(120, 100)
 layout_mode = 2
-text = "Box Breathing"
+text = "Breath Tempering"
 
 [node name="Slot2" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid"]
 custom_minimum_size = Vector2(120, 100)

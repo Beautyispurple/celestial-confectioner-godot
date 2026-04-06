@@ -257,9 +257,17 @@ func _on_dialogic_action_priority() -> void:
 		return
 	if not is_crisis_advance_blocked():
 		return
+	# Do not soft-lock the story before Breath Tempering exists in the Sampler Box.
+	if not _breath_tempering_unlocked_in_variables():
+		return
 	if hovered and _control_is_under_sampler(hovered):
 		return
 	Dialogic.Inputs.action_was_consumed = true
+
+
+func _breath_tempering_unlocked_in_variables() -> bool:
+	var v: Variant = Dialogic.VAR.get_variable("breath_tempering_unlocked", 0)
+	return int(float(str(v))) != 0
 
 
 func _control_is_under_sampler(ctrl: Control) -> bool:

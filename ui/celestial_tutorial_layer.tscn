@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=3 uid="uid://celestial_tutorial_layer"]
+
+[ext_resource type="Script" path="res://ui/celestial_tutorial_layer.gd" id="1_script"]
+
+[node name="CelestialTutorialLayer" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_script")
+
+[node name="Root" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="Dim" type="ColorRect" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.04, 0.02, 0.08, 0.62)
+
+[node name="Center" type="CenterContainer" parent="Root"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Root/Center"]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="Root/Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="Label" type="Label" parent="Root/Center/Panel/Margin"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.99, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.04, 0.12, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "Tutorial text"
+autowrap_mode = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Arrow" type="Label" parent="Root"]
+visible = false
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 96.0
+mouse_filter = 2
+z_index = 2
+theme_override_colors/font_outline_color = Color(0.05, 0.1, 0.2, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 72
+text = "▼"
+horizontal_alignment = 1
+vertical_alignment = 1

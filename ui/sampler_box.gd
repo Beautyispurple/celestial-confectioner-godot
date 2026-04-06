@@ -28,6 +28,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	add_to_group("celestial_sampler_ui")
 	_handle.add_to_group("celestial_sampler_ui")
+	_handle_panel.add_to_group("celestial_sampler_handle")
 	_panel.add_to_group("celestial_sampler_ui")
 	_back_button.add_to_group("celestial_sampler_ui")
 	_panel.visible = false
@@ -39,6 +40,11 @@ func _ready() -> void:
 	CelestialVNState.panic_tier_changed.connect(_on_tier_changed)
 	_on_tier_changed(CelestialVNState.get_panic_tier())
 	_apply_handle_visual()
+	_apply_slide_panel_opaque()
+	_ensure_minigame_opaque_bg()
+	if not Dialogic.VAR.variable_changed.is_connected(_on_dialogic_var_changed):
+		Dialogic.VAR.variable_changed.connect(_on_dialogic_var_changed)
+	_apply_breath_slot_visibility()
 	_handle.mouse_entered.connect(_on_handle_mouse_entered)
 	_handle.mouse_exited.connect(_on_handle_mouse_exited)
 	_handle.button_down.connect(_on_handle_button_down)
@@ -92,9 +98,9 @@ func _apply_handle_visual() -> void:
 	var r := 12
 	var pad_h := 14
 	var pad_v := 8
-	_sb_panel_base = _make_handle_stylebox(Color(0.12, 0.1, 0.14, 0.96), Color(1, 0.82, 0.94, 0.45), r, pad_h, pad_v)
-	_sb_panel_hover = _make_handle_stylebox(Color(0.18, 0.12, 0.2, 0.96), Color(1, 0.88, 0.98, 0.6), r, pad_h, pad_v)
-	_sb_panel_pressed = _make_handle_stylebox(Color(0.08, 0.06, 0.1, 0.98), Color(1, 0.75, 0.9, 0.55), r, pad_h, pad_v)
+	_sb_panel_base = _make_handle_stylebox(Color(0.12, 0.1, 0.14, 1.0), Color(1, 0.82, 0.94, 0.55), r, pad_h, pad_v)
+	_sb_panel_hover = _make_handle_stylebox(Color(0.18, 0.12, 0.2, 1.0), Color(1, 0.88, 0.98, 0.65), r, pad_h, pad_v)
+	_sb_panel_pressed = _make_handle_stylebox(Color(0.08, 0.06, 0.1, 1.0), Color(1, 0.75, 0.9, 0.6), r, pad_h, pad_v)
 	_handle_panel.add_theme_stylebox_override("panel", _sb_panel_base)
 	var empty := StyleBoxEmpty.new()
 	_handle.add_theme_stylebox_override("normal", empty)
@@ -128,6 +134,43 @@ func _on_handle_button_up() -> void:
 	_handle_panel.add_theme_stylebox_override("panel", next)
 
 
+func _apply_slide_panel_opaque() -> void:
+	var sb := StyleBoxFlat.new()
+	sb.bg_color = Color(0.12, 0.1, 0.16, 1.0)
+	sb.border_color = Color(1, 0.85, 0.95, 0.55)
+	sb.set_border_width_all(2)
+	sb.set_corner_radius_all(14)
+	sb.content_margin_left = 0.0
+	sb.content_margin_right = 0.0
+	sb.content_margin_top = 0.0
+	sb.content_margin_bottom = 0.0
+	_panel.add_theme_stylebox_override("panel", sb)
+
+
+func _ensure_minigame_opaque_bg() -> void:
+	if _minigame_host.get_node_or_null("OpaqueBg") != null:
+		return
+	var cr := ColorRect.new()
+	cr.name = "OpaqueBg"
+	cr.color = Color(0.1, 0.08, 0.14, 1.0)
+	cr.set_anchors_preset(Control.PRESET_FULL_RECT)
+	cr.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_minigame_host.add_child(cr)
+	_minigame_host.move_child(cr, 0)
+
+
+func _on_dialogic_var_changed(info: Dictionary) -> void:
+	var v: String = str(info.get("variable", ""))
+	if v == "breath_tempering_unlocked":
+		_apply_breath_slot_visibility()
+
+
+func _apply_breath_slot_visibility() -> void:
+	var unlocked: bool = int(float(str(Dialogic.VAR.get_variable("breath_tempering_unlocked", 0)))) != 0
+	_slot1.visible = unlocked
+	_slot1.disabled = not unlocked
+
+
 func _make_handle_stylebox(bg: Color, border: Color, corner_r: int, pad_h: int, pad_v: int) -> StyleBoxFlat:
 	var sb := StyleBoxFlat.new()
 	sb.bg_color = bg
@@ -145,6 +188,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("celestial_sampler_toggle"):
 		toggle_open()
 		get_viewport().set_input_as_handled()
+
+
+func _maybe_run_sampler_intro_chain() -> void:
+	if not _open:
+		return
+	if _minigame_host.visible:
+		return
+	var tut: Node = get_node_or_null("/root/CelestialTutorial")
+	if tut != null and tut.has_method("run_sampler_first_open_chain"):
+		await tut.run_sampler_first_open_chain()
 
 
 func _on_tier_changed(tier: int) -> void:
@@ -169,6 +222,8 @@ func toggle_open() -> void:
 		CelestialVNState.set_sampler_blocking_vn(true)
 		var tw := create_tween()
 		tw.tween_property(_panel, "custom_minimum_size:y", _PANEL_OPEN_H, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		await tw.finished
+		await _maybe_run_sampler_intro_chain()
 	else:
 		if _minigame_host.visible and _breathing != null:
 			_on_back_pressed()

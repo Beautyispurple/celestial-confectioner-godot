@@ -9,6 +9,7 @@ func _ready() -> void:
 	layer = 40
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = true
+	_burner.add_to_group("celestial_heat_meter")
 	_refresh_all()
 	if not Dialogic.VAR.variable_changed.is_connected(_on_var_changed):
 		Dialogic.VAR.variable_changed.connect(_on_var_changed)

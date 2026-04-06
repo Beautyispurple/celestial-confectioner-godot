@@ -35,6 +35,7 @@ leave marzi
 (Months later...)
 MARZIPAN! COME DOWNSTAIRS THIS INSTANT!
 set {panic_points} += "2"
+do CelestialTutorial.prologue_tutorial_heat_meter()
 join marzi (Casual Fear) left
 marzi (Casual Fear): Uh oh...
 marzi (Casual Concerned): BE RIGHT THERE DAD!
@@ -73,7 +74,7 @@ marzi (Casual Concerned): It's not just candy, Dad!
 	rosy (Approval): Well at least you seem to be able to take some accountability.
 	set {rosy_points} += "5"
 	set {al_points} += "5"
-if {rosy_points} == 55:
+if int({rosy_points}) == 55:
 	rosy (Disappointed): ...but it's not really enough.
 marzi (Casual Apologetic): ...
 rosy (Disappointed): Sweetheart, a flower can't bloom if it doesn't have roots in the dirt.
@@ -88,7 +89,7 @@ al (Worry): You need a steady job.
 al (Worry): A real routine.
 al (Worry): If you don't have a paying position by the end of the month...
 al (Worry): ...we are going to kick you out of the house, Marzipan.
-set {panic_points} += "4"
+set {panic_points} += "2"
 marzi (Casual Very Concerned): !!!
 al (Worry): We can't keep funding this chaos.
 marzi (Casual Very Concerned): E...End of the month? But I-I just need more time... my portfolio really isn't rea-
@@ -120,6 +121,8 @@ marzi (Casual Orz): ...
 marzi (Casual Tears): I DON'T EVEN OWN A TENT!
 chai (Understanding): Look at me please Marzi.
 chai (Understanding): Let's do three deep breaths together, okay?
+set {breath_tempering_unlocked} = "1"
+do CelestialTutorial.prologue_tutorial_sampler_box()
 (System Message\: You can follow along with Marzi as she practices skills if you wish, or you can just enjoy the story!)
 chai (Understanding): In through the nose...2...3...4...
 chai (Understanding): Hold...2...3...4...
@@ -127,7 +130,7 @@ chai (Understanding): Out...2...3...4...
 chai (Understanding): Hold...2...3...4...
 leave --All--
 (Marzi regains her composure as they breathe in rhythm together.)
-(System Message\: You have unlocked "Box Breathing" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
+do CelestialTutorial.prologue_tutorial_breath_tempering_unlocked()
 join chai (Understanding) rightmost
 join marzi (Casual Trust) left
 chai (Understanding): They'll like you Marzi.

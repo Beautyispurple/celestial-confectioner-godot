@@ -40,8 +40,12 @@ func _ready() -> void:
 
 func _apply_glass_style() -> void:
 	var sb := StyleBoxFlat.new()
-	sb.bg_color = Color(1, 0.96, 0.99, 0.12)
-	sb.border_color = Color(1, 0.85, 0.95, 0.35)
+	if embedded:
+		sb.bg_color = Color(0.2, 0.16, 0.24, 1.0)
+		sb.border_color = Color(1, 0.85, 0.95, 0.72)
+	else:
+		sb.bg_color = Color(1, 0.96, 0.99, 0.12)
+		sb.border_color = Color(1, 0.85, 0.95, 0.35)
 	sb.set_border_width_all(2)
 	sb.set_corner_radius_all(22)
 	sb.content_margin_left = 28
@@ -49,8 +53,12 @@ func _apply_glass_style() -> void:
 	sb.content_margin_top = 24
 	sb.content_margin_bottom = 20
 	_glass_panel.add_theme_stylebox_override("panel", sb)
-	_phase_label.add_theme_color_override("font_color", Color(0.98, 0.94, 1.0, 0.95))
-	_phase_label.add_theme_color_override("font_outline_color", Color(0.25, 0.12, 0.35, 0.85))
+	if embedded:
+		_phase_label.add_theme_color_override("font_color", Color(0.98, 0.94, 1.0, 1.0))
+		_phase_label.add_theme_color_override("font_outline_color", Color(0.15, 0.08, 0.22, 1.0))
+	else:
+		_phase_label.add_theme_color_override("font_color", Color(0.98, 0.94, 1.0, 0.95))
+		_phase_label.add_theme_color_override("font_outline_color", Color(0.25, 0.12, 0.35, 0.85))
 	_phase_label.add_theme_constant_override("outline_size", 6)
 	_phase_label.add_theme_font_size_override("font_size", 28)
 	_backdrop.color = Color(0.08, 0.04, 0.14, 0.52)

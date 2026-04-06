@@ -27,6 +27,7 @@ GlobalInventory="*uid://mswyktna5vcr"
 GameSaveManager="*res://game_save_manager.gd"
 BoxBreathingMinigame="*res://box_breathing_minigame.gd"
 CelestialVNState="*res://celestial_vn_state.gd"
+CelestialTutorial="*res://celestial_tutorial.gd"
 
 [dialogic]
 
@@ -62,6 +63,7 @@ variables={
 "al_points": "50",
 "beatrix_points": "0",
 "bonus_received": "0",
+"breath_tempering_unlocked": "0",
 "gold_coin": "0",
 "huck_points": "0",
 "negative_thought_game": {
@@ -75,6 +77,7 @@ variables={
 "panic_points": "0",
 "peace_points": "0",
 "rosy_points": "50",
+"sampler_tutorial_chain_done": "0",
 "social_battery": "5",
 "taffy_points": "0",
 "thing_1": "",
