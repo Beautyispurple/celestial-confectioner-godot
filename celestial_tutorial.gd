@@ -62,3 +62,24 @@ func _is_sampler_chain_done() -> bool:
 
 func is_breath_tempering_unlocked() -> bool:
 	return int(float(str(Dialogic.VAR.get_variable("breath_tempering_unlocked", 0)))) != 0
+
+
+func prologue_tutorial_breath_aeration_unlocked() -> void:
+	await _await_tutorial_layer_ready()
+	await _layer.show_plain_tutorial(
+		"You have unlocked Breath Aeration in Marzi's Sampler Box! Follow the inhale and exhale rhythm — no breath-holds — to trade a little Heat for Social Battery."
+	)
+
+
+func prologue_tutorial_sensory_sifting_unlocked() -> void:
+	await _await_tutorial_layer_ready()
+	await _layer.show_plain_tutorial(
+		"You have unlocked Sensory Sifting (Name 5 Things) in Marzi's Sampler Box! Use it during gameplay to ground Marzi through sight, touch, sound, smell, and taste — and to ease Heat when she needs it most."
+	)
+
+
+func prologue_tutorial_social_battery_followup() -> void:
+	await _await_tutorial_layer_ready()
+	await _layer.show_plain_tutorial(
+		"Don't worry about your social battery just yet. More will be explained later!"
+	)

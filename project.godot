@@ -28,6 +28,7 @@ GameSaveManager="*res://game_save_manager.gd"
 BoxBreathingMinigame="*res://box_breathing_minigame.gd"
 CelestialVNState="*res://celestial_vn_state.gd"
 CelestialTutorial="*res://celestial_tutorial.gd"
+CelestialPlaytestDebug="*res://celestial_playtest_debug.gd"
 
 [dialogic]
 
@@ -63,6 +64,8 @@ variables={
 "al_points": "50",
 "beatrix_points": "0",
 "bonus_received": "0",
+"breath_aeration_panic_grant_done": "0",
+"breath_aeration_unlocked": "0",
 "breath_tempering_unlocked": "0",
 "gold_coin": "0",
 "huck_points": "0",
@@ -75,9 +78,11 @@ variables={
 "thought_3": ""
 },
 "panic_points": "0",
+"panic_shield": "0",
 "peace_points": "0",
 "rosy_points": "50",
 "sampler_tutorial_chain_done": "0",
+"sensory_sifting_unlocked": "0",
 "social_battery": "5",
 "taffy_points": "0",
 "thing_1": "",

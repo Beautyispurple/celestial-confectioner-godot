@@ -7,6 +7,21 @@ func _ready() -> void:
 	CelestialVNState.set_vn_ui_visible(false)
 	GameSaveManager.apply_stored_options()
 	_load_slots.slot_picked_for_load.connect(_on_load_slot_chosen)
+	if OS.is_debug_build():
+		var dbg := Button.new()
+		dbg.text = "Debug: unlock test state"
+		dbg.focus_mode = Control.FOCUS_NONE
+		dbg.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+		dbg.offset_left = -280.0
+		dbg.offset_top = 12.0
+		dbg.offset_right = -12.0
+		dbg.offset_bottom = 48.0
+		dbg.pressed.connect(_on_debug_playtest_pressed)
+		add_child(dbg)
+
+
+func _on_debug_playtest_pressed() -> void:
+	CelestialPlaytestDebug.apply_sampler_playtest_state()
 
 
 func _input(event: InputEvent) -> void:

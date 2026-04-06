@@ -15,6 +15,9 @@ func _ready() -> void:
 	layer = 54
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = true
+	# Orange / red edge pulse is visual only; never steal clicks from the sampler (layer 65) or VN UI.
+	for c in [_edge_top, _edge_bottom, _edge_left, _edge_right, _glitch]:
+		(c as Control).mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_set_edges_alpha(0.0)
 	_glitch.modulate.a = 0.0
 	CelestialVNState.panic_tier_changed.connect(_on_tier_changed)

@@ -37,11 +37,25 @@ theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 18
 text = "Heat"
 
-[node name="BurnerHost" type="Control" parent="Margin/HBox/BurnerColumn"]
+[node name="BurnerRow" type="HBoxContainer" parent="Margin/HBox/BurnerColumn"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BurnerHost" type="Control" parent="Margin/HBox/BurnerColumn/BurnerRow"]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("2_burn")
+
+[node name="ShieldBadge" type="Label" parent="Margin/HBox/BurnerColumn/BurnerRow"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 1, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.04, 0.14, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 36
+text = "🛡"
+vertical_alignment = 1
 
 [node name="Spacer" type="Control" parent="Margin/HBox"]
 layout_mode = 2

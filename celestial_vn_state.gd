@@ -3,6 +3,7 @@ extends Node
 
 const PANIC_MAX := 10
 const SOCIAL_MAX := 10
+const PANIC_SHIELD_MAX := 2
 
 const EXCLUDED_RELATIONSHIP_POINTS: Array[String] = ["panic_points", "peace_points"]
 
@@ -22,6 +23,8 @@ var _needs_crisis_coping: bool = false
 ## Last applied values for panic/social (set_variable only emits variable_changed, not variable_was_set).
 var _panic_points_cache: int = 0
 var _social_battery_cache: int = 0
+var _panic_shield_cache: int = 0
+var _shield_clamping: bool = false
 var _toast_queue: Array[Dictionary] = []
 var _toast_runner_active: bool = false
 
@@ -32,6 +35,7 @@ var _sampler_blocking_vn: bool = false
 var _hud_layer: CanvasLayer = null
 var _panic_layer: CanvasLayer = null
 var _sampler_layer: CanvasLayer = null
+var _heat_warning_layer: CanvasLayer = null
 
 
 func _ready() -> void:
@@ -62,8 +66,13 @@ func _deferred_setup() -> void:
 	if sampler_scene:
 		_sampler_layer = sampler_scene.instantiate() as CanvasLayer
 		get_tree().root.add_child(_sampler_layer)
+	var heat_warn_scene: PackedScene = load("res://ui/heat_warning_layer.tscn") as PackedScene
+	if heat_warn_scene:
+		_heat_warning_layer = heat_warn_scene.instantiate() as CanvasLayer
+		get_tree().root.add_child(_heat_warning_layer)
 	_panic_points_cache = get_panic_points()
 	_social_battery_cache = get_social_battery()
+	_panic_shield_cache = get_panic_shield()
 	_apply_vn_ui_visibility()
 
 
@@ -75,6 +84,9 @@ func set_vn_ui_visible(v: bool) -> void:
 func _apply_vn_ui_visibility() -> void:
 	if _panic_layer:
 		_panic_layer.visible = _vn_ui_visible_desired
+	if _heat_warning_layer:
+		_heat_warning_layer.visible = _vn_ui_visible_desired
+		_heat_warning_layer.process_mode = Node.PROCESS_MODE_ALWAYS if _vn_ui_visible_desired else Node.PROCESS_MODE_DISABLED
 	if _hud_layer:
 		_hud_layer.visible = _vn_ui_visible_desired
 		_hud_layer.process_mode = Node.PROCESS_MODE_ALWAYS if _vn_ui_visible_desired else Node.PROCESS_MODE_DISABLED
@@ -93,12 +105,69 @@ func is_sampler_blocking_vn() -> bool:
 	return _sampler_blocking_vn
 
 
+func refresh_sampler_slots() -> void:
+	if _sampler_layer != null and _sampler_layer.has_method("refresh_slot_visibility"):
+		_sampler_layer.refresh_slot_visibility()
+
+
 func get_panic_points() -> int:
 	return int(float(Dialogic.VAR.get_variable("panic_points", 0)))
 
 
 func get_social_battery() -> int:
 	return int(float(Dialogic.VAR.get_variable("social_battery", 0)))
+
+
+func get_panic_shield() -> int:
+	return clampi(int(float(Dialogic.VAR.get_variable("panic_shield", 0))), 0, PANIC_SHIELD_MAX)
+
+
+## Stress events only: absorbs into panic_shield before raising panic_points.
+func apply_stress_panic_delta(delta: int) -> void:
+	if delta <= 0:
+		return
+	var pp: int = get_panic_points()
+	var sh: int = get_panic_shield()
+	var absorb: int = mini(delta, sh)
+	var new_sh: int = sh - absorb
+	var hits_panic: int = delta - absorb
+	if new_sh != sh:
+		_set_panic_shield_clamped(new_sh)
+	var new_pp: int = clampi(pp + hits_panic, 0, PANIC_MAX)
+	if new_pp != pp:
+		Dialogic.VAR.set_variable("panic_points", new_pp)
+
+
+## Direct panic change (rewards, skills, narrative sets). Does not use shield.
+func apply_direct_panic_delta(delta: int) -> void:
+	var pp: int = get_panic_points()
+	Dialogic.VAR.set_variable("panic_points", clampi(pp + delta, 0, PANIC_MAX))
+
+
+func set_panic_points_direct(value: int) -> void:
+	Dialogic.VAR.set_variable("panic_points", clampi(value, 0, PANIC_MAX))
+
+
+func set_panic_shield_direct(value: int) -> void:
+	_set_panic_shield_clamped(value)
+
+
+func _set_panic_shield_clamped(v: int) -> void:
+	var t: int = clampi(v, 0, PANIC_SHIELD_MAX)
+	if t == _panic_shield_cache:
+		return
+	_shield_clamping = true
+	Dialogic.VAR.set_variable("panic_shield", t)
+	_shield_clamping = false
+	_panic_shield_cache = t
+
+
+## Dialogic: one-time +2 panic when Breath Aeration unlocks (clamped to max).
+func grant_breath_aeration_unlock_panic_if_needed() -> void:
+	if int(float(str(Dialogic.VAR.get_variable("breath_aeration_panic_grant_done", 0)))) != 0:
+		return
+	Dialogic.VAR.set_variable("breath_aeration_panic_grant_done", 1)
+	apply_direct_panic_delta(2)
 
 
 func get_panic_tier() -> int:
@@ -140,6 +209,9 @@ func _on_variable_changed_clamped_stats(info: Dictionary) -> void:
 	if _clamping:
 		return
 	var v: String = str(info.get("variable", ""))
+	if v == "panic_shield":
+		_handle_panic_shield_var(info)
+		return
 	if v != "panic_points" and v != "social_battery":
 		return
 	var orig_f: float = float(_panic_points_cache) if v == "panic_points" else float(_social_battery_cache)
@@ -156,6 +228,19 @@ func _on_variable_was_set(info: Dictionary) -> void:
 
 	if v.ends_with("_points") and v not in EXCLUDED_RELATIONSHIP_POINTS:
 		_handle_relationship_points(info)
+
+
+func _handle_panic_shield_var(info: Dictionary) -> void:
+	if _shield_clamping:
+		return
+	var new_f: float = _to_float_safe(info.get("new_value"))
+	var target: int = clampi(int(round(new_f)), 0, PANIC_SHIELD_MAX)
+	if int(round(new_f)) != target:
+		_shield_clamping = true
+		Dialogic.VAR.set_variable("panic_shield", target)
+		_shield_clamping = false
+		target = clampi(int(float(Dialogic.VAR.get_variable("panic_shield", 0))), 0, PANIC_SHIELD_MAX)
+	_panic_shield_cache = target
 
 
 func _handle_clamped_stat(info: Dictionary) -> void:

@@ -34,7 +34,7 @@ leave marzi
 [background arg="res://backgrounds/BACKGROUND_attic_mesy_better.png" fade="0.0"]
 (Months later...)
 MARZIPAN! COME DOWNSTAIRS THIS INSTANT!
-set {panic_points} += "2"
+do CelestialVNState.apply_stress_panic_delta(2)
 do CelestialTutorial.prologue_tutorial_heat_meter()
 join marzi (Casual Fear) left
 marzi (Casual Fear): Uh oh...
@@ -89,7 +89,7 @@ al (Worry): You need a steady job.
 al (Worry): A real routine.
 al (Worry): If you don't have a paying position by the end of the month...
 al (Worry): ...we are going to kick you out of the house, Marzipan.
-set {panic_points} += "2"
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Casual Very Concerned): !!!
 al (Worry): We can't keep funding this chaos.
 marzi (Casual Very Concerned): E...End of the month? But I-I just need more time... my portfolio really isn't rea-
@@ -543,6 +543,10 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Restfulsleep): (She drifts off as the heavy static in her mind settles into a soft, quiet hum.)
 	marzi (Restfulsleep): (Her dreams are filled with the scent of jasmine and the sun warming her shoulders.)
 	(System Message\: You have unlocked "Diaphragmatic Breathing" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
+	set {breath_aeration_unlocked} = "1"
+	do CelestialVNState.grant_breath_aeration_unlock_panic_if_needed()
+	do CelestialTutorial.prologue_tutorial_breath_aeration_unlocked()
+	do CelestialTutorial.prologue_tutorial_social_battery_followup()
 - Tough it out and just go to bed.
 	label prologue_panic_choice_tough
 	audio "res://sounds_music/Seven_Seconds_To_Shock.mp3"
@@ -558,7 +562,7 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Exhausted): (The 'toughing it out' feels less like strength and more like a slow, exhausting endurance test.)
 	marzi (Fretfulsleep): (Hours bleed into each other, the gray moonlight shifting across the floorboards.)
 	marzi (Fretfulsleep): (By the time her eyes finally stay shut, the birds outside are already starting their pre-dawn chatter.)
-	set {panic_points} += "5"
+	do CelestialVNState.apply_stress_panic_delta(5)
 	set {tired} = "1"
 - Name five things.
 	label prologue_panic_choice_5things
@@ -585,7 +589,9 @@ marzi (Panic Attack 1): What do I do??
 	(The heavy, crushing weight in her chest finally begins to unravel.)
 	marzi (Restfulsleep): (She takes one last, deep breath, letting the quiet rhythm of the night finally lull her to sleep.)
 	set {panic_points} -= 10
+	set {sensory_sifting_unlocked} = "1"
 	(System Message\: You have unlocked "Name 5 Things" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
+	do CelestialTutorial.prologue_tutorial_sensory_sifting_unlocked()
 - Double check my bank app.
 	label prologue_panic_choice_bank
 	audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3"
@@ -624,6 +630,6 @@ marzi (Panic Attack 1): What do I do??
 	(By the time the gray morning light bleeds through the tiny window, she hasn't closed her eyes for a single second.)
 	set {gold_coin} -= 335.0
 	set {tired} = "1"
-	set {panic} = "11"
+	set {panic_points} = "11"
 	# emit trigger_achievement_out_of_sight
 jump day_0/

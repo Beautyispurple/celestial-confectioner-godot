@@ -72,7 +72,7 @@ elif {tired} == "1":
 	beatrix (Dour Lookdown): Try to catch your breath before you contaminate my show room with your panting.
 	beatrix (Dour Lookdown): And stand up straight. You look like an unwrapped caramel that has completely lost its shape.
 	beatrix (Dour Lookdown): If those dark circles under your eyes are any indication, I expect your focus to be as blurry as your vision today.
-	set {panic_points} += "1"
+	do CelestialVNState.apply_stress_panic_delta(1)
 	set {beatrix_points} -= "10"
 	marzi (Casual Tired): (A weak, desperate smile flickers across her face.)
 	marzi (Casual Tired): I-I'm perfectly fine, Madame. Just... eager.
@@ -351,9 +351,9 @@ taffy (Angry): But she tripped me!
 beatrix (Dour): She was distracted securing the hygiene of the sales floor.
 beatrix (Unimpressed): You were distracted by your phone.
 beatrix (Dour): I saw the entire incident from my office.
-beatrix (Dour): I do not tolerate excuses, nor do I tolerate my lead decorator destroying three hundred gold coins worth of inventory because she was too busy breaking confectionery phone policy.
-set {panic_points} += "1"
-beatrix (Exasperated): Your lack of awareness is astounding.
+	beatrix (Dour): I do not tolerate excuses, nor do I tolerate my lead decorator destroying three hundred gold coins worth of inventory because she was too busy breaking confectionery phone policy.
+	do CelestialVNState.apply_stress_panic_delta(1)
+	beatrix (Exasperated): Your lack of awareness is astounding.
 beatrix (Dour): Just walk away, Ms. Vandermelt, and go get cleaned up.
 beatrix (Dour): Before I decide to reassign you to scrubbing the caramel vats for the rest of the week.
 taffy (Angry): (Taffy's face flushes a deep, angry red.)
@@ -368,9 +368,9 @@ join beatrix (Dour) rightmost
 beatrix (Dour): Do not mistake my lack of patience for Miss Vander-Melt's poor choices as sympathy for you, Miss Glace.
 update marzi (Cleaner Blamed)
 beatrix (Dour): The dragees are ruined.
-beatrix (Dour Lookdown): Half the cost of the ingredients—three hundred gold—will still be deducted from your first paycheck.
-set {panic_points} += "1"
-update marzi (Cleaner Fearful)
+	beatrix (Dour Lookdown): Half the cost of the ingredients—three hundred gold—will still be deducted from your first paycheck.
+	do CelestialVNState.apply_stress_panic_delta(1)
+	update marzi (Cleaner Fearful)
 beatrix (Dour): An efficient and safe worker must anticipate the movements of those around them.
 beatrix (Dour): Especially junior workers.
 beatrix (Dour): Do better.
@@ -769,9 +769,9 @@ landlord (Idle): I love everything that comes out of that shop.
 landlord (Idle): The confections taste almost magical.
 marzi (Casual Love): (Does she not know that the sweets actually ARE magical?)
 landlord (Idle): Well anyway -
-landlord (Stern): If I find a mess during my inspections, your tenancy is over.
-set {panic_points} += "1"
-(Marzi gulps and her stomach twists into a tight knot.)
+	landlord (Stern): If I find a mess during my inspections, your tenancy is over.
+	do CelestialVNState.apply_stress_panic_delta(1)
+	(Marzi gulps and her stomach twists into a tight knot.)
 update marzi (Casual Very Concerned)
 (Her thoughts race as she remembers the sticky dragee disaster from that morning.)
 (Her palms sweat against the fabric of her dress.)
@@ -821,9 +821,9 @@ al (Fatherly): The deposit and the first month are settled.
 al (Discerning): Now, don't let me down, kiddo!
 al (Discerning): It's important that you keep your new job.
 al (Worry): Keeping a roof over your head is the most important and challenging part of being an Adult.
-al (Worry): You don't want to end up living in a tent in the woods.
-set {panic_points} += "1"
-update marzi (Casual Orz)
+	al (Worry): You don't want to end up living in a tent in the woods.
+	do CelestialVNState.apply_stress_panic_delta(1)
+	update marzi (Casual Orz)
 leave al
 join rosy (Shocked) rightmost
 rosy (Shocked): AL!
@@ -842,9 +842,9 @@ join landlord (Idle) rightmost
 landlord (Idle): If you need anything, you can call me.
 update marzi (Casual Concerned)
 landlord (Idle): The rent is paid every 10 days through the online portal.
-landlord (Stern): Make sure you have enough, or it's literally game over!
-set {panic_points} += "1"
-(Sweat beads down Marzi's forehead as the pressure returns full force.)
+	landlord (Stern): Make sure you have enough, or it's literally game over!
+	do CelestialVNState.apply_stress_panic_delta(1)
+	(Sweat beads down Marzi's forehead as the pressure returns full force.)
 marzi (Casual Fear): Y..Yes Ma'am.
 marzi (Casual Fear): Game over.
 leave landlord

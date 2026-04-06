@@ -2,9 +2,14 @@ extends CanvasLayer
 ## Slide-down Marzi's Sampler Box; Tab or handle toggles. Does not pause the scene tree.
 
 const BOX_SCENE := preload("res://ui/box_breathing_overlay.tscn")
+const SIFT_SCENE := preload("res://ui/sensory_sifting_panel.tscn")
 
-const _PANEL_OPEN_H := 560.0
+const _PANEL_OPEN_H := 720.0
+const _GRID_COLS := 5
+const _GRID_ROWS := 10
+const _GRID_SLOTS := _GRID_COLS * _GRID_ROWS
 
+@onready var _handle_strip: Control = $TopBar/RootRow/HandleStrip
 @onready var _handle_panel: PanelContainer = $TopBar/RootRow/HandleStrip/HandleRow/HandlePanel
 @onready var _handle: Button = $TopBar/RootRow/HandleStrip/HandleRow/HandlePanel/Handle
 
@@ -15,12 +20,16 @@ var _sb_panel_pressed: StyleBoxFlat
 @onready var _grid: GridContainer = $TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid
 @onready var _minigame_host: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost
 @onready var _breathing_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/BreathingSlot
+@onready var _sifting_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/SiftingSlot
 @onready var _back_button: Button = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/BackButton
-@onready var _slot1: Button = $TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid/Slot1
 
 var _open: bool = false
 var _breathing: Control = null
+var _sifting: Control = null
+var _slot_buttons: Array[Button] = []
+var _active_minigame: String = "" # "temper" | "aeration" | "sifting" | ""
 var _handle_pulse: Tween
+var _panel_height_tween: Tween
 
 
 func _ready() -> void:
@@ -28,23 +37,25 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	add_to_group("celestial_sampler_ui")
 	_handle.add_to_group("celestial_sampler_ui")
-	_handle_panel.add_to_group("celestial_sampler_handle")
-	_panel.add_to_group("celestial_sampler_ui")
+	_handle_panel.add_to_group("celestial_sampler_ui")
 	_back_button.add_to_group("celestial_sampler_ui")
+	_panel.add_to_group("celestial_sampler_ui")
 	_panel.visible = false
 	_panel.custom_minimum_size = Vector2(0, 0)
 	_minigame_host.visible = false
+	_breathing_slot.visible = false
+	_sifting_slot.visible = false
 	_handle.pressed.connect(toggle_open)
 	_back_button.pressed.connect(_on_back_pressed)
-	_slot1.pressed.connect(_on_slot1_pressed)
 	CelestialVNState.panic_tier_changed.connect(_on_tier_changed)
 	_on_tier_changed(CelestialVNState.get_panic_tier())
 	_apply_handle_visual()
 	_apply_slide_panel_opaque()
 	_ensure_minigame_opaque_bg()
+	_build_slot_grid()
 	if not Dialogic.VAR.variable_changed.is_connected(_on_dialogic_var_changed):
 		Dialogic.VAR.variable_changed.connect(_on_dialogic_var_changed)
-	_apply_breath_slot_visibility()
+	_apply_all_slot_visibility()
 	_handle.mouse_entered.connect(_on_handle_mouse_entered)
 	_handle.mouse_exited.connect(_on_handle_mouse_exited)
 	_handle.button_down.connect(_on_handle_button_down)
@@ -52,6 +63,28 @@ func _ready() -> void:
 	if not _panel.resized.is_connected(_on_panel_resized):
 		_panel.resized.connect(_on_panel_resized)
 	call_deferred("_configure_root_sizing")
+
+
+func _build_slot_grid() -> void:
+	for c in _grid.get_children():
+		c.queue_free()
+	_slot_buttons.clear()
+	for i in _GRID_SLOTS:
+		var b := Button.new()
+		b.custom_minimum_size = Vector2(96, 72)
+		b.disabled = true
+		b.text = "· · ·"
+		b.pressed.connect(_on_skill_slot_pressed.bind(i))
+		_grid.add_child(b)
+		_slot_buttons.append(b)
+	_set_slot_label(0, "Breath\nTempering")
+	_set_slot_label(1, "Breath\nAeration")
+	_set_slot_label(2, "Sensory\nSifting")
+
+
+func _set_slot_label(idx: int, t: String) -> void:
+	if idx >= 0 and idx < _slot_buttons.size():
+		_slot_buttons[idx].text = t
 
 
 func _configure_root_sizing() -> void:
@@ -78,20 +111,80 @@ func _fit_root_to_content() -> void:
 	tb.offset_bottom = h
 
 
+func refresh_slot_visibility() -> void:
+	_apply_all_slot_visibility()
+
+
+func _kill_panel_height_tween() -> void:
+	if _panel_height_tween != null and is_instance_valid(_panel_height_tween):
+		_panel_height_tween.kill()
+	_panel_height_tween = null
+
+
+func _minigame_panel_target_height() -> float:
+	var vp_h: float = get_viewport().get_visible_rect().size.y
+	var strip_h: float = maxf(_handle_strip.get_combined_minimum_size().y, _handle_strip.size.y)
+	strip_h += 6.0
+	return maxf(_PANEL_OPEN_H, vp_h - strip_h)
+
+
+func _expand_panel_for_minigame() -> void:
+	_kill_panel_height_tween()
+	var target: float = _minigame_panel_target_height()
+	if absf(_panel.custom_minimum_size.y - target) < 2.0:
+		_fit_root_to_content()
+		return
+	_panel_height_tween = create_tween()
+	_panel_height_tween.tween_property(_panel, "custom_minimum_size:y", target, 0.38).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await _panel_height_tween.finished
+	_panel_height_tween = null
+	_fit_root_to_content()
+
+
+func _collapse_panel_after_minigame() -> void:
+	if not _open:
+		return
+	_kill_panel_height_tween()
+	if absf(_panel.custom_minimum_size.y - _PANEL_OPEN_H) < 2.0:
+		_fit_root_to_content()
+		return
+	_panel_height_tween = create_tween()
+	_panel_height_tween.tween_property(_panel, "custom_minimum_size:y", _PANEL_OPEN_H, 0.32).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	await _panel_height_tween.finished
+	_panel_height_tween = null
+	_fit_root_to_content()
+
+
 func _on_panel_resized() -> void:
 	_fit_root_to_content()
 
 
 func reset_for_menu() -> void:
+	_kill_panel_height_tween()
 	_open = false
 	CelestialVNState.set_sampler_blocking_vn(false)
 	_panel.visible = false
 	_panel.custom_minimum_size = Vector2(0, 0)
 	_minigame_host.visible = false
-	_grid.visible = true
+	_breathing_slot.visible = false
+	_sifting_slot.visible = false
+	_scroll_grid_visible(true)
+	_stop_minigames()
+	_active_minigame = ""
+	call_deferred("_fit_root_to_content")
+
+
+func _scroll_grid_visible(v: bool) -> void:
+	var sc: ScrollContainer = $TopBar/RootRow/SlidePanel/Margin/VBox/Scroll as ScrollContainer
+	if sc:
+		sc.visible = v
+
+
+func _stop_minigames() -> void:
 	if _breathing != null and _breathing.has_method("stop_exercise"):
 		_breathing.stop_exercise()
-	call_deferred("_fit_root_to_content")
+	if _sifting != null and _sifting.has_method("quit_reset"):
+		_sifting.quit_reset()
 
 
 func _apply_handle_visual() -> void:
@@ -161,14 +254,27 @@ func _ensure_minigame_opaque_bg() -> void:
 
 func _on_dialogic_var_changed(info: Dictionary) -> void:
 	var v: String = str(info.get("variable", ""))
-	if v == "breath_tempering_unlocked":
-		_apply_breath_slot_visibility()
+	if v == "breath_tempering_unlocked" or v == "breath_aeration_unlocked" or v == "sensory_sifting_unlocked" or v == "panic_points":
+		_apply_all_slot_visibility()
 
 
-func _apply_breath_slot_visibility() -> void:
-	var unlocked: bool = int(float(str(Dialogic.VAR.get_variable("breath_tempering_unlocked", 0)))) != 0
-	_slot1.visible = unlocked
-	_slot1.disabled = not unlocked
+func _apply_all_slot_visibility() -> void:
+	var temper_u: bool = int(float(str(Dialogic.VAR.get_variable("breath_tempering_unlocked", 0)))) != 0
+	var aer_u: bool = int(float(str(Dialogic.VAR.get_variable("breath_aeration_unlocked", 0)))) != 0
+	var sift_u: bool = int(float(str(Dialogic.VAR.get_variable("sensory_sifting_unlocked", 0)))) != 0
+	if _slot_buttons.size() > 0:
+		_slot_buttons[0].visible = temper_u
+		_slot_buttons[0].disabled = not temper_u
+	if _slot_buttons.size() > 1:
+		_slot_buttons[1].visible = aer_u
+		var can_aerate: bool = aer_u and CelestialVNState.get_panic_points() >= 2
+		_slot_buttons[1].disabled = not can_aerate
+	if _slot_buttons.size() > 2:
+		_slot_buttons[2].visible = sift_u
+		_slot_buttons[2].disabled = not sift_u
+	for i in range(3, _slot_buttons.size()):
+		_slot_buttons[i].visible = true
+		_slot_buttons[i].disabled = true
 
 
 func _make_handle_stylebox(bg: Color, border: Color, corner_r: int, pad_h: int, pad_v: int) -> StyleBoxFlat:
@@ -218,6 +324,7 @@ func _on_tier_changed(tier: int) -> void:
 func toggle_open() -> void:
 	_open = not _open
 	if _open:
+		_kill_panel_height_tween()
 		_panel.visible = true
 		CelestialVNState.set_sampler_blocking_vn(true)
 		var tw := create_tween()
@@ -225,8 +332,9 @@ func toggle_open() -> void:
 		await tw.finished
 		await _maybe_run_sampler_intro_chain()
 	else:
-		if _minigame_host.visible and _breathing != null:
-			_on_back_pressed()
+		if _minigame_host.visible:
+			await _on_back_pressed()
+		_kill_panel_height_tween()
 		var tw2 := create_tween()
 		tw2.tween_property(_panel, "custom_minimum_size:y", 0.0, 0.32).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 		await tw2.finished
@@ -235,21 +343,87 @@ func toggle_open() -> void:
 		_fit_root_to_content()
 
 
-func _on_slot1_pressed() -> void:
-	_grid.visible = false
+func _on_skill_slot_pressed(idx: int) -> void:
+	match idx:
+		0:
+			_start_temper()
+		1:
+			_start_aeration()
+		2:
+			_start_sifting()
+
+
+func _start_temper() -> void:
+	await _expand_panel_for_minigame()
+	_scroll_grid_visible(false)
 	_minigame_host.visible = true
+	_breathing_slot.visible = true
+	_sifting_slot.visible = false
+	_active_minigame = "temper"
 	if _breathing == null:
 		_breathing = BOX_SCENE.instantiate() as Control
 		_breathing.embedded = true
 		_breathing.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		_breathing_slot.add_child(_breathing)
 	await _breathing.run_temper_sampler()
+	await _end_minigame_if_current("temper")
+
+
+func _start_aeration() -> void:
+	if CelestialVNState.get_panic_points() < 2:
+		return
+	await _expand_panel_for_minigame()
+	_scroll_grid_visible(false)
+	_minigame_host.visible = true
+	_breathing_slot.visible = true
+	_sifting_slot.visible = false
+	_active_minigame = "aeration"
+	if _breathing == null:
+		_breathing = BOX_SCENE.instantiate() as Control
+		_breathing.embedded = true
+		_breathing.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		_breathing_slot.add_child(_breathing)
+	await _breathing.run_aeration_sampler()
+	await _end_minigame_if_current("aeration")
+
+
+func _start_sifting() -> void:
+	await _expand_panel_for_minigame()
+	_scroll_grid_visible(false)
+	_minigame_host.visible = true
+	_breathing_slot.visible = false
+	_sifting_slot.visible = true
+	_active_minigame = "sifting"
+	if _sifting == null:
+		_sifting = SIFT_SCENE.instantiate() as Control
+		_sifting.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		_sifting_slot.add_child(_sifting)
+	await _sifting.run_sifting()
+	await _end_minigame_if_current("sifting")
+
+
+func _end_minigame_if_current(kind: String) -> void:
+	if _active_minigame != kind:
+		return
+	_active_minigame = ""
 	_minigame_host.visible = false
-	_grid.visible = true
+	_breathing_slot.visible = false
+	_sifting_slot.visible = false
+	_scroll_grid_visible(true)
+	await _collapse_panel_after_minigame()
 
 
 func _on_back_pressed() -> void:
+	if _active_minigame == "sifting" and _sifting != null:
+		_sifting.quit_reset()
 	if _breathing != null and _breathing.has_method("stop_exercise"):
 		_breathing.stop_exercise()
+	_active_minigame = ""
 	_minigame_host.visible = false
-	_grid.visible = true
+	_breathing_slot.visible = false
+	_sifting_slot.visible = false
+	_scroll_grid_visible(true)
+	if _open:
+		await _collapse_panel_after_minigame()
+	else:
+		_fit_root_to_content()

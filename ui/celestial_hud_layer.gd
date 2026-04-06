@@ -1,7 +1,8 @@
 extends CanvasLayer
 ## Burner (panic jets) + Social Battery segments.
 
-@onready var _burner: Control = $Margin/HBox/BurnerColumn/BurnerHost
+@onready var _burner: Control = $Margin/HBox/BurnerColumn/BurnerRow/BurnerHost
+@onready var _shield: Label = $Margin/HBox/BurnerColumn/BurnerRow/ShieldBadge
 @onready var _battery: HBoxContainer = $Margin/HBox/BatteryColumn/BatteryHost
 
 
@@ -17,7 +18,7 @@ func _ready() -> void:
 
 func _on_var_changed(info: Dictionary) -> void:
 	var v: String = str(info.get("variable", ""))
-	if v == "panic_points" or v == "social_battery":
+	if v == "panic_points" or v == "social_battery" or v == "panic_shield":
 		_refresh_all()
 
 
@@ -25,6 +26,16 @@ func _refresh_all() -> void:
 	if _burner and _burner.has_method("refresh"):
 		_burner.refresh()
 	_paint_battery()
+	_refresh_shield()
+
+
+func _refresh_shield() -> void:
+	if _shield == null:
+		return
+	var sh: int = CelestialVNState.get_panic_shield()
+	_shield.visible = sh > 0
+	_shield.text = "🛡"
+	_shield.tooltip_text = "Tempering Shield: Prevents the next %d points of Heat." % sh
 
 
 func _paint_battery() -> void:

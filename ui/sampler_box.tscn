@@ -77,34 +77,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 4
-
-[node name="Slot1" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid"]
-custom_minimum_size = Vector2(120, 100)
-layout_mode = 2
-text = "Breath Tempering"
-
-[node name="Slot2" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid"]
-custom_minimum_size = Vector2(120, 100)
-layout_mode = 2
-disabled = true
-text = "· · ·"
-
-[node name="Slot3" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid"]
-custom_minimum_size = Vector2(120, 100)
-layout_mode = 2
-disabled = true
-text = "· · ·"
-
-[node name="Slot4" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid"]
-custom_minimum_size = Vector2(120, 100)
-layout_mode = 2
-disabled = true
-text = "· · ·"
+columns = 5
 
 [node name="MinigameHost" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox"]
 visible = false
-custom_minimum_size = Vector2(0, 320)
+custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -124,3 +101,9 @@ text = "Back"
 layout_mode = 2
 size_flags_vertical = 3
 custom_minimum_size = Vector2(400, 300)
+
+[node name="SiftingSlot" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(400, 380)
