@@ -24,6 +24,7 @@ EnvVFX="*uid://qomyut16hnoi"
 PsxVisualsGd4AutoLoad="uid://dj3bxpmibqxum"
 PsxVisualsGd4AutoApply="uid://stww83i1wsru"
 GlobalInventory="*uid://mswyktna5vcr"
+GameSaveManager="*res://game_save_manager.gd"
 
 [dialogic]
 

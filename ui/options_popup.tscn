@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dmkw7options"]
+
+[ext_resource type="Script" path="res://ui/options_popup.gd" id="1_script"]
+
+[node name="OptionsPopup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_script")
+
+[node name="Blocker" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.45)
+mouse_filter = 0
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(400, 220)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Options"
+
+[node name="FullscreenCheck" type="CheckBox" parent="Center/Panel/Margin/VBox"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="VolLabel" type="Label" parent="Center/Panel/Margin/VBox"]
+layout_mode = 2
+text = "Master volume"
+
+[node name="VolumeSlider" type="HSlider" parent="Center/Panel/Margin/VBox"]
+unique_name_in_editor = true
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="Center/Panel/Margin/VBox"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Apply and close"

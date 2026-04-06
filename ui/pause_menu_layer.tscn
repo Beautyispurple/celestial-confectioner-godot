@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dmkw7pause"]
+
+[ext_resource type="Script" path="res://ui/pause_menu_layer.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://ui/save_slots_browser.tscn" id="2_slots"]
+[ext_resource type="PackedScene" uid="uid://dmkw7options" path="res://ui/options_popup.tscn" id="3_options"]
+
+[node name="PauseMenuLayer" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_script")
+
+[node name="DimRect" type="ColorRect" parent="."]
+unique_name_in_editor = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+mouse_filter = 0
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainPanel" type="PanelContainer" parent="Center"]
+unique_name_in_editor = true
+custom_minimum_size = Vector2(320, 300)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Center/MainPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Center/MainPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Center/MainPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="SaveButton" type="Button" parent="Center/MainPanel/Margin/VBox"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Save Game"
+
+[node name="LoadButton" type="Button" parent="Center/MainPanel/Margin/VBox"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Load Game"
+
+[node name="OptionsButton" type="Button" parent="Center/MainPanel/Margin/VBox"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Options"
+
+[node name="MainMenuButton" type="Button" parent="Center/MainPanel/Margin/VBox"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ExitButton" type="Button" parent="Center/MainPanel/Margin/VBox"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Exit Game"
+
+[node name="SaveSlotsBrowser" parent="." instance=ExtResource("2_slots")]
+unique_name_in_editor = true
+
+[node name="OptionsPopup" parent="." instance=ExtResource("3_options")]
+unique_name_in_editor = true
+
+[node name="QuitConfirm" type="ConfirmationDialog" parent="."]
+unique_name_in_editor = true
+title = "Exit"
+dialog_text = "Quit Celestial Confectioner?"
+
+[node name="MainMenuConfirm" type="ConfirmationDialog" parent="."]
+unique_name_in_editor = true
+title = "Main menu"
+dialog_text = "Return to the main menu?"
