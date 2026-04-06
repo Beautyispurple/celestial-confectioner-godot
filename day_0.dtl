@@ -415,12 +415,12 @@ huck (Sincere): Maybe we can talk through it as we clean up these dragees?
 huck (Sincere): Try and clear up some of that negative self talk?
 label negative_thought
 marzi (Cleaner Thinking): (hmm...am I up for this?
-- No thanks Huck, I'm not really up to it right now.
+- No thanks Huck, I'm not really up to it right now. | [response_kind="irrational"]
 	label negative_thought_opt_out
 	huck (Idle): Okay Marzi, no problem.
 	huck (Caring): We can just focus on getting the floor clean.
 	jump negative_thought_end
-- Yes! Lets do this!
+- Yes! Lets do this! | [response_kind="rational"]
 	marzi (Cleaner Determined): Okay, Huck.
 	marzi (Cleaner Determined): How do we do this?
 	huck (Idle): Alright, lets start by telling me one negative thought that you're having about yourself right now?
@@ -429,31 +429,31 @@ marzi (Cleaner Thinking): (hmm...am I up for this?
 	huck (Caring): You did such a great job holding steady through a really tough moment.
 	huck (Caring): Identifying our negative thoughts about ourselves isn't easy.
 	huck (Idle): How are you feeling right now?
-	- I feel okay.
+	- I feel okay. | [response_kind="rational"]
 		marzi (Cleaner Determined): I'm feeling okay. Lets keep going.
-	- I feel bad.
+	- I feel bad. | [response_kind="irrational"]
 		marzi (Cleaner Tearful): It feels pretty bad...It's like there is a weight in the center of my heart.
 		huck (Idle): Okay, lets just notice that for a second without judging it.
 		huck (Idle): Without avoiding it.
 		[wait time="10.0"]
 		huck (Idle): Good.
-	- Actually, I want to stop.
+	- Actually, I want to stop. | [response_kind="irrational"]
 		jump negative_thought_opt_out
 	
 	huck (Idle): Now, looking back on your thought...
 	huck (Trust): ...and being really kind and gentle with yourself...
 	huck (Idle): Is that thought factual and true about you all of the time or is it based on emotion, habit, or things like catastrophization or predicting the future?
-	- No the thought is not true.
+	- No the thought is not true. | [response_kind="rational"]
 		marzi (Cleaner Tearful): Right now it feels like it is...
 		marzi (Cleaner Thinking): But when I really think about it...
 		marzi (Cleaner Defeated): No. It's not true.
 		huck (Caring): Lets just notice what that brings up for us for a minute, no judgement.
-	- Yes the thought is true.
+	- Yes the thought is true. | [response_kind="irrational"]
 		marzi (Cleaner Unsure): Yeah Huck...
 		marzi (Cleaner Unsure): When I really think about it.
 		marzi (Cleaner Unsure): The thought is actually true...
 		huck (Caring): Lets just notice what that brings up for us for a minute, no judgement.
-	- I need to stop, Huck.
+	- I need to stop, Huck. | [response_kind="irrational"]
 		jump negative_thought_opt_out
 	
 	huck (Plucky): Okay, now lets imagine each starlight dragee has your negative thought printed on it with a rubber etch roller.
@@ -464,22 +464,22 @@ marzi (Cleaner Thinking): (hmm...am I up for this?
 	marzi (Cleaner Thinking): Now what?
 	huck (Plucky): Let me ask, does holding on to this thought improve your life, help you reach your goals or live by what you value?
 	huck (Plucky): Is the negative thought "{negative_thought_game.thought_1}" helpful?
-	- No the thought is not helpful.
+	- No the thought is not helpful. | [response_kind="rational"]
 		marzi (Cleaner Thinking): No, the thought isn't safe or helpful.
 		huck (Idle): Okay then, what can you do about the thought "{negative_thought_game.thought_1}"?
 		[text_input text="What can I do about the thought?" var="negative_thought_game.action_1" placeholder="I can..."]
 		huck (Idle): Okay, "{negative_thought_game.action_1}", that's something you could do.
-	- Yes the thought is helpful.
+	- Yes the thought is helpful. | [response_kind="irrational"]
 		marzi (Cleaner Thinking): Yes, it is safe.
 		marzi (Cleaner Thinking): And its is pretty helpful.
 		huck (Idle): Okay then, what can you do about the thought "{negative_thought_game.thought_1}"?
 		[text_input text="What can I do about the thought?" var="negative_thought_game.action_2" placeholder="I can..."]
 		huck (Idle): Okay, "{negative_thought_game.action_2}", that's something you could do.
-	- Let's stop here.
+	- Let's stop here. | [response_kind="irrational"]
 		jump negative_thought_opt_out
 huck (Idle): Last question, Marzi...
 huck (Idle): Do you want to keep the thought or let it go?
-- Keep it.
+- Keep it. | [response_kind="irrational"]
 	marzi (Cleaner Thinking): I think i will keep it.
 	huck (Idle): That's completely okay. We don't have to throw everything away immediately.
 	huck (Caring): Why don't you find one of the dragees that didn't get wet?
@@ -489,7 +489,7 @@ huck (Idle): Do you want to keep the thought or let it go?
 	huck (Trust): It can stay there until you decide you are ready to throw it away.
 	(Marzi nods, placing the dry dragee carefully onto the top shelf.)
 	jump negative_thought_feeling_check
-- Let it go.
+- Let it go. | [response_kind="rational"]
 	marzi (Cleaner Thinking): I think i will let it go.
 	huck (Happy): Alright. Let's physically let it go then.
 	(Marzi grabs the heavy yellow dustpan and the broom.)
@@ -497,25 +497,25 @@ huck (Idle): Do you want to keep the thought or let it go?
 	(She scoops up the ruined, sticky dragees and dumps them directly into the trashbin.)
 	(The heavy thud of the candy hitting the bottom of the bin makes her chest feel a little bit lighter.)
 	jump negative_thought_feeling_check
-- I can't finish this right now.
+- I can't finish this right now. | [response_kind="irrational"]
 	jump negative_thought_opt_out
 
 label negative_thought_feeling_check
 huck (Caring): Take a second to just notice how that feels, Marzi.
 huck (Idle): Check in with yourself... how is that decision sitting with you right now?
-- It feels good.
+- It feels good. | [response_kind="rational"]
 	marzi (Cleaner Pleased): It actually feels pretty good, Huck.
 	huck (Happy): I'm really glad to hear that.
 	huck (Trust): You made a solid choice for yourself, and it's great that you're feeling positive about it.
-- It feels bad.
+- It feels bad. | [response_kind="irrational"]
 	marzi (Cleaner Defeated): Honestly... it feels kind of bad.
 	huck (Sincere): That is completely okay, Marzi.
 	huck (Caring): Sometimes doing this kind of work doesn't feel great right away, and you don't have to force yourself to feel positive about it.
-- I don't really know.
+- I don't really know. | [response_kind="irrational"]
 	marzi (Cleaner Unsure): I don't really know how I feel... it's kind of confusing.
 	huck (Sincere): That's perfectly okay, too.
 	huck (Caring): Feelings are complicated. Sometimes they are a mix of both good and bad, and you don't have to have it all figured out right this second.
-- I'd rather not answer.
+- I'd rather not answer. | [response_kind="irrational"]
 	marzi (Cleaner Thinking): I don't really want to talk about how it feels right now, if that's okay.
 	huck (Idle): No problem at all, Marzi. You never have to share anything you aren't ready to.
 
@@ -596,7 +596,7 @@ huck (Idle): The glass displays are clean, the floor is spotless and the day is 
 huck (Caring): Marzi already took the hit for the accident earlier.
 huck (Sincere): There's no need to make her feel worse than she already does...
 
-- Take responsibility for the dragees.
+- Take responsibility for the dragees. | [response_kind="rational"]
 	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Cleaner Apology): I really didn't mean for ANYONE to lose gold, I'm so sorry and I take full responsibility...
 	(Marzi bows deeply three times)
@@ -628,7 +628,7 @@ huck (Sincere): There's no need to make her feel worse than she already does...
 	(She shoots Marzi a quick dirty look before hanging up her apron)
 	(The large double doors swing shut behind her)
 
-- Blame Taffy for the accident.
+- Blame Taffy for the accident. | [response_kind="irrational"]
 	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Cleaner Angry): It really wasn't my fault at all! Taffy was the one staring at her phone instead of watching where she was going!
 	(Marzi stands tall, crossing her arms defensively)

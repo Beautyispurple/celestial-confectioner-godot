@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://celestial_toast_layer"]
+
+[ext_resource type="Script" path="res://ui/variable_toast_layer.gd" id="1_toast"]
+
+[node name="VariableToastLayer" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_toast")
+
+[node name="ToastAnchor" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ToastLabel" type="Label" parent="ToastAnchor"]
+layout_mode = 0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.92, 1)
+theme_override_colors/font_outline_color = Color(0.15, 0.08, 0.12, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 2
+vertical_alignment = 1

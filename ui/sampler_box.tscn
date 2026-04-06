@@ -1,0 +1,126 @@
+[gd_scene load_steps=2 format=3 uid="uid://celestial_sampler_box"]
+
+[ext_resource type="Script" path="res://ui/sampler_box.gd" id="1_samp"]
+
+[node name="SamplerBox" type="CanvasLayer"]
+layer = 65
+script = ExtResource("1_samp")
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 0.0
+grow_horizontal = 2
+alignment = 1
+mouse_filter = 2
+
+[node name="RootRow" type="VBoxContainer" parent="TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HandleStrip" type="MarginContainer" parent="TopBar/RootRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 0
+
+[node name="HandleRow" type="HBoxContainer" parent="TopBar/RootRow/HandleStrip"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 0
+
+[node name="HandlePanel" type="PanelContainer" parent="TopBar/RootRow/HandleStrip/HandleRow"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 0
+
+[node name="Handle" type="Button" parent="TopBar/RootRow/HandleStrip/HandleRow/HandlePanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 0
+text = "▼ Marzi's Sampler Box"
+flat = true
+
+[node name="SlidePanel" type="PanelContainer" parent="TopBar/RootRow"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+
+[node name="Margin" type="MarginContainer" parent="TopBar/RootRow/SlidePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="TopBar/RootRow/SlidePanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Scroll" type="ScrollContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Grid" type="GridContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 4
+
+[node name="Slot1" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+text = "Box Breathing"
+
+[node name="Slot2" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+disabled = true
+text = "· · ·"
+
+[node name="Slot3" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+disabled = true
+text = "· · ·"
+
+[node name="Slot4" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+disabled = true
+text = "· · ·"
+
+[node name="MinigameHost" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox"]
+visible = false
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MInner" type="VBoxContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner"]
+layout_mode = 2
+text = "Back"
+
+[node name="BreathingSlot" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(400, 300)

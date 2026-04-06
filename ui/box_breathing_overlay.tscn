@@ -3,8 +3,14 @@
 [ext_resource type="Script" path="res://ui/box_breathing_overlay.gd" id="1_overlay"]
 [ext_resource type="Script" path="res://ui/breathing_orb_draw.gd" id="2_orb"]
 
-[node name="BoxBreathingOverlay" type="CanvasLayer"]
-layer = 16
+[node name="BoxBreathingOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
 script = ExtResource("1_overlay")
 
 [node name="Backdrop" type="ColorRect" parent="."]
@@ -73,3 +79,12 @@ layout_mode = 2
 mouse_filter = 0
 text = "Skip"
 flat = true
+
+[node name="TemperedLabel" type="Label" parent="CenterRoot/Margin/VBox/GlassPanel/Margin/VBox"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0.2, 0.1, 0.35, 1)
+theme_override_constants/outline_size = 8
+horizontal_alignment = 1
+text = "Tempered!"

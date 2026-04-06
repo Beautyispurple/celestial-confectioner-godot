@@ -2,6 +2,7 @@ extends Node2D
 
 
 func _ready() -> void:
+	CelestialVNState.set_vn_ui_visible(true)
 	GameSaveManager.apply_stored_options()
 	var pending: int = GameSaveManager.consume_pending_load_slot()
 	if pending >= 0:

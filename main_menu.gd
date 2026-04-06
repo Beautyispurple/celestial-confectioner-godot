@@ -4,6 +4,7 @@ extends Control
 
 
 func _ready() -> void:
+	CelestialVNState.set_vn_ui_visible(false)
 	GameSaveManager.apply_stored_options()
 	_load_slots.slot_picked_for_load.connect(_on_load_slot_chosen)
 

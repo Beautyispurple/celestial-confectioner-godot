@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://celestial_panic_overlay"]
+
+[ext_resource type="Script" path="res://ui/celestial_panic_overlay.gd" id="1_panic"]
+
+[node name="CelestialPanicOverlay" type="CanvasLayer"]
+layer = 54
+script = ExtResource("1_panic")
+
+[node name="GlitchTint" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.35, 0.05, 0.2, 1)
+
+[node name="Top" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(1, 0.45, 0.12, 0.4)
+
+[node name="Bottom" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(1, 0.45, 0.12, 0.4)
+
+[node name="Left" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_top = 48.0
+offset_right = 48.0
+offset_bottom = -48.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.45, 0.12, 0.4)
+
+[node name="Right" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = 48.0
+offset_bottom = -48.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.45, 0.12, 0.4)

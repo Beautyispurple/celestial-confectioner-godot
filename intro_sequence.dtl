@@ -34,6 +34,7 @@ leave marzi
 [background arg="res://backgrounds/BACKGROUND_attic_mesy_better.png" fade="0.0"]
 (Months later...)
 MARZIPAN! COME DOWNSTAIRS THIS INSTANT!
+set {panic_points} += "2"
 join marzi (Casual Fear) left
 marzi (Casual Fear): Uh oh...
 marzi (Casual Concerned): BE RIGHT THERE DAD!
@@ -72,7 +73,7 @@ marzi (Casual Concerned): It's not just candy, Dad!
 	rosy (Approval): Well at least you seem to be able to take some accountability.
 	set {rosy_points} += "5"
 	set {al_points} += "5"
-if {rosy_points} == "55":
+if {rosy_points} == 55:
 	rosy (Disappointed): ...but it's not really enough.
 marzi (Casual Apologetic): ...
 rosy (Disappointed): Sweetheart, a flower can't bloom if it doesn't have roots in the dirt.
@@ -87,6 +88,7 @@ al (Worry): You need a steady job.
 al (Worry): A real routine.
 al (Worry): If you don't have a paying position by the end of the month...
 al (Worry): ...we are going to kick you out of the house, Marzipan.
+set {panic_points} += "4"
 marzi (Casual Very Concerned): !!!
 al (Worry): We can't keep funding this chaos.
 marzi (Casual Very Concerned): E...End of the month? But I-I just need more time... my portfolio really isn't rea-
@@ -123,7 +125,6 @@ chai (Understanding): In through the nose...2...3...4...
 chai (Understanding): Hold...2...3...4...
 chai (Understanding): Out...2...3...4...
 chai (Understanding): Hold...2...3...4...
-do BoxBreathingMinigame.run_post_guide_breathing_cycles()
 leave --All--
 (Marzi regains her composure as they breathe in rhythm together.)
 (System Message\: You have unlocked "Box Breathing" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)

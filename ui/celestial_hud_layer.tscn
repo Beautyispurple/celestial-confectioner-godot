@@ -1,0 +1,118 @@
+[gd_scene load_steps=3 format=3 uid="uid://celestial_hud_layer"]
+
+[ext_resource type="Script" path="res://ui/celestial_hud_layer.gd" id="1_hud"]
+[ext_resource type="Script" path="res://ui/burner_hud.gd" id="2_burn"]
+
+[node name="CelestialHudLayer" type="CanvasLayer"]
+layer = 40
+script = ExtResource("1_hud")
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="HBox" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 28
+
+[node name="BurnerColumn" type="VBoxContainer" parent="Margin/HBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="HeatLabel" type="Label" parent="Margin/HBox/BurnerColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "Heat"
+
+[node name="BurnerHost" type="Control" parent="Margin/HBox/BurnerColumn"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_burn")
+
+[node name="Spacer" type="Control" parent="Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="BatteryColumn" type="VBoxContainer" parent="Margin/HBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="SocLabel" type="Label" parent="Margin/HBox/BatteryColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "Social Battery"
+horizontal_alignment = 2
+
+[node name="BatteryHost" type="HBoxContainer" parent="Margin/HBox/BatteryColumn"]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 2
+
+[node name="S1" type="ColorRect" parent="Margin/HBox/BatteryColumn/BatteryHost"]
+custom_minimum_size = Vector2(14, 22)
+layout_mode = 2
+color = Color(0.25, 0.78, 0.35, 1)
+
+[node name="S2" type="ColorRect" parent="Margin/HBox/BatteryColumn/BatteryHost"]
+custom_minimum_size = Vector2(14, 22)
+layout_mode = 2
+color = Color(0.25, 0.78, 0.35, 1)
+
+[node name="S3" type="ColorRect" parent="Margin/HBox/BatteryColumn/BatteryHost"]
+custom_minimum_size = Vector2(14, 22)
+layout_mode = 2
+color = Color(0.25, 0.78, 0.35, 1)
+
+[node name="S4" type="ColorRect" parent="Margin/HBox/BatteryColumn/BatteryHost"]
+custom_minimum_size = Vector2(14, 22)
+layout_mode = 2
+color = Color(0.25, 0.78, 0.35, 1)
+
+[node name="S5" type="ColorRect" parent="Margin/HBox/BatteryColumn/BatteryHost"]
+custom_minimum_size = Vector2(14, 22)
+layout_mode = 2
+color = Color(0.92, 0.86, 0.2, 1)
+
+[node name="S6" type="ColorRect" parent="Margin/HBox/BatteryColumn/BatteryHost"]
+custom_minimum_size = Vector2(14, 22)
+layout_mode = 2
+color = Color(0.92, 0.86, 0.2, 1)
+
+[node name="S7" type="ColorRect" parent="Margin/HBox/BatteryColumn/BatteryHost"]
+custom_minimum_size = Vector2(14, 22)
+layout_mode = 2
+color = Color(0.95, 0.55, 0.15, 1)
+
+[node name="S8" type="ColorRect" parent="Margin/HBox/BatteryColumn/BatteryHost"]
+custom_minimum_size = Vector2(14, 22)
+layout_mode = 2
+color = Color(0.95, 0.55, 0.15, 1)
+
+[node name="S9" type="ColorRect" parent="Margin/HBox/BatteryColumn/BatteryHost"]
+custom_minimum_size = Vector2(14, 22)
+layout_mode = 2
+color = Color(0.9, 0.2, 0.22, 1)
+
+[node name="S10" type="ColorRect" parent="Margin/HBox/BatteryColumn/BatteryHost"]
+custom_minimum_size = Vector2(14, 22)
+layout_mode = 2
+color = Color(0.9, 0.2, 0.22, 1)
