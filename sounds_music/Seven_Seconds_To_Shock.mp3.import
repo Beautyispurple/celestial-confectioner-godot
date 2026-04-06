@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Seven_Seconds_To_Shock.mp3-f1bf9e3ab8c6c03c98
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
