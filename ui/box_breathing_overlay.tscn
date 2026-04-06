@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://b31pjogevq4om"]
+
+[ext_resource type="Script" path="res://ui/box_breathing_overlay.gd" id="1_overlay"]
+[ext_resource type="Script" path="res://ui/breathing_orb_draw.gd" id="2_orb"]
+
+[node name="BoxBreathingOverlay" type="CanvasLayer"]
+layer = 16
+script = ExtResource("1_overlay")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.08, 0.04, 0.14, 0.52)
+
+[node name="CenterRoot" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="CenterRoot"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBox" type="VBoxContainer" parent="CenterRoot/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="GlassPanel" type="PanelContainer" parent="CenterRoot/Margin/VBox"]
+layout_mode = 2
+mouse_filter = 0
+
+[node name="Margin" type="MarginContainer" parent="CenterRoot/Margin/VBox/GlassPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VBox" type="VBoxContainer" parent="CenterRoot/Margin/VBox/GlassPanel/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="PhaseLabel" type="Label" parent="CenterRoot/Margin/VBox/GlassPanel/Margin/VBox"]
+layout_mode = 2
+mouse_filter = 2
+text = "Inhale"
+horizontal_alignment = 1
+
+[node name="OrbHost" type="Control" parent="CenterRoot/Margin/VBox/GlassPanel/Margin/VBox"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_orb")
+
+[node name="SkipButton" type="Button" parent="CenterRoot/Margin/VBox/GlassPanel/Margin/VBox"]
+layout_mode = 2
+mouse_filter = 0
+text = "Skip"
+flat = true

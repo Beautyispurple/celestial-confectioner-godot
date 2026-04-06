@@ -25,6 +25,7 @@ PsxVisualsGd4AutoLoad="uid://dj3bxpmibqxum"
 PsxVisualsGd4AutoApply="uid://stww83i1wsru"
 GlobalInventory="*uid://mswyktna5vcr"
 GameSaveManager="*res://game_save_manager.gd"
+BoxBreathingMinigame="*res://box_breathing_minigame.gd"
 
 [dialogic]
 
