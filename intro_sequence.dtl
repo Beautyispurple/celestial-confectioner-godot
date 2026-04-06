@@ -118,6 +118,7 @@ marzi (Casual Orz): ...
 marzi (Casual Tears): I DON'T EVEN OWN A TENT!
 chai (Understanding): Look at me please Marzi.
 chai (Understanding): Let's do three deep breaths together, okay?
+(System Message\: You can follow along with Marzi as she practices skills if you wish, or you can just enjoy the story!)
 chai (Understanding): In through the nose...2...3...4...
 chai (Understanding): Hold...2...3...4...
 chai (Understanding): Out...2...3...4...
@@ -562,19 +563,19 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Breathing): He always said this works anywhere. In this dusty attic, or wherever you happen to be right now.
 	marzi (Breathing): Let's do it together. Look around the room.
 	marzi (Breathing): Five is sight. Let's look for a specific color. What are five yellow things you can see nearby?
-	[text_input text="Type one yellow thing you see:" var="thing_1"]
+	[text_input text="Type five yellow things you see:" var="thing_1"]
 	marzi (Calming): {thing_1}. Right. That's real. That's right in front of us.
 	marzi (Breathing): Four is touch. Reach out your hand. What are four things with a distinct texture that you can physically feel?
-	[text_input text="Type something you can touch:" var="thing_2"]
+	[text_input text="Type four things you can touch:" var="thing_2"]
 	marzi (Breathing): {thing_2}. Focus on how solid those are.
 	marzi: Three is sound. Listen closely, past the quiet. What are three sounds you can hear happening right now?
-	[text_input text="Type a sound you can hear:" var="thing_3"]
+	[text_input text="Type three sounds you can hear:" var="thing_3"]
 	marzi (Calming): {thing_3}. Just normal, everyday sounds. The world is still turning.
 	marzi: Two is smell. This one is always tricky. Breathe in. What are two scents you can smell, or really comforting ones you can imagine?
-	[text_input text="Type a scent you can smell or imagine:" var="thing_4"]
+	[text_input text="Type two scents you can smell or imagine:" var="thing_4"]
 	marzi (Calming): {thing_4}. I can almost smell it too. That helps.
 	marzi (Breathing): One is taste. What is a flavor you can taste right now, or your absolute favorite flavor to remember?
-	[text_input text="Type a flavor:" var="thing_5"]
+	[text_input text="Type one flavor:" var="thing_5"]
 	marzi (Calming): {thing_5}. Perfect.
 	(The heavy, crushing weight in her chest finally begins to unravel.)
 	marzi (Restfulsleep): (She takes one last, deep breath, letting the quiet rhythm of the night finally lull her to sleep.)
