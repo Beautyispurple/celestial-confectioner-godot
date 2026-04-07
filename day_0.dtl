@@ -533,7 +533,7 @@ jump negative_thought_completed
 label negative_thought_completed
 set {willing} = "1"
 set {huck_points} += "10"
-(System Message\: You have unlocked "Catch it, Check it, Change it" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
+(System Message\: Unlocked "Catch it, Check it, Change it" in Skills Toolbox — replay from Main Menu.)
 
 marzi (Cleaner Determined): (Marzi looks at the empty floor, then up at Huck, who is quietly wringing out his own towel.)
 marzi (Cleaner Thinking): Huck... where did you learn how to do all that?

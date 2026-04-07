@@ -7,19 +7,24 @@ layer = 126
 script = ExtResource("1_hw")
 
 [node name="WarningAnchor" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
-[node name="WarningLabel" type="Label" parent="WarningAnchor"]
+[node name="CenterStrip" type="CenterContainer" parent="WarningAnchor"]
 layout_mode = 0
 mouse_filter = 2
-offset_right = 640.0
-offset_bottom = 120.0
+
+[node name="WarningLabel" type="Label" parent="WarningAnchor/CenterStrip"]
+layout_mode = 2
+mouse_filter = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.55)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 text = ""
 horizontal_alignment = 1
+vertical_alignment = 1

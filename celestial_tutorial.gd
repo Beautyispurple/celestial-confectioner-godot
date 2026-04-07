@@ -37,7 +37,7 @@ func prologue_tutorial_sampler_box() -> void:
 func prologue_tutorial_breath_tempering_unlocked() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(
-		"You have unlocked Breath Tempering in Marzi's Sampler Box! You can use this skill anytime during gameplay to bring down her heat. It is also available on the main menu to bring down your own heat."
+		"Breath Tempering is in Marzi's Sampler Box. Use it during the story to help her lower Heat, or from the Main Menu for yourself — slow, steady breathing when the moment asks for it."
 	)
 
 
@@ -48,10 +48,10 @@ func run_sampler_first_open_chain() -> void:
 		return
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(
-		"Depending on your choices, Marzi will unlock different skills in her Sampler Box. Use them for different effects."
+		"As you play, Marzi unlocks different Sampler skills — each one does something different, so pick what fits the moment."
 	)
 	await _layer.show_plain_tutorial(
-		"Sometimes Marzi has to use a skill more than once to gain the desired effect..."
+		"Sometimes she needs to repeat a skill before it feels like enough. That's okay — skills aren't always one-and-done."
 	)
 	Dialogic.VAR.set_variable("sampler_tutorial_chain_done", 1)
 
@@ -67,26 +67,26 @@ func is_breath_tempering_unlocked() -> bool:
 func prologue_tutorial_breath_aeration_unlocked() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(
-		"You have unlocked Breath Aeration in Marzi's Sampler Box! Follow the inhale and exhale rhythm — no breath-holds — to trade a little Heat for Social Battery."
+		"Breath Aeration is in the Sampler Box. Follow the inhale/exhale rhythm (no breath-holds) — it trades a little Heat for Social Battery, like swapping sprint for a steady jog."
 	)
 
 
 func prologue_tutorial_sensory_sifting_unlocked() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(
-		"You have unlocked Sensory Sifting (Name 5 Things) in Marzi's Sampler Box! Use it during gameplay to ground Marzi through sight, touch, sound, smell, and taste — and to ease Heat when she needs it most."
+		"Name 5 Things (Sensory Sifting) is in the Sampler Box. It's effortful — one step at a time across seeing, feeling, hearing, smelling, and tasting — and when you finish, it clears Marzi's Heat completely and shields the next 2 Heat (stress hits the shield first). In real life, grounding asks for real attention; the payoff is a steadier body and mind."
 	)
 
 
 func prologue_tutorial_cold_sheen_unlocked() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(
-		"You have unlocked Cold Sheen in Marzi's Sampler Box (Sampler Box → Cold Sheen). It's a cold finish: a little clarity and shine when Heat is still workable — like a glacé pass before everything seizes. It's stronger when Heat isn't maxed; at maximum Heat it only eases a little, not a full reset — so it won't feel like Sensory Sifting or Breath Tempering. In real life, a brief cold or sensory interrupt often helps most before you're completely flooded; at the edge, small skills still matter, but they aren't a substitute for deeper tools or support."
+		"Cold Sheen is in the Sampler Box — splash the sink, then finish for a cold \"glacé\" moment. In play it usually drops Heat by 3; at max Heat it only drops by 1 — a sip of cold, not the whole reset. In real life, a quick cold or sensory interrupt often helps most before you're flooded; when you're already at the edge, it can still take the edge off, but it's not a stand-in for deeper support."
 	)
 
 
 func prologue_tutorial_social_battery_followup() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(
-		"Don't worry about your social battery just yet. More will be explained later!"
+		"Social Battery — we'll unpack it later. For now, Heat is the star of the show."
 	)

@@ -529,7 +529,7 @@ marzi (Panic Attack 1): What do I do??
 	(She splashes the ice-cold water onto her face over and over.)
 	marzi (Calming): Kaaa~
 	(The mammalian dive reflex kicks in, forcing her heart rate to slow down.)
-	(System Message\: You have unlocked "Temperature" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
+	(System Message\: Unlocked "Temperature" in Skills Toolbox — replay from Main Menu.)
 	marzi (Calming): Phew...that helps a little.
 	marzi (Calming): (Marzi looks at herself in the mirror.)
 	marzi (Calming): (Beads of water are clinging to her face.)
@@ -565,7 +565,7 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Meditation): (The rhythm of her breath finally syncs with the pulsing light on her screen.)
 	marzi (Restfulsleep): (She drifts off as the heavy static in her mind settles into a soft, quiet hum.)
 	marzi (Restfulsleep): (Her dreams are filled with the scent of jasmine and the sun warming her shoulders.)
-	(System Message\: You have unlocked "Diaphragmatic Breathing" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
+	(System Message\: Unlocked "Diaphragmatic Breathing" in Skills Toolbox — replay from Main Menu.)
 	set {breath_aeration_unlocked} = "1"
 	do CelestialVNState.grant_breath_aeration_unlock_panic_if_needed()
 	do CelestialTutorial.prologue_tutorial_breath_aeration_unlocked()
@@ -613,7 +613,7 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Restfulsleep): (She takes one last, deep breath, letting the quiet rhythm of the night finally lull her to sleep.)
 	set {panic_points} -= 10
 	set {sensory_sifting_unlocked} = "1"
-	(System Message\: You have unlocked "Name 5 Things" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
+	(System Message\: Unlocked "Name 5 Things" in Skills Toolbox — replay from Main Menu.)
 	do CelestialTutorial.prologue_tutorial_sensory_sifting_unlocked()
 - Double check my bank app.
 	label prologue_panic_choice_bank

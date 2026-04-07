@@ -11,7 +11,8 @@ const MSG_ORANGE := "I need to turn the heat down soon, otherwise I'll melt... d
 const MSG_RED := "I need to turn the heat down NOW or I can't function...is there something in my sampler box that will help?"
 
 @onready var _anchor: Control = $WarningAnchor
-@onready var _label: Label = $WarningAnchor/WarningLabel
+@onready var _strip: CenterContainer = $WarningAnchor/CenterStrip
+@onready var _label: Label = $WarningAnchor/CenterStrip/WarningLabel
 
 var _orange_timer: float = 0.0
 var _orange_next_flip: float = 3.0
@@ -23,14 +24,21 @@ func _ready() -> void:
 	visible = true
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_anchor.visible = false
+	if not get_viewport().size_changed.is_connected(_on_viewport_size_changed):
+		get_viewport().size_changed.connect(_on_viewport_size_changed)
 	# Orange + red guidance only; layer 126 sits above the sampler — never intercept clicks.
 	_anchor.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_label.add_theme_font_size_override("font_size", 22)
+	_label.add_theme_font_size_override("font_size", 31)
 	_label.add_theme_color_override("font_color", Color(1.0, 0.92, 0.78, 1.0))
 	_label.add_theme_color_override("font_outline_color", Color(0.08, 0.02, 0.12, 1.0))
 	_label.add_theme_constant_override("outline_size", 7)
+	# Stable LTR line layout (Control.TextDirection, not TextServer.Direction).
+	_label.text_direction = Control.TEXT_DIRECTION_LTR
+	_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	CelestialVNState.panic_tier_changed.connect(_on_tier_changed)
 	_apply_tier_state()
 
@@ -77,21 +85,36 @@ func _show_positioned() -> void:
 	call_deferred("_deferred_position")
 
 
+func _on_viewport_size_changed() -> void:
+	if not _anchor.visible:
+		return
+	call_deferred("_deferred_position")
+
+
 func _deferred_position() -> void:
 	await get_tree().process_frame
 	var panel := _get_textbox_panel()
-	var max_w: float = 720.0
-	_label.custom_minimum_size = Vector2(minf(max_w, get_viewport().get_visible_rect().size.x - 48.0), 0.0)
+	var vp_rect: Rect2 = get_viewport().get_visible_rect()
+	# CanvasLayer has no Control size — pin WarningAnchor to the visible viewport.
+	_anchor.layout_mode = 0
+	_anchor.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	_anchor.position = vp_rect.position
+	_anchor.size = vp_rect.size
+	var max_w: float = minf(720.0, maxf(120.0, vp_rect.size.x - 48.0))
+	_label.custom_minimum_size = Vector2(max_w, 0.0)
+	await get_tree().process_frame
 	var ms: Vector2 = _label.get_minimum_size()
+	var top_y_local: float
 	if panel != null and is_instance_valid(panel) and panel.is_visible_in_tree():
 		var gr: Rect2 = panel.get_global_rect()
-		_label.position = Vector2(
-			gr.position.x + (gr.size.x - ms.x) * 0.5,
-			gr.position.y - ms.y - GAP_ABOVE_TEXTBOX
-		)
+		top_y_local = gr.position.y - vp_rect.position.y - ms.y - GAP_ABOVE_TEXTBOX
 	else:
-		var vp: Vector2 = get_viewport().get_visible_rect().size
-		_label.position = Vector2((vp.x - ms.x) * 0.5, vp.y - FALLBACK_BOTTOM_OFFSET - ms.y)
+		top_y_local = vp_rect.size.y - FALLBACK_BOTTOM_OFFSET - ms.y
+	# Full-width strip; CenterContainer centers the label block horizontally (and vertically in the strip).
+	_strip.layout_mode = 0
+	_strip.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	_strip.position = Vector2(0.0, top_y_local)
+	_strip.size = Vector2(_anchor.size.x, maxf(ms.y, 1.0))
 
 
 func _get_textbox_panel() -> Control:
