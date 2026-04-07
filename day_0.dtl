@@ -2,7 +2,7 @@ label morning_day_0
 [background arg="res://backgrounds/BACKGROUND_attic_mid.png" fade="3.0"]
 (The shrill, mechanical ringing of the alarm clock shatters the quiet of the attic.)
 
-if {tired} == "0":
+if int({tired}) == 0:
 	join marzi (Recovered) left
 	audio music "res://sounds_music/After_School_Shortcut.mp3"
 	marzi (Recovered): (Marzi opens her eyes before the second ring, reaching out to tap the snooze button with a steady hand.)
@@ -30,11 +30,11 @@ if {tired} == "0":
 	marzi (Casual Surprised): Oh! Good morning, Madame Sweets!
 	beatrix (Idle Neutral): I see you managed to find the establishment without getting distracted.
 	beatrix (Macaron): I am glad to see you are taking this opportunity seriously.
-	set {beatrix_points} += "10"
+	set {beatrix_points} += 10
 	beatrix (Idle Neutral): Punctuality is the foundation of any respectable confectionery.
 	marzi (Casual Happy): I wouldn't miss it for the world, Madame!
 
-elif {tired} == "1":
+elif int({tired}) == 1:
 	[background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="0.0"]
 	join marzi (Exhausted) left
 	audio "res://sounds_music/The_Weight_of_Stillness.mp3"
@@ -74,7 +74,7 @@ elif {tired} == "1":
 	beatrix (Dour Lookdown): And stand up straight. You look like an unwrapped caramel that has completely lost its shape.
 	beatrix (Dour Lookdown): If those dark circles under your eyes are any indication, I expect your focus to be as blurry as your vision today.
 	do CelestialVNState.apply_stress_panic_delta(1)
-	set {beatrix_points} -= "10"
+	set {beatrix_points} -= 10
 	marzi (Casual Tired): (A weak, desperate smile flickers across her face.)
 	marzi (Casual Tired): I-I'm perfectly fine, Madame. Just... eager.
 leave --All--
@@ -87,9 +87,9 @@ audio music "res://sounds_music/After_School_Shortcut.mp3"
 (For a moment, she closes her eyes and inhales deeply, taking in the fragrance.)
 join marzi (Casual Trust) left
 marzi (Casual Trust): (Her mind gently spins in pleasure and she feels slightly rejuvenated.)
-set {panic_points} -= "3"
-set {peace_points} += "3"
-set {tired} = "0"
+set {panic_points} -= 3
+set {peace_points} += 3
+set {tired} = 0
 beatrix (Idle Dour): Follow me to the front counter.
 (Beatrix reaches under the polished display case and retrieves a neatly folded stack of fabric.)
 beatrix (Idle Neutral): This is your official junior sanitation uniform.
@@ -531,8 +531,8 @@ huck (Idle): Check in with yourself... how is that decision sitting with you rig
 jump negative_thought_completed
 
 label negative_thought_completed
-set {willing} = "1"
-set {huck_points} += "10"
+set {willing} = 1
+set {huck_points} += 10
 (System Message\: Unlocked "Catch it, Check it, Change it" in Skills Toolbox — replay from Main Menu.)
 
 marzi (Cleaner Determined): (Marzi looks at the empty floor, then up at Huck, who is quietly wringing out his own towel.)
@@ -568,7 +568,7 @@ marzi (Cleaner Pleased): Phew. Just in time.
 leave --All--
 [background arg="res://backgrounds/BACKGROUND_gm_inside.png" fade="3.0" wait="true"]
 
-if {willing} == "1":
+if int({willing}) == 1:
 	(The rest of the day is a blur of efficient, productive labor.)
 	(Marzi feels an unexpected surge of energy, her movements in sync with the soft ambient hum of the shop.)
 	(She anticipates the needs of the decorators, wiping down counters and moving empty trays before they even have to ask.)
@@ -618,8 +618,8 @@ huck (Sincere): There's no need to make her feel worse than she already does...
 	beatrix (Idle Neutral): No need to prostrate yourself.
 	beatrix (Macaron): Here is your daily pay of 1000 gold pieces. But, your accountability has earned you a small bonus of 350 gold pieces.
 	audio music "res://sounds_music/After_School_Shortcut.mp3"
-	set {gold_coin} += "1350"
-	set {bonus_received} = "1"
+	set {gold_coin} += 1350
+	set {bonus_received} = 1
 	update marzi (Cleaner Anticipation)
 	beatrix (Macaron): That is the kind of leadership I like to see in my confectionery.
 	beatrix (Idle Neutral): It doesn't matter if you did or didn't make the mistake
@@ -651,8 +651,8 @@ huck (Sincere): There's no need to make her feel worse than she already does...
 	beatrix (Dour Lookdown): Pointing fingers resolves nothing in my prep room.
 	beatrix (Dour): Here is your daily pay of 1000 gold pieces. Deflecting blame has cost you any chance of earning a bonus.
 	update marzi (Cleaner Defeated)
-	set {gold_coin} += "1000"
-	set {taffy_points} -= "10"
+	set {gold_coin} += 1000
+	set {taffy_points} -= 10
 	beatrix (Dour): That is exactly the kind of immaturity I despise in my confectionery.
 	beatrix (Dour Lookdown): It doesn't matter who caused the spill.
 	beatrix (Dour Lookdown): What matters in this kitchen is that you fix it without complaint.
@@ -681,7 +681,7 @@ leave --All--
 (Marzi leans her heavy head against the vibrating glass of the window, watching the glowing signs of Starlight City pass by.)
 (Her muscles ache right down to the bone, but her mind races with everything she experienced.)
 
-if {bonus_received} == "1":
+if int({bonus_received}) == 1:
 	marzi (Cleaner Pleased): (I survived day one... and I can't believe I earned that much gold!)
 	marzi (Cleaner Pleased): (That bonus completely covers the overdraft fee from my account.)
 	marzi (Cleaner Pleased): (I can actually breathe a little easier now.)

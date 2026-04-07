@@ -180,7 +180,7 @@ func _restore_sampler_back_focus() -> void:
 		return
 	var back: Control = get_node_or_null("../../BackButton") as Control
 	if back != null:
-		back.focus_mode = _sampler_back_prev_focus
+		back.focus_mode = _sampler_back_prev_focus as Control.FocusMode
 	_sampler_back_prev_focus = -1
 
 
@@ -191,12 +191,12 @@ func _refocus_line_edit_after_step() -> void:
 	await get_tree().process_frame
 	_input.call_deferred("grab_focus")
 	await get_tree().process_frame
-	var owner: Control = get_viewport().gui_get_focus_owner() as Control
-	if owner != _input:
+	var focus_owner: Control = get_viewport().gui_get_focus_owner() as Control
+	if focus_owner != _input:
 		_input.grab_focus()
 		await get_tree().process_frame
-		owner = get_viewport().gui_get_focus_owner() as Control
-		if owner != _input:
+		focus_owner = get_viewport().gui_get_focus_owner() as Control
+		if focus_owner != _input:
 			_input.call_deferred("grab_focus")
 
 

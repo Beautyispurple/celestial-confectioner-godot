@@ -7,6 +7,10 @@ const PANIC_SHIELD_MAX := 2
 
 const EXCLUDED_RELATIONSHIP_POINTS: Array[String] = ["panic_points", "peace_points"]
 
+## Dev-only: warn if relationship toast delta looks like string-concat corruption.
+const _RELATIONSHIP_TOAST_DELTA_WARN_ABS := 50
+const _RELATIONSHIP_TOAST_VALUE_STR_LEN_WARN := 8
+
 signal panic_tier_changed(tier: int)
 signal crisis_coping_resolved()
 signal toast_requested(label: String, signed_delta: int)
@@ -45,6 +49,7 @@ func _ready() -> void:
 
 func _deferred_setup() -> void:
 	_merge_missing_dialogic_variables_from_project_defaults()
+	_coerce_numeric_dialogic_vars()
 	if not Dialogic.VAR.variable_changed.is_connected(_on_variable_changed_clamped_stats):
 		Dialogic.VAR.variable_changed.connect(_on_variable_changed_clamped_stats)
 	if not Dialogic.VAR.variable_was_set.is_connected(_on_variable_was_set):
@@ -94,6 +99,24 @@ func _merge_missing_dialogic_variables_from_project_defaults() -> void:
 				vars[k] = (v as Dictionary).duplicate(true)
 			else:
 				vars[k] = v
+
+
+## Old saves may still store Dialogic numbers as strings; coerce to float so math/toasts stay correct.
+## Mutates state dict only (no signals) so load does not enqueue toasts.
+func _coerce_numeric_dialogic_vars() -> void:
+	if not Dialogic.current_state_info.has("variables"):
+		return
+	var vars: Dictionary = Dialogic.current_state_info["variables"] as Dictionary
+	for k in vars.keys():
+		var val: Variant = vars[k]
+		if val is Dictionary:
+			continue
+		if typeof(val) != TYPE_STRING:
+			continue
+		var s := str(val).strip_edges()
+		if not s.is_valid_float():
+			continue
+		vars[k] = float(s)
 
 
 func set_vn_ui_visible(v: bool) -> void:
@@ -335,6 +358,13 @@ func _handle_relationship_points(info: Dictionary) -> void:
 	var delta_i: int = int(round(new_f - orig_f))
 	if delta_i == 0:
 		return
+	if OS.is_debug_build():
+		var nv_str := str(nv)
+		if abs(delta_i) > _RELATIONSHIP_TOAST_DELTA_WARN_ABS or nv_str.length() > _RELATIONSHIP_TOAST_VALUE_STR_LEN_WARN:
+			push_warning(
+				"CelestialVNState: suspicious relationship point change: %s orig=%s new=%s delta=%d"
+				% [v, str(info.get("orig_value")), nv_str, delta_i]
+			)
 	var display: String = relationship_display_name(v)
 	_enqueue_toast(display, delta_i)
 

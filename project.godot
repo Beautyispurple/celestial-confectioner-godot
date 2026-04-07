@@ -61,15 +61,15 @@ layout/style_list=["res://visualnovelwithportrait.tres", "res://marzi_visual_nov
 layout/default_style="res://visualnovelwithportrait.tres"
 glossary/default_case_sensitive=true
 variables={
-"al_points": "50",
-"beatrix_points": "0",
-"bonus_received": "0",
-"breath_aeration_panic_grant_done": "0",
-"breath_aeration_unlocked": "0",
-"breath_tempering_unlocked": "0",
-"cold_sheen_unlocked": "0",
-"gold_coin": "0",
-"huck_points": "0",
+"al_points": 50,
+"beatrix_points": 0,
+"bonus_received": 0,
+"breath_aeration_panic_grant_done": 0,
+"breath_aeration_unlocked": 0,
+"breath_tempering_unlocked": 0,
+"cold_sheen_unlocked": 0,
+"gold_coin": 0,
+"huck_points": 0,
 "negative_thought_game": {
 "action_1": "",
 "action_2": "",
@@ -78,21 +78,21 @@ variables={
 "thought_2": "",
 "thought_3": ""
 },
-"panic_points": "0",
-"panic_shield": "0",
-"peace_points": "0",
-"rosy_points": "50",
-"sampler_tutorial_chain_done": "0",
-"sensory_sifting_unlocked": "0",
-"social_battery": "5",
-"taffy_points": "0",
+"panic_points": 0,
+"panic_shield": 0,
+"peace_points": 0,
+"rosy_points": 50,
+"sampler_tutorial_chain_done": 0,
+"sensory_sifting_unlocked": 0,
+"social_battery": 5,
+"taffy_points": 0,
 "thing_1": "",
 "thing_2": "",
 "thing_3": "",
 "thing_4": "",
 "thing_5": "",
-"tired": "0",
-"willing": "0"
+"tired": 0,
+"willing": 0
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

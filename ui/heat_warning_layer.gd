@@ -96,7 +96,8 @@ func _deferred_position() -> void:
 	var panel := _get_textbox_panel()
 	var vp_rect: Rect2 = get_viewport().get_visible_rect()
 	# CanvasLayer has no Control size — pin WarningAnchor to the visible viewport.
-	_anchor.layout_mode = 0
+	# layout_mode: 0 = position (Control.LayoutMode constants are not exposed to GDScript).
+	_anchor.set("layout_mode", 0)
 	_anchor.set_anchors_preset(Control.PRESET_TOP_LEFT)
 	_anchor.position = vp_rect.position
 	_anchor.size = vp_rect.size
@@ -111,7 +112,7 @@ func _deferred_position() -> void:
 	else:
 		top_y_local = vp_rect.size.y - FALLBACK_BOTTOM_OFFSET - ms.y
 	# Full-width strip; CenterContainer centers the label block horizontally (and vertically in the strip).
-	_strip.layout_mode = 0
+	_strip.set("layout_mode", 0)
 	_strip.set_anchors_preset(Control.PRESET_TOP_LEFT)
 	_strip.position = Vector2(0.0, top_y_local)
 	_strip.size = Vector2(_anchor.size.x, maxf(ms.y, 1.0))

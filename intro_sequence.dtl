@@ -54,8 +54,8 @@ marzi (Casual Concerned): It's not just candy, Dad!
 	leave al
 	join rosy (Shocked) rightmost
 	rosy (Shocked): Marzi?! Really?!
-	set {al_points} -= "5"
-	set {rosy_points} -= "5"
+	set {al_points} -= 5
+	set {rosy_points} -= 5
 - Appeal to him emotionally
 	marzi (Casual Tears): I'm nervous about my portfolio quality so I was sniffing out the competition...
 	marzi (Casual Orz): ...AND THERE WAS AN AMAZING SALE!
@@ -64,16 +64,16 @@ marzi (Casual Concerned): It's not just candy, Dad!
 	rosy (Shocked): Marzi?! Really?!
 	rosy (Scheming): Although...a sale you say...
 	rosy (Disappointed): No, no... nevermind.
-	set {al_points} -= "5"
-	set {rosy_points} -= "5"
+	set {al_points} -= 5
+	set {rosy_points} -= 5
 - Own up to it
 	marzi (Casual Apologetic): But you're right, Dad.
 	marzi (Casual Apologetic): I got carried away trying to perfect my portfolio.
 	leave al
 	join rosy (Approval) rightmost
 	rosy (Approval): Well at least you seem to be able to take some accountability.
-	set {rosy_points} += "5"
-	set {al_points} += "5"
+	set {rosy_points} += 5
+	set {al_points} += 5
 if int({rosy_points}) == 55:
 	rosy (Disappointed): ...but it's not really enough.
 marzi (Casual Apologetic): ...
@@ -122,7 +122,7 @@ do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Casual Tears): I DON'T EVEN OWN A TENT!
 chai (Understanding): Look at me please Marzi.
 chai (Understanding): Let's do three deep breaths together, okay?
-set {breath_tempering_unlocked} = "1"
+set {breath_tempering_unlocked} = 1
 do CelestialTutorial.prologue_tutorial_sampler_box()
 (System Message\: You can follow along with Marzi as she practices skills if you wish, or you can just enjoy the story!)
 chai (Understanding): In through the nose...2...3...4...
@@ -201,7 +201,7 @@ beatrix (Idle Neutral): I am Madame Beatrix Von Sweets, owner and operator of th
 beatrix (Idle Neutral): A pleasure to meet you.
 join marzi (Casual Happy) left
 - Um...Um...Hi...Um...
-	set {beatrix_points} -= "3"
+	set {beatrix_points} -= 3
 	beatrix (Idle Neutral): Well aren't you such an... interesting girl!
 	beatrix (Idle Neutral): With a fashion sense to match!
 	beatrix (Idle Neutral): You must have a very eclectic palette.
@@ -209,7 +209,7 @@ join marzi (Casual Happy) left
 	beatrix (Idle Neutral): Our in house confectioners have enchanted them so that you feel the chill of falling snowflakes when you take a bite.
 	beatrix (Idle Neutral): Would you like to try a sample before you purchase?
 - Hiya! Nice to meet you too!
-	set {beatrix_points} += "1"
+	set {beatrix_points} += 1
 	beatrix (Idle Neutral): My, what a confident girl you are!
 	beatrix (Idle Neutral): With a fashion sense to match!
 	beatrix (Idle Neutral): You must have a very bold palette.
@@ -217,7 +217,7 @@ join marzi (Casual Happy) left
 	beatrix (Idle Neutral): Our in house confectioners have have enchanted them so they don't stick to your teeth!
 	beatrix (Idle Neutral): Would you like to try a sample before you purchase?
 - A pleasure to meet you as well, Madame.
-	set {beatrix_points} += "5"
+	set {beatrix_points} += 5
 	beatrix (Idle Neutral): Ah, such pleasant manners.
 	beatrix (Idle Neutral): A rarity in today's youth.
 	beatrix (Idle Neutral): Impeccable fashion sense as well I see.
@@ -470,13 +470,13 @@ marzi (Panic Attack 1): What do I do??
 	rosy (Discerning): Honey, take a couple deep breaths like Chai taught you okay?
 	rosy (Disappointed): Maybe we asked too much too soon, Al?
 	rosy (Disappointed): Maybe she's really not ready...
-	set {rosy_points} -= "10"
+	set {rosy_points} -= 10
 	leave rosy
 	join al (Worry) rightmost
 	al (Worry): Marzi, these melodramatic antics have to stop.
 	al (Worry): I know you're afraid of growing up and being an adult...
 	al (Worry): ...but this is getting ridiculous!
-	set {al_points} -= "10"
+	set {al_points} -= 10
 	leave al
 	join rosy (Disappointed) rightmost
 	rosy (Disappointed): Al, that's not helping.
@@ -507,7 +507,7 @@ marzi (Panic Attack 1): What do I do??
 	join marzi (Reeling) left
 	marzi (Reeling): (Marzi ruminates for hours, still not fully convinced she's safe and not dying.)
 	marzi (Fretfulsleep): (Finally she is so exhausted she falls asleep into fretful dreams.)
-	set {tired} = "1"
+	set {tired} = 1
 - Splash ice cold water on my face.
 	label prologue_panic_choice_water
 	join marzi (Reeling) left
@@ -527,7 +527,7 @@ marzi (Panic Attack 1): What do I do??
 	(The memory of that freezing water hits her like a physical reset button.)
 	(She turns the tap to the coldest setting and cups the water in her trembling hands.)
 	(She splashes the ice-cold water onto her face over and over.)
-	set {cold_sheen_unlocked} = "1"
+	set {cold_sheen_unlocked} = 1
 	do CelestialTutorial.prologue_tutorial_cold_sheen_unlocked()
 	(System Message\: Unlocked "Cold Sheen" in Skills Toolbox — replay from Main Menu.)
 	marzi (Calming): Kaaa~
@@ -562,13 +562,13 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Meditation): (I'm not dying... I'm just breathing.)
 	marzi (Meditation): (She imagines the air as a steady, cool tide pulling the heat away from her skin.)
 	marzi (Meditation): (Slowly, the tightness begins to unravel like a knot finally loosening.)
-	set {panic_points} = "0"
-	set {tired} = "0"
+	set {panic_points} = 0
+	set {tired} = 0
 	marzi (Meditation): (The rhythm of her breath finally syncs with the pulsing light on her screen.)
 	marzi (Restfulsleep): (She drifts off as the heavy static in her mind settles into a soft, quiet hum.)
 	marzi (Restfulsleep): (Her dreams are filled with the scent of jasmine and the sun warming her shoulders.)
 	(System Message\: Unlocked "Diaphragmatic Breathing" in Skills Toolbox — replay from Main Menu.)
-	set {breath_aeration_unlocked} = "1"
+	set {breath_aeration_unlocked} = 1
 	do CelestialVNState.grant_breath_aeration_unlock_panic_if_needed()
 	do CelestialTutorial.prologue_tutorial_breath_aeration_unlocked()
 	do CelestialTutorial.prologue_tutorial_social_battery_followup()
@@ -588,7 +588,7 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Fretfulsleep): (Hours bleed into each other, the gray moonlight shifting across the floorboards.)
 	marzi (Fretfulsleep): (By the time her eyes finally stay shut, the birds outside are already starting their pre-dawn chatter.)
 	do CelestialVNState.apply_stress_panic_delta(5)
-	set {tired} = "1"
+	set {tired} = 1
 - Name five things.
 	label prologue_panic_choice_5things
 	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
@@ -614,7 +614,7 @@ marzi (Panic Attack 1): What do I do??
 	(The heavy, crushing weight in her chest finally begins to unravel.)
 	marzi (Restfulsleep): (She takes one last, deep breath, letting the quiet rhythm of the night finally lull her to sleep.)
 	set {panic_points} -= 10
-	set {sensory_sifting_unlocked} = "1"
+	set {sensory_sifting_unlocked} = 1
 	(System Message\: Unlocked "Name 5 Things" in Skills Toolbox — replay from Main Menu.)
 	do CelestialTutorial.prologue_tutorial_sensory_sifting_unlocked()
 - Double check my bank app.
@@ -654,7 +654,7 @@ marzi (Panic Attack 1): What do I do??
 	(She spends the rest of the night shivering under the thin blanket, staring blankly at the wall as her mind cycles through every catastrophic failure waiting for her.)
 	(By the time the gray morning light bleeds through the tiny window, she hasn't closed her eyes for a single second.)
 	set {gold_coin} -= 335.0
-	set {tired} = "1"
-	set {panic_points} = "11"
+	set {tired} = 1
+	set {panic_points} = 11
 	# emit trigger_achievement_out_of_sight
 jump day_0/
