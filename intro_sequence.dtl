@@ -118,11 +118,11 @@ marzi (Casual Worried): B...But what if my portfolio isn't good enough?
 marzi (Casual Wingding): What if they don't like me??
 marzi (Casual Orz): I'll be living in a tent in the woods!!!
 marzi (Casual Orz): ...
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Casual Tears): I DON'T EVEN OWN A TENT!
 chai (Understanding): Look at me please Marzi.
 chai (Understanding): Let's do three deep breaths together, okay?
 set {breath_tempering_unlocked} = "1"
-do CelestialVNState.refresh_sampler_slots()
 do CelestialTutorial.prologue_tutorial_sampler_box()
 (System Message\: You can follow along with Marzi as she practices skills if you wish, or you can just enjoy the story!)
 chai (Understanding): In through the nose...2...3...4...
@@ -527,12 +527,9 @@ marzi (Panic Attack 1): What do I do??
 	(The memory of that freezing water hits her like a physical reset button.)
 	(She turns the tap to the coldest setting and cups the water in her trembling hands.)
 	(She splashes the ice-cold water onto her face over and over.)
-	set {cold_sheen_unlocked} = "1"
-	do CelestialVNState.refresh_sampler_slots()
-	do CelestialTutorial.prologue_tutorial_cold_sheen_unlocked()
 	marzi (Calming): Kaaa~
 	(The mammalian dive reflex kicks in, forcing her heart rate to slow down.)
-	(System Message\: This is the same cold-finish idea as Cold Sheen in Marzi's Sampler Box — a small clarity pass before Heat maxes out.)
+	(System Message\: You have unlocked "Temperature" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
 	marzi (Calming): Phew...that helps a little.
 	marzi (Calming): (Marzi looks at herself in the mirror.)
 	marzi (Calming): (Beads of water are clinging to her face.)

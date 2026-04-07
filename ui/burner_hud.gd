@@ -2,6 +2,8 @@ extends Control
 
 const JET_COUNT := 5
 
+var _twinkle_tween: Tween
+
 
 func _draw() -> void:
 	var pts: int = CelestialVNState.get_panic_points()
@@ -33,3 +35,13 @@ func _draw() -> void:
 
 func refresh() -> void:
 	queue_redraw()
+
+
+func start_heat_twinkle() -> void:
+	if _twinkle_tween != null and is_instance_valid(_twinkle_tween):
+		_twinkle_tween.kill()
+	modulate = Color.WHITE
+	_twinkle_tween = create_tween()
+	_twinkle_tween.set_parallel(false)
+	_twinkle_tween.tween_property(self, "modulate", Color(1.32, 1.28, 1.42, 1.0), 0.11)
+	_twinkle_tween.tween_property(self, "modulate", Color.WHITE, 0.26)

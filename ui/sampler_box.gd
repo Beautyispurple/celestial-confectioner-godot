@@ -170,6 +170,7 @@ func _on_panel_resized() -> void:
 func reset_for_menu() -> void:
 	_kill_panel_height_tween()
 	_open = false
+	_back_button.visible = true
 	CelestialVNState.set_sampler_blocking_vn(false)
 	_panel.visible = false
 	_panel.custom_minimum_size = Vector2(0, 0)
@@ -397,6 +398,7 @@ func _start_temper() -> void:
 		_breathing.embedded = true
 		_breathing.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		_breathing_slot.add_child(_breathing)
+	_back_button.visible = false
 	await _breathing.run_temper_sampler()
 	await _end_minigame_if_current("temper")
 
@@ -416,6 +418,7 @@ func _start_aeration() -> void:
 		_breathing.embedded = true
 		_breathing.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		_breathing_slot.add_child(_breathing)
+	_back_button.visible = false
 	await _breathing.run_aeration_sampler()
 	await _end_minigame_if_current("aeration")
 
@@ -456,6 +459,7 @@ func _end_minigame_if_current(kind: String) -> void:
 	if _active_minigame != kind:
 		return
 	_active_minigame = ""
+	_back_button.visible = true
 	_minigame_host.visible = false
 	_breathing_slot.visible = false
 	_sifting_slot.visible = false
@@ -472,6 +476,7 @@ func _on_back_pressed() -> void:
 	if _breathing != null and _breathing.has_method("stop_exercise"):
 		_breathing.stop_exercise()
 	_active_minigame = ""
+	_back_button.visible = true
 	_minigame_host.visible = false
 	_breathing_slot.visible = false
 	_sifting_slot.visible = false

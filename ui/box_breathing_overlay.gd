@@ -8,6 +8,14 @@ const PHASE_SEC := 4.0
 const R_MIN := 72.0
 const R_MAX := 208.0
 
+const _WORDS_PATH := "res://data/breath_temper_words.json"
+
+## Metronome pitch_scale per beat (0-3) within each 4s phase. 2.0 ~ one octave up.
+const _PITCH_INHALE := [0.52, 0.72, 1.0, 1.38]
+const _PITCH_HOLD1 := [1.38, 1.38, 1.38, 1.38]
+const _PITCH_EXHALE := [1.38, 1.0, 0.72, 0.52]
+const _PITCH_HOLD2 := [0.52, 0.52, 0.52, 0.52]
+
 signal exercise_finished
 
 enum Phase { INHALE_LMB, HOLD_SPACE_1, EXHALE_RMB, HOLD_SPACE_2 }
@@ -15,6 +23,7 @@ enum Phase { INHALE_LMB, HOLD_SPACE_1, EXHALE_RMB, HOLD_SPACE_2 }
 @onready var _backdrop: ColorRect = $Backdrop
 @onready var _glass_panel: PanelContainer = $CenterRoot/Margin/VBox/GlassPanel
 @onready var _phase_label: Label = $CenterRoot/Margin/VBox/GlassPanel/Margin/VBox/PhaseLabel
+@onready var _word_hint_label: Label = $CenterRoot/Margin/VBox/GlassPanel/Margin/VBox/WordHintLabel
 @onready var _orb: BreathingSugarOrb = $CenterRoot/Margin/VBox/GlassPanel/Margin/VBox/OrbHost
 @onready var _countdown: Label = $CenterRoot/Margin/VBox/GlassPanel/Margin/VBox/OrbHost/CountdownLabel
 @onready var _skip_button: Button = $CenterRoot/Margin/VBox/GlassPanel/Margin/VBox/SkipButton
@@ -28,7 +37,20 @@ var _cycles_target: int = 3
 var _phase_acc: float = 0.0
 var _from_sampler: bool = false
 var _aeration: bool = false
+## Sampler Breath Tempering: loop 16s cycles until Back / stop_exercise.
+var _temper_sampler_loop_until_stop: bool = false
 var _hover_tween: Tween
+var _temper_tween: Tween
+
+var _tick_player: AudioStreamPlayer
+var _last_tick_countdown: int = -1
+
+var _pools_loaded: bool = false
+var _pool_inhale: PackedStringArray = PackedStringArray()
+var _pool_hold1: PackedStringArray = PackedStringArray()
+var _pool_exhale: PackedStringArray = PackedStringArray()
+var _pool_hold2: PackedStringArray = PackedStringArray()
+var _last_word_by_phase: Array[String] = ["", "", "", ""]
 
 
 func _ready() -> void:
@@ -44,6 +66,8 @@ func _ready() -> void:
 		_countdown.add_theme_color_override("font_color", Color(1, 0.97, 1, 0.95))
 		_countdown.add_theme_color_override("font_outline_color", Color(0.12, 0.06, 0.2, 1.0))
 		_countdown.add_theme_constant_override("outline_size", 10)
+	_setup_tick_player()
+	_load_word_pools()
 
 
 func _apply_glass_style() -> void:
@@ -61,14 +85,12 @@ func _apply_glass_style() -> void:
 	sb.content_margin_top = 24
 	sb.content_margin_bottom = 20
 	_glass_panel.add_theme_stylebox_override("panel", sb)
-	if embedded:
-		_phase_label.add_theme_color_override("font_color", Color(0.98, 0.94, 1.0, 1.0))
-		_phase_label.add_theme_color_override("font_outline_color", Color(0.15, 0.08, 0.22, 1.0))
-	else:
-		_phase_label.add_theme_color_override("font_color", Color(0.98, 0.94, 1.0, 0.95))
-		_phase_label.add_theme_color_override("font_outline_color", Color(0.25, 0.12, 0.35, 0.85))
+	_base_label_colors()
 	_phase_label.add_theme_constant_override("outline_size", 6)
 	_phase_label.add_theme_font_size_override("font_size", 28)
+	if _word_hint_label:
+		_word_hint_label.add_theme_constant_override("outline_size", 5)
+		_word_hint_label.add_theme_font_size_override("font_size", 22)
 	_backdrop.color = Color(0.08, 0.04, 0.14, 0.52)
 	_skip_button.add_theme_color_override("font_color", Color(0.92, 0.88, 1.0, 0.85))
 	_skip_button.add_theme_font_size_override("font_size", 16)
@@ -76,12 +98,184 @@ func _apply_glass_style() -> void:
 	_tempered.add_theme_color_override("font_color", Color(1, 0.95, 0.75, 1))
 
 
+func _setup_tick_player() -> void:
+	_tick_player = AudioStreamPlayer.new()
+	_tick_player.name = "BreathTickPlayer"
+	var stream: AudioStream = load("res://audio/ui/breath_tick.wav") as AudioStream
+	if stream != null:
+		_tick_player.stream = stream
+	_tick_player.volume_db = -24.0
+	add_child(_tick_player)
+
+
+func _load_word_pools() -> void:
+	if _pools_loaded:
+		return
+	_pools_loaded = true
+	var f := FileAccess.open(_WORDS_PATH, FileAccess.READ)
+	if f == null:
+		_fill_fallback_pools()
+		return
+	var txt := f.get_as_text()
+	var parsed: Variant = JSON.parse_string(txt)
+	if parsed is Dictionary:
+		var d: Dictionary = parsed
+		_pool_inhale = _dict_string_array(d, "inhale_calm")
+		_pool_hold1 = _dict_string_array(d, "hold_still")
+		_pool_exhale = _dict_string_array(d, "exhale_release")
+		_pool_hold2 = _dict_string_array(d, "hold_accomplish")
+	else:
+		_fill_fallback_pools()
+		return
+	if _pool_inhale.is_empty() or _pool_hold1.is_empty() or _pool_exhale.is_empty() or _pool_hold2.is_empty():
+		_fill_fallback_pools()
+
+
+func _dict_string_array(d: Dictionary, key: String) -> PackedStringArray:
+	if not d.has(key):
+		return PackedStringArray()
+	var raw: Variant = d[key]
+	if raw is Array:
+		var out := PackedStringArray()
+		for x in raw:
+			if x is String:
+				var s: String = (x as String).strip_edges()
+				if not s.is_empty():
+					out.append(s)
+		return out
+	return PackedStringArray()
+
+
+func _fill_fallback_pools() -> void:
+	_pool_inhale = PackedStringArray([
+		"soft", "gather", "fill", "widen", "open", "ease", "gentle", "drift", "slow", "deepen",
+		"calm", "still", "quiet", "hush", "breathe", "sip", "swell", "rise", "lift", "bloom",
+	])
+	_pool_hold1 = PackedStringArray([
+		"pause", "settle", "hush", "steady", "rest", "quiet", "hold", "linger", "suspend", "anchor",
+	])
+	_pool_exhale = PackedStringArray([
+		"release", "soften", "unclench", "melt", "drop", "ease", "flow", "unwind", "let", "drain",
+	])
+	_pool_hold2 = PackedStringArray([
+		"held", "complete", "sure", "balanced", "clear", "grounded", "steady", "enough", "here", "done",
+	])
+
+
+func _pool_for_phase(phase: int) -> PackedStringArray:
+	match phase:
+		Phase.INHALE_LMB:
+			return _pool_inhale
+		Phase.HOLD_SPACE_1:
+			return _pool_hold1
+		Phase.EXHALE_RMB:
+			return _pool_exhale
+		Phase.HOLD_SPACE_2:
+			return _pool_hold2
+	return PackedStringArray()
+
+
+func _pick_word_for_phase(phase: int) -> String:
+	var pool := _pool_for_phase(phase)
+	if pool.is_empty():
+		return "breathe"
+	var idx: int = randi() % pool.size()
+	if pool.size() > 1:
+		var last: String = _last_word_by_phase[phase]
+		var tries := 0
+		while pool[idx] == last and tries < 12:
+			idx = randi() % pool.size()
+			tries += 1
+	_last_word_by_phase[phase] = pool[idx]
+	return pool[idx]
+
+
+func _peak_color_for_phase(phase: int) -> Color:
+	match phase:
+		Phase.INHALE_LMB:
+			return Color(0.72, 0.88, 1.0, 1.0)
+		Phase.HOLD_SPACE_1:
+			return Color(0.88, 0.78, 1.0, 1.0)
+		Phase.EXHALE_RMB:
+			return Color(1.0, 0.82, 0.9, 1.0)
+		Phase.HOLD_SPACE_2:
+			return Color(1.0, 0.92, 0.72, 1.0)
+	return Color(1, 1, 1, 1)
+
+
+func _base_label_colors() -> void:
+	if embedded:
+		_phase_label.add_theme_color_override("font_color", Color(0.98, 0.94, 1.0, 1.0))
+		_phase_label.add_theme_color_override("font_outline_color", Color(0.15, 0.08, 0.22, 1.0))
+	else:
+		_phase_label.add_theme_color_override("font_color", Color(0.98, 0.94, 1.0, 0.95))
+		_phase_label.add_theme_color_override("font_outline_color", Color(0.25, 0.12, 0.35, 0.85))
+	_phase_label.modulate = Color(1, 1, 1, 1)
+	if _word_hint_label:
+		if embedded:
+			_word_hint_label.add_theme_color_override("font_color", Color(0.92, 0.88, 1.0, 1.0))
+			_word_hint_label.add_theme_color_override("font_outline_color", Color(0.12, 0.06, 0.2, 1.0))
+		else:
+			_word_hint_label.add_theme_color_override("font_color", Color(0.92, 0.88, 1.0, 0.92))
+			_word_hint_label.add_theme_color_override("font_outline_color", Color(0.22, 0.1, 0.32, 0.88))
+
+
+func _apply_phase_label_visual() -> void:
+	if _aeration or _word_hint_label == null:
+		return
+	var t: float = clampf(_phase_acc / PHASE_SEC, 0.0, 1.0)
+	var eased: float = t * t * (3.0 - 2.0 * t)
+	var a: float = lerpf(0.15, 1.0, eased)
+	var peak: Color = _peak_color_for_phase(_phase_index)
+	var base_font: Color
+	var base_outline: Color
+	if embedded:
+		base_font = Color(0.92, 0.88, 1.0, 1.0)
+		base_outline = Color(0.12, 0.06, 0.2, 1.0)
+	else:
+		base_font = Color(0.92, 0.88, 1.0, 0.92)
+		base_outline = Color(0.22, 0.1, 0.32, 0.88)
+	_word_hint_label.modulate = Color(1.0, 1.0, 1.0, a)
+	_word_hint_label.add_theme_color_override("font_color", base_font.lerp(peak, eased))
+	_word_hint_label.add_theme_color_override("font_outline_color", base_outline.lerp(peak.darkened(0.35), eased * 0.65))
+
+
+func _pitch_array_for_phase(phase: int) -> Array:
+	match phase:
+		Phase.INHALE_LMB:
+			return _PITCH_INHALE
+		Phase.HOLD_SPACE_1:
+			return _PITCH_HOLD1
+		Phase.EXHALE_RMB:
+			return _PITCH_EXHALE
+		Phase.HOLD_SPACE_2:
+			return _PITCH_HOLD2
+	return _PITCH_INHALE
+
+
+func _maybe_play_metronome_tick() -> void:
+	if _tick_player == null or _tick_player.stream == null:
+		return
+	if not _running or _aeration:
+		return
+	var rem: float = PHASE_SEC - _phase_acc
+	var n: int = clampi(ceili(rem), 1, int(ceili(PHASE_SEC)))
+	if n == _last_tick_countdown:
+		return
+	_last_tick_countdown = n
+	var beat_idx: int = clampi(4 - n, 0, 3)
+	var arr: Array = _pitch_array_for_phase(_phase_index)
+	var ps: float = float(arr[beat_idx])
+	_tick_player.pitch_scale = ps
+	_tick_player.play()
+
+
 ## Dialogic intro: three full 16s hold cycles, no stat reward.
 func run_three_cycles() -> void:
 	await _run_session(3, false, false)
 
 
-## Sampler / tempering: one 16s cycle, panic -3 and crisis flag clear.
+## Sampler / tempering: repeat 16s cycles until Back; each success -3 Heat and coping notify.
 func run_temper_sampler() -> void:
 	await _run_session(1, true, false)
 
@@ -99,18 +293,22 @@ func _run_session(cycles: int, from_sampler: bool, aeration: bool) -> void:
 	_phase_acc = 0.0
 	_from_sampler = from_sampler
 	_aeration = aeration
+	_temper_sampler_loop_until_stop = from_sampler and not aeration
 	_running = true
 	visible = true
-	_skip_button.visible = not from_sampler
+	_skip_button.visible = true
+	_skip_button.text = "Back" if from_sampler else "Skip"
+	_last_tick_countdown = -1
 	_reset_orb_for_inhale()
 	_update_phase_prompt()
+	_base_label_colors()
+	_apply_phase_label_visual()
 	_update_countdown()
 	await exercise_finished
 
 
 func _on_skip_pressed() -> void:
-	if _running:
-		_finish_exercise()
+	_finish_exercise()
 
 
 func stop_exercise() -> void:
@@ -123,14 +321,27 @@ func _finish_exercise() -> void:
 	_finished_emitted = true
 	_running = false
 	_aeration = false
+	_temper_sampler_loop_until_stop = false
 	_kill_hover_tween()
+	_kill_temper_tween()
 	_skip_button.visible = false
+	_skip_button.text = "Skip"
 	visible = false
 	_phase_acc = 0.0
 	_tempered.visible = false
 	if _countdown:
 		_countdown.text = ""
+	_base_label_colors()
+	if _word_hint_label:
+		_word_hint_label.modulate = Color(1, 1, 1, 1)
+		_word_hint_label.text = ""
 	exercise_finished.emit()
+
+
+func _kill_temper_tween() -> void:
+	if _temper_tween != null and is_instance_valid(_temper_tween):
+		_temper_tween.kill()
+	_temper_tween = null
 
 
 func _reset_orb_for_inhale() -> void:
@@ -172,6 +383,9 @@ func _process(delta: float) -> void:
 	_apply_orb_visual()
 	_orb.queue_redraw()
 	_update_countdown()
+	if not _aeration:
+		_maybe_play_metronome_tick()
+		_apply_phase_label_visual()
 
 
 func _aeration_is_inhale() -> bool:
@@ -233,6 +447,7 @@ func _apply_orb_visual() -> void:
 
 func _advance_phase() -> void:
 	_phase_acc = 0.0
+	_last_tick_countdown = -1
 	_kill_hover_tween()
 	if _aeration:
 		_phase_index += 1
@@ -247,8 +462,8 @@ func _advance_phase() -> void:
 	_phase_index += 1
 	if _phase_index > Phase.HOLD_SPACE_2:
 		_cycle_index += 1
-		if _from_sampler:
-			_play_tempered_and_finish()
+		if _from_sampler and _temper_sampler_loop_until_stop:
+			_complete_temper_sampler_cycle()
 			return
 		if _cycle_index >= _cycles_target:
 			_finish_exercise()
@@ -258,18 +473,39 @@ func _advance_phase() -> void:
 	_update_phase_prompt()
 
 
-func _play_tempered_and_finish() -> void:
+func _complete_temper_sampler_cycle() -> void:
 	_running = false
+	if _word_hint_label:
+		_word_hint_label.text = ""
 	CelestialVNState.apply_direct_panic_delta(-3)
 	CelestialVNState.notify_sampler_coping_completed()
+	for n in get_tree().get_nodes_in_group("celestial_heat_meter"):
+		if n.has_method("start_heat_twinkle"):
+			n.start_heat_twinkle()
 	_tempered.visible = true
 	_tempered.text = "Tempered!"
 	_tempered.modulate.a = 0.0
-	var tw := create_tween()
-	tw.tween_property(_tempered, "modulate:a", 1.0, 0.35)
-	tw.tween_interval(1.2)
-	tw.tween_property(_tempered, "modulate:a", 0.0, 0.5)
-	tw.tween_callback(_finish_exercise)
+	_kill_temper_tween()
+	_temper_tween = create_tween()
+	_temper_tween.tween_property(_tempered, "modulate:a", 1.0, 0.35)
+	_temper_tween.tween_interval(1.2)
+	_temper_tween.tween_property(_tempered, "modulate:a", 0.0, 0.5)
+	_temper_tween.tween_callback(_continue_temper_sampler_session)
+
+
+func _continue_temper_sampler_session() -> void:
+	_temper_tween = null
+	if _finished_emitted:
+		return
+	_phase_index = Phase.INHALE_LMB
+	_phase_acc = 0.0
+	_last_tick_countdown = -1
+	_reset_orb_for_inhale()
+	_running = true
+	_update_phase_prompt()
+	_base_label_colors()
+	_apply_phase_label_visual()
+	_update_countdown()
 
 
 func _play_aeration_finish() -> void:
@@ -292,10 +528,12 @@ func _play_aeration_finish() -> void:
 
 func _update_phase_prompt() -> void:
 	if _aeration:
+		if _word_hint_label:
+			_word_hint_label.text = ""
 		if _aeration_is_inhale():
-			_phase_label.text = "Press and hold Left Mouse — breathe in for four counts..."
+			_phase_label.text = "Press and hold Left Mouse - breathe in for four counts..."
 		else:
-			_phase_label.text = "Press and hold Right Mouse — breathe out for four counts..."
+			_phase_label.text = "Press and hold Right Mouse - breathe out for four counts..."
 		return
 	match _phase_index:
 		Phase.INHALE_LMB:
@@ -306,3 +544,5 @@ func _update_phase_prompt() -> void:
 			_phase_label.text = "Press and hold Right Mouse to release the heat..."
 		Phase.HOLD_SPACE_2:
 			_phase_label.text = "Press space to wait for the next breath..."
+	if _word_hint_label:
+		_word_hint_label.text = _pick_word_for_phase(_phase_index)
