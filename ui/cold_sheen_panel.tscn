@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cold_sheen_panel"]
+[gd_scene load_steps=4 format=3 uid="uid://cold_sheen_panel"]
 
 [ext_resource type="Script" path="res://ui/cold_sheen_panel.gd" id="1_cs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_basin"]
+bg_color = Color(0.93, 0.95, 0.97, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.78, 0.84, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_deck"]
+bg_color = Color(0.86, 0.89, 0.93, 1)
+border_width_bottom = 2
+border_color = Color(0.7, 0.75, 0.82, 1)
 
 [node name="ColdSheenPanel" type="Control"]
 layout_mode = 3
@@ -9,22 +26,160 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 script = ExtResource("1_cs")
 
-[node name="RootVBox" type="VBoxContainer" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 16
+mouse_filter = 2
+color = Color(0.12, 0.14, 0.2, 1)
+
+[node name="RootVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
 
 [node name="Instruction" type="Label" parent="RootVBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Cup cold water in your hands — one quick splash when you're ready."
+theme_override_colors/font_color = Color(0.95, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Splash cool water until the meter fills — then you get the cold finish."
 autowrap_mode = 3
+
+[node name="SinkBlock" type="VBoxContainer" parent="RootVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 220)
+theme_override_constants/separation = 8
+
+[node name="Deck" type="Panel" parent="RootVBox/SinkBlock"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_deck")
+
+[node name="CoolBarLabel" type="Label" parent="RootVBox/SinkBlock/Deck"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 6.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.35, 0.45, 0.55, 1)
+theme_override_font_sizes/font_size = 13
+text = "Cool clarity"
+
+[node name="MeterRow" type="VBoxContainer" parent="RootVBox/SinkBlock"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="MeterHint" type="Label" parent="RootVBox/SinkBlock/MeterRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.82, 0.92, 1)
+theme_override_font_sizes/font_size = 14
+text = "Keep splashing until full — spam is fine."
+autowrap_mode = 3
+
+[node name="Meter" type="ProgressBar" parent="RootVBox/SinkBlock/MeterRow"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+max_value = 100.0
+step = 1.0
+value = 0.0
+show_percentage = false
+
+[node name="BasinRow" type="HBoxContainer" parent="RootVBox/SinkBlock"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="BasinWrap" type="Control" parent="RootVBox/SinkBlock/BasinRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(200, 130)
+
+[node name="Basin" type="Panel" parent="RootVBox/SinkBlock/BasinRow/BasinWrap"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_basin")
+
+[node name="LocalSplashFlash" type="ColorRect" parent="RootVBox/SinkBlock/BasinRow/BasinWrap"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.1
+anchor_top = 0.12
+anchor_right = 0.9
+anchor_bottom = 0.72
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.75, 0.9, 1, 0.55)
+
+[node name="Drain" type="ColorRect" parent="RootVBox/SinkBlock/BasinRow/BasinWrap"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -28.0
+offset_right = 10.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.35, 0.38, 0.42, 1)
+
+[node name="FaucetColumn" type="VBoxContainer" parent="RootVBox/SinkBlock/BasinRow"]
+layout_mode = 2
+alignment = 0
+theme_override_constants/separation = 0
+
+[node name="Spout" type="ColorRect" parent="RootVBox/SinkBlock/BasinRow/FaucetColumn"]
+custom_minimum_size = Vector2(52, 12)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.78, 0.8, 0.84, 1)
+
+[node name="Stem" type="ColorRect" parent="RootVBox/SinkBlock/BasinRow/FaucetColumn"]
+custom_minimum_size = Vector2(14, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+color = Color(0.72, 0.75, 0.8, 1)
+
+[node name="HandleRow" type="HBoxContainer" parent="RootVBox/SinkBlock/BasinRow/FaucetColumn"]
+layout_mode = 2
+alignment = 1
+
+[node name="Handle" type="ColorRect" parent="RootVBox/SinkBlock/BasinRow/FaucetColumn/HandleRow"]
+custom_minimum_size = Vector2(22, 14)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.55, 0.62, 0.72, 1)
 
 [node name="SplashButton" type="Button" parent="RootVBox"]
 layout_mode = 2
@@ -33,5 +188,6 @@ text = "Splash"
 [node name="FeedbackLabel" type="Label" parent="RootVBox"]
 visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.88, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 18
 autowrap_mode = 3

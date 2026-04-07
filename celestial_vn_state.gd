@@ -130,12 +130,10 @@ func refresh_sampler_slots() -> void:
 		_sampler_layer.refresh_slot_visibility()
 
 
-## Saves from before Cold Sheen shipped may have Breath Tempering but not this flag; intro is skipped on load.
+## Load-time hook: never clear cold_sheen_unlocked; a flag set in older builds (e.g. with Breath Tempering) stays valid.
+## Cold Sheen is no longer granted from Breath Tempering alone — new unlock is the bathroom water path in the prologue.
 func ensure_sampler_unlock_migrations() -> void:
-	var bt: bool = int(float(str(Dialogic.VAR.get_variable("breath_tempering_unlocked", 0)))) != 0
-	var cs: bool = int(float(str(Dialogic.VAR.get_variable("cold_sheen_unlocked", 0)))) != 0
-	if bt and not cs:
-		Dialogic.VAR.set_variable("cold_sheen_unlocked", 1)
+	pass
 
 
 func get_panic_points() -> int:
