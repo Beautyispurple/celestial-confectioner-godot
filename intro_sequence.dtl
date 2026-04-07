@@ -527,9 +527,11 @@ marzi (Panic Attack 1): What do I do??
 	(The memory of that freezing water hits her like a physical reset button.)
 	(She turns the tap to the coldest setting and cups the water in her trembling hands.)
 	(She splashes the ice-cold water onto her face over and over.)
+	set {cold_sheen_unlocked} = "1"
+	do CelestialTutorial.prologue_tutorial_cold_sheen_unlocked()
+	(System Message\: Unlocked "Cold Sheen" in Skills Toolbox — replay from Main Menu.)
 	marzi (Calming): Kaaa~
 	(The mammalian dive reflex kicks in, forcing her heart rate to slow down.)
-	(System Message\: Unlocked "Temperature" in Skills Toolbox — replay from Main Menu.)
 	marzi (Calming): Phew...that helps a little.
 	marzi (Calming): (Marzi looks at herself in the mirror.)
 	marzi (Calming): (Beads of water are clinging to her face.)
