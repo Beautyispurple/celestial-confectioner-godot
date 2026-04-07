@@ -67,6 +67,7 @@ variables={
 "breath_aeration_panic_grant_done": "0",
 "breath_aeration_unlocked": "0",
 "breath_tempering_unlocked": "0",
+"cold_sheen_unlocked": "0",
 "gold_coin": "0",
 "huck_points": "0",
 "negative_thought_game": {

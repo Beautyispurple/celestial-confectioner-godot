@@ -13,5 +13,7 @@ func _ready() -> void:
 			await get_tree().process_frame
 			await get_tree().process_frame
 			GameSaveManager.restore_extras_after_load(pending)
+			CelestialVNState.ensure_sampler_unlock_migrations()
+			CelestialVNState.refresh_sampler_slots()
 	else:
 		Dialogic.start("intro_sequence")

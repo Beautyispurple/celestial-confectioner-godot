@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://cold_sheen_panel"]
+
+[ext_resource type="Script" path="res://ui/cold_sheen_panel.gd" id="1_cs"]
+
+[node name="ColdSheenPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cs")
+
+[node name="RootVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Instruction" type="Label" parent="RootVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Cup cold water in your hands — one quick splash when you're ready."
+autowrap_mode = 3
+
+[node name="SplashButton" type="Button" parent="RootVBox"]
+layout_mode = 2
+text = "Splash"
+
+[node name="FeedbackLabel" type="Label" parent="RootVBox"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 3

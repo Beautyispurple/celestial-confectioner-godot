@@ -78,6 +78,13 @@ func prologue_tutorial_sensory_sifting_unlocked() -> void:
 	)
 
 
+func prologue_tutorial_cold_sheen_unlocked() -> void:
+	await _await_tutorial_layer_ready()
+	await _layer.show_plain_tutorial(
+		"You have unlocked Cold Sheen in Marzi's Sampler Box (Sampler Box → Cold Sheen). It's a cold finish: a little clarity and shine when Heat is still workable — like a glacé pass before everything seizes. It's stronger when Heat isn't maxed; at maximum Heat it only eases a little, not a full reset — so it won't feel like Sensory Sifting or Breath Tempering. In real life, a brief cold or sensory interrupt often helps most before you're completely flooded; at the edge, small skills still matter, but they aren't a substitute for deeper tools or support."
+	)
+
+
 func prologue_tutorial_social_battery_followup() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(

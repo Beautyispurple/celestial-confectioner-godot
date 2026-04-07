@@ -3,6 +3,7 @@ extends CanvasLayer
 
 const BOX_SCENE := preload("res://ui/box_breathing_overlay.tscn")
 const SIFT_SCENE := preload("res://ui/sensory_sifting_panel.tscn")
+const COLD_SHEEN_SCENE := preload("res://ui/cold_sheen_panel.tscn")
 const CANDY_SLOT_SCENE := preload("res://ui/sampler_candy_skill_slot.tscn")
 
 const _PANEL_OPEN_H := 720.0
@@ -22,13 +23,15 @@ var _sb_panel_pressed: StyleBoxFlat
 @onready var _minigame_host: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost
 @onready var _breathing_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/BreathingSlot
 @onready var _sifting_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/SiftingSlot
+@onready var _cold_sheen_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/ColdSheenSlot
 @onready var _back_button: Button = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/BackButton
 
 var _open: bool = false
 var _breathing: Control = null
 var _sifting: Control = null
+var _cold_sheen: Control = null
 var _slot_buttons: Array[Button] = []
-var _active_minigame: String = "" # "temper" | "aeration" | "sifting" | ""
+var _active_minigame: String = "" # "temper" | "aeration" | "sifting" | "cold_sheen" | ""
 var _handle_pulse: Tween
 var _panel_height_tween: Tween
 
@@ -46,6 +49,7 @@ func _ready() -> void:
 	_minigame_host.visible = false
 	_breathing_slot.visible = false
 	_sifting_slot.visible = false
+	_cold_sheen_slot.visible = false
 	_handle.pressed.connect(toggle_open)
 	_back_button.pressed.connect(_on_back_pressed)
 	CelestialVNState.panic_tier_changed.connect(_on_tier_changed)
@@ -81,6 +85,7 @@ func _build_slot_grid() -> void:
 	_set_slot_label(0, "Breath\nTempering")
 	_set_slot_label(1, "Breath\nAeration")
 	_set_slot_label(2, "Sensory\nSifting")
+	_set_slot_label(3, "Cold\nSheen")
 
 
 func _set_slot_label(idx: int, t: String) -> void:
@@ -171,6 +176,7 @@ func reset_for_menu() -> void:
 	_minigame_host.visible = false
 	_breathing_slot.visible = false
 	_sifting_slot.visible = false
+	_cold_sheen_slot.visible = false
 	_scroll_grid_visible(true)
 	_stop_minigames()
 	_active_minigame = ""
@@ -188,6 +194,8 @@ func _stop_minigames() -> void:
 		_breathing.stop_exercise()
 	if _sifting != null and _sifting.has_method("quit_reset"):
 		_sifting.quit_reset()
+	if _cold_sheen != null and _cold_sheen.has_method("quit_reset"):
+		_cold_sheen.quit_reset()
 
 
 func _apply_handle_visual() -> void:
@@ -257,7 +265,7 @@ func _ensure_minigame_opaque_bg() -> void:
 
 func _on_dialogic_var_changed(info: Dictionary) -> void:
 	var v: String = str(info.get("variable", ""))
-	if v == "breath_tempering_unlocked" or v == "breath_aeration_unlocked" or v == "sensory_sifting_unlocked" or v == "panic_points":
+	if v == "breath_tempering_unlocked" or v == "breath_aeration_unlocked" or v == "sensory_sifting_unlocked" or v == "cold_sheen_unlocked" or v == "panic_points":
 		_apply_all_slot_visibility()
 
 
@@ -265,6 +273,7 @@ func _apply_all_slot_visibility() -> void:
 	var temper_u: bool = int(float(str(Dialogic.VAR.get_variable("breath_tempering_unlocked", 0)))) != 0
 	var aer_u: bool = int(float(str(Dialogic.VAR.get_variable("breath_aeration_unlocked", 0)))) != 0
 	var sift_u: bool = int(float(str(Dialogic.VAR.get_variable("sensory_sifting_unlocked", 0)))) != 0
+	var cold_u: bool = int(float(str(Dialogic.VAR.get_variable("cold_sheen_unlocked", 0)))) != 0
 	if _slot_buttons.size() > 0:
 		_slot_buttons[0].visible = temper_u
 		_slot_buttons[0].disabled = not temper_u
@@ -278,7 +287,11 @@ func _apply_all_slot_visibility() -> void:
 		_slot_buttons[2].visible = sift_u
 		_slot_buttons[2].disabled = not sift_u
 		_refresh_slot_wrapper(2, false, sift_u and not _slot_buttons[2].disabled)
-	for i in range(3, _slot_buttons.size()):
+	if _slot_buttons.size() > 3:
+		_slot_buttons[3].visible = cold_u
+		_slot_buttons[3].disabled = not cold_u
+		_refresh_slot_wrapper(3, false, cold_u and not _slot_buttons[3].disabled)
+	for i in range(4, _slot_buttons.size()):
 		_slot_buttons[i].visible = true
 		_slot_buttons[i].disabled = true
 		_refresh_slot_wrapper(i, true, false)
@@ -339,6 +352,7 @@ func _on_tier_changed(tier: int) -> void:
 func toggle_open() -> void:
 	_open = not _open
 	if _open:
+		_apply_all_slot_visibility()
 		_kill_panel_height_tween()
 		_panel.visible = true
 		CelestialVNState.set_sampler_blocking_vn(true)
@@ -366,6 +380,8 @@ func _on_skill_slot_pressed(idx: int) -> void:
 			_start_aeration()
 		2:
 			_start_sifting()
+		3:
+			_start_cold_sheen()
 
 
 func _start_temper() -> void:
@@ -374,6 +390,7 @@ func _start_temper() -> void:
 	_minigame_host.visible = true
 	_breathing_slot.visible = true
 	_sifting_slot.visible = false
+	_cold_sheen_slot.visible = false
 	_active_minigame = "temper"
 	if _breathing == null:
 		_breathing = BOX_SCENE.instantiate() as Control
@@ -392,6 +409,7 @@ func _start_aeration() -> void:
 	_minigame_host.visible = true
 	_breathing_slot.visible = true
 	_sifting_slot.visible = false
+	_cold_sheen_slot.visible = false
 	_active_minigame = "aeration"
 	if _breathing == null:
 		_breathing = BOX_SCENE.instantiate() as Control
@@ -408,6 +426,7 @@ func _start_sifting() -> void:
 	_minigame_host.visible = true
 	_breathing_slot.visible = false
 	_sifting_slot.visible = true
+	_cold_sheen_slot.visible = false
 	_active_minigame = "sifting"
 	if _sifting == null:
 		_sifting = SIFT_SCENE.instantiate() as Control
@@ -417,6 +436,22 @@ func _start_sifting() -> void:
 	await _end_minigame_if_current("sifting")
 
 
+func _start_cold_sheen() -> void:
+	await _expand_panel_for_minigame()
+	_scroll_grid_visible(false)
+	_minigame_host.visible = true
+	_breathing_slot.visible = false
+	_sifting_slot.visible = false
+	_cold_sheen_slot.visible = true
+	_active_minigame = "cold_sheen"
+	if _cold_sheen == null:
+		_cold_sheen = COLD_SHEEN_SCENE.instantiate() as Control
+		_cold_sheen.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		_cold_sheen_slot.add_child(_cold_sheen)
+	await _cold_sheen.run_cold_sheen()
+	await _end_minigame_if_current("cold_sheen")
+
+
 func _end_minigame_if_current(kind: String) -> void:
 	if _active_minigame != kind:
 		return
@@ -424,6 +459,7 @@ func _end_minigame_if_current(kind: String) -> void:
 	_minigame_host.visible = false
 	_breathing_slot.visible = false
 	_sifting_slot.visible = false
+	_cold_sheen_slot.visible = false
 	_scroll_grid_visible(true)
 	await _collapse_panel_after_minigame()
 
@@ -431,12 +467,15 @@ func _end_minigame_if_current(kind: String) -> void:
 func _on_back_pressed() -> void:
 	if _active_minigame == "sifting" and _sifting != null:
 		_sifting.quit_reset()
+	if _active_minigame == "cold_sheen" and _cold_sheen != null:
+		_cold_sheen.quit_reset()
 	if _breathing != null and _breathing.has_method("stop_exercise"):
 		_breathing.stop_exercise()
 	_active_minigame = ""
 	_minigame_host.visible = false
 	_breathing_slot.visible = false
 	_sifting_slot.visible = false
+	_cold_sheen_slot.visible = false
 	_scroll_grid_visible(true)
 	if _open:
 		await _collapse_panel_after_minigame()

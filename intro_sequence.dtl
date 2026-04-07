@@ -112,17 +112,18 @@ marzi (Casual Cowlick): Any confectioner who knows their salt from their sugar k
 marzi (Casual Concerned): ...
 chai (Exasperated): Well you might not have been searching the job boards...
 chai (Relaxed): ...but I have.
-chai (Relaxed): There's a rare listing on the Starlight City boards—a confectionery opening at The Gilded Macaron. For someone with your degree, that's the kind of shot that might only come around once.
+chai (Relaxed): There's a new listing for a job opening.
 marzi (Casual Amazed): Oh wow! That would be my dream job!
 marzi (Casual Worried): B...But what if my portfolio isn't good enough?
 marzi (Casual Wingding): What if they don't like me??
 marzi (Casual Orz): I'll be living in a tent in the woods!!!
 marzi (Casual Orz): ...
 marzi (Casual Tears): I DON'T EVEN OWN A TENT!
-do CelestialVNState.apply_stress_panic_delta(1)
 chai (Understanding): Look at me please Marzi.
 chai (Understanding): Let's do three deep breaths together, okay?
 set {breath_tempering_unlocked} = "1"
+set {cold_sheen_unlocked} = "1"
+do CelestialVNState.refresh_sampler_slots()
 do CelestialTutorial.prologue_tutorial_sampler_box()
 (System Message\: You can follow along with Marzi as she practices skills if you wish, or you can just enjoy the story!)
 chai (Understanding): In through the nose...2...3...4...
@@ -132,6 +133,7 @@ chai (Understanding): Hold...2...3...4...
 leave --All--
 (Marzi regains her composure as they breathe in rhythm together.)
 do CelestialTutorial.prologue_tutorial_breath_tempering_unlocked()
+do CelestialTutorial.prologue_tutorial_cold_sheen_unlocked()
 join chai (Understanding) rightmost
 join marzi (Casual Trust) left
 chai (Understanding): They'll like you Marzi.
@@ -242,6 +244,7 @@ leave --All--
 (When she speaks again, her voice is flat and clipped.)
 join beatrix (Unimpressed) rightmost
 beatrix (Unimpressed): A job applicant. I see.
+do CelestialVNState.apply_stress_panic_delta(2)
 join marzi (Casual Concerned) left
 marzi (Casual Concerned): (I feel so small right now...what happened to make her switch like that?)
 marzi (Casual Confident): (Come on Marzi, don't let this deter you from your big chance!)
@@ -251,17 +254,23 @@ leave --All--
 (She steps closer to Marzi, and takes the portfolio from her hands.)
 (She inspects it like a hawk inspects a field mouse.)
 join beatrix (Dour Lookdown) rightmost
-beatrix (Dour Lookdown): Confectionery school. I see. So, no formal magic discipline?
-beatrix (Dour Lookdown): Never been part of a coven...
+beatrix (Dour Lookdown): A confectionery trade school. How... functional.
+do CelestialVNState.apply_stress_panic_delta(2)
+beatrix (Dour Lookdown): I take it you have no grounding in the the Etheric Arts?
+beatrix (Dour Lookdown): You’ve never been invited to a Consortium or sat for the Ordained examinations...
+beatrix (Dour Lookdown): Never summoned a dough-mon?
 beatrix (Dour Lookdown): (Beatrix gestures sharply towards the overstuffed portfolio, which has a few rogue formula sketches sticking out of the zipper.)
 beatrix (Dour Lookdown): Your presentation is chaotic at best.
+do CelestialVNState.apply_stress_panic_delta(2)
 beatrix (Dour Lookdown): There is powdered sugar on your left shoe.
 beatrix (Dour Lookdown): And I don't know If I would have chosen THAT outfit for introductions with a prospective employer...
+do CelestialVNState.apply_stress_panic_delta(2)
 beatrix (Dour Lookdown): But I do think my customers would enjoy your style...
 beatrix (Idle Dour): Many of them come in after shopping at the boutique next door.
 beatrix (Dour Lookdown): You also have ink-or perhaps food coloring-smudged on your wrist.
 beatrix (Dour Lookdown): I run a tight ship around here, Ms. Glace.
 beatrix (Dour Lookdown): Do you really think you can work to the high standards required to keep The Gilded Macaron's flawless reputation?
+do CelestialVNState.apply_stress_panic_delta(2)
 join marzi (Casual Concerned) left
 marzi (Casual Concerned): (Marzi tries to hide her stained wrist behind her back.)
 marzi (Casual Concerned): I...I know I look a little scattered, but I'm a fast learner, and I promise I'll work hard!
@@ -273,14 +282,19 @@ beatrix (Dour Lookdown): The wheel, which as you can see, is rolling flawlessly 
 beatrix (Idle Dour): No, you must first prove you are even capable of the basics.
 beatrix (Idle Dour): (Her eyes bore into the core of Marzi's soul...)
 beatrix (Idle Dour): (...and Marzi can tell she is being sized up in ways she doesn't comprehend.)
+do CelestialVNState.apply_stress_panic_delta(2)
 beatrix (Idle Dour): You have to prove you can follow the recipe of true success.
 beatrix (Dour Lookdown): One bad review on SweetSnap...
+do CelestialVNState.apply_stress_panic_delta(2)
 beatrix (Dour Lookdown): ...One misfired enchantment...
+do CelestialVNState.apply_stress_panic_delta(2)
 beatrix (Dour Lookdown): ...And my entire legacy crumbles.
+do CelestialVNState.apply_stress_panic_delta(2)
 beatrix (Dour Lookdown): The world out there-
 beatrix (Dour Lookdown): (She taps her cell phone screen.)
 beatrix (Dour Lookdown): -is waiting for me to fail.
 marzi (Casual Worried): (Marzi's confidence starts to falter.)
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Casual Worried): R...Right.
 marzi (Casual Worried): I understand...
 marzi (Casual Worried): You're looking for someone more experienced...
@@ -296,14 +310,18 @@ beatrix (Dour Lookdown): The display cases need daily cleaning.
 beatrix (Dour Lookdown): If you want to stand a chance at surviving in my prep room-
 beatrix (Dour Lookdown): -We will start by infusing discipline in you like seeding a boiling syrup.
 beatrix (Dour Lookdown): I will mold you like these chocolate sculptures, Ms. Glace, from the bottom molecule to the top.
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Casual Amazed): Oh! Um, T...Thank you! I promise, I will work harder than anyone!
 marzi (Casual Amazed): I'll prove to you that I have what it takes to be a world class confectioner!
 marzi (Casual Amazed): I won't let you down!
 beatrix (Dour Lookdown): We shall see about that, Ms. Glace...
+do CelestialVNState.apply_stress_panic_delta(2)
 beatrix (Dour Lookdown): Your shift starts at 5AM tomorrow morning.
 beatrix (Dour Lookdown): If you are late, I will find another applicant.
+do CelestialVNState.apply_stress_panic_delta(2)
 beatrix (Dour Lookdown): That means 15 minutes early, Ms. Glace.
 beatrix (Dour Lookdown): And for heaven's sake, don't you dare touch a single utensil until you have earned the right.
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Casual Fear): Yes, Ma'am!
 leave --All--
 (Beatrix hands Marzi's portfolio over to her and she walks towards the exit, leaving the wonderous scents and mystical confections behind her.)
@@ -369,6 +387,7 @@ join al (Pleased) rightmost
 al (Pleased): Since you're working downtown now, the commute from the attic isn't really practical anymore.
 al (Pleased): Your mom and I have decided to cover the security deposit and first month's rent for an apartment near the shop.
 marzi (Casual Surprised): (Marzi drops her fork, her eyes widen to saucers.)
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Casual Surprised): Wait, really?
 marzi (Casual Surprised): You'd really do that?!
 marzi (Casual Surprised): I thought you were just going to kick me out high and dry and I'd have to go live in a tent in the woods!
@@ -387,7 +406,6 @@ rosy (Idle): You have to hold this job down to pay the monthly rent.
 rosy (Idle): No impulsive quitting...
 rosy (Idle): No giving up because it's hard or you're having trouble with a coworker...
 rosy (Idle): No blowing your paycheck on imported candy.
-do CelestialVNState.apply_stress_panic_delta(1)
 marzi (Casual Sweat): (Marzi swallows hard, the crushing weight of Beatrix's cold stare flashing in her mind.)
 marzi (Casual Sweat): Right.
 marzi (Casual Unsure): Absolutely...
@@ -408,18 +426,22 @@ join marzi (Reeling) left
 marzi (Reeling): Everything is happening really fast...
 marzi (Reeling): I know I promised Mom and Dad that I could do this...
 marzi (Reeling): But what if I can't?
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Reeling): What if I let everyone down?
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Reeling): ...
 marzi (Reeling): What if I let myself down...?
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Reeling): There's so much riding on me doing well...
 marzi (Reeling): So much pressure...
 do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Reeling): I...I...
 marzi (Panic Attack 1): M...My chest is feeling tight...
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Panic Attack 1): What do I do??
 - I'm having a heart attack!! Get Mom and Dad!!
 	label prologue_panic_choice_parents
-	set {panic_points} = "9"
+	do CelestialVNState.apply_stress_panic_delta(9)
 	audio "res://sounds_music/Seven_Seconds_To_Shock.mp3"
 	marzi (Panic Attack 1): MOM! DAD!
 	marzi (Panic Attack 1): HELP!
@@ -509,7 +531,8 @@ marzi (Panic Attack 1): What do I do??
 	(She splashes the ice-cold water onto her face over and over.)
 	marzi (Calming): Kaaa~
 	(The mammalian dive reflex kicks in, forcing her heart rate to slow down.)
-	(System Message\: You have unlocked "Temperature" in Marzi's Skills Toolbox! You can replay this exercise anytime from the Main Menu.)
+	do CelestialVNState.refresh_sampler_slots()
+	(System Message\: This is the same cold-finish idea as Cold Sheen in Marzi's Sampler Box — a small clarity pass before Heat maxes out.)
 	marzi (Calming): Phew...that helps a little.
 	marzi (Calming): (Marzi looks at herself in the mirror.)
 	marzi (Calming): (Beads of water are clinging to her face.)
@@ -580,12 +603,10 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Breathing): Four is touch. Reach out your hand. What are four things with a distinct texture that you can physically feel?
 	[text_input text="Type four things you can touch:" var="thing_2"]
 	marzi (Breathing): {thing_2}. Focus on how solid those are.
-	audio music - [fade="1.5"]
-	marzi (Breathing): Three is sound. Listen closely, past the quiet. What are three sounds you can hear happening right now?
+	marzi: Three is sound. Listen closely, past the quiet. What are three sounds you can hear happening right now?
 	[text_input text="Type three sounds you can hear:" var="thing_3"]
-	audio music "res://sounds_music/The_Weight_of_Stillness.mp3" [fade="1.5"]
 	marzi (Calming): {thing_3}. Just normal, everyday sounds. The world is still turning.
-	marzi (Calming): Two is smell. This one is always tricky. Breathe in. What are two scents you can smell, or really comforting ones you can imagine?
+	marzi: Two is smell. This one is always tricky. Breathe in. What are two scents you can smell, or really comforting ones you can imagine?
 	[text_input text="Type two scents you can smell or imagine:" var="thing_4"]
 	marzi (Calming): {thing_4}. I can almost smell it too. That helps.
 	marzi (Breathing): One is taste. What is a flavor you can taste right now, or your absolute favorite flavor to remember?
@@ -602,7 +623,7 @@ marzi (Panic Attack 1): What do I do??
 	audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3"
 	(Marzi grabs her phone from the nightstand, squinting against the harsh glare of the screen.)
 	marzi (Reeling): (Maybe dad looked at an old statement. Maybe some of the graduation money is still there.)
-	marzi (Reeling): (Just one or two hundred. Just enough so I'm not completely at zero.)
+	marzi: (Just one or two hundred. Just enough so I'm not completely at zero.)
 	(She opens the banking app, her thumb hovering over the screen as the little loading circle spins.)
 	(The glowing logo pulses, each second dragging out into an eternity.)
 	(The dashboard finally refreshes, the numbers snapping into place.)
@@ -610,24 +631,24 @@ marzi (Panic Attack 1): What do I do??
 	(Available Balance\: -300G)
 	(And right beneath it, a fresh line item in stark, glaring red\: OVERDRAFT FEE -35G)
 	marzi (Bank Account): No. No, no, no.
-	marzi (Bank Account): (They hit me with a fee. I don't even have zero. I have less than zero.)
+	marzi: (They hit me with a fee. I don't even have zero. I have less than zero.)
 	(She aggressively swipes down to refresh the page again, her hands shaking so badly she almost drops the device.)
 	(The red numbers refuse to budge.)
 	(She drops the phone onto the quilt like it burned her, the screen still glowing with her massive mistake.)
 	(A sudden, freezing rush of adrenaline floods her veins, making her fingertips go entirely numb.)
 	(Her throat tightens up, the air in the cramped attic suddenly feeling impossibly thick and useless.)
-	marzi (Bank Account): (I spent it all. I spent money I didn't even actually have on clothes I can't even wear to work.)
-	marzi (Bank Account): (Why did I buy all those stupid dresses? I didn't need any of that stuff. I was just stressed and wanted to feel better.)
-	marzi (Bank Account): (And now it's gone. All of it. For nothing.)
+	marzi: (I spent it all. I spent money I didn't even actually have on clothes I can't even wear to work.)
+	marzi: (Why did I buy all those stupid dresses? I didn't need any of that stuff. I was just stressed and wanted to feel better.)
+	marzi: (And now it's gone. All of it. For nothing.)
 	(She pulls her knees tight against her chest, wrapping her arms around her legs so hard her joints ache.)
 	(Every frantic pulse of her heart thuds against her eardrums, deafening in the quiet room.)
-	marzi (Bank Account): (If my parents find out I overdrew my account before I even moved out, they're going to completely lose it.)
-	marzi (Bank Account): (Dad is going to do that horrible, quiet sigh, and Mom is going to scream about how I can never do anything right.)
-	marzi (Bank Account): (They’ll tell me I'm totally irresponsible and not ready for the real world. And they'll be right.)
+	marzi: (If my parents find out I overdrew my account before I even moved out, they're going to completely lose it.)
+	marzi: (Dad is going to do that horrible, quiet sigh, and Mom is going to scream about how I can never do anything right.)
+	marzi: (They’ll tell me I'm totally irresponsible and not ready for the real world. And they'll be right.)
 	(A sharp wave of nausea rolls through her stomach, twisting it into tight knots.)
-	marzi (Bank Account): (The first month's rent at the new place is covered, but what about month two?)
-	marzi (Bank Account): (I have to pay the bank back, somehow buy groceries, and make rent starting from negative three hundred and thirty-five gold?)
-	marzi (Bank Account): (I'm going to be evicted. I haven't even moved in and I'm already going to be homeless.)
+	marzi: (The first month's rent at the new place is covered, but what about month two?)
+	marzi: (I have to pay the bank back, somehow buy groceries, and make rent starting from negative three hundred and thirty-five gold?)
+	marzi: (I'm going to be evicted. I haven't even moved in and I'm already going to be homeless.)
 	(The slanted ceiling of the attic seems to press downward, trapping her in the dark.)
 	(She squeezes her eyes shut, but the glowing red numbers are burned into the back of her eyelids.)
 	(There is no escape from the physical weight crushing her chest, no rational thought that can pierce through the deafening rush of terror.)

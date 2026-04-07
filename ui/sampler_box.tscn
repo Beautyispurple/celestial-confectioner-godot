@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://celestial_sampler_box"]
+[gd_scene load_steps=3 format=3 uid="uid://celestial_sampler_box"]
 
 [ext_resource type="Script" path="res://ui/sampler_box.gd" id="1_samp"]
+[ext_resource type="PackedScene" path="res://ui/water_splash_overlay.tscn" id="2_ws"]
 
 [node name="SamplerBox" type="CanvasLayer"]
 layer = 65
@@ -107,3 +108,11 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 custom_minimum_size = Vector2(400, 380)
+
+[node name="ColdSheenSlot" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+custom_minimum_size = Vector2(400, 320)
+
+[node name="WaterSplashOverlay" parent="." instance=ExtResource("2_ws")]

@@ -44,6 +44,7 @@ func _ready() -> void:
 
 
 func _deferred_setup() -> void:
+	_merge_missing_dialogic_variables_from_project_defaults()
 	if not Dialogic.VAR.variable_changed.is_connected(_on_variable_changed_clamped_stats):
 		Dialogic.VAR.variable_changed.connect(_on_variable_changed_clamped_stats)
 	if not Dialogic.VAR.variable_was_set.is_connected(_on_variable_was_set):
@@ -74,6 +75,25 @@ func _deferred_setup() -> void:
 	_social_battery_cache = get_social_battery()
 	_panic_shield_cache = get_panic_shield()
 	_apply_vn_ui_visibility()
+	ensure_sampler_unlock_migrations()
+	refresh_sampler_slots()
+
+
+## If a variable exists in Project Settings → dialogic → variables but not in runtime state, sets fail silently in timelines.
+func _merge_missing_dialogic_variables_from_project_defaults() -> void:
+	var defs: Dictionary = ProjectSettings.get_setting("dialogic/variables", {}) as Dictionary
+	if defs.is_empty():
+		return
+	if not Dialogic.current_state_info.has("variables"):
+		Dialogic.current_state_info["variables"] = {}
+	var vars: Dictionary = Dialogic.current_state_info["variables"] as Dictionary
+	for k in defs.keys():
+		if not vars.has(k):
+			var v: Variant = defs[k]
+			if v is Dictionary:
+				vars[k] = (v as Dictionary).duplicate(true)
+			else:
+				vars[k] = v
 
 
 func set_vn_ui_visible(v: bool) -> void:
@@ -108,6 +128,14 @@ func is_sampler_blocking_vn() -> bool:
 func refresh_sampler_slots() -> void:
 	if _sampler_layer != null and _sampler_layer.has_method("refresh_slot_visibility"):
 		_sampler_layer.refresh_slot_visibility()
+
+
+## Saves from before Cold Sheen shipped may have Breath Tempering but not this flag; intro is skipped on load.
+func ensure_sampler_unlock_migrations() -> void:
+	var bt: bool = int(float(str(Dialogic.VAR.get_variable("breath_tempering_unlocked", 0)))) != 0
+	var cs: bool = int(float(str(Dialogic.VAR.get_variable("cold_sheen_unlocked", 0)))) != 0
+	if bt and not cs:
+		Dialogic.VAR.set_variable("cold_sheen_unlocked", 1)
 
 
 func get_panic_points() -> int:
@@ -190,8 +218,24 @@ func mark_crisis_coping_used() -> void:
 	crisis_coping_resolved.emit()
 
 
+## Clears crisis advance gating (same as Breath Tempering success). Cold Sheen calls this only when
+## panic was below crisis before the skill (see apply_cold_sheen_effect): in crisis it does not
+## invoke this, so it does not mirror Temper’s explicit coping clear—though dropping Heat below 10
+## may still clear gating via normal panic variable handling.
 func notify_sampler_coping_completed() -> void:
 	mark_crisis_coping_used()
+
+
+## Cold finish: stronger when Heat (panic) is below max; at crisis (10) only a small dip (−1).
+## Returns true if the crisis branch ran (for UI copy). Non-crisis: −3 Heat and notify (Temper-like clear).
+func apply_cold_sheen_effect() -> bool:
+	var p: int = get_panic_points()
+	if p >= PANIC_MAX:
+		apply_direct_panic_delta(-1)
+		return true
+	apply_direct_panic_delta(-3)
+	notify_sampler_coping_completed()
+	return false
 
 
 static func relationship_display_name(var_name: String) -> String:

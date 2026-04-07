@@ -6,6 +6,7 @@ const DEBUG_SAMPLER_UNLOCK_VARS: Array[String] = [
 	"breath_tempering_unlocked",
 	"breath_aeration_unlocked",
 	"sensory_sifting_unlocked",
+	"cold_sheen_unlocked",
 ]
 
 var _debug_panic_cycle_i: int = 0
