@@ -42,6 +42,8 @@ const _CHEERS: Array[String] = [
 var _step: int = 0
 var _last_cheer_i: int = -1
 var _running: bool = false
+var _submission_busy: bool = false
+var _sampler_back_prev_focus: int = -1
 
 
 func _ready() -> void:
@@ -51,6 +53,12 @@ func _ready() -> void:
 	_header.text = "Sensory Sifting"
 	_instruction.text = _instruction_for_step(0)
 	_input.text_submitted.connect(_on_text_submitted)
+	_configure_basin_scroll_focus()
+
+
+func _configure_basin_scroll_focus() -> void:
+	_basin_scroll.get_v_scroll_bar().focus_mode = Control.FOCUS_NONE
+	_basin_scroll.get_h_scroll_bar().focus_mode = Control.FOCUS_NONE
 
 
 func run_sifting() -> void:
@@ -59,11 +67,14 @@ func run_sifting() -> void:
 	visible = true
 	_anim_layer.visible = true
 	await get_tree().process_frame
+	_mute_sampler_back_focus()
 	_input.grab_focus()
 	await finished
+	_restore_sampler_back_focus()
 
 
 func _reset_state() -> void:
+	_submission_busy = false
 	_step = 0
 	_last_cheer_i = -1
 	for c in _basin.get_children():
@@ -88,6 +99,8 @@ func _close_reset() -> void:
 	if not _running:
 		return
 	_running = false
+	_submission_busy = false
+	_restore_sampler_back_focus()
 	visible = false
 	finished.emit()
 
@@ -125,11 +138,13 @@ func _instruction_for_step(s: int) -> String:
 
 
 func _on_text_submitted(t: String) -> void:
-	if not _running:
+	if not _running or _submission_busy:
 		return
 	var trimmed: String = t.strip_edges()
 	if trimmed.is_empty():
+		_input.call_deferred("grab_focus")
 		return
+	_submission_busy = true
 	var sense: String = _sense_for_step(_step)
 	var line: String = "I notice that I %s %s" % [sense, trimmed]
 	_flash_cheer()
@@ -138,12 +153,42 @@ func _on_text_submitted(t: String) -> void:
 	_step += 1
 	if _step >= TOTAL_STEPS:
 		await _complete_sifting()
+		_submission_busy = false
 		return
 	_input.clear()
 	_input.placeholder_text = _placeholder_for_step(_step)
 	_instruction.text = _instruction_for_step(_step)
 	await get_tree().process_frame
-	_scroll_basin_bottom()
+	await _scroll_basin_bottom()
+	await get_tree().process_frame
+	_submission_busy = false
+	await _refocus_line_edit_after_step()
+
+
+func _mute_sampler_back_focus() -> void:
+	var back: Control = get_node_or_null("../../BackButton") as Control
+	if back == null:
+		return
+	_sampler_back_prev_focus = back.focus_mode
+	back.focus_mode = Control.FOCUS_NONE
+
+
+func _restore_sampler_back_focus() -> void:
+	if _sampler_back_prev_focus < 0:
+		return
+	var back: Control = get_node_or_null("../../BackButton") as Control
+	if back != null:
+		back.focus_mode = _sampler_back_prev_focus
+	_sampler_back_prev_focus = -1
+
+
+func _refocus_line_edit_after_step() -> void:
+	if not _running:
+		return
+	_input.call_deferred("grab_focus")
+	await get_tree().process_frame
+	if get_viewport().gui_get_focus_owner() != _input:
+		_input.grab_focus()
 
 
 func _pick_cheer() -> String:
@@ -174,6 +219,8 @@ func _flash_cheer() -> void:
 
 func _animate_line_drop(text: String) -> void:
 	var fly := Label.new()
+	fly.focus_mode = Control.FOCUS_NONE
+	fly.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	fly.text = text
 	fly.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	fly.custom_minimum_size.x = _basin_scroll.size.x - 24.0
@@ -191,7 +238,10 @@ func _animate_line_drop(text: String) -> void:
 
 func _add_basin_line(text: String) -> void:
 	var row := HBoxContainer.new()
+	row.focus_mode = Control.FOCUS_NONE
 	var lbl := Label.new()
+	lbl.focus_mode = Control.FOCUS_NONE
+	lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	lbl.text = text
 	lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -212,10 +262,13 @@ func _scroll_basin_bottom() -> void:
 
 
 func _complete_sifting() -> void:
+	_restore_sampler_back_focus()
 	_input.release_focus()
 	CelestialVNState.set_panic_points_direct(0)
 	CelestialVNState.set_panic_shield_direct(2)
 	var big := Label.new()
+	big.focus_mode = Control.FOCUS_NONE
+	big.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	big.text = "Sifted!"
 	big.add_theme_font_size_override("font_size", 64)
 	big.add_theme_color_override("font_color", Color(1, 0.92, 0.55, 1.0))

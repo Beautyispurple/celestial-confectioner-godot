@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bm3fk3yw00e0b" path="res://main_menu.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://cl58k620wjxk6" path="res://ui_elements/CC_MAIN_MENUResized.png" id="2_7vrkn"]
 [ext_resource type="AudioStream" uid="uid://cpwrl856ln0qg" path="res://sounds_music/opening.mp3" id="3_fu7sn"]
-[ext_resource type="PackedScene" path="res://ui/save_slots_browser.tscn" id="4_slots"]
+[ext_resource type="PackedScene" uid="uid://2k5rftvl2txp" path="res://ui/save_slots_browser.tscn" id="4_slots"]
 
 [node name="MainMenu" type="Control" unique_id=3100339]
 layout_mode = 3
@@ -43,7 +43,7 @@ offset_top = 245.0
 offset_right = 440.0
 offset_bottom = 345.0
 
-[node name="LoadGameButton" type="Button" parent="."]
+[node name="LoadGameButton" type="Button" parent="." unique_id=1825291933]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 80.0
@@ -64,7 +64,8 @@ text = "Quit"
 stream = ExtResource("3_fu7sn")
 autoplay = true
 
-[node name="SaveSlotsBrowser" parent="." instance=ExtResource("4_slots")]
+[node name="SaveSlotsBrowser" parent="." unique_id=1395962582 instance=ExtResource("4_slots")]
+layout_mode = 1
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="LoadGameButton" to="." method="_on_load_game_button_pressed"]
