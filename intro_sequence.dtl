@@ -112,13 +112,14 @@ marzi (Casual Cowlick): Any confectioner who knows their salt from their sugar k
 marzi (Casual Concerned): ...
 chai (Exasperated): Well you might not have been searching the job boards...
 chai (Relaxed): ...but I have.
-chai (Relaxed): There's a new listing for a job opening.
+chai (Relaxed): There's a rare listing on the Starlight City boards—a confectionery opening at The Gilded Macaron. For someone with your degree, that's the kind of shot that might only come around once.
 marzi (Casual Amazed): Oh wow! That would be my dream job!
 marzi (Casual Worried): B...But what if my portfolio isn't good enough?
 marzi (Casual Wingding): What if they don't like me??
 marzi (Casual Orz): I'll be living in a tent in the woods!!!
 marzi (Casual Orz): ...
 marzi (Casual Tears): I DON'T EVEN OWN A TENT!
+do CelestialVNState.apply_stress_panic_delta(1)
 chai (Understanding): Look at me please Marzi.
 chai (Understanding): Let's do three deep breaths together, okay?
 set {breath_tempering_unlocked} = "1"
@@ -386,6 +387,7 @@ rosy (Idle): You have to hold this job down to pay the monthly rent.
 rosy (Idle): No impulsive quitting...
 rosy (Idle): No giving up because it's hard or you're having trouble with a coworker...
 rosy (Idle): No blowing your paycheck on imported candy.
+do CelestialVNState.apply_stress_panic_delta(1)
 marzi (Casual Sweat): (Marzi swallows hard, the crushing weight of Beatrix's cold stare flashing in her mind.)
 marzi (Casual Sweat): Right.
 marzi (Casual Unsure): Absolutely...
@@ -411,6 +413,7 @@ marzi (Reeling): ...
 marzi (Reeling): What if I let myself down...?
 marzi (Reeling): There's so much riding on me doing well...
 marzi (Reeling): So much pressure...
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Reeling): I...I...
 marzi (Panic Attack 1): M...My chest is feeling tight...
 marzi (Panic Attack 1): What do I do??
@@ -577,10 +580,12 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Breathing): Four is touch. Reach out your hand. What are four things with a distinct texture that you can physically feel?
 	[text_input text="Type four things you can touch:" var="thing_2"]
 	marzi (Breathing): {thing_2}. Focus on how solid those are.
-	marzi: Three is sound. Listen closely, past the quiet. What are three sounds you can hear happening right now?
+	audio music - [fade="1.5"]
+	marzi (Breathing): Three is sound. Listen closely, past the quiet. What are three sounds you can hear happening right now?
 	[text_input text="Type three sounds you can hear:" var="thing_3"]
+	audio music "res://sounds_music/The_Weight_of_Stillness.mp3" [fade="1.5"]
 	marzi (Calming): {thing_3}. Just normal, everyday sounds. The world is still turning.
-	marzi: Two is smell. This one is always tricky. Breathe in. What are two scents you can smell, or really comforting ones you can imagine?
+	marzi (Calming): Two is smell. This one is always tricky. Breathe in. What are two scents you can smell, or really comforting ones you can imagine?
 	[text_input text="Type two scents you can smell or imagine:" var="thing_4"]
 	marzi (Calming): {thing_4}. I can almost smell it too. That helps.
 	marzi (Breathing): One is taste. What is a flavor you can taste right now, or your absolute favorite flavor to remember?
@@ -597,7 +602,7 @@ marzi (Panic Attack 1): What do I do??
 	audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3"
 	(Marzi grabs her phone from the nightstand, squinting against the harsh glare of the screen.)
 	marzi (Reeling): (Maybe dad looked at an old statement. Maybe some of the graduation money is still there.)
-	marzi: (Just one or two hundred. Just enough so I'm not completely at zero.)
+	marzi (Reeling): (Just one or two hundred. Just enough so I'm not completely at zero.)
 	(She opens the banking app, her thumb hovering over the screen as the little loading circle spins.)
 	(The glowing logo pulses, each second dragging out into an eternity.)
 	(The dashboard finally refreshes, the numbers snapping into place.)
@@ -605,24 +610,24 @@ marzi (Panic Attack 1): What do I do??
 	(Available Balance\: -300G)
 	(And right beneath it, a fresh line item in stark, glaring red\: OVERDRAFT FEE -35G)
 	marzi (Bank Account): No. No, no, no.
-	marzi: (They hit me with a fee. I don't even have zero. I have less than zero.)
+	marzi (Bank Account): (They hit me with a fee. I don't even have zero. I have less than zero.)
 	(She aggressively swipes down to refresh the page again, her hands shaking so badly she almost drops the device.)
 	(The red numbers refuse to budge.)
 	(She drops the phone onto the quilt like it burned her, the screen still glowing with her massive mistake.)
 	(A sudden, freezing rush of adrenaline floods her veins, making her fingertips go entirely numb.)
 	(Her throat tightens up, the air in the cramped attic suddenly feeling impossibly thick and useless.)
-	marzi: (I spent it all. I spent money I didn't even actually have on clothes I can't even wear to work.)
-	marzi: (Why did I buy all those stupid dresses? I didn't need any of that stuff. I was just stressed and wanted to feel better.)
-	marzi: (And now it's gone. All of it. For nothing.)
+	marzi (Bank Account): (I spent it all. I spent money I didn't even actually have on clothes I can't even wear to work.)
+	marzi (Bank Account): (Why did I buy all those stupid dresses? I didn't need any of that stuff. I was just stressed and wanted to feel better.)
+	marzi (Bank Account): (And now it's gone. All of it. For nothing.)
 	(She pulls her knees tight against her chest, wrapping her arms around her legs so hard her joints ache.)
 	(Every frantic pulse of her heart thuds against her eardrums, deafening in the quiet room.)
-	marzi: (If my parents find out I overdrew my account before I even moved out, they're going to completely lose it.)
-	marzi: (Dad is going to do that horrible, quiet sigh, and Mom is going to scream about how I can never do anything right.)
-	marzi: (They’ll tell me I'm totally irresponsible and not ready for the real world. And they'll be right.)
+	marzi (Bank Account): (If my parents find out I overdrew my account before I even moved out, they're going to completely lose it.)
+	marzi (Bank Account): (Dad is going to do that horrible, quiet sigh, and Mom is going to scream about how I can never do anything right.)
+	marzi (Bank Account): (They’ll tell me I'm totally irresponsible and not ready for the real world. And they'll be right.)
 	(A sharp wave of nausea rolls through her stomach, twisting it into tight knots.)
-	marzi: (The first month's rent at the new place is covered, but what about month two?)
-	marzi: (I have to pay the bank back, somehow buy groceries, and make rent starting from negative three hundred and thirty-five gold?)
-	marzi: (I'm going to be evicted. I haven't even moved in and I'm already going to be homeless.)
+	marzi (Bank Account): (The first month's rent at the new place is covered, but what about month two?)
+	marzi (Bank Account): (I have to pay the bank back, somehow buy groceries, and make rent starting from negative three hundred and thirty-five gold?)
+	marzi (Bank Account): (I'm going to be evicted. I haven't even moved in and I'm already going to be homeless.)
 	(The slanted ceiling of the attic seems to press downward, trapping her in the dark.)
 	(She squeezes her eyes shut, but the glowing red numbers are burned into the back of her eyelids.)
 	(There is no escape from the physical weight crushing her chest, no rational thought that can pierce through the deafening rush of terror.)

@@ -3,6 +3,7 @@ extends CanvasLayer
 
 const BOX_SCENE := preload("res://ui/box_breathing_overlay.tscn")
 const SIFT_SCENE := preload("res://ui/sensory_sifting_panel.tscn")
+const CANDY_SLOT_SCENE := preload("res://ui/sampler_candy_skill_slot.tscn")
 
 const _PANEL_OPEN_H := 720.0
 const _GRID_COLS := 5
@@ -70,10 +71,10 @@ func _build_slot_grid() -> void:
 		c.queue_free()
 	_slot_buttons.clear()
 	for i in _GRID_SLOTS:
-		var b := Button.new()
-		b.custom_minimum_size = Vector2(96, 72)
+		var b: SamplerCandySkillSlot = CANDY_SLOT_SCENE.instantiate() as SamplerCandySkillSlot
+		b.custom_minimum_size = Vector2(100, 74)
 		b.disabled = true
-		b.text = "· · ·"
+		b.set_slot_text("· · ·")
 		b.pressed.connect(_on_skill_slot_pressed.bind(i))
 		_grid.add_child(b)
 		_slot_buttons.append(b)
@@ -84,7 +85,9 @@ func _build_slot_grid() -> void:
 
 func _set_slot_label(idx: int, t: String) -> void:
 	if idx >= 0 and idx < _slot_buttons.size():
-		_slot_buttons[idx].text = t
+		var slot: SamplerCandySkillSlot = _slot_buttons[idx] as SamplerCandySkillSlot
+		if slot:
+			slot.set_slot_text(t)
 
 
 func _configure_root_sizing() -> void:
@@ -265,16 +268,28 @@ func _apply_all_slot_visibility() -> void:
 	if _slot_buttons.size() > 0:
 		_slot_buttons[0].visible = temper_u
 		_slot_buttons[0].disabled = not temper_u
+		_refresh_slot_wrapper(0, false, temper_u and not _slot_buttons[0].disabled)
 	if _slot_buttons.size() > 1:
 		_slot_buttons[1].visible = aer_u
 		var can_aerate: bool = aer_u and CelestialVNState.get_panic_points() >= 2
 		_slot_buttons[1].disabled = not can_aerate
+		_refresh_slot_wrapper(1, false, aer_u and can_aerate)
 	if _slot_buttons.size() > 2:
 		_slot_buttons[2].visible = sift_u
 		_slot_buttons[2].disabled = not sift_u
+		_refresh_slot_wrapper(2, false, sift_u and not _slot_buttons[2].disabled)
 	for i in range(3, _slot_buttons.size()):
 		_slot_buttons[i].visible = true
 		_slot_buttons[i].disabled = true
+		_refresh_slot_wrapper(i, true, false)
+
+
+func _refresh_slot_wrapper(idx: int, placeholder: bool, interactable: bool) -> void:
+	if idx < 0 or idx >= _slot_buttons.size():
+		return
+	var slot: SamplerCandySkillSlot = _slot_buttons[idx] as SamplerCandySkillSlot
+	if slot:
+		slot.set_visual_state(placeholder, interactable)
 
 
 func _make_handle_stylebox(bg: Color, border: Color, corner_r: int, pad_h: int, pad_v: int) -> StyleBoxFlat:

@@ -55,6 +55,7 @@ elif {tired} == "1":
 	(On the bus, her head rests against the freezing, vibrating glass of the window.)
 	(Her eyelids droop, heavy as lead. She keeps nodding off, only to jerk awake in a sheer panic, terrified she missed the Starlight City stop.)
 	(Did I miss it?! No, no, okay, next stop.)
+	do CelestialVNState.apply_stress_panic_delta(1)
 	(She practically falls out of the bus doors when they finally open, breaking into a desperate sprint down the block.)
 	(Her lungs burn as the grand, imposing facade of The Gilded Macaron comes into view.)
 	[background arg="res://backgrounds/BACKGROUND_gm_outside_4am.png" fade="3.0" wait="true"]
@@ -113,7 +114,7 @@ leave --All--
 (Marzi spins around to look at herself in the full-length mirror.)
 join marzi (Cleaner Love) left
 marzi (Cleaner Celebrate): (Oh my gosh, I love it!)
-marzi: (The little feather duster hairpins and spray bottle accessories are so incredibly cute.)
+marzi (Cleaner Celebrate): (The little feather duster hairpins and spray bottle accessories are so incredibly cute.)
 marzi (Cleaner Love): (I might just be scrubbing floors today, but I look like a true confectionery professional!)
 (She adjusts her apron one last time and pushes the dressing room door open to go find Huck.)
 leave marzi
@@ -146,6 +147,7 @@ leave marzi
 (She stops short as the hallway dead-ends at a massive double door.)
 (She blinks, shaking off her daydream, and reads the gleaming plaque mounted above it.)
 (It reads "Logistics and Infrastructure".)
+do CelestialVNState.apply_stress_panic_delta(1)
 join marzi (Cleaner Unsure) left
 marzi (Cleaner Unsure): Wait, that's not right.
 (She turns around, realizing she just walked past every single door in the corridor.)
@@ -182,6 +184,7 @@ marzi (Cleaner Surprised): No way!
 marzi (Cleaner Pleased): I haven't seen you since middle school!
 marzi (Cleaner Unsure): And um, yeah...
 marzi (Cleaner Wingdings): I got detention for a week for that...
+do CelestialVNState.apply_stress_panic_delta(1)
 marzi (Cleaner Pleased): You actually work here?
 marzi (Cleaner Pleased): In the legendary Gilded Macaron?
 marzi (Cleaner Thinking): I thought you moved away!
@@ -226,6 +229,7 @@ huck (Caring): The dirt and grime glows bright neon green when you turn off the 
 huck (Plucky): And trust me, she checks.
 huck (Idle): Every. Day.
 marzi (Cleaner Fearful): (Marzi gulps, pressure building on her chest.)
+do CelestialVNState.apply_stress_panic_delta(1)
 huck (Happy): And here is your secret weapon.
 (He points toward the mop)
 marzi (Cleaner Unsure): It just looks like a regular mop to me.
@@ -286,6 +290,7 @@ taffy (Phone): I swear, my bangs are drooping by the second.
 taffy (Phone): If my followers on MyCake see me break a sweat, I will literally delete my account.
 audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3"
 marzi (Cleaner Fearful): (Wait—watch out!)
+do CelestialVNState.apply_stress_panic_delta(1)
 (The purple haired girl isn't looking up from her screen at all.)
 (She marches blindly past the brass cash register, completely engrossed in typing a response to a comment.)
 marzi (Cleaner Fearful): Excuse me, the floor is wet—!
@@ -298,6 +303,7 @@ leave --All--
 [background arg="res://backgrounds/SCENE_trip_1.png" fade="5.0" wait="true"]
 [wait time="3.0"]
 (Hundreds of glossy, perfectly spherical candies bounce, roll, and scatter across the soapy floor.)
+do CelestialVNState.apply_stress_panic_delta(2)
 leave --All--
 [background arg="res://backgrounds/SCENE_trip_2.png" fade="5.0" wait="true"]
 [wait time="3.0"]
@@ -344,14 +350,14 @@ leave --All--
 (She turns her sharp gaze slowly toward Taffy.)
 join beatrix (Unimpressed) left
 join taffy (Angry) rightmost
-beatrix (Unimpressed): Tiffany VanderMelt.
+beatrix (Unimpressed): Tiffany Vandermelt.
 beatrix (Exasperated): Do I pay you to curate your MyCake profile, or do I pay you to transport delicate inventory with your eyes facing forward?
 taffy (Surprise): I—what?
 taffy (Angry): But she tripped me!
 beatrix (Dour): She was distracted securing the hygiene of the sales floor.
 beatrix (Unimpressed): You were distracted by your phone.
 beatrix (Dour): I saw the entire incident from my office.
-	beatrix (Dour): I do not tolerate excuses, nor do I tolerate my lead decorator destroying three hundred gold coins worth of inventory because she was too busy breaking confectionery phone policy.
+	beatrix (Dour): I do not tolerate excuses, nor do I tolerate my lead decorator ruining six hundred gold in dragee ingredients because she was too busy breaking confectionery phone policy.
 	do CelestialVNState.apply_stress_panic_delta(1)
 	beatrix (Exasperated): Your lack of awareness is astounding.
 beatrix (Dour): Just walk away, Ms. Vandermelt, and go get cleaned up.
@@ -365,10 +371,10 @@ marzi (Cleaner Apology): Thank you, Madame Von Sweets.
 marzi (Cleaner Unsure): I really thought you were going to fire me right then and there.
 beatrix (Dour): (Beatrix turns her attention back to Marzi, her voice smooth and devoid of any warmth.)
 join beatrix (Dour) rightmost
-beatrix (Dour): Do not mistake my lack of patience for Miss Vander-Melt's poor choices as sympathy for you, Miss Glace.
+beatrix (Dour): Do not mistake my lack of patience for Ms. Vandermelt's poor choices as sympathy for you, Miss Glace.
 update marzi (Cleaner Blamed)
 beatrix (Dour): The dragees are ruined.
-	beatrix (Dour Lookdown): Half the cost of the ingredients—three hundred gold—will still be deducted from your first paycheck.
+	beatrix (Dour Lookdown): Those ingredients ran six hundred gold total; half of that—three hundred gold—will be docked from your first paycheck.
 	do CelestialVNState.apply_stress_panic_delta(1)
 	update marzi (Cleaner Fearful)
 beatrix (Dour): An efficient and safe worker must anticipate the movements of those around them.
@@ -382,7 +388,7 @@ leave --All--
 join marzi (Cleaner Defeated) left
 marzi (Cleaner Defeated): First day.
 marzi (Cleaner Defeated): First hour.
-marzi (Cleaner Defeated): And I'm already three hundred gold in debt!
+marzi (Cleaner Defeated): And I'm already down three hundred gold from my first paycheck—half the six hundred in ingredients those dragees cost!
 marzi (Cleaner Tearful): I haven't even earned a single coin yet.
 marzi (Cleaner Tearful): My parents are going to kill me...
 marzi (Cleaner Tearful): I'm so stupid I can't even mop the floor right!
@@ -746,6 +752,7 @@ al (Fatherly): Like I promised yesterday, I've got the security deposit and the 
 al (Pleased): I'm really proud of you for making it through your first day and I want you to make the most of it.
 al (Fatherly): Now come on, go take a quick shower and get ready.
 al (Fatherly): The landlord is waiting to show us the place and hand over the keys!
+do CelestialVNState.apply_stress_panic_delta(1)
 
 (Marzi stares at him for a second, her mind struggling to process the rapid shift in events.)
 marzi (Casual Unsure): Oh, wow...okay then!
@@ -862,10 +869,12 @@ join al (Fatherly) rightmost
 al (Fatherly): I can't stress this enough, Marzi.
 al (Fatherly): You need to get out there and actually talk to the neighbors.
 al (Fatherly): A city is only as good as the hands you shake, so don't just hide in your kitchen.
+do CelestialVNState.apply_stress_panic_delta(1)
 leave al
 join chai (Understanding) rightmost
 (Placing a gentle hand on Marzi’s shoulder, his voice sounding like a quiet, warm room).
 chai (Understanding): You’ve been vibrating with stress all afternoon, Marzi.
+do CelestialVNState.apply_stress_panic_delta(1)
 chai (Understanding): I know Dad wants you to get out there and do everything all at once but it's okay to slow down for a little while.
 chai (Understanding): Remember that every "hello" is a little bit of power leaving your social battery.
 (He picks Marzi's virtual pet up off of the desk and puts a new battery into the plastic casing.)

@@ -49,6 +49,7 @@ var _sampler_back_prev_focus: int = -1
 func _ready() -> void:
 	visible = false
 	_cheer.modulate.a = 0.0
+	_input.keep_editing_on_text_submit = true
 	_input.placeholder_text = _placeholder_for_step(0)
 	_header.text = "Sensory Sifting"
 	_instruction.text = _instruction_for_step(0)
@@ -142,6 +143,7 @@ func _on_text_submitted(t: String) -> void:
 		return
 	var trimmed: String = t.strip_edges()
 	if trimmed.is_empty():
+		_input.grab_focus()
 		_input.call_deferred("grab_focus")
 		return
 	_submission_busy = true
@@ -185,10 +187,17 @@ func _restore_sampler_back_focus() -> void:
 func _refocus_line_edit_after_step() -> void:
 	if not _running:
 		return
+	_input.grab_focus()
+	await get_tree().process_frame
 	_input.call_deferred("grab_focus")
 	await get_tree().process_frame
-	if get_viewport().gui_get_focus_owner() != _input:
+	var owner: Control = get_viewport().gui_get_focus_owner() as Control
+	if owner != _input:
 		_input.grab_focus()
+		await get_tree().process_frame
+		owner = get_viewport().gui_get_focus_owner() as Control
+		if owner != _input:
+			_input.call_deferred("grab_focus")
 
 
 func _pick_cheer() -> String:
