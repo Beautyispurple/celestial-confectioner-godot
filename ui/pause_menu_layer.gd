@@ -24,7 +24,7 @@ func _ready() -> void:
 	_main_menu_button.pressed.connect(_on_main_menu_pressed)
 	_exit_button.pressed.connect(_on_exit_pressed)
 	_slots.slot_picked_for_load.connect(_on_pause_load_slot)
-	_slots.slot_picked_for_save.connect(_on_pause_save_slot)
+	_slots.slot_save_confirmed.connect(_on_pause_save_confirmed)
 	_slots.closed.connect(_on_slots_closed)
 	_options.closed.connect(_on_options_closed)
 	_quit_confirm.confirmed.connect(_on_quit_confirmed)
@@ -97,8 +97,8 @@ func _on_quit_confirmed() -> void:
 	get_tree().quit()
 
 
-func _on_pause_save_slot(slot_index: int) -> void:
-	var err: Error = GameSaveManager.save_to_slot(slot_index)
+func _on_pause_save_confirmed(slot_index: int, display_name: String) -> void:
+	var err: Error = GameSaveManager.save_to_slot(slot_index, display_name)
 	if err != OK:
 		push_error("Save failed: %s" % error_string(err))
 	_slots.hide_browser()

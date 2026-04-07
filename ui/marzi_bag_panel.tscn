@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqm8marzibag1"]
+
+[ext_resource type="Script" path="res://ui/marzi_bag_panel.gd" id="1_bag"]
+[ext_resource type="Texture2D" path="res://ui/icons/bag_backpack_icon.svg" id="2_icon"]
+
+[node name="MarziBagPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_bag")
+
+[node name="BagAnchor" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 0
+
+[node name="BagButton" type="TextureButton" parent="BagAnchor"]
+layout_mode = 0
+custom_minimum_size = Vector2(56, 56)
+mouse_filter = 0
+texture_normal = ExtResource("2_icon")
+ignore_texture_size = true
+
+[node name="InventoryModal" type="CanvasLayer" parent="."]
+layer = 80
+visible = false
+
+[node name="DimRect" type="ColorRect" parent="InventoryModal"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+color = Color(0.02, 0.02, 0.06, 0.62)
+
+[node name="Center" type="CenterContainer" parent="InventoryModal"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainPanel" type="PanelContainer" parent="InventoryModal/Center"]
+custom_minimum_size = Vector2(520, 420)
+layout_mode = 2
+mouse_filter = 0
+
+[node name="Margin" type="MarginContainer" parent="InventoryModal/Center/MainPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="InventoryModal/Center/MainPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="InventoryModal/Center/MainPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Marzi's bag"
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="InventoryModal/Center/MainPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ItemGrid" type="GridContainer" parent="InventoryModal/Center/MainPanel/Margin/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 5
+
+[node name="CloseButton" type="Button" parent="InventoryModal/Center/MainPanel/Margin/VBox"]
+layout_mode = 2
+text = "Close"

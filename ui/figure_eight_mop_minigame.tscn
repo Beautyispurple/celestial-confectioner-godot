@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://c8mopfig8inf"]
+
+[ext_resource type="Script" path="res://ui/figure_eight_mop_minigame.gd" id="1_mop"]
+
+[node name="FigureEightMopMinigame" type="CanvasLayer"]
+layer = 85
+script = ExtResource("1_mop")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.06, 0.05, 0.08, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="DrawArea" type="Control" parent="Center"]
+custom_minimum_size = Vector2(720, 400)
+layout_mode = 2
+mouse_filter = 0
+
+[node name="PathLine" type="Line2D" parent="Center/DrawArea"]
+width = 3.0
+default_color = Color(0.55, 0.55, 0.62, 0.9)
+
+[node name="TrailLine" type="Line2D" parent="Center/DrawArea"]
+width = 10.0
+default_color = Color(0.35, 0.55, 0.95, 0.85)
+
+[node name="LabelWork" type="Label" parent="Center/DrawArea"]
+layout_mode = 0
+theme_override_colors/font_color = Color(0.92, 0.86, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 22
+text = "work"
+
+[node name="LabelRest" type="Label" parent="Center/DrawArea"]
+layout_mode = 0
+theme_override_colors/font_color = Color(0.92, 0.86, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 22
+text = "rest"
+
+[node name="LabelPlay" type="Label" parent="Center/DrawArea"]
+layout_mode = 0
+theme_override_colors/font_color = Color(0.92, 0.86, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 22
+text = "play"
+
+[node name="Instructions" type="Label" parent="Center/DrawArea"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = -48.0
+offset_right = 700.0
+offset_bottom = -8.0
+theme_override_colors/font_color = Color(0.95, 0.9, 0.98, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 22
+text = "Instructions"
+horizontal_alignment = 1
+
+[node name="SpotlessLabel" type="Label" parent="Center/DrawArea"]
+visible = false
+layout_mode = 0
+offset_left = 200.0
+offset_top = 160.0
+offset_right = 520.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0.95, 0.98, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.06, 0.1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 44
+text = "Spotless!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InputCatcher" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0

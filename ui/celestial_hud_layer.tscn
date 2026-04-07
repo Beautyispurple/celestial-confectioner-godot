@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://celestial_hud_layer"]
+[gd_scene load_steps=4 format=3 uid="uid://celestial_hud_layer"]
 
 [ext_resource type="Script" path="res://ui/celestial_hud_layer.gd" id="1_hud"]
 [ext_resource type="Script" path="res://ui/burner_hud.gd" id="2_burn"]
+[ext_resource type="PackedScene" uid="uid://bqm8marzibag1" path="res://ui/marzi_bag_panel.tscn" id="3_bag"]
 
 [node name="CelestialHudLayer" type="CanvasLayer"]
 layer = 40
@@ -130,3 +131,6 @@ color = Color(0.9, 0.2, 0.22, 1)
 custom_minimum_size = Vector2(14, 22)
 layout_mode = 2
 color = Color(0.9, 0.2, 0.22, 1)
+
+[node name="MarziBagPanel" parent="." instance=ExtResource("3_bag")]
+layout_mode = 1

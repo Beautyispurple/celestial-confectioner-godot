@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://mswyktna5vcr"]
+[gd_scene load_steps=2 format=3 uid="uid://mswyktna5vcr"]
 
-[node name="GlobalInventory" type="Node" unique_id=1264125714]
-metadata/_custom_type_script = "uid://5hfig5q3x8it"
+[ext_resource type="Script" path="res://global_inventory.gd" id="1_inv"]
+
+[node name="GlobalInventory" type="Node"]
+script = ExtResource("1_inv")

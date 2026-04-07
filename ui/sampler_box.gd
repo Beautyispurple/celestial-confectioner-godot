@@ -320,6 +320,8 @@ func _make_handle_stylebox(bg: Color, border: Color, corner_r: int, pad_h: int, 
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if CelestialVNState.is_blocking_overlay_vn():
+		return
 	if event.is_action_pressed("celestial_sampler_toggle"):
 		toggle_open()
 		get_viewport().set_input_as_handled()

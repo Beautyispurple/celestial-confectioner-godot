@@ -22,7 +22,20 @@ func get_slot_display_line(slot_index: int) -> String:
 		return "Slot %d — Empty" % label
 	var info: Dictionary = Dialogic.Save.get_slot_info(slot_to_name(slot_index))
 	var when: String = str(info.get("saved_at", "Saved"))
+	var dn: String = str(info.get("display_name", "")).strip_edges()
+	if not dn.is_empty():
+		return "Slot %d — %s · %s" % [label, dn, when]
 	return "Slot %d — %s" % [label, when]
+
+
+func get_slot_default_save_name(slot_index: int) -> String:
+	if not has_save_in_slot(slot_index):
+		return "Save %d" % (slot_index + 1)
+	var info: Dictionary = Dialogic.Save.get_slot_info(slot_to_name(slot_index))
+	var dn: String = str(info.get("display_name", "")).strip_edges()
+	if not dn.is_empty():
+		return dn
+	return "Save %d" % (slot_index + 1)
 
 
 func prepare_load_from_main_menu(slot_index: int) -> void:
@@ -35,17 +48,24 @@ func consume_pending_load_slot() -> int:
 	return s
 
 
-func save_to_slot(slot_index: int) -> Error:
+func save_to_slot(slot_index: int, display_name: String = "") -> Error:
 	var sname := slot_to_name(slot_index)
+	var dn := display_name.strip_edges()
+	if dn.is_empty():
+		dn = "Save %d" % (slot_index + 1)
 	var err: Error = Dialogic.Save.save(
 		sname,
 		false,
 		Dialogic.Save.ThumbnailMode.NONE,
-		{"saved_at": Time.get_datetime_string_from_system()}
+		{"saved_at": Time.get_datetime_string_from_system(), "display_name": dn}
 	)
 	if err != OK:
 		return err
 	return Dialogic.Save.save_file(sname, EXTRAS_FILE, _build_extras())
+
+
+func delete_slot(slot_index: int) -> Error:
+	return Dialogic.Save.delete_slot(slot_to_name(slot_index))
 
 
 func load_from_slot(slot_index: int) -> Error:

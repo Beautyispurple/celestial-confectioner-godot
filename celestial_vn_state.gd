@@ -34,6 +34,8 @@ var _toast_runner_active: bool = false
 
 var _vn_ui_visible_desired: bool = false
 var _sampler_blocking_vn: bool = false
+## Refcount: mop minigame, bag panel, etc. Dialogic advance blocked while > 0.
+var _blocking_overlay_refcount: int = 0
 
 @onready var _toast_layer: CanvasLayer = null
 var _hud_layer: CanvasLayer = null
@@ -148,6 +150,18 @@ func is_sampler_blocking_vn() -> bool:
 	return _sampler_blocking_vn
 
 
+func begin_blocking_overlay_vn() -> void:
+	_blocking_overlay_refcount += 1
+
+
+func end_blocking_overlay_vn() -> void:
+	_blocking_overlay_refcount = maxi(0, _blocking_overlay_refcount - 1)
+
+
+func is_blocking_overlay_vn() -> bool:
+	return _blocking_overlay_refcount > 0
+
+
 func refresh_sampler_slots() -> void:
 	if _sampler_layer != null and _sampler_layer.has_method("refresh_slot_visibility"):
 		_sampler_layer.refresh_slot_visibility()
@@ -191,6 +205,12 @@ func apply_stress_panic_delta(delta: int) -> void:
 func apply_direct_panic_delta(delta: int) -> void:
 	var pp: int = get_panic_points()
 	Dialogic.VAR.set_variable("panic_points", clampi(pp + delta, 0, PANIC_MAX))
+
+
+## Direct social battery change (inventory, rewards). Clamped like narrative sets.
+func apply_direct_social_delta(delta: int) -> void:
+	var sb: int = get_social_battery()
+	Dialogic.VAR.set_variable("social_battery", clampi(sb + delta, 0, SOCIAL_MAX))
 
 
 func set_panic_points_direct(value: int) -> void:
@@ -405,6 +425,9 @@ func _run_toast_queue() -> void:
 
 
 func _on_dialogic_action_priority() -> void:
+	if is_blocking_overlay_vn():
+		Dialogic.Inputs.action_was_consumed = true
+		return
 	var vp := get_viewport()
 	if vp == null:
 		return
