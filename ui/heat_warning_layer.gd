@@ -1,22 +1,28 @@
 extends CanvasLayer
 ## Heat guidance above Dialogic textbox: orange tier intermittent, red tier always on.
 
-const ORANGE_MIN_SEC := 5.0
-const ORANGE_MAX_SEC := 9.0
+const ORANGE_GAP_SEC := 3.0
 const ORANGE_SHOW_SEC := 3.2
+const ORANGE_SWAP_SENTENCE_SEC := 1.6
 const GAP_ABOVE_TEXTBOX := 10.0
 const FALLBACK_BOTTOM_OFFSET := 280.0
 
-const MSG_ORANGE := "I need to turn the heat down soon, otherwise I'll melt... do I have something in my sampler box that will help?"
-const MSG_RED := "I need to turn the heat down NOW or I can't function...is there something in my sampler box that will help?"
+const MSG_ORANGE_1 := "I need to turn the heat down soon, otherwise I'll melt."
+const MSG_ORANGE_2 := "Do I have something in my sampler box that will help?"
+const MSG_RED_1 := "I need to turn the heat down NOW or I can't function."
+const MSG_RED_2 := "Is there something in my sampler box that will help?"
 
 @onready var _anchor: Control = $WarningAnchor
 @onready var _strip: CenterContainer = $WarningAnchor/CenterStrip
 @onready var _label: Label = $WarningAnchor/CenterStrip/WarningLabel
 
 var _orange_timer: float = 0.0
-var _orange_next_flip: float = 3.0
+var _orange_next_flip: float = ORANGE_GAP_SEC
 var _orange_showing: bool = false
+var _orange_sentence_timer: float = 0.0
+var _orange_sentence_alt: bool = false
+var _red_sentence_alt: bool = false
+var _red_swap_timer: float = 0.0
 
 
 func _ready() -> void:
@@ -45,20 +51,37 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var tier: int = CelestialVNState.get_panic_tier()
+	if tier == CelestialVNState.PanicTier.CRISIS:
+		_red_swap_timer += delta
+		if _red_swap_timer >= ORANGE_SWAP_SENTENCE_SEC:
+			_red_swap_timer = 0.0
+			_red_sentence_alt = not _red_sentence_alt
+			_label.text = MSG_RED_2 if _red_sentence_alt else MSG_RED_1
+			_show_positioned()
+		return
 	if tier != CelestialVNState.PanicTier.LOCK_RATIONAL:
 		return
 	_orange_timer += delta
 	if _orange_showing:
+		_orange_sentence_timer += delta
+		if _orange_sentence_timer >= ORANGE_SWAP_SENTENCE_SEC:
+			_orange_sentence_timer = 0.0
+			_orange_sentence_alt = not _orange_sentence_alt
+			_label.text = MSG_ORANGE_2 if _orange_sentence_alt else MSG_ORANGE_1
+			_show_positioned()
 		if _orange_timer >= ORANGE_SHOW_SEC:
 			_orange_showing = false
 			_orange_timer = 0.0
-			_orange_next_flip = randf_range(ORANGE_MIN_SEC, ORANGE_MAX_SEC)
+			_orange_next_flip = ORANGE_GAP_SEC
+			_orange_sentence_timer = 0.0
 			_anchor.visible = false
 	else:
 		if _orange_timer >= _orange_next_flip:
 			_orange_showing = true
 			_orange_timer = 0.0
-			_label.text = MSG_ORANGE
+			_orange_sentence_timer = 0.0
+			_orange_sentence_alt = false
+			_label.text = MSG_ORANGE_1
 			_show_positioned()
 
 
@@ -70,9 +93,13 @@ func _apply_tier_state() -> void:
 	var tier: int = CelestialVNState.get_panic_tier()
 	_orange_timer = 0.0
 	_orange_showing = false
-	_orange_next_flip = randf_range(ORANGE_MIN_SEC, ORANGE_MAX_SEC)
+	_orange_next_flip = ORANGE_GAP_SEC
+	_orange_sentence_timer = 0.0
+	_orange_sentence_alt = false
+	_red_swap_timer = 0.0
+	_red_sentence_alt = false
 	if tier == CelestialVNState.PanicTier.CRISIS:
-		_label.text = MSG_RED
+		_label.text = MSG_RED_1
 		_show_positioned()
 	elif tier == CelestialVNState.PanicTier.LOCK_RATIONAL:
 		_anchor.visible = false

@@ -37,6 +37,10 @@ var _sampler_blocking_vn: bool = false
 ## Refcount: mop minigame, bag panel, etc. Dialogic advance blocked while > 0.
 var _blocking_overlay_refcount: int = 0
 
+## Refcount: hide Dialogic chrome + heat warning + bag during dragee / fullscreen minigame prompts.
+var _minigame_modal_refcount: int = 0
+var _minigame_modal_saved: Array[Dictionary] = []
+
 @onready var _toast_layer: CanvasLayer = null
 var _hud_layer: CanvasLayer = null
 var _panic_layer: CanvasLayer = null
@@ -87,6 +91,12 @@ func _deferred_setup() -> void:
 
 
 ## If a variable exists in Project Settings → dialogic → variables but not in runtime state, sets fail silently in timelines.
+## Call after Dialogic.Save.load: saved games may omit newer variable keys; merge restores them so set/get works.
+func resync_dialogic_variables_from_project_defaults() -> void:
+	_merge_missing_dialogic_variables_from_project_defaults()
+	_coerce_numeric_dialogic_vars()
+
+
 func _merge_missing_dialogic_variables_from_project_defaults() -> void:
 	var defs: Dictionary = ProjectSettings.get_setting("dialogic/variables", {}) as Dictionary
 	if defs.is_empty():
@@ -162,6 +172,53 @@ func is_blocking_overlay_vn() -> bool:
 	return _blocking_overlay_refcount > 0
 
 
+func begin_minigame_modal_focus() -> void:
+	_minigame_modal_refcount += 1
+	if _minigame_modal_refcount > 1:
+		return
+	_minigame_modal_saved.clear()
+	if Dialogic.Styles.has_active_layout_node():
+		var layout: Node = Dialogic.Styles.get_layout_node() as Node
+		if layout != null:
+			for node_name in ["VN_ChoiceLayer", "TextboxWithSpeakerPortrait", "TextInputLayer"]:
+				var ctrl: Node = layout.find_child(node_name, true, false)
+				if ctrl is Control:
+					var ct: Control = ctrl as Control
+					_minigame_modal_saved.append({"n": ct, "v": ct.visible})
+					ct.visible = false
+	if _heat_warning_layer != null:
+		_minigame_modal_saved.append({"n": _heat_warning_layer, "v": _heat_warning_layer.visible})
+		_heat_warning_layer.visible = false
+	if _hud_layer != null:
+		var bag: Node = _hud_layer.find_child("MarziBagPanel", true, false)
+		if bag is Control:
+			var bc: Control = bag as Control
+			_minigame_modal_saved.append({"n": bc, "v": bc.visible})
+			bc.visible = false
+
+
+func end_minigame_modal_focus() -> void:
+	_minigame_modal_refcount = maxi(0, _minigame_modal_refcount - 1)
+	if _minigame_modal_refcount > 0:
+		return
+	for item in _minigame_modal_saved:
+		var ct: Control = item.get("n") as Control
+		if is_instance_valid(ct):
+			ct.visible = bool(item.get("v", true))
+	_minigame_modal_saved.clear()
+
+
+## Use for social battery loss so dragee disposal buff (50% for N drains) can apply.
+func apply_social_drain(raw_loss: int) -> void:
+	if raw_loss <= 0:
+		return
+	var dr: Node = get_node_or_null("/root/CelestialDrageeDisposal")
+	var eff: int = raw_loss
+	if dr != null and dr.has_method("consume_social_buff_if_any"):
+		eff = int(dr.call("consume_social_buff_if_any", raw_loss))
+	apply_direct_social_delta(-eff)
+
+
 func refresh_sampler_slots() -> void:
 	if _sampler_layer != null and _sampler_layer.has_method("refresh_slot_visibility"):
 		_sampler_layer.refresh_slot_visibility()
@@ -170,7 +227,7 @@ func refresh_sampler_slots() -> void:
 ## Load-time hook: never clear cold_sheen_unlocked; a flag set in older builds (e.g. with Breath Tempering) stays valid.
 ## Cold Sheen is no longer granted from Breath Tempering alone — new unlock is the bathroom water path in the prologue.
 func ensure_sampler_unlock_migrations() -> void:
-	pass
+	CelestialDrageeDisposal.apply_save_migration_for_sampler_unlock()
 
 
 func get_panic_points() -> int:

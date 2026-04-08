@@ -85,6 +85,13 @@ func prologue_tutorial_cold_sheen_unlocked() -> void:
 	)
 
 
+func prologue_tutorial_dragee_disposal_unlocked() -> void:
+	await _await_tutorial_layer_ready()
+	await _layer.show_plain_tutorial(
+		"Catch it, Check it, Change it — the Dragee toolkit is in Marzi's Sampler Box (Skills tab). You can run the full flow again: name a thought, decide if it's helpful to keep, and either save it to your Thought shelf (Life tools tab) or work through gather → tilt → trash to let it go. Completing a disposal drops Heat by 3, can count as crisis coping at max Heat, adds your \"what can I do?\" line to the Action log, and gives you three stretches of gentler Social Battery drain the next times Marzi would lose social energy (e.g. a hard phone call). Replay anytime for the same in-game benefits — the exercise is the skill."
+	)
+
+
 func prologue_tutorial_social_battery_followup() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(

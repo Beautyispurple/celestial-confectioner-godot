@@ -255,7 +255,7 @@
 "export_overrides": {
 "image": "\"res://sprite_character/marzi_sprite/marzi_sprite_casual_tired.png\""
 },
-"mirror": false,
+"mirror": true,
 "offset": Vector2(0, 0),
 "scale": 1,
 "scene": ""

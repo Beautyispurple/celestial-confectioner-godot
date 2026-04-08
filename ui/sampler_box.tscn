@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://celestial_sampler_box"]
+[gd_scene load_steps=5 format=3 uid="uid://celestial_sampler_box"]
 
 [ext_resource type="Script" path="res://ui/sampler_box.gd" id="1_samp"]
 [ext_resource type="PackedScene" path="res://ui/water_splash_overlay.tscn" id="2_ws"]
+[ext_resource type="PackedScene" path="res://ui/negative_thought_shelf_panel.tscn" id="3_shelf"]
+[ext_resource type="PackedScene" path="res://ui/dragee_action_log_panel.tscn" id="4_log"]
 
 [node name="SamplerBox" type="CanvasLayer"]
 layer = 65
@@ -66,27 +68,35 @@ theme_override_constants/margin_bottom = 16
 
 [node name="VBox" type="VBoxContainer" parent="TopBar/RootRow/SlidePanel/Margin"]
 layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ModeTabs" type="TabContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Skills" type="VBoxContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs"]
+layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Scroll" type="ScrollContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox"]
+[node name="Scroll" type="ScrollContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills"]
 custom_minimum_size = Vector2(0, 280)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Grid" type="GridContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox/Scroll"]
+[node name="Grid" type="GridContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 5
 
-[node name="MinigameHost" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox"]
+[node name="MinigameHost" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills"]
 visible = false
 custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MInner" type="VBoxContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost"]
+[node name="MInner" type="VBoxContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,25 +104,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackButton" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner"]
+[node name="BackButton" type="Button" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost/MInner"]
 layout_mode = 2
 text = "Back"
 
-[node name="BreathingSlot" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner"]
+[node name="BreathingSlot" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost/MInner"]
 layout_mode = 2
 size_flags_vertical = 3
 custom_minimum_size = Vector2(400, 300)
 
-[node name="SiftingSlot" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner"]
+[node name="SiftingSlot" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost/MInner"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 custom_minimum_size = Vector2(400, 380)
 
-[node name="ColdSheenSlot" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner"]
+[node name="ColdSheenSlot" type="Control" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost/MInner"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 custom_minimum_size = Vector2(400, 320)
+
+[node name="LifeTools" type="VBoxContainer" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ShelfPanel" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/LifeTools" instance=ExtResource("3_shelf")]
+layout_mode = 2
+
+[node name="LogPanel" parent="TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/LifeTools" instance=ExtResource("4_log")]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="WaterSplashOverlay" parent="." instance=ExtResource("2_ws")]

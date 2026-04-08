@@ -78,12 +78,14 @@ func restore_extras_after_load(slot_index: int) -> void:
 	if data is Dictionary:
 		_restore_quests(data.get("quests", {}) as Dictionary)
 		_restore_inventory(data.get("inventory", null))
+		_restore_dragee_life_tools(data.get("dragee_life_tools", null))
 
 
 func _build_extras() -> Dictionary:
 	return {
 		"quests": _quest_snapshot(),
 		"inventory": _inventory_snapshot(),
+		"dragee_life_tools": _dragee_life_tools_snapshot(),
 	}
 
 
@@ -124,6 +126,21 @@ func _restore_inventory(inv_data: Variant) -> void:
 	var inv := get_node_or_null("/root/GlobalInventory")
 	if inv != null and inv.has_method("load_save_data"):
 		inv.call("load_save_data", inv_data)
+
+
+func _dragee_life_tools_snapshot() -> Dictionary:
+	var d: Node = get_node_or_null("/root/CelestialDrageeDisposal")
+	if d != null and d.has_method("get_save_data"):
+		return d.call("get_save_data") as Dictionary
+	return {}
+
+
+func _restore_dragee_life_tools(data: Variant) -> void:
+	if data == null or not data is Dictionary:
+		return
+	var d: Node = get_node_or_null("/root/CelestialDrageeDisposal")
+	if d != null and d.has_method("load_save_data"):
+		d.call("load_save_data", data)
 
 
 func load_options() -> Dictionary:

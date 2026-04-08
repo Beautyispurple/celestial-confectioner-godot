@@ -11,6 +11,8 @@ const _GRID_COLS := 5
 const _GRID_ROWS := 10
 const _GRID_SLOTS := _GRID_COLS * _GRID_ROWS
 
+const _SKILLS_TAB := "TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills"
+
 @onready var _handle_strip: Control = $TopBar/RootRow/HandleStrip
 @onready var _handle_panel: PanelContainer = $TopBar/RootRow/HandleStrip/HandleRow/HandlePanel
 @onready var _handle: Button = $TopBar/RootRow/HandleStrip/HandleRow/HandlePanel/Handle
@@ -19,12 +21,13 @@ var _sb_panel_base: StyleBoxFlat
 var _sb_panel_hover: StyleBoxFlat
 var _sb_panel_pressed: StyleBoxFlat
 @onready var _panel: PanelContainer = $TopBar/RootRow/SlidePanel
-@onready var _grid: GridContainer = $TopBar/RootRow/SlidePanel/Margin/VBox/Scroll/Grid
-@onready var _minigame_host: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost
-@onready var _breathing_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/BreathingSlot
-@onready var _sifting_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/SiftingSlot
-@onready var _cold_sheen_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/ColdSheenSlot
-@onready var _back_button: Button = $TopBar/RootRow/SlidePanel/Margin/VBox/MinigameHost/MInner/BackButton
+@onready var _mode_tabs: TabContainer = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs
+@onready var _grid: GridContainer = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/Scroll/Grid
+@onready var _minigame_host: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost
+@onready var _breathing_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost/MInner/BreathingSlot
+@onready var _sifting_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost/MInner/SiftingSlot
+@onready var _cold_sheen_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost/MInner/ColdSheenSlot
+@onready var _back_button: Button = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost/MInner/BackButton
 
 var _open: bool = false
 var _breathing: Control = null
@@ -61,6 +64,10 @@ func _ready() -> void:
 	if not Dialogic.VAR.variable_changed.is_connected(_on_dialogic_var_changed):
 		Dialogic.VAR.variable_changed.connect(_on_dialogic_var_changed)
 	_apply_all_slot_visibility()
+	_mode_tabs.set_tab_title(0, "Skills")
+	_mode_tabs.set_tab_title(1, "Life tools")
+	if not _mode_tabs.tab_selected.is_connected(_on_mode_tab_selected):
+		_mode_tabs.tab_selected.connect(_on_mode_tab_selected)
 	_handle.mouse_entered.connect(_on_handle_mouse_entered)
 	_handle.mouse_exited.connect(_on_handle_mouse_exited)
 	_handle.button_down.connect(_on_handle_button_down)
@@ -86,6 +93,7 @@ func _build_slot_grid() -> void:
 	_set_slot_label(1, "Breath\nAeration")
 	_set_slot_label(2, "Sensory\nSifting")
 	_set_slot_label(3, "Cold\nSheen")
+	_set_slot_label(4, "Dragee\ntoolkit")
 
 
 func _set_slot_label(idx: int, t: String) -> void:
@@ -185,9 +193,18 @@ func reset_for_menu() -> void:
 
 
 func _scroll_grid_visible(v: bool) -> void:
-	var sc: ScrollContainer = $TopBar/RootRow/SlidePanel/Margin/VBox/Scroll as ScrollContainer
+	var sc: ScrollContainer = get_node_or_null("%s/Scroll" % _SKILLS_TAB) as ScrollContainer
 	if sc:
 		sc.visible = v
+
+
+func _on_mode_tab_selected(_tab: int) -> void:
+	var lt: Node = _mode_tabs.get_node_or_null("LifeTools")
+	if lt == null:
+		return
+	for c in lt.get_children():
+		if c.has_method("_rebuild"):
+			c.call("_rebuild")
 
 
 func _stop_minigames() -> void:
@@ -266,7 +283,16 @@ func _ensure_minigame_opaque_bg() -> void:
 
 func _on_dialogic_var_changed(info: Dictionary) -> void:
 	var v: String = str(info.get("variable", ""))
-	if v == "breath_tempering_unlocked" or v == "breath_aeration_unlocked" or v == "sensory_sifting_unlocked" or v == "cold_sheen_unlocked" or v == "panic_points":
+	if v == "dragee_disposal_unlocked":
+		CelestialDrageeDisposal.sync_unlock_flag_from_dialogic()
+	if (
+		v == "breath_tempering_unlocked"
+		or v == "breath_aeration_unlocked"
+		or v == "sensory_sifting_unlocked"
+		or v == "cold_sheen_unlocked"
+		or v == "dragee_disposal_unlocked"
+		or v == "panic_points"
+	):
 		_apply_all_slot_visibility()
 
 
@@ -275,6 +301,7 @@ func _apply_all_slot_visibility() -> void:
 	var aer_u: bool = int(float(str(Dialogic.VAR.get_variable("breath_aeration_unlocked", 0)))) != 0
 	var sift_u: bool = int(float(str(Dialogic.VAR.get_variable("sensory_sifting_unlocked", 0)))) != 0
 	var cold_u: bool = int(float(str(Dialogic.VAR.get_variable("cold_sheen_unlocked", 0)))) != 0
+	var drag_u: bool = CelestialDrageeDisposal.is_dragee_sampler_unlocked()
 	if _slot_buttons.size() > 0:
 		_slot_buttons[0].visible = temper_u
 		_slot_buttons[0].disabled = not temper_u
@@ -292,7 +319,11 @@ func _apply_all_slot_visibility() -> void:
 		_slot_buttons[3].visible = cold_u
 		_slot_buttons[3].disabled = not cold_u
 		_refresh_slot_wrapper(3, false, cold_u and not _slot_buttons[3].disabled)
-	for i in range(4, _slot_buttons.size()):
+	if _slot_buttons.size() > 4:
+		_slot_buttons[4].visible = drag_u
+		_slot_buttons[4].disabled = not drag_u
+		_refresh_slot_wrapper(4, false, drag_u and not _slot_buttons[4].disabled)
+	for i in range(5, _slot_buttons.size()):
 		_slot_buttons[i].visible = true
 		_slot_buttons[i].disabled = true
 		_refresh_slot_wrapper(i, true, false)
@@ -325,6 +356,24 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("celestial_sampler_toggle"):
 		toggle_open()
 		get_viewport().set_input_as_handled()
+
+
+## Saves that earned the Huck beat before dragee unlock was fixed: unlock migrates on load; show skill popup once on first Sampler open.
+func _maybe_show_dragee_migration_tutorial() -> void:
+	if not _open:
+		return
+	if _minigame_host.visible:
+		return
+	if not CelestialDrageeDisposal.is_dragee_sampler_unlocked():
+		return
+	if int(float(str(Dialogic.VAR.get_variable("dragee_disposal_tutorial_done", 0)))) != 0:
+		return
+	if int(float(str(Dialogic.VAR.get_variable("dragee_huck_story_bonus_done", 0)))) == 0:
+		return
+	var tut: Node = get_node_or_null("/root/CelestialTutorial")
+	if tut != null and tut.has_method("prologue_tutorial_dragee_disposal_unlocked"):
+		await tut.prologue_tutorial_dragee_disposal_unlocked()
+	Dialogic.VAR.set_variable("dragee_disposal_tutorial_done", 1)
 
 
 func _maybe_run_sampler_intro_chain() -> void:
@@ -362,6 +411,7 @@ func toggle_open() -> void:
 		var tw := create_tween()
 		tw.tween_property(_panel, "custom_minimum_size:y", _PANEL_OPEN_H, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		await tw.finished
+		await _maybe_show_dragee_migration_tutorial()
 		await _maybe_run_sampler_intro_chain()
 	else:
 		if _minigame_host.visible:
@@ -385,10 +435,18 @@ func _on_skill_slot_pressed(idx: int) -> void:
 			_start_sifting()
 		3:
 			_start_cold_sheen()
+		4:
+			_start_dragee_fresh()
+
+
+func _start_dragee_fresh() -> void:
+	await CelestialDrageeDisposal.run_fresh_from_sampler()
+	_on_mode_tab_selected(_mode_tabs.current_tab)
 
 
 func _start_temper() -> void:
 	await _expand_panel_for_minigame()
+	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
 	_minigame_host.visible = true
 	_breathing_slot.visible = true
@@ -409,6 +467,7 @@ func _start_aeration() -> void:
 	if CelestialVNState.get_panic_points() < 2:
 		return
 	await _expand_panel_for_minigame()
+	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
 	_minigame_host.visible = true
 	_breathing_slot.visible = true
@@ -427,6 +486,7 @@ func _start_aeration() -> void:
 
 func _start_sifting() -> void:
 	await _expand_panel_for_minigame()
+	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
 	_minigame_host.visible = true
 	_breathing_slot.visible = false
@@ -443,6 +503,7 @@ func _start_sifting() -> void:
 
 func _start_cold_sheen() -> void:
 	await _expand_panel_for_minigame()
+	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
 	_minigame_host.visible = true
 	_breathing_slot.visible = false
@@ -457,10 +518,18 @@ func _start_cold_sheen() -> void:
 	await _end_minigame_if_current("cold_sheen")
 
 
+func _set_back_minigame_emphasis(on: bool) -> void:
+	if on:
+		_back_button.add_theme_font_size_override("font_size", 22)
+	else:
+		_back_button.remove_theme_font_size_override("font_size")
+
+
 func _end_minigame_if_current(kind: String) -> void:
 	if _active_minigame != kind:
 		return
 	_active_minigame = ""
+	_set_back_minigame_emphasis(false)
 	_back_button.visible = true
 	_minigame_host.visible = false
 	_breathing_slot.visible = false
@@ -478,6 +547,7 @@ func _on_back_pressed() -> void:
 	if _breathing != null and _breathing.has_method("stop_exercise"):
 		_breathing.stop_exercise()
 	_active_minigame = ""
+	_set_back_minigame_emphasis(false)
 	_back_button.visible = true
 	_minigame_host.visible = false
 	_breathing_slot.visible = false

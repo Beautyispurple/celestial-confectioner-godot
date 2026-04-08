@@ -30,6 +30,7 @@ CelestialVNState="*res://celestial_vn_state.gd"
 CelestialTutorial="*res://celestial_tutorial.gd"
 CelestialPlaytestDebug="*res://celestial_playtest_debug.gd"
 CelestialMopMinigame="*res://celestial_mop_minigame.gd"
+CelestialDrageeDisposal="*res://celestial_dragee_disposal.gd"
 
 [dialogic]
 
@@ -69,6 +70,12 @@ variables={
 "breath_aeration_unlocked": 0,
 "breath_tempering_unlocked": 0,
 "cold_sheen_unlocked": 0,
+"dragee_disposal_tutorial_done": 0,
+"dragee_disposal_unlocked": 0,
+"dragee_flow_result_code": 0,
+"dragee_huck_scene_disposed": 0,
+"dragee_huck_story_bonus_done": 0,
+"dragee_sampler_dispose_count": 0,
 "gold_coin": 0,
 "huck_points": 0,
 "negative_thought_game": {

@@ -85,5 +85,5 @@ func eat_chili() -> bool:
 func call_friend() -> bool:
 	if get_count(ITEM_PHONE) <= 0:
 		return false
-	CelestialVNState.apply_direct_social_delta(-4)
+	CelestialVNState.apply_social_drain(4)
 	return true

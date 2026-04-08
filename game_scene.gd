@@ -9,13 +9,18 @@ func _ready() -> void:
 		var err: Error = Dialogic.Save.load(GameSaveManager.slot_to_name(pending))
 		if err != OK:
 			GlobalInventory.reset_new_game_defaults()
+			CelestialDrageeDisposal.reset_new_game()
+			CelestialVNState.resync_dialogic_variables_from_project_defaults()
 			Dialogic.start("intro_sequence")
 		else:
 			await get_tree().process_frame
 			await get_tree().process_frame
 			GameSaveManager.restore_extras_after_load(pending)
+			CelestialVNState.resync_dialogic_variables_from_project_defaults()
 			CelestialVNState.ensure_sampler_unlock_migrations()
 			CelestialVNState.refresh_sampler_slots()
 	else:
 		GlobalInventory.reset_new_game_defaults()
+		CelestialDrageeDisposal.reset_new_game()
+		CelestialVNState.resync_dialogic_variables_from_project_defaults()
 		Dialogic.start("intro_sequence")

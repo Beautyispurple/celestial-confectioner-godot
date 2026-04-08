@@ -476,41 +476,24 @@ marzi (Cleaner Thinking): (hmm...am I up for this?
 	huck (Plucky): Is the negative thought "{negative_thought_game.thought_1}" helpful?
 	- No the thought is not helpful. | [response_kind="rational"]
 		marzi (Cleaner Thinking): No, the thought isn't safe or helpful.
-		huck (Idle): Okay then, what can you do about the thought "{negative_thought_game.thought_1}"?
-		[text_input text="What can I do about the thought?" var="negative_thought_game.action_1" placeholder="I can..."]
-		huck (Idle): Okay, "{negative_thought_game.action_1}", that's something you could do.
+		huck (Idle): Okay. Take a breath — we'll walk through letting it go together in a moment.
+		do CelestialDrageeDisposal.run_story_not_helpful()
+		if int({dragee_flow_result_code}) == 0:
+			jump negative_thought_opt_out
+		jump negative_thought_feeling_check
 	- Yes the thought is helpful. | [response_kind="irrational"]
 		marzi (Cleaner Thinking): Yes, it is safe.
 		marzi (Cleaner Thinking): And its is pretty helpful.
-		huck (Idle): Okay then, what can you do about the thought "{negative_thought_game.thought_1}"?
-		[text_input text="What can I do about the thought?" var="negative_thought_game.action_2" placeholder="I can..."]
-		huck (Idle): Okay, "{negative_thought_game.action_2}", that's something you could do.
+		huck (Idle): Okay. We'll set that thought on your shelf for when you're ready to revisit it.
+		do CelestialDrageeDisposal.run_story_helpful()
+		if int({dragee_flow_result_code}) == 0:
+			jump negative_thought_opt_out
+		jump negative_thought_feeling_check
 	- Let's stop here. | [response_kind="irrational"]
 		jump negative_thought_opt_out
-huck (Idle): Last question, Marzi...
-huck (Idle): Do you want to keep the thought or let it go?
-- Keep it. | [response_kind="irrational"]
-	marzi (Cleaner Thinking): I think i will keep it.
-	huck (Idle): That's completely okay. We don't have to throw everything away immediately.
-	huck (Caring): Why don't you find one of the dragees that didn't get wet?
-	(Marzi scans the marble and finds a single pristine, dry starlight dragee resting near the base of the counter.)
-	(She carefully picks it up.)
-	huck (Trust): You can keep it up on the top shelf in the supply closet.
-	huck (Trust): It can stay there until you decide you are ready to throw it away.
-	(Marzi nods, placing the dry dragee carefully onto the top shelf.)
-	jump negative_thought_feeling_check
-- Let it go. | [response_kind="rational"]
-	marzi (Cleaner Thinking): I think i will let it go.
-	huck (Happy): Alright. Let's physically let it go then.
-	(Marzi grabs the heavy yellow dustpan and the broom.)
-	(With every sweep, she pictures the words "{negative_thought_game.thought_1}" rolling into the pile.)
-	(She scoops up the ruined, sticky dragees and dumps them directly into the trashbin.)
-	(The heavy thud of the candy hitting the bottom of the bin makes her chest feel a little bit lighter.)
-	jump negative_thought_feeling_check
-- I can't finish this right now. | [response_kind="irrational"]
-	jump negative_thought_opt_out
 
 label negative_thought_feeling_check
+do CelestialDrageeDisposal.after_negative_thought_gate()
 huck (Caring): Take a second to just notice how that feels, Marzi.
 huck (Idle): Check in with yourself... how is that decision sitting with you right now?
 - It feels good. | [response_kind="rational"]
@@ -533,8 +516,10 @@ jump negative_thought_completed
 
 label negative_thought_completed
 set {willing} = 1
-set {huck_points} += 10
-(System Message\: Unlocked "Catch it, Check it, Change it" in Skills Toolbox — replay from Main Menu.)
+if int({dragee_huck_story_bonus_done}) == 0:
+	set {dragee_huck_story_bonus_done} = 1
+	set {huck_points} += 10
+	(System Message\: Unlocked "Catch it, Check it, Change it" in Skills Toolbox — replay from Main Menu.)
 
 marzi (Cleaner Determined): (Marzi looks at the empty floor, then up at Huck, who is quietly wringing out his own towel.)
 marzi (Cleaner Thinking): Huck... where did you learn how to do all that?

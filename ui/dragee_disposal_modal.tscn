@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://dragee_disp_modal"]
+
+[ext_resource type="Script" path="res://ui/dragee_disposal_modal.gd" id="1_modal"]
+
+[node name="DrageeDisposalModal" type="CanvasLayer"]
+layer = 95
+script = ExtResource("1_modal")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+color = Color(0.04, 0.03, 0.06, 0.92)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Center/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Center/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="Center/Panel/Margin/VBox"]
+layout_mode = 2
+autowrap_mode = 3
+text = "Prompt"
+
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="ChoiceRow" type="HBoxContainer" parent="Center/Panel/Margin/VBox"]
+visible = false
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="BtnHelpful" type="Button" parent="Center/Panel/Margin/VBox/ChoiceRow"]
+layout_mode = 2
+text = "Helpful — keep for now"
+
+[node name="BtnNotHelpful" type="Button" parent="Center/Panel/Margin/VBox/ChoiceRow"]
+layout_mode = 2
+text = "Not helpful — let it go"
+
+[node name="Buttons" type="HBoxContainer" parent="Center/Panel/Margin/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="Confirm" type="Button" parent="Center/Panel/Margin/VBox/Buttons"]
+layout_mode = 2
+text = "OK"
+
+[node name="Cancel" type="Button" parent="Center/Panel/Margin/VBox/Buttons"]
+layout_mode = 2
+text = "Cancel"
