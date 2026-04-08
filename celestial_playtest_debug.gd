@@ -9,11 +9,22 @@ const DEBUG_SAMPLER_UNLOCK_VARS: Array[String] = [
 	"cold_sheen_unlocked",
 ]
 
+const DEBUG_JUMP_OVERLAY_SCENE := preload("res://ui/debug_jump_overlay.tscn")
+
 var _debug_panic_cycle_i: int = 0
+var _jump_overlay: CanvasLayer = null
+const _DEBUG_JUMP_TOGGLE_KEY := KEY_F7
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	if not OS.is_debug_build():
+		return
+	# Debug-only overlay lives under /root for consistent layering.
+	_jump_overlay = DEBUG_JUMP_OVERLAY_SCENE.instantiate() as CanvasLayer
+	if _jump_overlay != null:
+		# /root may be blocked during startup; defer to avoid add_child failure.
+		get_tree().root.add_child.call_deferred(_jump_overlay)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -22,6 +33,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F9:
 		apply_sampler_playtest_state()
 		get_viewport().set_input_as_handled()
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == _DEBUG_JUMP_TOGGLE_KEY:
+		if _jump_overlay != null and is_instance_valid(_jump_overlay) and _jump_overlay.has_method("toggle_visible"):
+			if _jump_overlay.has_method("is_jump_in_progress") and _jump_overlay.call("is_jump_in_progress"):
+				get_viewport().set_input_as_handled()
+				return
+			_jump_overlay.call("toggle_visible")
+			get_viewport().set_input_as_handled()
 
 
 func apply_sampler_playtest_state() -> void:

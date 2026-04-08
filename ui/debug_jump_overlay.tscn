@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://ui/debug_jump_overlay.gd" id="1_script"]
+
+[node name="DebugJumpOverlay" type="CanvasLayer"]
+process_mode = 3
+layer = 90
+script = ExtResource("1_script")
+
+[node name="Root" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Root"]
+anchors_preset = 2
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -420.0
+offset_top = 18.0
+offset_right = -18.0
+offset_bottom = 0.0
+grow_horizontal = 0
+
+[node name="Margin" type="MarginContainer" parent="Root/Panel"]
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="Root/Panel/Margin"]
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Root/Panel/Margin/VBox"]
+theme_override_font_sizes/font_size = 18
+text = "Debug Jump"
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="Root/Panel/Margin/VBox"]
+unique_name_in_editor = true
+text = "Dialogic: …"
+autowrap_mode = 3
+
+[node name="JumpTargetDropdown" type="OptionButton" parent="Root/Panel/Margin/VBox"]
+unique_name_in_editor = true
+text_overrun_behavior = 3
+
+[node name="JumpButton" type="Button" parent="Root/Panel/Margin/VBox"]
+unique_name_in_editor = true
+text = "Jump"
+
+[node name="Sep" type="HSeparator" parent="Root/Panel/Margin/VBox"]
+
+[node name="UnlockPathDropdown" type="OptionButton" parent="Root/Panel/Margin/VBox"]
+unique_name_in_editor = true
+text_overrun_behavior = 3
+
+[node name="SuppressTutorials" type="CheckBox" parent="Root/Panel/Margin/VBox"]
+unique_name_in_editor = true
+text = "Suppress tutorials (debug)"
+
+[node name="ApplyUnlockAndJumpButton" type="Button" parent="Root/Panel/Margin/VBox"]
+unique_name_in_editor = true
+text = "Apply + Jump"
+

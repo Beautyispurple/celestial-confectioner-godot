@@ -532,3 +532,23 @@ func choice_should_lock(choice_info: Dictionary) -> bool:
 	if tier == PanicTier.CRISIS:
 		return true
 	return rational
+
+
+## Debug-only: best-effort hard reset of VN blockers so Dialogic jumping can't leave input consumed.
+## Never call in release builds.
+func debug_force_neutralize_vn_blockers() -> void:
+	if not OS.is_debug_build():
+		return
+
+	# Close sampler and stop any embedded minigames.
+	if _sampler_layer != null and is_instance_valid(_sampler_layer) and _sampler_layer.has_method("reset_for_menu"):
+		_sampler_layer.call("reset_for_menu")
+	set_sampler_blocking_vn(false)
+
+	# Restore any hidden Dialogic chrome + HUD from minigame modal focus.
+	while _minigame_modal_refcount > 0:
+		end_minigame_modal_focus()
+	_minigame_modal_saved.clear()
+
+	# Force-clear overlay refcount that blocks Dialogic advance.
+	_blocking_overlay_refcount = 0
