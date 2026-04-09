@@ -31,6 +31,7 @@ CelestialTutorial="*res://celestial_tutorial.gd"
 CelestialPlaytestDebug="*res://celestial_playtest_debug.gd"
 CelestialMopMinigame="*res://celestial_mop_minigame.gd"
 CelestialDrageeDisposal="*res://celestial_dragee_disposal.gd"
+CelestialJournal="*res://celestial_journal.gd"
 
 [dialogic]
 
@@ -78,6 +79,7 @@ variables={
 "dragee_sampler_dispose_count": 0,
 "gold_coin": 0,
 "huck_points": 0,
+"journal_unlocked": 1,
 "negative_thought_game": {
 "action_1": "",
 "action_2": "",

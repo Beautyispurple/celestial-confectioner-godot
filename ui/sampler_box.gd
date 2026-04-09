@@ -5,6 +5,7 @@ const BOX_SCENE := preload("res://ui/box_breathing_overlay.tscn")
 const SIFT_SCENE := preload("res://ui/sensory_sifting_panel.tscn")
 const COLD_SHEEN_SCENE := preload("res://ui/cold_sheen_panel.tscn")
 const CANDY_SLOT_SCENE := preload("res://ui/sampler_candy_skill_slot.tscn")
+const JOURNAL_SCENE := preload("res://ui/journal/journal_overlay.tscn")
 
 const _PANEL_OPEN_H := 720.0
 const _GRID_COLS := 5
@@ -33,6 +34,7 @@ var _open: bool = false
 var _breathing: Control = null
 var _sifting: Control = null
 var _cold_sheen: Control = null
+var _journal: CanvasLayer = null
 var _slot_buttons: Array[Button] = []
 var _active_minigame: String = "" # "temper" | "aeration" | "sifting" | "cold_sheen" | ""
 var _handle_pulse: Tween
@@ -94,6 +96,7 @@ func _build_slot_grid() -> void:
 	_set_slot_label(2, "Sensory\nSifting")
 	_set_slot_label(3, "Cold\nSheen")
 	_set_slot_label(4, "Dragee\ntoolkit")
+	_set_slot_label(5, "Journal")
 
 
 func _set_slot_label(idx: int, t: String) -> void:
@@ -176,6 +179,8 @@ func _on_panel_resized() -> void:
 
 
 func reset_for_menu() -> void:
+	if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
+		_journal.request_close()
 	_kill_panel_height_tween()
 	_open = false
 	_back_button.visible = true
@@ -291,6 +296,7 @@ func _on_dialogic_var_changed(info: Dictionary) -> void:
 		or v == "sensory_sifting_unlocked"
 		or v == "cold_sheen_unlocked"
 		or v == "dragee_disposal_unlocked"
+		or v == "journal_unlocked"
 		or v == "panic_points"
 	):
 		_apply_all_slot_visibility()
@@ -302,6 +308,7 @@ func _apply_all_slot_visibility() -> void:
 	var sift_u: bool = int(float(str(Dialogic.VAR.get_variable("sensory_sifting_unlocked", 0)))) != 0
 	var cold_u: bool = int(float(str(Dialogic.VAR.get_variable("cold_sheen_unlocked", 0)))) != 0
 	var drag_u: bool = CelestialDrageeDisposal.is_dragee_sampler_unlocked()
+	var journal_u: bool = int(float(str(Dialogic.VAR.get_variable("journal_unlocked", 0)))) != 0
 	if _slot_buttons.size() > 0:
 		_slot_buttons[0].visible = temper_u
 		_slot_buttons[0].disabled = not temper_u
@@ -323,7 +330,11 @@ func _apply_all_slot_visibility() -> void:
 		_slot_buttons[4].visible = drag_u
 		_slot_buttons[4].disabled = not drag_u
 		_refresh_slot_wrapper(4, false, drag_u and not _slot_buttons[4].disabled)
-	for i in range(5, _slot_buttons.size()):
+	if _slot_buttons.size() > 5:
+		_slot_buttons[5].visible = journal_u
+		_slot_buttons[5].disabled = not journal_u
+		_refresh_slot_wrapper(5, false, journal_u and not _slot_buttons[5].disabled)
+	for i in range(6, _slot_buttons.size()):
 		_slot_buttons[i].visible = true
 		_slot_buttons[i].disabled = true
 		_refresh_slot_wrapper(i, true, false)
@@ -414,6 +425,8 @@ func toggle_open() -> void:
 		await _maybe_show_dragee_migration_tutorial()
 		await _maybe_run_sampler_intro_chain()
 	else:
+		if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
+			_journal.request_close()
 		if _minigame_host.visible:
 			await _on_back_pressed()
 		_kill_panel_height_tween()
@@ -437,6 +450,8 @@ func _on_skill_slot_pressed(idx: int) -> void:
 			_start_cold_sheen()
 		4:
 			_start_dragee_fresh()
+		5:
+			_start_journal()
 
 
 func _start_dragee_fresh() -> void:
@@ -518,6 +533,27 @@ func _start_cold_sheen() -> void:
 	await _end_minigame_if_current("cold_sheen")
 
 
+func _start_journal() -> void:
+	if int(float(str(Dialogic.VAR.get_variable("journal_unlocked", 0)))) == 0:
+		return
+	await _expand_panel_for_minigame()
+	_set_back_minigame_emphasis(true)
+	_scroll_grid_visible(false)
+	_minigame_host.visible = false
+	_breathing_slot.visible = false
+	_sifting_slot.visible = false
+	_cold_sheen_slot.visible = false
+	_active_minigame = "journal"
+	_back_button.visible = true
+	CelestialVNState.begin_blocking_overlay_vn()
+	if _journal == null:
+		_journal = JOURNAL_SCENE.instantiate() as CanvasLayer
+		get_tree().root.add_child(_journal)
+	await _journal.run_session()
+	CelestialVNState.end_blocking_overlay_vn()
+	await _end_minigame_if_current("journal")
+
+
 func _set_back_minigame_emphasis(on: bool) -> void:
 	if on:
 		_back_button.add_theme_font_size_override("font_size", 22)
@@ -540,6 +576,9 @@ func _end_minigame_if_current(kind: String) -> void:
 
 
 func _on_back_pressed() -> void:
+	if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
+		_journal.request_close()
+		return
 	if _active_minigame == "sifting" and _sifting != null:
 		_sifting.quit_reset()
 	if _active_minigame == "cold_sheen" and _cold_sheen != null:

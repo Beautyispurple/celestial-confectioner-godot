@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://celestial_journal_overlay"]
+
+[ext_resource type="Script" path="res://ui/journal/journal_overlay.gd" id="1_jo"]
+
+[node name="JournalOverlay" type="CanvasLayer"]
+layer = 101
+script = ExtResource("1_jo")

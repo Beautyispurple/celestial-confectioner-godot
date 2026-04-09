@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://celestial_journal_sticker"]
+
+[ext_resource type="Script" path="res://ui/journal/journal_sticker.gd" id="1_st"]
+
+[node name="JournalSticker" type="Control"]
+custom_minimum_size = Vector2(48, 48)
+mouse_filter = 0
+script = ExtResource("1_st")
