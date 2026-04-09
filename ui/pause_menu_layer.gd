@@ -186,4 +186,8 @@ func _input(event: InputEvent) -> void:
 
 
 func _consent_flow_blocks_input() -> bool:
-	return get_tree().get_nodes_in_group(&"consent_flow_active").size() > 0
+	var tree := get_tree()
+	return (
+		tree.get_nodes_in_group(&"consent_flow_active").size() > 0
+		or tree.get_nodes_in_group(&"first_run_gate_active").size() > 0
+	)

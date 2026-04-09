@@ -1,36 +1,30 @@
 extends CanvasLayer
-## First-run consent screens A–E (new game only). Black background, white text.
+## First-run consent screens (3 pages + gate). Black background, white text.
 
 signal finished_consent
 signal exit_to_main_menu_requested
 
 const GROUP := &"consent_flow_active"
+const GROUP_FIRST_RUN := &"first_run_gate_active"
 
 const _SCREEN_TITLES: PackedStringArray = [
 	"Before we begin",
-	"What this game can’t do",
 	"Safety, distress, and real-world support",
-	"Choices, skills, and consequences",
 	"Please confirm before playing",
 ]
+
+## Set in _ready: last index (welcome, safety, gate). Must match _SCREEN_TITLES.size() - 1.
+var _final_page_index: int = 0
 
 const _BODY_A := """Welcome.
 Celestial Confectioner is a story game designed as peer support practice: a place to try coping tools, navigate relationships, and rehearse responses to real-world pressure—through characters and situations, not through lectures.
 It’s meant to feel human: sometimes gentle, sometimes awkward, sometimes intense, sometimes funny—because people’s lives are like that."""
 
-const _BODY_B := """A quick boundary, said with care:
-This game is not therapy, not medical advice, and not a diagnosis. It is not crisis care.
-The tools in this game can support reflection and practice, but they are not a replacement for support from a licensed or otherwise qualified professional when you need that kind of help.
-Think of this as a companion and a practice space, not a clinic."""
-
 const _BODY_C_MAIN := """This game includes conversations about difficult life experiences. Some characters have lived through traumatic situations, and there may be brief, non-gratuitous descriptions of what they’ve been through—so the story can make room for honest discussion.
 Even so, no system can guarantee you won’t feel upset, activated, or overwhelmed.
-Important: this game intentionally includes stressful situations without repeated scene-by-scene warnings. Part of the practice is noticing your own signals in real time. By continuing, you agree to self-monitor and use the pause menu and real-world support when you need them.
-If today isn’t a good day for this kind of material, it’s completely okay to exit and come back later."""
 
-const _BODY_D := """This game is not here to judge you. There are no choices meant to label you as “good” or “bad.”
-At the same time, choices can still have realistic consequences—stress, awkwardness, conflict, or regret—because that’s how pressure and limited capacity often work in real life, especially before skills feel available.
-The coping tools here are inspired by real-world skills, simplified for play. They can be helpful practice, but they won’t work for everyone in every moment."""
+This game intentionally includes stressful situations without repeated scene-by-scene warnings. Part of the practice is noticing your own signals in real time. Please self-monitor, use the pause menu, step away, or use real-world support when you need them.
+If today isn’t a good day for this kind of material, it’s completely okay to exit and come back later."""
 
 const _BODY_E_PROSE := """You’re about to play a story game designed as peer support practice—a place to rehearse coping tools and try responses through characters and situations.
 It’s not therapy, not medical advice, not a diagnosis, and not crisis care.
@@ -45,17 +39,6 @@ This game is for adults: you must be 18 or older to play.
 You’ll hear many perspectives. Not every view is the developer’s, and no character speaks for an entire community.
 We aim to be respectful, but we may still miss or misrepresent some realities.
 We’ve collaborated with individuals with lived experience in some areas; that collaboration does not make this work an authority over everyone’s experience."""
-
-# Historical per-line required confirmations (replaced with the single prose block above):
-# - Peer support / story, not therapy and not medical care.
-# - Tools not a replacement for qualified professional help when needed.
-# - Distress/triggering possible (previously referenced “content options”).
-# - Stressful situations; no repeated scene-by-scene warnings; self-monitor; use pause + real-world support.
-# - 18+.
-# - No guarantees / no claim to treat, cure, fix.
-# - Many perspectives; not all views = developer; no character speaks for a whole community.
-# - Diverse experiences; possible miss/misrepresentation; aim is respect, not definitiveness.
-# - Lived-experience collaboration; not authoritative for everyone.
 
 const _E_REQUIRED_AGREE_LABEL := "I’ve read the above and agree — let’s play"
 
@@ -83,9 +66,11 @@ const _BUTTON_FONT_SIZE := 40
 
 
 func _ready() -> void:
+	_final_page_index = maxi(0, _SCREEN_TITLES.size() - 1)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 110
 	add_to_group(GROUP)
+	add_to_group(GROUP_FIRST_RUN)
 
 	var bg := ColorRect.new()
 	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -168,18 +153,19 @@ func _style_light_button(btn: Button) -> void:
 
 
 func _on_continue_pressed() -> void:
-	if _page_index < 4:
+	if _page_index < _final_page_index:
 		_show_page(_page_index + 1)
 	else:
 		remove_from_group(GROUP)
+		remove_from_group(GROUP_FIRST_RUN)
 		finished_consent.emit()
 		queue_free()
 
 
 func _on_exit_pressed() -> void:
 	remove_from_group(GROUP)
+	remove_from_group(GROUP_FIRST_RUN)
 	exit_to_main_menu_requested.emit()
-	queue_free()
 	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 
@@ -192,12 +178,12 @@ func _show_page(idx: int) -> void:
 	_required_checkbox = null
 	_optional_checkbox = null
 
-	if idx == 4:
+	if idx == _final_page_index:
 		_continue_button.text = "I understand and agree — continue"
 		_continue_button.disabled = true
 		_exit_button.visible = true
 		_e_notice.visible = true
-		_build_page_e()
+		_build_gate_page()
 	else:
 		_continue_button.text = "Continue"
 		_continue_button.disabled = false
@@ -233,9 +219,8 @@ func _build_body_pages(idx: int) -> void:
 	match idx:
 		0:
 			rtl.text = "[center]" + _BODY_A.replace("\n\n", "[br]") + "[/center]"
+			_scroll_inner.add_child(rtl)
 		1:
-			rtl.text = "[center]" + _BODY_B.replace("\n\n", "[br]") + "[/center]"
-		2:
 			rtl.text = "[center]" + _BODY_C_MAIN.replace("\n\n", "[br]") + "[/center]"
 			_scroll_inner.add_child(rtl)
 			var col: Node = _collapsible_scene.instantiate()
@@ -245,12 +230,9 @@ func _build_body_pages(idx: int) -> void:
 			if col.has_method(&"set_body_bbcode"):
 				col.call(&"set_body_bbcode", "[center]" + CrisisResourcesText.USA_CRISIS_RESOURCES_BBCODE + "[/center]")
 			_style_collapsible(col)
-			return
-		3:
-			rtl.text = "[center]" + _BODY_D.replace("\n\n", "[br]") + "[/center]"
 		_:
 			rtl.text = ""
-	_scroll_inner.add_child(rtl)
+			_scroll_inner.add_child(rtl)
 
 
 func _style_collapsible(col: Node) -> void:
@@ -282,7 +264,6 @@ func _make_checkbox_icons() -> Dictionary:
 	var tex_off := ImageTexture.create_from_image(img_off)
 
 	var img_on := img_off.duplicate()
-	# simple filled square mark for high contrast
 	for x in range(7, size - 7):
 		for y in range(7, size - 7):
 			img_on.set_pixel(x, y, fill)
@@ -291,7 +272,7 @@ func _make_checkbox_icons() -> Dictionary:
 	return {"unchecked": tex_off, "checked": tex_on}
 
 
-func _build_page_e() -> void:
+func _build_gate_page() -> void:
 	var icons := _make_checkbox_icons()
 	var prose := _rtl()
 	prose.text = "[center]" + _BODY_E_PROSE.replace("\n\n", "[br][br]").replace("\n", " ") + "[/center]"

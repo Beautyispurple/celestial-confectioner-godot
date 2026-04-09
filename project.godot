@@ -32,6 +32,9 @@ CelestialPlaytestDebug="*res://celestial_playtest_debug.gd"
 CelestialMopMinigame="*res://celestial_mop_minigame.gd"
 CelestialDrageeDisposal="*res://celestial_dragee_disposal.gd"
 CelestialJournal="*res://celestial_journal.gd"
+ReleaseMode="*res://release_mode.gd"
+ResearchConsentState="*res://research_consent_state.gd"
+ResearchTelemetry="*res://research_telemetry.gd"
 
 [dialogic]
 

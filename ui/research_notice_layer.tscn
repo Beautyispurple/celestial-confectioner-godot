@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8research_notice_layer"]
+
+[ext_resource type="Script" path="res://ui/research_notice_layer.gd" id="1_script"]
+
+[node name="ResearchNoticeLayer" type="CanvasLayer"]
+script = ExtResource("1_script")
