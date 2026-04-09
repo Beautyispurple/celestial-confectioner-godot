@@ -24,29 +24,42 @@ The tools in this game can support reflection and practice, but they are not a r
 Think of this as a companion and a practice space, not a clinic."""
 
 const _BODY_C_MAIN := """This game includes conversations about difficult life experiences. Some characters have lived through traumatic situations, and there may be brief, non-gratuitous descriptions of what they’ve been through—so the story can make room for honest discussion.
-You’ll have options to reduce or skip some kinds of content when we can offer that responsibly. Even so, no system can guarantee you won’t feel upset, activated, or overwhelmed.
-Important: this game intentionally includes stressful situations without repeated scene-by-scene warnings. Part of the practice is noticing your own signals in real time. By continuing, you agree to self-monitor and use the pause menu, content options, and real-world support when you need them.
+Even so, no system can guarantee you won’t feel upset, activated, or overwhelmed.
+Important: this game intentionally includes stressful situations without repeated scene-by-scene warnings. Part of the practice is noticing your own signals in real time. By continuing, you agree to self-monitor and use the pause menu and real-world support when you need them.
 If today isn’t a good day for this kind of material, it’s completely okay to exit and come back later."""
 
 const _BODY_D := """This game is not here to judge you. There are no choices meant to label you as “good” or “bad.”
 At the same time, choices can still have realistic consequences—stress, awkwardness, conflict, or regret—because that’s how pressure and limited capacity often work in real life, especially before skills feel available.
 The coping tools here are inspired by real-world skills, simplified for play. They can be helpful practice, but they won’t work for everyone in every moment."""
 
-const _BODY_E_INTRO := """Playing means you understand the limits of a game—and you’re choosing to care for yourself while you play."""
+const _BODY_E_PROSE := """You’re about to play a story game designed as peer support practice—a place to rehearse coping tools and try responses through characters and situations.
+It’s not therapy, not medical advice, not a diagnosis, and not crisis care.
 
-const _REQUIRED_CHECK_LABELS: PackedStringArray = [
-	"I understand this is peer support practice in a story format, not therapy and not medical care.",
-	"I understand the tools in this game are not a replacement for support from a licensed or otherwise qualified professional when I need that kind of help.",
-	"I understand I may still feel distressed or triggered even with content options.",
-	"I understand this game intentionally includes stressful situations without repeated scene-by-scene warnings, and I agree to self-monitor and use the pause menu, content options, and real-world support when I need them.",
-	"I am 18 years of age or older.",
-	"I understand this game makes no guarantees and does not promise outcomes (for example: it does not claim to treat, cure, or ‘fix’ anyone).",
-	"I understand the story includes many perspectives; not every view is the developer’s, and no character is meant to speak for an entire community.",
-	"I understand the game includes diverse lived experiences and may still miss or misrepresent some realities; it aims to be respectful, not definitive.",
-	"I understand the developer has collaborated with individuals with lived experience in some areas, and that collaboration does not make the game an authority over everyone’s experience.",
-]
+The tools in this game can support reflection and practice, but they are not a replacement for support from a licensed or otherwise qualified professional when you need that kind of help.
+This game makes no guarantees and does not claim to treat, cure, or “fix” anyone.
 
-const _OPTIONAL_CHECK_LABEL := "If I am in crisis, I will use real-world crisis resources rather than relying on this game."
+Even with care, parts of the story may feel stressful, upsetting, or activating. This game intentionally does not repeat scene-by-scene warnings.
+By continuing, you agree to self-monitor, use the pause menu, and step away or seek real-world support when you need it.
+This game is for adults: you must be 18 or older to play.
+
+You’ll hear many perspectives. Not every view is the developer’s, and no character speaks for an entire community.
+We aim to be respectful, but we may still miss or misrepresent some realities.
+We’ve collaborated with individuals with lived experience in some areas; that collaboration does not make this work an authority over everyone’s experience."""
+
+# Historical per-line required confirmations (replaced with the single prose block above):
+# - Peer support / story, not therapy and not medical care.
+# - Tools not a replacement for qualified professional help when needed.
+# - Distress/triggering possible (previously referenced “content options”).
+# - Stressful situations; no repeated scene-by-scene warnings; self-monitor; use pause + real-world support.
+# - 18+.
+# - No guarantees / no claim to treat, cure, fix.
+# - Many perspectives; not all views = developer; no character speaks for a whole community.
+# - Diverse experiences; possible miss/misrepresentation; aim is respect, not definitiveness.
+# - Lived-experience collaboration; not authoritative for everyone.
+
+const _E_REQUIRED_AGREE_LABEL := "I’ve read the above and agree — let’s play"
+
+const _OPTIONAL_CHECK_LABEL := "Optional: If I’m in crisis, I’ll use real-world crisis resources (see Pause → Safety & Support)."
 
 var _title_label: Label
 var _scroll: ScrollContainer
@@ -59,7 +72,7 @@ var _exit_button: Button
 var _collapsible_scene: PackedScene = preload("res://ui/collapsible_section.tscn")
 
 var _page_index: int = 0
-var _required_checkboxes: Array[CheckBox] = []
+var _required_checkbox: CheckBox
 var _optional_checkbox: CheckBox
 
 const _TITLE_FONT_SIZE := 96
@@ -120,7 +133,7 @@ func _ready() -> void:
 	_e_notice.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_e_notice.add_theme_color_override("font_color", Color(0.85, 0.85, 0.85))
 	_e_notice.add_theme_font_size_override("font_size", 26)
-	_e_notice.text = "All checkboxes must be marked before continuing."
+	_e_notice.text = "Please confirm above to continue."
 	_footer.add_child(_e_notice)
 
 	_button_row = HBoxContainer.new()
@@ -176,7 +189,7 @@ func _show_page(idx: int) -> void:
 
 	for c in _scroll_inner.get_children():
 		c.queue_free()
-	_required_checkboxes.clear()
+	_required_checkbox = null
 	_optional_checkbox = null
 
 	if idx == 4:
@@ -280,27 +293,24 @@ func _make_checkbox_icons() -> Dictionary:
 
 func _build_page_e() -> void:
 	var icons := _make_checkbox_icons()
-	var intro := _rtl()
-	intro.text = _BODY_E_INTRO.replace("\n\n", "[br]")
-	_scroll_inner.add_child(intro)
+	var prose := _rtl()
+	prose.text = "[center]" + _BODY_E_PROSE.replace("\n\n", "[br][br]").replace("\n", " ") + "[/center]"
+	_scroll_inner.add_child(prose)
 
-	for t in _REQUIRED_CHECK_LABELS:
-		var cb := CheckBox.new()
-		cb.text = t
-		cb.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		cb.custom_minimum_size = Vector2(0, 0)
-		cb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		cb.add_theme_font_size_override("font_size", _CHECKBOX_FONT_SIZE)
-		cb.add_theme_color_override("font_color", Color.WHITE)
-		cb.add_theme_color_override("font_pressed_color", Color.WHITE)
-		cb.add_theme_color_override("font_hover_color", Color(0.95, 0.95, 0.95))
-		cb.add_theme_color_override("font_focus_color", Color.WHITE)
-		cb.add_theme_icon_override("unchecked", icons["unchecked"])
-		cb.add_theme_icon_override("checked", icons["checked"])
-		cb.add_theme_constant_override("check_v_offset", 2)
-		cb.toggled.connect(_on_e_checkbox_changed)
-		_required_checkboxes.append(cb)
-		_scroll_inner.add_child(cb)
+	_required_checkbox = CheckBox.new()
+	_required_checkbox.text = _E_REQUIRED_AGREE_LABEL
+	_required_checkbox.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_required_checkbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_required_checkbox.add_theme_font_size_override("font_size", _CHECKBOX_FONT_SIZE)
+	_required_checkbox.add_theme_color_override("font_color", Color.WHITE)
+	_required_checkbox.add_theme_color_override("font_pressed_color", Color.WHITE)
+	_required_checkbox.add_theme_color_override("font_hover_color", Color(0.95, 0.95, 0.95))
+	_required_checkbox.add_theme_color_override("font_focus_color", Color.WHITE)
+	_required_checkbox.add_theme_icon_override("unchecked", icons["unchecked"])
+	_required_checkbox.add_theme_icon_override("checked", icons["checked"])
+	_required_checkbox.add_theme_constant_override("check_v_offset", 2)
+	_required_checkbox.toggled.connect(_on_e_checkbox_changed)
+	_scroll_inner.add_child(_required_checkbox)
 
 	_optional_checkbox = CheckBox.new()
 	_optional_checkbox.text = _OPTIONAL_CHECK_LABEL
@@ -313,6 +323,7 @@ func _build_page_e() -> void:
 	_optional_checkbox.add_theme_icon_override("unchecked", icons["unchecked"])
 	_optional_checkbox.add_theme_icon_override("checked", icons["checked"])
 	_optional_checkbox.add_theme_constant_override("check_v_offset", 2)
+	_optional_checkbox.toggled.connect(_on_e_checkbox_changed)
 	_scroll_inner.add_child(_optional_checkbox)
 
 	_refresh_e_primary()
@@ -323,9 +334,4 @@ func _on_e_checkbox_changed(_pressed: bool) -> void:
 
 
 func _refresh_e_primary() -> void:
-	var ok := true
-	for cb in _required_checkboxes:
-		if not cb.button_pressed:
-			ok = false
-			break
-	_continue_button.disabled = not ok
+	_continue_button.disabled = not (_required_checkbox and _required_checkbox.button_pressed)
