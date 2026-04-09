@@ -33,3 +33,5 @@ func save() -> void:
 func record_research_notice_accepted() -> void:
 	research_metrics_opt_in = true
 	save()
+	if ReleaseMode.IS_RESEARCH_RELEASE:
+		ResearchTelemetry.flush_pending_notice_after_opt_in()

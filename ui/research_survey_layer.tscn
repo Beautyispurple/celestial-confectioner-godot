@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://research_survey_layer"]
+
+[ext_resource type="Script" path="res://ui/research_survey_layer.gd" id="1_survey"]
+
+[node name="ResearchSurveyLayer" type="CanvasLayer"]
+script = ExtResource("1_survey")

@@ -210,6 +210,7 @@ func finish_current_draft() -> int:
 	entry["version"] = JOURNAL_SAVE_VERSION
 	entry["finished_at_unix"] = int(Time.get_unix_time_from_system())
 	_finished.append(entry)
+	ResearchTelemetry.record_event("journal_snapshot", {"event": "finish", "entry": entry})
 	while _finished.size() > MAX_FINISHED_ENTRIES:
 		_finished.pop_front()
 	history_changed.emit()

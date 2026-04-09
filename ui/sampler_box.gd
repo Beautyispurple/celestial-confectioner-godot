@@ -203,7 +203,9 @@ func _scroll_grid_visible(v: bool) -> void:
 		sc.visible = v
 
 
-func _on_mode_tab_selected(_tab: int) -> void:
+func _on_mode_tab_selected(tab: int) -> void:
+	var tab_name := "Skills" if tab == 0 else "Life tools"
+	ResearchTelemetry.record_event("sampler_tab", {"tab": tab_name})
 	var lt: Node = _mode_tabs.get_node_or_null("LifeTools")
 	if lt == null:
 		return
@@ -415,6 +417,7 @@ func _on_tier_changed(tier: int) -> void:
 func toggle_open() -> void:
 	_open = not _open
 	if _open:
+		ResearchTelemetry.record_event("sampler_open", {"open": true})
 		_apply_all_slot_visibility()
 		_kill_panel_height_tween()
 		_panel.visible = true
@@ -425,6 +428,7 @@ func toggle_open() -> void:
 		await _maybe_show_dragee_migration_tutorial()
 		await _maybe_run_sampler_intro_chain()
 	else:
+		ResearchTelemetry.record_event("sampler_close", {"open": false})
 		if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
 			_journal.request_close()
 		if _minigame_host.visible:
@@ -455,11 +459,13 @@ func _on_skill_slot_pressed(idx: int) -> void:
 
 
 func _start_dragee_fresh() -> void:
+	ResearchTelemetry.record_event("minigame_start", {"tool": "dragee_toolkit"})
 	await CelestialDrageeDisposal.run_fresh_from_sampler()
 	_on_mode_tab_selected(_mode_tabs.current_tab)
 
 
 func _start_temper() -> void:
+	ResearchTelemetry.record_event("minigame_start", {"tool": "breath_tempering"})
 	await _expand_panel_for_minigame()
 	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
@@ -481,6 +487,7 @@ func _start_temper() -> void:
 func _start_aeration() -> void:
 	if CelestialVNState.get_panic_points() < 2:
 		return
+	ResearchTelemetry.record_event("minigame_start", {"tool": "breath_aeration"})
 	await _expand_panel_for_minigame()
 	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
@@ -500,6 +507,7 @@ func _start_aeration() -> void:
 
 
 func _start_sifting() -> void:
+	ResearchTelemetry.record_event("minigame_start", {"tool": "sensory_sifting"})
 	await _expand_panel_for_minigame()
 	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
@@ -517,6 +525,7 @@ func _start_sifting() -> void:
 
 
 func _start_cold_sheen() -> void:
+	ResearchTelemetry.record_event("minigame_start", {"tool": "cold_sheen"})
 	await _expand_panel_for_minigame()
 	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
@@ -536,6 +545,7 @@ func _start_cold_sheen() -> void:
 func _start_journal() -> void:
 	if int(float(str(Dialogic.VAR.get_variable("journal_unlocked", 0)))) == 0:
 		return
+	ResearchTelemetry.record_event("minigame_start", {"tool": "journal"})
 	await _expand_panel_for_minigame()
 	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
@@ -564,6 +574,7 @@ func _set_back_minigame_emphasis(on: bool) -> void:
 func _end_minigame_if_current(kind: String) -> void:
 	if _active_minigame != kind:
 		return
+	ResearchTelemetry.record_event("minigame_complete", {"tool": _telemetry_tool_id(kind)})
 	_active_minigame = ""
 	_set_back_minigame_emphasis(false)
 	_back_button.visible = true
@@ -575,7 +586,25 @@ func _end_minigame_if_current(kind: String) -> void:
 	await _collapse_panel_after_minigame()
 
 
+func _telemetry_tool_id(kind: String) -> String:
+	match kind:
+		"temper":
+			return "breath_tempering"
+		"aeration":
+			return "breath_aeration"
+		"sifting":
+			return "sensory_sifting"
+		"cold_sheen":
+			return "cold_sheen"
+		"journal":
+			return "journal"
+		_:
+			return kind
+
+
 func _on_back_pressed() -> void:
+	if not _active_minigame.is_empty():
+		ResearchTelemetry.record_event("minigame_abort", {"tool": _telemetry_tool_id(_active_minigame)})
 	if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
 		_journal.request_close()
 		return

@@ -4,19 +4,22 @@ signal finished_research_notice
 signal exit_to_main_menu_requested
 
 const GROUP_FIRST_RUN := &"first_run_gate_active"
+const _SAM_SCENE := preload("res://ui/research_sam_panel.tscn")
 
 const _TITLE := "Research build — before you play"
 const _BODY_BB := """Thank you for helping try this demo.
 
-This build is the [b]research release[/b] of the demo. We may collect [b]anonymous gameplay metrics[/b] for research only. We do not collect names, account details, or other information that identifies you.
+This is the [b]research[/b] build. It may collect [b]anonymous gameplay metrics[/b]. It may collect [b]survey responses[/b], including free-text answers. It may collect [b]text you type in-game[/b] (for example in the journal or other free-text prompts we instrument), as part of the research dataset.
 
-When you finish, there will be a short survey. After the survey, you can view the exact tracking information we stored for you in this build (that screen is not finished yet).
+Data are collected [b]without identifying information[/b] — no names, no contact details, no IDs we assign to you as a person.
 
-The final public release will [b]not[/b] collect these metrics.
+When you finish playing, there is a short survey. After that, you may open a screen that shows what was stored for [b]this session[/b], including verbatim text where applicable.
+
+The final public release will [b]not[/b] collect these research items.
 
 If you need crisis or support resources at any time, use [b]Pause → Safety & Support[/b]."""
 
-const _CHECK_LABEL := "I understand and agree to anonymous research metrics for this build (consent for research)."
+const _CHECK_LABEL := "I understand and agree to research data collection for this build (metrics, survey, and in-game text as described above)."
 
 const _TITLE_FONT_SIZE := 96
 const _BODY_FONT_SIZE := 60
@@ -31,6 +34,8 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 105
 	add_to_group(GROUP_FIRST_RUN)
+	if ReleaseMode.IS_RESEARCH_RELEASE:
+		ResearchTelemetry.mark_research_notice_shown()
 
 	var bg := ColorRect.new()
 	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -167,8 +172,29 @@ func _on_checkbox_toggled(_pressed: bool) -> void:
 func _on_continue_pressed() -> void:
 	if not _checkbox.button_pressed:
 		return
-	remove_from_group(GROUP_FIRST_RUN)
+	_continue_button.disabled = true
+	_checkbox.disabled = true
+	_run_sam_and_finish()
+
+
+func _run_sam_and_finish() -> void:
 	ResearchConsentState.record_research_notice_accepted()
+	var sam: PanelContainer = _SAM_SCENE.instantiate() as PanelContainer
+	sam.configure(
+		"Before you play: how do you feel right now?",
+		"You can decline this block; we will not store numeric ratings if you do."
+	)
+	sam.set_anchors_preset(Control.PRESET_CENTER)
+	sam.offset_left = -460
+	sam.offset_top = -300
+	sam.offset_right = 460
+	sam.offset_bottom = 300
+	add_child(sam)
+	var res: Variant = await sam.finished
+	if res is Dictionary:
+		ResearchTelemetry.record_event("pre_sam", res)
+	sam.queue_free()
+	remove_from_group(GROUP_FIRST_RUN)
 	finished_research_notice.emit()
 	queue_free()
 

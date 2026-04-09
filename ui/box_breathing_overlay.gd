@@ -45,6 +45,8 @@ var _temper_tween: Tween
 var _tick_player: AudioStreamPlayer
 var _last_tick_countdown: int = -1
 
+var _breath_session_start_unix: float = 0.0
+
 var _pools_loaded: bool = false
 var _pool_inhale: PackedStringArray = PackedStringArray()
 var _pool_hold1: PackedStringArray = PackedStringArray()
@@ -295,6 +297,9 @@ func _run_session(cycles: int, from_sampler: bool, aeration: bool) -> void:
 	_aeration = aeration
 	_temper_sampler_loop_until_stop = from_sampler and not aeration
 	_running = true
+	_breath_session_start_unix = Time.get_unix_time_from_system()
+	var mode_str := "aeration" if aeration else ("temper_loop" if from_sampler and not aeration else "fixed_cycles")
+	ResearchTelemetry.record_event("breathing_session_start", {"mode": mode_str})
 	visible = true
 	_skip_button.visible = true
 	_skip_button.text = "Back" if from_sampler else "Skip"
@@ -308,17 +313,24 @@ func _run_session(cycles: int, from_sampler: bool, aeration: bool) -> void:
 
 
 func _on_skip_pressed() -> void:
-	_finish_exercise()
+	_finish_exercise(false)
 
 
 func stop_exercise() -> void:
-	_finish_exercise()
+	_finish_exercise(false)
 
 
-func _finish_exercise() -> void:
+func _finish_exercise(completed_normally: bool = false) -> void:
 	if _finished_emitted:
 		return
 	_finished_emitted = true
+	var dur := Time.get_unix_time_from_system() - _breath_session_start_unix
+	ResearchTelemetry.record_event("breathing_session_end", {
+		"duration_sec": dur,
+		"completed": completed_normally,
+		"skipped": not completed_normally,
+		"cycles": float(_cycle_index),
+	})
 	_running = false
 	_aeration = false
 	_temper_sampler_loop_until_stop = false
@@ -466,7 +478,7 @@ func _advance_phase() -> void:
 			_complete_temper_sampler_cycle()
 			return
 		if _cycle_index >= _cycles_target:
-			_finish_exercise()
+			_finish_exercise(true)
 			return
 		_phase_index = Phase.INHALE_LMB
 		_reset_orb_for_inhale()
@@ -523,7 +535,7 @@ func _play_aeration_finish() -> void:
 	tw.tween_property(_tempered, "modulate:a", 1.0, 0.35)
 	tw.tween_interval(1.0)
 	tw.tween_property(_tempered, "modulate:a", 0.0, 0.45)
-	tw.tween_callback(_finish_exercise)
+	tw.tween_callback(_finish_exercise.bind(true))
 
 
 func _update_phase_prompt() -> void:

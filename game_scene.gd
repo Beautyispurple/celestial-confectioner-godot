@@ -9,6 +9,7 @@ func _ready() -> void:
 	if pending >= 0:
 		var err: Error = Dialogic.Save.load(GameSaveManager.slot_to_name(pending))
 		if err == OK:
+			ResearchTelemetry.begin_session_from_load()
 			ResearchTelemetry.init_if_allowed()
 			await get_tree().process_frame
 			await get_tree().process_frame

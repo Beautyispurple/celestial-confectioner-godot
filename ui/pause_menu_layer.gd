@@ -37,6 +37,8 @@ func _ready() -> void:
 
 
 func hide_menu() -> void:
+	if _menu_open:
+		ResearchTelemetry.record_event("pause_close")
 	_menu_open = false
 	visible = false
 	_slots.hide_browser()
@@ -50,6 +52,7 @@ func hide_menu() -> void:
 func open_menu() -> void:
 	if _consent_flow_blocks_input():
 		return
+	ResearchTelemetry.record_event("pause_open")
 	_menu_open = true
 	visible = true
 	_main_panel.show()
@@ -74,6 +77,7 @@ func _on_options_pressed() -> void:
 
 
 func _on_safety_pressed() -> void:
+	ResearchTelemetry.record_event("safety_open")
 	_main_panel.visible = false
 	if _safety.has_method(&"present"):
 		_safety.call(&"present")
@@ -95,16 +99,7 @@ func _on_main_menu_confirmed() -> void:
 ## Dialogic attaches its layout under /root, not under the game scene, so it survives
 ## change_scene unless we end the timeline and remove that layout first.
 func _go_to_main_menu_after_dialogic_cleanup() -> void:
-	await Dialogic.end_timeline(true)
-	if Dialogic.Styles.has_active_layout_node():
-		var layout: Node = Dialogic.Styles.get_layout_node()
-		if is_instance_valid(layout) and layout.is_inside_tree():
-			layout.get_parent().remove_child(layout)
-			layout.queue_free()
-		if get_tree().has_meta("dialogic_layout_node"):
-			get_tree().remove_meta("dialogic_layout_node")
-	GameSaveManager.pending_load_slot = -1
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	await ResearchTelemetry.go_to_main_menu_after_dialogic_cleanup()
 
 
 func _on_exit_pressed() -> void:
@@ -117,6 +112,8 @@ func _on_quit_confirmed() -> void:
 
 func _on_pause_save_confirmed(slot_index: int, display_name: String) -> void:
 	var err: Error = GameSaveManager.save_to_slot(slot_index, display_name)
+	if err == OK:
+		ResearchTelemetry.record_event("save_game", {"slot": slot_index})
 	if err != OK:
 		push_error("Save failed: %s" % error_string(err))
 	_slots.hide_browser()
@@ -126,6 +123,7 @@ func _on_pause_save_confirmed(slot_index: int, display_name: String) -> void:
 func _on_pause_load_slot(slot_index: int) -> void:
 	var err: Error = GameSaveManager.load_from_slot(slot_index)
 	if err == OK:
+		ResearchTelemetry.record_event("load_game", {"slot": slot_index})
 		await get_tree().process_frame
 		await get_tree().process_frame
 		GameSaveManager.restore_extras_after_load(slot_index)
@@ -190,4 +188,6 @@ func _consent_flow_blocks_input() -> bool:
 	return (
 		tree.get_nodes_in_group(&"consent_flow_active").size() > 0
 		or tree.get_nodes_in_group(&"first_run_gate_active").size() > 0
+		or tree.get_nodes_in_group(&"research_survey_active").size() > 0
+		or tree.get_nodes_in_group(&"research_transparency_active").size() > 0
 	)

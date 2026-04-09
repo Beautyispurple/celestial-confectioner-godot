@@ -106,6 +106,7 @@ func try_add_shelf_entry(thought_text: String, source: String, helpful: bool) ->
 	}
 	shelf.append(entry)
 	shelf_changed.emit()
+	ResearchTelemetry.record_event("dragee_verbatim", {"kind": "shelf", "text": str(thought_text).strip_edges()})
 	return true
 
 
@@ -159,6 +160,7 @@ func after_negative_thought_gate() -> void:
 
 func _set_flow_result(code: int) -> void:
 	Dialogic.VAR.set_variable("dragee_flow_result_code", code)
+	ResearchTelemetry.record_event("dragee_outcome", {"code": code})
 
 
 func _sync_thought(t: String) -> void:
@@ -198,7 +200,11 @@ func _prompt_line(title: String, placeholder: String = "", initial: String = "")
 	while not st["done"]:
 		await get_tree().process_frame
 	m.queue_free()
-	return {"ok": not bool(st["cancelled"]), "text": str(st["out"])}
+	var ok_line := not bool(st["cancelled"])
+	var out_txt := str(st["out"]).strip_edges()
+	if ok_line and not out_txt.is_empty():
+		ResearchTelemetry.record_event("dragee_verbatim", {"prompt": title, "text": out_txt})
+	return {"ok": ok_line, "text": str(st["out"])}
 
 
 func _prompt_confirm(title: String) -> Dictionary:

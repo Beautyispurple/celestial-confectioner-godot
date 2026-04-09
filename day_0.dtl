@@ -898,3 +898,4 @@ marzi (Casual Confident): [b][i]You've got this![/i][/b]
 (She half believes it...)
 (Soon her eyes drift shut and her racing mind slows to black, carrying her toward a new beginning.)
 To be continued...
+do ResearchTelemetry.request_end_of_demo_survey()

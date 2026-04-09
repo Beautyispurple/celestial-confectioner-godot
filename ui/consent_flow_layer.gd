@@ -158,6 +158,7 @@ func _on_continue_pressed() -> void:
 	else:
 		remove_from_group(GROUP)
 		remove_from_group(GROUP_FIRST_RUN)
+		ResearchTelemetry.mark_consent_pack_completed()
 		finished_consent.emit()
 		queue_free()
 

@@ -59,6 +59,7 @@ func eat_sugar() -> bool:
 	if get_count(ITEM_SUGAR) <= 0:
 		return false
 	_stacks[ITEM_SUGAR] = get_count(ITEM_SUGAR) - 1
+	ResearchTelemetry.record_event("inventory_use", {"item": ITEM_SUGAR})
 	CelestialVNState.apply_direct_social_delta(1)
 	inventory_changed.emit()
 	return true
@@ -68,6 +69,7 @@ func drink_water() -> bool:
 	if get_count(ITEM_WATER) <= 0:
 		return false
 	_stacks[ITEM_WATER] = get_count(ITEM_WATER) - 1
+	ResearchTelemetry.record_event("inventory_use", {"item": ITEM_WATER})
 	CelestialVNState.apply_direct_panic_delta(-10)
 	inventory_changed.emit()
 	return true
@@ -77,6 +79,7 @@ func eat_chili() -> bool:
 	if get_count(ITEM_CHILI) <= 0:
 		return false
 	_stacks[ITEM_CHILI] = get_count(ITEM_CHILI) - 1
+	ResearchTelemetry.record_event("inventory_use", {"item": ITEM_CHILI})
 	CelestialVNState.apply_direct_panic_delta(4)
 	inventory_changed.emit()
 	return true
@@ -85,5 +88,6 @@ func eat_chili() -> bool:
 func call_friend() -> bool:
 	if get_count(ITEM_PHONE) <= 0:
 		return false
+	ResearchTelemetry.record_event("inventory_use", {"item": ITEM_PHONE})
 	CelestialVNState.apply_social_drain(4)
 	return true
