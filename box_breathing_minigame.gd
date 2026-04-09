@@ -18,5 +18,7 @@ func _ready() -> void:
 
 
 func run_post_guide_breathing_cycles() -> void:
+	CelestialVNState.begin_blocking_overlay_vn()
 	if _overlay and _overlay.has_method("run_three_cycles"):
 		await _overlay.run_three_cycles()
+	CelestialVNState.end_blocking_overlay_vn()

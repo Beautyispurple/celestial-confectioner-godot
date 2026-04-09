@@ -81,14 +81,14 @@ func prologue_tutorial_sensory_sifting_unlocked() -> void:
 func prologue_tutorial_cold_sheen_unlocked() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(
-		"Cold Sheen is in the Sampler Box — splash the sink, then finish for a cold \"glacé\" moment. In play it usually drops Heat by 3; at max Heat it only drops by 1 — a sip of cold, not the whole reset. In real life, a quick cold or sensory interrupt often helps most before you're flooded; when you're already at the edge, it can still take the edge off, but it's not a stand-in for deeper support."
+		"Cold Sheen lives in the Sampler Box: splash the cold sink, then finish the short moment. It usually lowers Heat by a few points; at max Heat the relief is smaller — a sip of calm, not a full reset. Use it like a gentle pause, not a substitute for deeper support when you need it."
 	)
 
 
 func prologue_tutorial_dragee_disposal_unlocked() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(
-		"Catch it, Check it, Change it — the Dragee toolkit is in Marzi's Sampler Box (Skills tab). You can run the full flow again: name a thought, decide if it's helpful to keep, and either save it to your Thought shelf (Life tools tab) or work through gather → tilt → trash to let it go. Completing a disposal drops Heat by 3, can count as crisis coping at max Heat, adds your \"what can I do?\" line to the Action log, and gives you three stretches of gentler Social Battery drain the next times Marzi would lose social energy (e.g. a hard phone call). Replay anytime for the same in-game benefits — the exercise is the skill."
+		"The Dragee toolkit is in Marzi's Sampler Box (Skills tab). Run the flow again: name a thought, notice whether it's helpful to keep, and either save it on your Thought shelf (Life tools tab) or work through gather → tilt → trash to let it go. Completing a disposal drops Heat by 3, can count as crisis coping at max Heat, adds your \"what can I do?\" line to the Action log, and gives you three stretches of gentler Social Battery drain the next times Marzi would lose social energy (e.g. a hard phone call). Replay anytime for the same in-game benefits — the exercise is the skill."
 	)
 
 

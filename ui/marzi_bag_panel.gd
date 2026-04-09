@@ -9,6 +9,7 @@ const GRID_SLOTS := 25
 @onready var _dim: ColorRect = $InventoryModal/DimRect
 @onready var _item_grid: GridContainer = $InventoryModal/Center/MainPanel/Margin/VBox/Scroll/ItemGrid
 @onready var _title: Label = $InventoryModal/Center/MainPanel/Margin/VBox/TitleLabel
+@onready var _gold_label: Label = $InventoryModal/Center/MainPanel/Margin/VBox/GoldRow/GoldLabel
 @onready var _close_button: Button = $InventoryModal/Center/MainPanel/Margin/VBox/CloseButton
 
 var _popup: PopupMenu
@@ -38,14 +39,40 @@ func _ready() -> void:
 	GlobalInventory.inventory_changed.connect(_refresh_labels)
 	if not get_viewport().size_changed.is_connected(_on_viewport_size_changed):
 		get_viewport().size_changed.connect(_on_viewport_size_changed)
+	if not Dialogic.VAR.variable_changed.is_connected(_on_dialogic_var_changed):
+		Dialogic.VAR.variable_changed.connect(_on_dialogic_var_changed)
 	_build_slots()
 	_refresh_labels()
+	_refresh_gold_label()
 	_modal.visible = false
 	call_deferred("_update_bag_anchor_position")
 
 
 func _on_viewport_size_changed() -> void:
 	_update_bag_anchor_position()
+
+
+func _on_dialogic_var_changed(info: Dictionary) -> void:
+	if str(info.get("variable", "")) == "gold_coin":
+		_refresh_gold_label()
+
+
+func _refresh_gold_label() -> void:
+	if _gold_label == null:
+		return
+	var raw: Variant = Dialogic.VAR.get_variable("gold_coin", 0)
+	var n: float = 0.0
+	if raw is float or raw is int:
+		n = float(raw)
+	else:
+		var s := str(raw).strip_edges()
+		if s.is_valid_float():
+			n = float(s)
+		elif s.is_valid_int():
+			n = float(int(s))
+	# Whole gold for display; negatives allowed (overdraft story beats).
+	var shown: int = int(roundf(n))
+	_gold_label.text = "%d G" % shown
 
 
 func _process(_delta: float) -> void:
@@ -106,6 +133,7 @@ func _open_inventory_modal() -> void:
 	_modal.visible = true
 	CelestialVNState.begin_blocking_overlay_vn()
 	_refresh_labels()
+	_refresh_gold_label()
 
 
 func _close_inventory_modal() -> void:

@@ -150,17 +150,20 @@ func _dict_string_array(d: Dictionary, key: String) -> PackedStringArray:
 
 func _fill_fallback_pools() -> void:
 	_pool_inhale = PackedStringArray([
-		"soft", "gather", "fill", "widen", "open", "ease", "gentle", "drift", "slow", "deepen",
-		"calm", "still", "quiet", "hush", "breathe", "sip", "swell", "rise", "lift", "bloom",
+		"soft", "gentle", "ease", "calm", "quiet", "breathe", "warm", "safe", "peace", "comfort",
+		"kind", "caring", "tender", "slow", "peaceful", "soothing", "welcome", "allow", "nurture", "healing",
 	])
 	_pool_hold1 = PackedStringArray([
-		"pause", "settle", "hush", "steady", "rest", "quiet", "hold", "linger", "suspend", "anchor",
+		"pause", "settle", "rest", "steady", "peace", "stillness", "gentleness", "trust", "here", "presence",
+		"kindness", "softness", "ease", "breath", "moment", "allowing", "supported", "held", "safe", "calm",
 	])
 	_pool_exhale = PackedStringArray([
-		"release", "soften", "unclench", "melt", "drop", "ease", "flow", "unwind", "let", "drain",
+		"release", "soften", "ease", "flow", "melt", "relax", "letting", "peace", "softening", "comfort",
+		"kindness", "relief", "gentle", "calm", "soothe", "warmth", "forgive", "rest", "lighten", "easeful",
 	])
 	_pool_hold2 = PackedStringArray([
-		"held", "complete", "sure", "balanced", "clear", "grounded", "steady", "enough", "here", "done",
+		"enough", "peaceful", "gentle", "calm", "held", "safe", "whole", "rested", "cherished", "beloved",
+		"kindness", "gratitude", "ease", "soft", "here", "cared", "warmth", "serenity", "hope", "care",
 	])
 
 
@@ -500,7 +503,7 @@ func _complete_temper_sampler_cycle() -> void:
 	_kill_temper_tween()
 	_temper_tween = create_tween()
 	_temper_tween.tween_property(_tempered, "modulate:a", 1.0, 0.35)
-	_temper_tween.tween_interval(1.2)
+	_temper_tween.tween_interval(0.5)
 	_temper_tween.tween_property(_tempered, "modulate:a", 0.0, 0.5)
 	_temper_tween.tween_callback(_continue_temper_sampler_session)
 

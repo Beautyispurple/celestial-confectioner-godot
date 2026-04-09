@@ -148,12 +148,12 @@ chai (Relaxed): I already looked up the bus routes for you.
 chai (Relaxed): Go get 'em, confectionery genius.
 leave --All--
 [background arg="res://backgrounds/SCENE_bus_ticket.png" fade="3.0" wait="true"]
-[wait time="5.0"]
+[wait time="3.0"]
 [background arg="res://backgrounds/SCENE_bus_nervous.png" fade="3.0" wait="true"]
-[wait time="5.0"]
+[wait time="3.0"]
 label prologue_gm
 [background arg="res://backgrounds/BACKGROUND_gm_outside.png" fade="3.0" wait="true"]
-[wait time="5.0"]
+[wait time="2.0"]
 join marzi (Casual Amazed) left
 marzi (Casual Anticipation): Omigosh WOW!
 marzi (Casual Anticipation): So this is the legendary Gilded Macaron...
@@ -238,6 +238,7 @@ marzi (Casual Happy): I brought my portfolio and my confectionery school diploma
 leave --All--
 (The temperature in the room suddenly seems to drop ten degrees.)
 (Beatrix's radiant smile vanishes instantly and is replaced by a cold, calculating stare.)
+audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 (She pulls a golden cell phone out of her pocket, her posture stiffening into absolute rigidity.)
 (When she speaks again, her voice is flat and clipped.)
 join beatrix (Unimpressed) rightmost
@@ -338,7 +339,7 @@ marzi (Casual Sweat): (And I don't have to go live in the woods!)
 marzi (Casual Happy): I can't wait to tell Chai!
 leave --All--
 [background arg="res://backgrounds/SCENE_bus_ticket.png" fade="3.0" wait="true"]
-[wait time="5.0"]
+[wait time="3.0"]
 [background arg="res://backgrounds/SCENE_bus_happy.png" fade="3.0" wait="true"]
 [wait time="5.0"]
 label prologue_kitchen
@@ -529,7 +530,7 @@ marzi (Panic Attack 1): What do I do??
 	(She splashes the ice-cold water onto her face over and over.)
 	set {cold_sheen_unlocked} = 1
 	do CelestialTutorial.prologue_tutorial_cold_sheen_unlocked()
-	(System Message\: Unlocked "Cold Sheen" in Skills Toolbox — replay from Main Menu.)
+	(System Message\: Cold Sheen unlocked — see Sampler Box.)
 	marzi (Calming): Kaaa~
 	(The mammalian dive reflex kicks in, forcing her heart rate to slow down.)
 	marzi (Calming): Phew...that helps a little.
@@ -615,6 +616,7 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Restfulsleep): (She takes one last, deep breath, letting the quiet rhythm of the night finally lull her to sleep.)
 	set {panic_points} -= 10
 	set {sensory_sifting_unlocked} = 1
+	do CelestialVNState.refresh_sampler_slots()
 	(System Message\: Unlocked "Name 5 Things" in Skills Toolbox — replay from Main Menu.)
 	do CelestialTutorial.prologue_tutorial_sensory_sifting_unlocked()
 - Double check my bank app.

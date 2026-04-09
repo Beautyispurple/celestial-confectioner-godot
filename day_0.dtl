@@ -476,11 +476,19 @@ marzi (Cleaner Thinking): (hmm...am I up for this?
 	huck (Plucky): Is the negative thought "{negative_thought_game.thought_1}" helpful?
 	- No the thought is not helpful. | [response_kind="rational"]
 		marzi (Cleaner Thinking): No, the thought isn't safe or helpful.
-		huck (Idle): Okay. Take a breath — we'll walk through letting it go together in a moment.
-		do CelestialDrageeDisposal.run_story_not_helpful()
-		if int({dragee_flow_result_code}) == 0:
-			jump negative_thought_opt_out
-		jump negative_thought_feeling_check
+		huck (Idle): Okay. You can work through letting it go when you're ready — or tuck it on your thought shelf and come back later. What feels right?
+		- Let it go now. | [response_kind="rational"]
+			huck (Idle): Take a breath — we'll walk through it together.
+			do CelestialDrageeDisposal.run_story_not_helpful()
+			if int({dragee_flow_result_code}) == 0:
+				jump negative_thought_opt_out
+			jump negative_thought_feeling_check
+		- Save it on the shelf for later. | [response_kind="rational"]
+			huck (Caring): Smart. You can revisit it anytime from the Sampler → Life tools.
+			do CelestialDrageeDisposal.run_story_shelf_for_later()
+			if int({dragee_flow_result_code}) == 0:
+				jump negative_thought_opt_out
+			jump negative_thought_feeling_check
 	- Yes the thought is helpful. | [response_kind="irrational"]
 		marzi (Cleaner Thinking): Yes, it is safe.
 		marzi (Cleaner Thinking): And its is pretty helpful.
@@ -519,7 +527,7 @@ set {willing} = 1
 if int({dragee_huck_story_bonus_done}) == 0:
 	set {dragee_huck_story_bonus_done} = 1
 	set {huck_points} += 10
-	(System Message\: Unlocked "Catch it, Check it, Change it" in Skills Toolbox — replay from Main Menu.)
+	(System Message\: Unlocked "Dragee toolkit" in Skills Toolbox — replay from Main Menu.)
 
 marzi (Cleaner Determined): (Marzi looks at the empty floor, then up at Huck, who is quietly wringing out his own towel.)
 marzi (Cleaner Thinking): Huck... where did you learn how to do all that?

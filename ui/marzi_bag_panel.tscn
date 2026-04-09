@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqm8marzibag1"]
+[gd_scene load_steps=4 format=3 uid="uid://bqm8marzibag1"]
 
 [ext_resource type="Script" path="res://ui/marzi_bag_panel.gd" id="1_bag"]
 [ext_resource type="Texture2D" path="res://ui/icons/bag_backpack_icon.svg" id="2_icon"]
+[ext_resource type="Texture2D" path="res://ui/icons/gold_coin_icon.svg" id="3_coin"]
 
 [node name="MarziBagPanel" type="Control"]
 layout_mode = 3
@@ -66,6 +67,23 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Marzi's bag"
 horizontal_alignment = 1
+
+[node name="GoldRow" type="HBoxContainer" parent="InventoryModal/Center/MainPanel/Margin/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="GoldIcon" type="TextureRect" parent="InventoryModal/Center/MainPanel/Margin/VBox/GoldRow"]
+layout_mode = 2
+custom_minimum_size = Vector2(28, 28)
+texture = ExtResource("3_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GoldLabel" type="Label" parent="InventoryModal/Center/MainPanel/Margin/VBox/GoldRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "0 G"
 
 [node name="Scroll" type="ScrollContainer" parent="InventoryModal/Center/MainPanel/Margin/VBox"]
 custom_minimum_size = Vector2(0, 320)

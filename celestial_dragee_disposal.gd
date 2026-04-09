@@ -326,6 +326,39 @@ func run_story_helpful() -> void:
 	CelestialVNState.end_blocking_overlay_vn()
 
 
+## Huck scene: thought judged not helpful, but player chooses shelf instead of disposal mini.
+func run_story_shelf_for_later() -> void:
+	CelestialVNState.begin_blocking_overlay_vn()
+	CelestialVNState.begin_minigame_modal_focus()
+	var thought: String = str(Dialogic.VAR.get_variable("negative_thought_game.thought_1", ""))
+	var pr: Dictionary = await _prompt_line(
+		"What can you do about this thought while you set it aside for later?",
+		"I can…",
+		""
+	)
+	if not pr["ok"]:
+		_set_flow_result(RESULT_CANCEL)
+		CelestialVNState.end_minigame_modal_focus()
+		CelestialVNState.end_blocking_overlay_vn()
+		return
+	var action_line: String = str(pr["text"])
+	if action_line.is_empty():
+		_set_flow_result(RESULT_CANCEL)
+		CelestialVNState.end_minigame_modal_focus()
+		CelestialVNState.end_blocking_overlay_vn()
+		return
+	_sync_action(action_line)
+	if not try_add_shelf_entry(thought, "huck_scene", false):
+		await _prompt_confirm("Your thought shelf is full (6). Let something go from the Sampler → Life tools before adding another.")
+		_set_flow_result(RESULT_SHELF_FULL)
+		CelestialVNState.end_minigame_modal_focus()
+		CelestialVNState.end_blocking_overlay_vn()
+		return
+	_set_flow_result(RESULT_SHELVED)
+	CelestialVNState.end_minigame_modal_focus()
+	CelestialVNState.end_blocking_overlay_vn()
+
+
 func run_fresh_from_sampler() -> void:
 	CelestialVNState.begin_blocking_overlay_vn()
 	CelestialVNState.begin_minigame_modal_focus()

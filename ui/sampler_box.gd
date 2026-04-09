@@ -1,5 +1,8 @@
 extends CanvasLayer
 ## Slide-down Marzi's Sampler Box; Tab or handle toggles. Does not pause the scene tree.
+##
+## Skills tab = six fixed tiles in stacked rows: breath×2, sifting, cold sheen, dragee, journal.
+## Registry index 0..5 = skill id for unlock logic and `_on_skill_slot_pressed`; layout is built in `_build_slot_grid`.
 
 const BOX_SCENE := preload("res://ui/box_breathing_overlay.tscn")
 const SIFT_SCENE := preload("res://ui/sensory_sifting_panel.tscn")
@@ -8,11 +11,27 @@ const CANDY_SLOT_SCENE := preload("res://ui/sampler_candy_skill_slot.tscn")
 const JOURNAL_SCENE := preload("res://ui/journal/journal_overlay.tscn")
 
 const _PANEL_OPEN_H := 720.0
-const _GRID_COLS := 5
-const _GRID_ROWS := 10
-const _GRID_SLOTS := _GRID_COLS * _GRID_ROWS
 
 const _SKILLS_TAB := "TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills"
+## Block Dialogic advance while these Skills-tab minigames run (matches overlay refcount in CelestialVNState).
+const _MINIGAMES_BLOCKING_OVERLAY: Array[String] = ["temper", "aeration", "sifting", "cold_sheen"]
+## `dialog` = Dialogic variable name, or "_dragee_sampler_" for CelestialDrageeDisposal.is_dragee_sampler_unlocked().
+## `gate`: "always" if unlocked ⇒ usable; "panic_ge_2" = Breath Aeration needs Heat ≥ 2 in play.
+const _SAMPLER_SKILL_SLOTS: Array[Dictionary] = [
+	{"dialog": "breath_tempering_unlocked", "label": "Breath\nTempering", "gate": "always"},
+	{"dialog": "breath_aeration_unlocked", "label": "Breath\nAeration", "gate": "panic_ge_2"},
+	{"dialog": "sensory_sifting_unlocked", "label": "Sensory\nSifting", "gate": "always"},
+	{"dialog": "cold_sheen_unlocked", "label": "Cold\nSheen", "gate": "always"},
+	{"dialog": "_dragee_sampler_", "label": "Dragee\ntoolkit", "gate": "always"},
+	{"dialog": "journal_unlocked", "label": "Journal", "gate": "always"},
+]
+## Indices match `_SAMPLER_SKILL_SLOTS` order (for match in _on_skill_slot_pressed).
+const SLOT_BREATH_TEMPERING := 0
+const SLOT_BREATH_AERATION := 1
+const SLOT_SENSORY_SIFTING := 2
+const SLOT_COLD_SHEEN := 3
+const SLOT_DRAGEE_TOOLKIT := 4
+const SLOT_JOURNAL := 5
 
 @onready var _handle_strip: Control = $TopBar/RootRow/HandleStrip
 @onready var _handle_panel: PanelContainer = $TopBar/RootRow/HandleStrip/HandleRow/HandlePanel
@@ -23,7 +42,7 @@ var _sb_panel_hover: StyleBoxFlat
 var _sb_panel_pressed: StyleBoxFlat
 @onready var _panel: PanelContainer = $TopBar/RootRow/SlidePanel
 @onready var _mode_tabs: TabContainer = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs
-@onready var _grid: GridContainer = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/Scroll/Grid
+@onready var _skill_rows: VBoxContainer = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/Scroll/SkillRows
 @onready var _minigame_host: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost
 @onready var _breathing_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost/MInner/BreathingSlot
 @onready var _sifting_slot: Control = $TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills/MinigameHost/MInner/SiftingSlot
@@ -80,30 +99,36 @@ func _ready() -> void:
 
 
 func _build_slot_grid() -> void:
-	for c in _grid.get_children():
+	for c in _skill_rows.get_children():
 		c.queue_free()
 	_slot_buttons.clear()
-	for i in _GRID_SLOTS:
-		var b: SamplerCandySkillSlot = CANDY_SLOT_SCENE.instantiate() as SamplerCandySkillSlot
-		b.custom_minimum_size = Vector2(100, 74)
-		b.disabled = true
-		b.set_slot_text("· · ·")
-		b.pressed.connect(_on_skill_slot_pressed.bind(i))
-		_grid.add_child(b)
+	# Row 1: both breath skills side by side.
+	var row_breath := HBoxContainer.new()
+	row_breath.alignment = BoxContainer.ALIGNMENT_CENTER
+	row_breath.add_theme_constant_override("separation", 10)
+	_skill_rows.add_child(row_breath)
+	for i in [SLOT_BREATH_TEMPERING, SLOT_BREATH_AERATION]:
+		var b: SamplerCandySkillSlot = _make_skill_slot_button(i)
+		row_breath.add_child(b)
 		_slot_buttons.append(b)
-	_set_slot_label(0, "Breath\nTempering")
-	_set_slot_label(1, "Breath\nAeration")
-	_set_slot_label(2, "Sensory\nSifting")
-	_set_slot_label(3, "Cold\nSheen")
-	_set_slot_label(4, "Dragee\ntoolkit")
-	_set_slot_label(5, "Journal")
+	# Rows 2–5: one skill each (sensory sifting, cold sheen, dragee, journal).
+	for i in [SLOT_SENSORY_SIFTING, SLOT_COLD_SHEEN, SLOT_DRAGEE_TOOLKIT, SLOT_JOURNAL]:
+		var row := HBoxContainer.new()
+		row.alignment = BoxContainer.ALIGNMENT_BEGIN
+		_skill_rows.add_child(row)
+		var b2: SamplerCandySkillSlot = _make_skill_slot_button(i)
+		row.add_child(b2)
+		_slot_buttons.append(b2)
 
 
-func _set_slot_label(idx: int, t: String) -> void:
-	if idx >= 0 and idx < _slot_buttons.size():
-		var slot: SamplerCandySkillSlot = _slot_buttons[idx] as SamplerCandySkillSlot
-		if slot:
-			slot.set_slot_text(t)
+func _make_skill_slot_button(idx: int) -> SamplerCandySkillSlot:
+	var def: Dictionary = _SAMPLER_SKILL_SLOTS[idx]
+	var b: SamplerCandySkillSlot = CANDY_SLOT_SCENE.instantiate() as SamplerCandySkillSlot
+	b.custom_minimum_size = Vector2(100, 74)
+	b.disabled = true
+	b.set_slot_text(str(def.get("label", "?")))
+	b.pressed.connect(_on_skill_slot_pressed.bind(idx))
+	return b
 
 
 func _configure_root_sizing() -> void:
@@ -179,6 +204,8 @@ func _on_panel_resized() -> void:
 
 
 func reset_for_menu() -> void:
+	if _active_minigame in _MINIGAMES_BLOCKING_OVERLAY:
+		CelestialVNState.end_blocking_overlay_vn()
 	if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
 		_journal.request_close()
 	_kill_panel_height_tween()
@@ -305,41 +332,41 @@ func _on_dialogic_var_changed(info: Dictionary) -> void:
 
 
 func _apply_all_slot_visibility() -> void:
-	var temper_u: bool = int(float(str(Dialogic.VAR.get_variable("breath_tempering_unlocked", 0)))) != 0
-	var aer_u: bool = int(float(str(Dialogic.VAR.get_variable("breath_aeration_unlocked", 0)))) != 0
-	var sift_u: bool = int(float(str(Dialogic.VAR.get_variable("sensory_sifting_unlocked", 0)))) != 0
-	var cold_u: bool = int(float(str(Dialogic.VAR.get_variable("cold_sheen_unlocked", 0)))) != 0
-	var drag_u: bool = CelestialDrageeDisposal.is_dragee_sampler_unlocked()
-	var journal_u: bool = int(float(str(Dialogic.VAR.get_variable("journal_unlocked", 0)))) != 0
-	if _slot_buttons.size() > 0:
-		_slot_buttons[0].visible = temper_u
-		_slot_buttons[0].disabled = not temper_u
-		_refresh_slot_wrapper(0, false, temper_u and not _slot_buttons[0].disabled)
-	if _slot_buttons.size() > 1:
-		_slot_buttons[1].visible = aer_u
-		var can_aerate: bool = aer_u and CelestialVNState.get_panic_points() >= 2
-		_slot_buttons[1].disabled = not can_aerate
-		_refresh_slot_wrapper(1, false, aer_u and can_aerate)
-	if _slot_buttons.size() > 2:
-		_slot_buttons[2].visible = sift_u
-		_slot_buttons[2].disabled = not sift_u
-		_refresh_slot_wrapper(2, false, sift_u and not _slot_buttons[2].disabled)
-	if _slot_buttons.size() > 3:
-		_slot_buttons[3].visible = cold_u
-		_slot_buttons[3].disabled = not cold_u
-		_refresh_slot_wrapper(3, false, cold_u and not _slot_buttons[3].disabled)
-	if _slot_buttons.size() > 4:
-		_slot_buttons[4].visible = drag_u
-		_slot_buttons[4].disabled = not drag_u
-		_refresh_slot_wrapper(4, false, drag_u and not _slot_buttons[4].disabled)
-	if _slot_buttons.size() > 5:
-		_slot_buttons[5].visible = journal_u
-		_slot_buttons[5].disabled = not journal_u
-		_refresh_slot_wrapper(5, false, journal_u and not _slot_buttons[5].disabled)
-	for i in range(6, _slot_buttons.size()):
-		_slot_buttons[i].visible = true
-		_slot_buttons[i].disabled = true
-		_refresh_slot_wrapper(i, true, false)
+	# One tile per registry entry only; tiles stay visible so grid positions never shift.
+	for i in _SAMPLER_SKILL_SLOTS.size():
+		if i >= _slot_buttons.size():
+			break
+		var def: Dictionary = _SAMPLER_SKILL_SLOTS[i]
+		var unlocked: bool = _sampler_skill_unlocked(def)
+		var can_activate: bool = _sampler_skill_can_activate(def, unlocked)
+		_apply_fixed_skill_slot(i, unlocked, can_activate)
+
+
+func _sampler_skill_unlocked(def: Dictionary) -> bool:
+	var key: String = str(def.get("dialog", ""))
+	if key == "_dragee_sampler_":
+		return CelestialDrageeDisposal.is_dragee_sampler_unlocked()
+	return int(float(str(Dialogic.VAR.get_variable(key, 0)))) != 0
+
+
+func _sampler_skill_can_activate(def: Dictionary, unlocked: bool) -> bool:
+	if not unlocked:
+		return false
+	match str(def.get("gate", "always")):
+		"panic_ge_2":
+			return CelestialVNState.get_panic_points() >= 2
+		_:
+			return true
+
+
+func _apply_fixed_skill_slot(idx: int, unlocked: bool, can_activate: bool) -> void:
+	if idx < 0 or idx >= _slot_buttons.size():
+		return
+	var b: Button = _slot_buttons[idx]
+	b.visible = true
+	b.disabled = not can_activate
+	var interactable: bool = unlocked and can_activate
+	_refresh_slot_wrapper(idx, not unlocked, interactable)
 
 
 func _refresh_slot_wrapper(idx: int, placeholder: bool, interactable: bool) -> void:
@@ -444,17 +471,17 @@ func toggle_open() -> void:
 
 func _on_skill_slot_pressed(idx: int) -> void:
 	match idx:
-		0:
+		SLOT_BREATH_TEMPERING:
 			_start_temper()
-		1:
+		SLOT_BREATH_AERATION:
 			_start_aeration()
-		2:
+		SLOT_SENSORY_SIFTING:
 			_start_sifting()
-		3:
+		SLOT_COLD_SHEEN:
 			_start_cold_sheen()
-		4:
+		SLOT_DRAGEE_TOOLKIT:
 			_start_dragee_fresh()
-		5:
+		SLOT_JOURNAL:
 			_start_journal()
 
 
@@ -466,6 +493,7 @@ func _start_dragee_fresh() -> void:
 
 func _start_temper() -> void:
 	ResearchTelemetry.record_event("minigame_start", {"tool": "breath_tempering"})
+	CelestialVNState.begin_blocking_overlay_vn()
 	await _expand_panel_for_minigame()
 	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
@@ -488,6 +516,7 @@ func _start_aeration() -> void:
 	if CelestialVNState.get_panic_points() < 2:
 		return
 	ResearchTelemetry.record_event("minigame_start", {"tool": "breath_aeration"})
+	CelestialVNState.begin_blocking_overlay_vn()
 	await _expand_panel_for_minigame()
 	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
@@ -508,6 +537,7 @@ func _start_aeration() -> void:
 
 func _start_sifting() -> void:
 	ResearchTelemetry.record_event("minigame_start", {"tool": "sensory_sifting"})
+	CelestialVNState.begin_blocking_overlay_vn()
 	await _expand_panel_for_minigame()
 	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
@@ -526,6 +556,7 @@ func _start_sifting() -> void:
 
 func _start_cold_sheen() -> void:
 	ResearchTelemetry.record_event("minigame_start", {"tool": "cold_sheen"})
+	CelestialVNState.begin_blocking_overlay_vn()
 	await _expand_panel_for_minigame()
 	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
@@ -575,6 +606,8 @@ func _end_minigame_if_current(kind: String) -> void:
 	if _active_minigame != kind:
 		return
 	ResearchTelemetry.record_event("minigame_complete", {"tool": _telemetry_tool_id(kind)})
+	if kind in _MINIGAMES_BLOCKING_OVERLAY:
+		CelestialVNState.end_blocking_overlay_vn()
 	_active_minigame = ""
 	_set_back_minigame_emphasis(false)
 	_back_button.visible = true
@@ -605,6 +638,7 @@ func _telemetry_tool_id(kind: String) -> String:
 func _on_back_pressed() -> void:
 	if not _active_minigame.is_empty():
 		ResearchTelemetry.record_event("minigame_abort", {"tool": _telemetry_tool_id(_active_minigame)})
+	var ending_kind: String = _active_minigame
 	if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
 		_journal.request_close()
 		return
@@ -614,6 +648,8 @@ func _on_back_pressed() -> void:
 		_cold_sheen.quit_reset()
 	if _breathing != null and _breathing.has_method("stop_exercise"):
 		_breathing.stop_exercise()
+	if ending_kind in _MINIGAMES_BLOCKING_OVERLAY:
+		CelestialVNState.end_blocking_overlay_vn()
 	_active_minigame = ""
 	_set_back_minigame_emphasis(false)
 	_back_button.visible = true

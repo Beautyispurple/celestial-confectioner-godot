@@ -185,19 +185,65 @@ func _phase_trash() -> bool:
 	v.add_theme_constant_override("separation", 16)
 	wrap.add_child(v)
 	var lbl := Label.new()
-	lbl.text = "Let it go — drop the bundle into the trash."
+	lbl.text = "Let it go — click and drag the bundle down into the trash."
+	lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	lbl.custom_minimum_size = Vector2(400, 0)
 	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(lbl)
-	var btn := Button.new()
-	btn.text = "Release into the trash"
-	btn.custom_minimum_size = Vector2(280, 44)
-	v.add_child(btn)
 
-	var st := {"done": false, "ok": false}
-	btn.pressed.connect(
-		func() -> void:
-			st["ok"] = true
-			st["done"] = true
+	var zone := Control.new()
+	zone.custom_minimum_size = Vector2(300, 200)
+	zone.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	zone.clip_contents = true
+	v.add_child(zone)
+
+	var trash_fill := ColorRect.new()
+	trash_fill.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+	trash_fill.anchor_top = 0.68
+	trash_fill.color = Color(0.1, 0.08, 0.14, 1.0)
+	trash_fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	zone.add_child(trash_fill)
+
+	var trash_caption := Label.new()
+	trash_caption.text = "Trash"
+	trash_caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	trash_caption.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	trash_caption.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+	trash_caption.anchor_top = 0.68
+	trash_caption.add_theme_font_size_override("font_size", 14)
+	trash_caption.add_theme_color_override("font_color", Color(0.75, 0.7, 0.85, 1.0))
+	trash_caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	zone.add_child(trash_caption)
+
+	var bundle := Panel.new()
+	bundle.custom_minimum_size = Vector2(92, 40)
+	bundle.position = Vector2(104, 14)
+	bundle.mouse_filter = Control.MOUSE_FILTER_STOP
+	var bstyle := StyleBoxFlat.new()
+	bstyle.bg_color = Color(0.52, 0.4, 0.72, 1.0)
+	bstyle.set_corner_radius_all(8)
+	bstyle.set_border_width_all(2)
+	bstyle.border_color = Color(0.95, 0.88, 1.0, 0.55)
+	bundle.add_theme_stylebox_override("panel", bstyle)
+	zone.add_child(bundle)
+
+	const DUMP_Y := 118.0
+	var st := {"done": false, "ok": false, "pressing": false}
+	bundle.gui_input.connect(
+		func(ev: InputEvent) -> void:
+			if ev is InputEventMouseButton:
+				var mb := ev as InputEventMouseButton
+				if mb.button_index == MOUSE_BUTTON_LEFT:
+					if mb.pressed:
+						st["pressing"] = true
+					else:
+						st["pressing"] = false
+						if bundle.position.y >= DUMP_Y:
+							st["ok"] = true
+							st["done"] = true
+			elif ev is InputEventMouseMotion and bool(st["pressing"]):
+				var mm := ev as InputEventMouseMotion
+				bundle.position.y = clampf(bundle.position.y + mm.relative.y, 8.0, 150.0)
 	)
 
 	while not st["done"] and not _user_abort:
