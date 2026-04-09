@@ -5,10 +5,12 @@ extends CanvasLayer
 @onready var _save_button: Button = $Center/MainPanel/Margin/VBox/SaveButton
 @onready var _load_button: Button = $Center/MainPanel/Margin/VBox/LoadButton
 @onready var _options_button: Button = $Center/MainPanel/Margin/VBox/OptionsButton
+@onready var _safety_button: Button = $Center/MainPanel/Margin/VBox/SafetySupportButton
 @onready var _main_menu_button: Button = $Center/MainPanel/Margin/VBox/MainMenuButton
 @onready var _exit_button: Button = $Center/MainPanel/Margin/VBox/ExitButton
 @onready var _slots: Control = $SaveSlotsBrowser
 @onready var _options: Control = $OptionsPopup
+@onready var _safety: Control = $SafetySupportPanel
 @onready var _quit_confirm: ConfirmationDialog = $QuitConfirm
 @onready var _main_menu_confirm: ConfirmationDialog = $MainMenuConfirm
 
@@ -21,12 +23,14 @@ func _ready() -> void:
 	_save_button.pressed.connect(_on_save_pressed)
 	_load_button.pressed.connect(_on_load_pressed)
 	_options_button.pressed.connect(_on_options_pressed)
+	_safety_button.pressed.connect(_on_safety_pressed)
 	_main_menu_button.pressed.connect(_on_main_menu_pressed)
 	_exit_button.pressed.connect(_on_exit_pressed)
 	_slots.slot_picked_for_load.connect(_on_pause_load_slot)
 	_slots.slot_save_confirmed.connect(_on_pause_save_confirmed)
 	_slots.closed.connect(_on_slots_closed)
 	_options.closed.connect(_on_options_closed)
+	_safety.connect("closed", _on_safety_closed)
 	_quit_confirm.confirmed.connect(_on_quit_confirmed)
 	_main_menu_confirm.confirmed.connect(_on_main_menu_confirmed)
 	hide_menu()
@@ -37,11 +41,15 @@ func hide_menu() -> void:
 	visible = false
 	_slots.hide_browser()
 	_options.hide_options()
+	if _safety.has_method(&"hide_panel"):
+		_safety.call(&"hide_panel")
 	_main_panel.visible = true
 	get_tree().paused = false
 
 
 func open_menu() -> void:
+	if _consent_flow_blocks_input():
+		return
 	_menu_open = true
 	visible = true
 	_main_panel.show()
@@ -63,6 +71,16 @@ func _on_load_pressed() -> void:
 func _on_options_pressed() -> void:
 	_main_panel.visible = false
 	_options.present()
+
+
+func _on_safety_pressed() -> void:
+	_main_panel.visible = false
+	if _safety.has_method(&"present"):
+		_safety.call(&"present")
+
+
+func _on_safety_closed() -> void:
+	_main_panel.visible = true
 
 
 func _on_main_menu_pressed() -> void:
@@ -126,10 +144,17 @@ func _on_options_closed() -> void:
 
 
 func handle_escape_toggle() -> bool:
+	if _consent_flow_blocks_input():
+		return true
 	if _quit_confirm.visible:
 		return false
 	if _main_menu_confirm.visible:
 		return false
+	if _safety.visible:
+		if _safety.has_method(&"hide_panel"):
+			_safety.call(&"hide_panel")
+		_main_panel.visible = true
+		return true
 	if _options.visible:
 		_options._apply_and_close()
 		return true
@@ -149,9 +174,16 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.keycode != KEY_ESCAPE:
 		return
+	if _consent_flow_blocks_input():
+		get_viewport().set_input_as_handled()
+		return
 	if _quit_confirm.visible:
 		return
 	if _main_menu_confirm.visible:
 		return
 	if handle_escape_toggle():
 		get_viewport().set_input_as_handled()
+
+
+func _consent_flow_blocks_input() -> bool:
+	return get_tree().get_nodes_in_group(&"consent_flow_active").size() > 0

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://xqighnpsqxrl"]
+
+[ext_resource type="Script" path="res://ui/consent_flow_layer.gd" id="1_script"]
+
+[node name="ConsentFlowLayer" type="CanvasLayer"]
+layer = 110
+script = ExtResource("1_script")

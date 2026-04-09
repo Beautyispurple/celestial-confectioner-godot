@@ -11,7 +11,7 @@ func _ready() -> void:
 			GlobalInventory.reset_new_game_defaults()
 			CelestialDrageeDisposal.reset_new_game()
 			CelestialVNState.resync_dialogic_variables_from_project_defaults()
-			Dialogic.start("intro_sequence")
+			await _run_consent_then_intro()
 		else:
 			await get_tree().process_frame
 			await get_tree().process_frame
@@ -23,4 +23,12 @@ func _ready() -> void:
 		GlobalInventory.reset_new_game_defaults()
 		CelestialDrageeDisposal.reset_new_game()
 		CelestialVNState.resync_dialogic_variables_from_project_defaults()
-		Dialogic.start("intro_sequence")
+		await _run_consent_then_intro()
+
+
+func _run_consent_then_intro() -> void:
+	var packed: PackedScene = load("res://ui/consent_flow_layer.tscn") as PackedScene
+	var layer: Node = packed.instantiate()
+	add_child(layer)
+	await layer.finished_consent
+	Dialogic.start("intro_sequence")

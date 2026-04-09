@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://dmkw7pause"]
+[gd_scene load_steps=5 format=3 uid="uid://dmkw7pause"]
 
 [ext_resource type="Script" path="res://ui/pause_menu_layer.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://ui/save_slots_browser.tscn" id="2_slots"]
 [ext_resource type="PackedScene" uid="uid://dmkw7options" path="res://ui/options_popup.tscn" id="3_options"]
+[ext_resource type="PackedScene" uid="uid://dmkw7safety" path="res://ui/safety_support_panel.tscn" id="4_safety"]
 
 [node name="PauseMenuLayer" type="CanvasLayer"]
 process_mode = 3
@@ -64,6 +65,11 @@ unique_name_in_editor = true
 layout_mode = 2
 text = "Options"
 
+[node name="SafetySupportButton" type="Button" parent="Center/MainPanel/Margin/VBox"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Safety & Support"
+
 [node name="MainMenuButton" type="Button" parent="Center/MainPanel/Margin/VBox"]
 unique_name_in_editor = true
 layout_mode = 2
@@ -78,6 +84,9 @@ text = "Exit Game"
 unique_name_in_editor = true
 
 [node name="OptionsPopup" parent="." instance=ExtResource("3_options")]
+unique_name_in_editor = true
+
+[node name="SafetySupportPanel" parent="." instance=ExtResource("4_safety")]
 unique_name_in_editor = true
 
 [node name="QuitConfirm" type="ConfirmationDialog" parent="."]

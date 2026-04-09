@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c7collapsible"]
+
+[ext_resource type="Script" path="res://ui/collapsible_section.gd" id="1_script"]
+
+[node name="CollapsibleSection" type="VBoxContainer"]
+theme_override_constants/separation = 8
+script = ExtResource("1_script")
+
+[node name="HeaderButton" type="Button" parent="."]
+unique_name_in_editor = true
+layout_mode = 2
+focus_mode = 2
+flat = true
+alignment = 0
+theme_override_font_sizes/font_size = 30
+
+[node name="BodyMargin" type="MarginContainer" parent="."]
+unique_name_in_editor = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="BodyRichText" type="RichTextLabel" parent="BodyMargin"]
+unique_name_in_editor = true
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 3
+theme_override_font_sizes/normal_font_size = 26
