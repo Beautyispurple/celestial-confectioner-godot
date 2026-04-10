@@ -191,3 +191,57 @@ func apply_options(fullscreen: bool, master_db: float) -> void:
 func apply_stored_options() -> void:
 	var o := load_options()
 	apply_options(o["fullscreen"] as bool, o["master_db"] as float)
+
+
+## OR unlock flags across all Dialogic save slots (for Confectioner's Case). Does not load into runtime Dialogic.
+func compute_meta_skill_unlocks() -> Array[bool]:
+	var defs: Array = SamplerSkillsRegistry.skill_slots()
+	var agg: Array[bool] = []
+	agg.resize(defs.size())
+	for i in range(agg.size()):
+		agg[i] = false
+	for slot_index in range(SLOT_COUNT):
+		if not has_save_in_slot(slot_index):
+			continue
+		_merge_meta_unlocks_from_slot(slot_to_name(slot_index), defs, agg)
+	return agg
+
+
+func _merge_meta_unlocks_from_slot(sname: String, defs: Array, agg: Array[bool]) -> void:
+	var state: Variant = Dialogic.Save.load_file(sname, "state.txt", {})
+	var vars: Dictionary = {}
+	if state is Dictionary:
+		var v: Variant = (state as Dictionary).get("variables", {})
+		if v is Dictionary:
+			vars = v as Dictionary
+	var extras: Variant = Dialogic.Save.load_file(sname, EXTRAS_FILE, {})
+	var extras_d: Dictionary = extras if extras is Dictionary else {}
+	for i in range(defs.size()):
+		if agg[i]:
+			continue
+		var def: Dictionary = defs[i]
+		var key: String = str(def.get("dialog", ""))
+		if key == "_dragee_sampler_":
+			if _meta_dragee_sampler_unlocked(vars, extras_d):
+				agg[i] = true
+		else:
+			if _meta_dialog_var_truthy(vars, key):
+				agg[i] = true
+
+
+func _meta_dialog_var_truthy(vars: Dictionary, key: String) -> bool:
+	var val: Variant = DialogicUtil._get_value_in_dictionary(key, vars)
+	if val == null:
+		return false
+	if val is Dictionary:
+		return false
+	return int(float(str(val))) != 0
+
+
+func _meta_dragee_sampler_unlocked(vars: Dictionary, extras: Dictionary) -> bool:
+	if _meta_dialog_var_truthy(vars, "dragee_disposal_unlocked"):
+		return true
+	var dlt: Variant = extras.get("dragee_life_tools", {})
+	if dlt is Dictionary:
+		return bool((dlt as Dictionary).get("sampler_unlocked", false))
+	return false

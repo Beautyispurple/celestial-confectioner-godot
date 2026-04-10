@@ -15,23 +15,6 @@ const _PANEL_OPEN_H := 720.0
 const _SKILLS_TAB := "TopBar/RootRow/SlidePanel/Margin/VBox/ModeTabs/Skills"
 ## Block Dialogic advance while these Skills-tab minigames run (matches overlay refcount in CelestialVNState).
 const _MINIGAMES_BLOCKING_OVERLAY: Array[String] = ["temper", "aeration", "sifting", "cold_sheen"]
-## `dialog` = Dialogic variable name, or "_dragee_sampler_" for CelestialDrageeDisposal.is_dragee_sampler_unlocked().
-## `gate`: "always" if unlocked ⇒ usable; "panic_ge_2" = Breath Aeration needs Heat ≥ 2 in play.
-const _SAMPLER_SKILL_SLOTS: Array[Dictionary] = [
-	{"dialog": "breath_tempering_unlocked", "label": "Breath\nTempering", "gate": "always"},
-	{"dialog": "breath_aeration_unlocked", "label": "Breath\nAeration", "gate": "panic_ge_2"},
-	{"dialog": "sensory_sifting_unlocked", "label": "Sensory\nSifting", "gate": "always"},
-	{"dialog": "cold_sheen_unlocked", "label": "Cold\nSheen", "gate": "always"},
-	{"dialog": "_dragee_sampler_", "label": "Dragee\ntoolkit", "gate": "always"},
-	{"dialog": "journal_unlocked", "label": "Journal", "gate": "always"},
-]
-## Indices match `_SAMPLER_SKILL_SLOTS` order (for match in _on_skill_slot_pressed).
-const SLOT_BREATH_TEMPERING := 0
-const SLOT_BREATH_AERATION := 1
-const SLOT_SENSORY_SIFTING := 2
-const SLOT_COLD_SHEEN := 3
-const SLOT_DRAGEE_TOOLKIT := 4
-const SLOT_JOURNAL := 5
 
 @onready var _handle_strip: Control = $TopBar/RootRow/HandleStrip
 @onready var _handle_panel: PanelContainer = $TopBar/RootRow/HandleStrip/HandleRow/HandlePanel
@@ -107,12 +90,12 @@ func _build_slot_grid() -> void:
 	row_breath.alignment = BoxContainer.ALIGNMENT_CENTER
 	row_breath.add_theme_constant_override("separation", 10)
 	_skill_rows.add_child(row_breath)
-	for i in [SLOT_BREATH_TEMPERING, SLOT_BREATH_AERATION]:
+	for i in [SamplerSkillsRegistry.SLOT_BREATH_TEMPERING, SamplerSkillsRegistry.SLOT_BREATH_AERATION]:
 		var b: SamplerCandySkillSlot = _make_skill_slot_button(i)
 		row_breath.add_child(b)
 		_slot_buttons.append(b)
 	# Rows 2–5: one skill each (sensory sifting, cold sheen, dragee, journal).
-	for i in [SLOT_SENSORY_SIFTING, SLOT_COLD_SHEEN, SLOT_DRAGEE_TOOLKIT, SLOT_JOURNAL]:
+	for i in [SamplerSkillsRegistry.SLOT_SENSORY_SIFTING, SamplerSkillsRegistry.SLOT_COLD_SHEEN, SamplerSkillsRegistry.SLOT_DRAGEE_TOOLKIT, SamplerSkillsRegistry.SLOT_JOURNAL]:
 		var row := HBoxContainer.new()
 		row.alignment = BoxContainer.ALIGNMENT_BEGIN
 		_skill_rows.add_child(row)
@@ -122,7 +105,7 @@ func _build_slot_grid() -> void:
 
 
 func _make_skill_slot_button(idx: int) -> SamplerCandySkillSlot:
-	var def: Dictionary = _SAMPLER_SKILL_SLOTS[idx]
+	var def: Dictionary = SamplerSkillsRegistry.skill_slots()[idx]
 	var b: SamplerCandySkillSlot = CANDY_SLOT_SCENE.instantiate() as SamplerCandySkillSlot
 	b.custom_minimum_size = Vector2(100, 74)
 	b.disabled = true
@@ -333,10 +316,10 @@ func _on_dialogic_var_changed(info: Dictionary) -> void:
 
 func _apply_all_slot_visibility() -> void:
 	# One tile per registry entry only; tiles stay visible so grid positions never shift.
-	for i in _SAMPLER_SKILL_SLOTS.size():
+	for i in SamplerSkillsRegistry.skill_slots().size():
 		if i >= _slot_buttons.size():
 			break
-		var def: Dictionary = _SAMPLER_SKILL_SLOTS[i]
+		var def: Dictionary = SamplerSkillsRegistry.skill_slots()[i]
 		var unlocked: bool = _sampler_skill_unlocked(def)
 		var can_activate: bool = _sampler_skill_can_activate(def, unlocked)
 		_apply_fixed_skill_slot(i, unlocked, can_activate)
@@ -471,17 +454,17 @@ func toggle_open() -> void:
 
 func _on_skill_slot_pressed(idx: int) -> void:
 	match idx:
-		SLOT_BREATH_TEMPERING:
+		SamplerSkillsRegistry.SLOT_BREATH_TEMPERING:
 			_start_temper()
-		SLOT_BREATH_AERATION:
+		SamplerSkillsRegistry.SLOT_BREATH_AERATION:
 			_start_aeration()
-		SLOT_SENSORY_SIFTING:
+		SamplerSkillsRegistry.SLOT_SENSORY_SIFTING:
 			_start_sifting()
-		SLOT_COLD_SHEEN:
+		SamplerSkillsRegistry.SLOT_COLD_SHEEN:
 			_start_cold_sheen()
-		SLOT_DRAGEE_TOOLKIT:
+		SamplerSkillsRegistry.SLOT_DRAGEE_TOOLKIT:
 			_start_dragee_fresh()
-		SLOT_JOURNAL:
+		SamplerSkillsRegistry.SLOT_JOURNAL:
 			_start_journal()
 
 

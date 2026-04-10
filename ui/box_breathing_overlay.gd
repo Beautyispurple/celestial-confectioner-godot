@@ -492,8 +492,9 @@ func _complete_temper_sampler_cycle() -> void:
 	_running = false
 	if _word_hint_label:
 		_word_hint_label.text = ""
-	CelestialVNState.apply_direct_panic_delta(-3)
-	CelestialVNState.notify_sampler_coping_completed()
+	if not SkillPracticeContext.menu_practice:
+		CelestialVNState.apply_direct_panic_delta(-3)
+		CelestialVNState.notify_sampler_coping_completed()
 	for n in get_tree().get_nodes_in_group("celestial_heat_meter"):
 		if n.has_method("start_heat_twinkle"):
 			n.start_heat_twinkle()
@@ -525,12 +526,13 @@ func _continue_temper_sampler_session() -> void:
 
 func _play_aeration_finish() -> void:
 	_running = false
-	CelestialVNState.apply_direct_panic_delta(-2)
-	var soc: int = CelestialVNState.get_social_battery()
-	Dialogic.VAR.set_variable(
-		"social_battery",
-		mini(soc + 1, CelestialVNState.SOCIAL_MAX)
-	)
+	if not SkillPracticeContext.menu_practice:
+		CelestialVNState.apply_direct_panic_delta(-2)
+		var soc: int = CelestialVNState.get_social_battery()
+		Dialogic.VAR.set_variable(
+			"social_battery",
+			mini(soc + 1, CelestialVNState.SOCIAL_MAX)
+		)
 	_tempered.visible = true
 	_tempered.text = "Aerated!"
 	_tempered.modulate.a = 0.0

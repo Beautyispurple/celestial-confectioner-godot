@@ -172,6 +172,8 @@ func _sync_action(a: String) -> void:
 
 
 func _apply_disposal_rewards(action_line: String, thought_snip: String, from_story: bool) -> void:
+	if SkillPracticeContext.menu_practice:
+		return
 	CelestialVNState.apply_direct_panic_delta(-3)
 	if CelestialVNState.get_panic_tier() == CelestialVNState.PanicTier.CRISIS:
 		CelestialVNState.notify_sampler_coping_completed()
@@ -360,6 +362,22 @@ func run_story_shelf_for_later() -> void:
 
 
 func run_fresh_from_sampler() -> void:
+	var menu := SkillPracticeContext.menu_practice
+	var vars_bak: Variant = null
+	var dragee_bak: Dictionary = {}
+	if menu:
+		if Dialogic.current_state_info.has("variables"):
+			vars_bak = (Dialogic.current_state_info["variables"] as Dictionary).duplicate(true)
+		else:
+			vars_bak = {}
+		dragee_bak = get_save_data().duplicate(true)
+	await _run_fresh_from_sampler_impl()
+	if menu:
+		Dialogic.current_state_info["variables"] = vars_bak
+		load_save_data(dragee_bak)
+
+
+func _run_fresh_from_sampler_impl() -> void:
 	CelestialVNState.begin_blocking_overlay_vn()
 	CelestialVNState.begin_minigame_modal_focus()
 	var t1: Dictionary = await _prompt_line("Name one negative thought you are having.", "I'm not good enough.", "")

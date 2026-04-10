@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cl58k620wjxk6" path="res://ui_elements/CC_MAIN_MENUResized.png" id="2_7vrkn"]
 [ext_resource type="AudioStream" uid="uid://cpwrl856ln0qg" path="res://sounds_music/opening.mp3" id="3_fu7sn"]
 [ext_resource type="PackedScene" uid="uid://2k5rftvl2txp" path="res://ui/save_slots_browser.tscn" id="4_slots"]
+[ext_resource type="Texture2D" path="res://ui/icons/bag_backpack_icon.svg" id="5_case_icon"]
 
 [node name="MainMenu" type="Control" unique_id=3100339]
 layout_mode = 3
@@ -67,6 +68,20 @@ autoplay = true
 [node name="SaveSlotsBrowser" parent="." unique_id=1395962582 instance=ExtResource("4_slots")]
 layout_mode = 1
 
+[node name="ConfectionerCaseButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1700.0
+offset_top = 860.0
+offset_right = 1890.0
+offset_bottom = 1050.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_case_icon")
+ignore_texture_size = true
+stretch_mode = 5
+tooltip_text = "Confectioner's Case — practice skills unlocked in any save"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="LoadGameButton" to="." method="_on_load_game_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="ConfectionerCaseButton" to="." method="_on_confectioner_case_pressed"]

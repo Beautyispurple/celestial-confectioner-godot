@@ -76,7 +76,9 @@ func _complete_minigame() -> void:
 		_water_splash = get_tree().get_first_node_in_group("celestial_water_splash")
 	if _water_splash != null and _water_splash.has_method("play_splash"):
 		await _water_splash.play_splash(true)
-	var crisis: bool = CelestialVNState.apply_cold_sheen_effect()
+	var crisis: bool = false
+	if not SkillPracticeContext.menu_practice:
+		crisis = CelestialVNState.apply_cold_sheen_effect()
 	_show_feedback(crisis)
 	await get_tree().create_timer(1.2).timeout
 	_kill_local_flash_tween()

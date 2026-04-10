@@ -220,6 +220,8 @@ func finish_current_draft() -> int:
 
 
 func _award_daily_coins_if_eligible() -> int:
+	if SkillPracticeContext.menu_practice:
+		return 0
 	var day_key: String = _today_key()
 	if day_key != _coin_day_key:
 		_coin_day_key = day_key

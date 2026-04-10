@@ -273,8 +273,9 @@ func _scroll_basin_bottom() -> void:
 func _complete_sifting() -> void:
 	_restore_sampler_back_focus()
 	_input.release_focus()
-	CelestialVNState.set_panic_points_direct(0)
-	CelestialVNState.set_panic_shield_direct(2)
+	if not SkillPracticeContext.menu_practice:
+		CelestialVNState.set_panic_points_direct(0)
+		CelestialVNState.set_panic_shield_direct(2)
 	var big := Label.new()
 	big.focus_mode = Control.FOCUS_NONE
 	big.mouse_filter = Control.MOUSE_FILTER_IGNORE

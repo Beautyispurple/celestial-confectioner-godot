@@ -1,11 +1,17 @@
 extends Control
 
+const CONFECTIONER_CASE_SCRIPT := preload("res://ui/confectioner_case_layer.gd")
+
 @onready var _load_slots: Control = $SaveSlotsBrowser
+
+var _confectioner_case: CanvasLayer
 
 
 func _ready() -> void:
 	CelestialVNState.set_vn_ui_visible(false)
 	GameSaveManager.apply_stored_options()
+	_confectioner_case = CONFECTIONER_CASE_SCRIPT.new() as CanvasLayer
+	add_child(_confectioner_case)
 	_load_slots.slot_picked_for_load.connect(_on_load_slot_chosen)
 	if OS.is_debug_build():
 		var dbg := Button.new()
@@ -50,3 +56,8 @@ func _on_load_slot_chosen(slot_index: int) -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_confectioner_case_pressed() -> void:
+	if _confectioner_case != null and _confectioner_case.has_method("show_case"):
+		_confectioner_case.show_case()
