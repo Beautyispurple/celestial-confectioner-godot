@@ -94,7 +94,8 @@ marzi (Casual Very Concerned): !!!
 al (Worry): We can't keep funding this chaos.
 marzi (Casual Very Concerned): E...End of the month? But I-I just need more time... my portfolio really isn't rea-
 leave --All--
-(Chai, Marzi's older brother walks into the room, balancing a squirming Toddler on his hip and a tablet in his other hand. The toddler is Marzi's sister, Madeline.)
+(Chai, Marzi's older brother walks into the room, balancing a squirming Toddler on his hip and a tablet in his other hand.)
+(The toddler is Marzi's sister, Madeline.)
 join chai rightmost
 chai (Exasperated): I'd say i'm surprised you spent all that money on candy...
 chai (Understanding): But I'm not.
@@ -273,7 +274,8 @@ do CelestialVNState.apply_stress_panic_delta(2)
 join marzi (Casual Concerned) left
 marzi (Casual Concerned): (Marzi tries to hide her stained wrist behind her back.)
 marzi (Casual Concerned): I...I know I look a little scattered, but I'm a fast learner, and I promise I'll work hard!
-marzi (Casual Confident): My methods can be somewhat... unconventional, but the proof is in the pudding, Madame Sweets and I was able to earn a 4.0 GPA.
+marzi (Casual Confident): My methods can be somewhat... unconventional, but the proof is in the pudding, Madame Sweets...
+marzi (Casual Confident): ...and I was able to earn a 4.0 GPA.
 marzi (Casual Concerned): I'm also very creative and i have so many ideas for-
 beatrix (Exasperated): Let me stop you right there.
 beatrix (Exasperated): I'm not looking for my junior staff to reinvent the wheel.
@@ -341,7 +343,7 @@ leave --All--
 [background arg="res://backgrounds/SCENE_bus_ticket.png" fade="3.0" wait="true"]
 [wait time="3.0"]
 [background arg="res://backgrounds/SCENE_bus_happy.png" fade="3.0" wait="true"]
-[wait time="5.0"]
+[wait time="3.0"]
 label prologue_kitchen
 [background arg="res://backgrounds/BACKGROUND_Family_Kitchen.jpg" fade="3.0" wait="true"]
 (Back home the table is set perfectly, though Marzi's side has a few stray sprinkles and a notebook filled with recipes and illustrations of different confections flipped open.)
