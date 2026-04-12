@@ -163,22 +163,51 @@ func _restore_journal(data: Variant) -> void:
 func load_options() -> Dictionary:
 	var cfg := ConfigFile.new()
 	if cfg.load(OPTIONS_PATH) != OK:
-		return {"fullscreen": false, "master_db": 0.0}
+		return {
+			"fullscreen": false,
+			"master_db": 0.0,
+			"music_db": 0.0,
+			"voice_db": 0.0,
+			"music_muted": false,
+			"voice_muted": false,
+		}
 	return {
 		"fullscreen": bool(cfg.get_value("audio_video", "fullscreen", false)),
 		"master_db": float(cfg.get_value("audio_video", "master_db", 0.0)),
+		"music_db": float(cfg.get_value("audio_video", "music_db", 0.0)),
+		"voice_db": float(cfg.get_value("audio_video", "voice_db", 0.0)),
+		"music_muted": bool(cfg.get_value("audio_video", "music_muted", false)),
+		"voice_muted": bool(cfg.get_value("audio_video", "voice_muted", false)),
 	}
 
 
-func save_options(fullscreen: bool, master_db: float) -> void:
+func save_options(
+	fullscreen: bool,
+	master_db: float,
+	music_db: float,
+	voice_db: float,
+	music_muted: bool,
+	voice_muted: bool,
+) -> void:
 	var cfg := ConfigFile.new()
 	cfg.load(OPTIONS_PATH)
 	cfg.set_value("audio_video", "fullscreen", fullscreen)
 	cfg.set_value("audio_video", "master_db", master_db)
+	cfg.set_value("audio_video", "music_db", music_db)
+	cfg.set_value("audio_video", "voice_db", voice_db)
+	cfg.set_value("audio_video", "music_muted", music_muted)
+	cfg.set_value("audio_video", "voice_muted", voice_muted)
 	cfg.save(OPTIONS_PATH)
 
 
-func apply_options(fullscreen: bool, master_db: float) -> void:
+func apply_options(
+	fullscreen: bool,
+	master_db: float,
+	music_db: float,
+	voice_db: float,
+	music_muted: bool,
+	voice_muted: bool,
+) -> void:
 	if fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
@@ -186,11 +215,26 @@ func apply_options(fullscreen: bool, master_db: float) -> void:
 	var master_idx := AudioServer.get_bus_index("Master")
 	if master_idx >= 0:
 		AudioServer.set_bus_volume_db(master_idx, master_db)
+	var music_idx := AudioServer.get_bus_index("Music")
+	if music_idx >= 0:
+		AudioServer.set_bus_volume_db(music_idx, music_db)
+		AudioServer.set_bus_mute(music_idx, music_muted)
+	var voice_idx := AudioServer.get_bus_index("Voice")
+	if voice_idx >= 0:
+		AudioServer.set_bus_volume_db(voice_idx, voice_db)
+		AudioServer.set_bus_mute(voice_idx, voice_muted)
 
 
 func apply_stored_options() -> void:
 	var o := load_options()
-	apply_options(o["fullscreen"] as bool, o["master_db"] as float)
+	apply_options(
+		o["fullscreen"] as bool,
+		o["master_db"] as float,
+		o["music_db"] as float,
+		o["voice_db"] as float,
+		o["music_muted"] as bool,
+		o["voice_muted"] as bool,
+	)
 
 
 ## OR unlock flags across all Dialogic save slots (for Confectioner's Case). Does not load into runtime Dialogic.

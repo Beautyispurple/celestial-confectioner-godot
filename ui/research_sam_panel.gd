@@ -45,14 +45,14 @@ func _rebuild() -> void:
 	var t := Label.new()
 	t.text = _title
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	t.add_theme_font_size_override("font_size", 36)
+	t.add_theme_font_size_override("font_size", 32)
 	t.add_theme_color_override("font_color", Color(1, 0.96, 0.92))
 	_body.add_child(t)
 	var st := Label.new()
 	st.text = _subtitle
 	st.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	st.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	st.add_theme_font_size_override("font_size", 22)
+	st.add_theme_font_size_override("font_size", 20)
 	st.add_theme_color_override("font_color", Color(0.92, 0.88, 0.85))
 	_body.add_child(st)
 	_body.add_child(_make_sam_row("Valence (unpleasant → pleasant)", true))
@@ -81,7 +81,7 @@ func _make_sam_row(label_text: String, is_valence: bool) -> VBoxContainer:
 	var lb := Label.new()
 	lb.text = label_text
 	lb.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	lb.add_theme_font_size_override("font_size", 24)
+	lb.add_theme_font_size_override("font_size", 22)
 	lb.add_theme_color_override("font_color", Color(1, 0.94, 0.88))
 	vb.add_child(lb)
 	var hb := HBoxContainer.new()
@@ -127,7 +127,7 @@ func _style_sam_button(b: Button, index: int, is_valence: bool) -> void:
 
 
 func _style_btn(b: Button) -> void:
-	b.add_theme_font_size_override("font_size", 22)
+	b.add_theme_font_size_override("font_size", 20)
 	b.add_theme_color_override("font_color", Color(1, 0.96, 0.92))
 
 

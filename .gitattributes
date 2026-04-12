@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Dialogic shortcodes must end with ]; CRLF leaves \r and breaks timeline parsing/visual editor
+*.dtl text eol=lf

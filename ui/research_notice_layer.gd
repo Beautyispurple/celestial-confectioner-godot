@@ -21,10 +21,10 @@ If you need crisis or support resources at any time, use [b]Pause → Safety & S
 
 const _CHECK_LABEL := "I understand and agree to research data collection for this build (metrics, survey, and in-game text as described above)."
 
-const _TITLE_FONT_SIZE := 96
-const _BODY_FONT_SIZE := 60
-const _CHECKBOX_FONT_SIZE := 30
-const _BUTTON_FONT_SIZE := 40
+const _TITLE_FONT_SIZE := 86
+const _BODY_FONT_SIZE := 54
+const _CHECKBOX_FONT_SIZE := 27
+const _BUTTON_FONT_SIZE := 36
 
 var _continue_button: Button
 var _checkbox: CheckBox

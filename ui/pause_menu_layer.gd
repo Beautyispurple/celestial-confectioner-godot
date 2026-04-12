@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var _dim: ColorRect = $DimRect
 @onready var _main_panel: PanelContainer = $Center/MainPanel
+@onready var _resume_button: Button = $Center/MainPanel/Margin/VBox/ResumeButton
 @onready var _save_button: Button = $Center/MainPanel/Margin/VBox/SaveButton
 @onready var _load_button: Button = $Center/MainPanel/Margin/VBox/LoadButton
 @onready var _options_button: Button = $Center/MainPanel/Margin/VBox/OptionsButton
@@ -20,6 +21,7 @@ var _menu_open: bool = false
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 100
+	_resume_button.pressed.connect(hide_menu)
 	_save_button.pressed.connect(_on_save_pressed)
 	_load_button.pressed.connect(_on_load_pressed)
 	_options_button.pressed.connect(_on_options_pressed)

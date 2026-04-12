@@ -58,11 +58,12 @@ var _page_index: int = 0
 var _required_checkbox: CheckBox
 var _optional_checkbox: CheckBox
 
-const _TITLE_FONT_SIZE := 96
-const _BODY_FONT_SIZE := 60
-const _CHECKBOX_FONT_SIZE := 30
-const _HEADER_FONT_SIZE := 30
-const _BUTTON_FONT_SIZE := 40
+const _TITLE_FONT_SIZE := 86
+const _BODY_FONT_SIZE := 54
+const _CHECKBOX_FONT_SIZE := 27
+const _HEADER_FONT_SIZE := 27
+const _BUTTON_FONT_SIZE := 36
+const _E_NOTICE_FONT_SIZE := 23
 
 
 func _ready() -> void:
@@ -117,7 +118,7 @@ func _ready() -> void:
 	_e_notice.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_e_notice.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_e_notice.add_theme_color_override("font_color", Color(0.85, 0.85, 0.85))
-	_e_notice.add_theme_font_size_override("font_size", 26)
+	_e_notice.add_theme_font_size_override("font_size", _E_NOTICE_FONT_SIZE)
 	_e_notice.text = "Please confirm above to continue."
 	_footer.add_child(_e_notice)
 

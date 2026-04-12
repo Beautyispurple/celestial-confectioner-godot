@@ -2,8 +2,8 @@ extends CanvasLayer
 ## Heat guidance above Dialogic textbox: orange tier intermittent, red tier always on.
 
 const ORANGE_GAP_SEC := 3.0
-const ORANGE_SHOW_SEC := 3.2
-const ORANGE_SWAP_SENTENCE_SEC := 1.6
+const ORANGE_SHOW_SEC := 4.16
+const ORANGE_SWAP_SENTENCE_SEC := 2.08
 const GAP_ABOVE_TEXTBOX := 10.0
 const FALLBACK_BOTTOM_OFFSET := 280.0
 

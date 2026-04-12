@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dh5ulqvqixt6p"
+
+[deps]
+
+files=["res://voice_match_review.normalized.translation", "res://voice_match_review.dtl.translation", "res://voice_match_review.line.translation", "res://voice_match_review.dialog.translation", "res://voice_match_review.confidence.translation", "res://voice_match_review.en.translation", "res://voice_match_review.en.translation", "res://voice_match_review.notes.translation"]
+
+source_file="res://voice_match_review.csv"
+dest_files=["res://voice_match_review.normalized.translation", "res://voice_match_review.dtl.translation", "res://voice_match_review.line.translation", "res://voice_match_review.dialog.translation", "res://voice_match_review.confidence.translation", "res://voice_match_review.en.translation", "res://voice_match_review.en.translation", "res://voice_match_review.notes.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -25,11 +25,7 @@ func _ready() -> void:
 	_back.add_theme_font_size_override("font_size", 24)
 
 
-const _TOP_COPY_BBCODE := """If you’re feeling overwhelmed, it’s okay to pause, step away, or ask for help.
-
-[br]
-
-This game is peer support practice—not therapy, not medical advice, not a diagnosis, and not crisis care. The tools here are not a replacement for professional support when you need it, and the game makes no guarantees about outcomes."""
+const _TOP_COPY_BBCODE := """If you’re feeling overwhelmed, it’s okay to pause, step away, or ask for help.[br]This game is peer support practice—not therapy, not medical advice, not a diagnosis, and not crisis care. The tools here are not a replacement for professional support when you need it, and the game makes no guarantees about outcomes."""
 
 
 func _style_collapsible(col: Node) -> void:

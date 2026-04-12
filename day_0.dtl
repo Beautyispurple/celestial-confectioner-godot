@@ -32,12 +32,13 @@ if int({tired}) == 0:
 	beatrix (Macaron): I am glad to see you are taking this opportunity seriously.
 	set {beatrix_points} += 10
 	beatrix (Idle Neutral): Punctuality is the foundation of any respectable confectionery.
+	[voice path="res://voice/178theworld.wav" volume="0.0" bus="Voice"]
 	marzi (Casual Happy): I wouldn't miss it for the world, Madame!
 
 elif int({tired}) == 1:
 	[background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="0.0"]
 	join marzi (Exhausted) left
-	audio "res://sounds_music/The_Weight_of_Stillness.mp3"
+	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Exhausted): (The alarm blares, but it sounds like it's coming from underwater.)
 	marzi (Exhausted): (Marzi groans, her hand blindly smacking the nightstand until it hits the clock.)
 	marzi (Exhausted): (Her limbs feel like they've been submerged in dense nougat. Every muscle aches from the tension of a sleepless night.)
@@ -289,7 +290,7 @@ join taffy (Phone) rightmost
 taffy (Phone): Ugh, the humidity from those tempering vats is an absolute nightmare today.
 taffy (Phone): I swear, my bangs are drooping by the second.
 taffy (Phone): If my followers on MyCake see me break a sweat, I will literally delete my account.
-audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3"
+audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3" [loop="false"]
 marzi (Cleaner Fearful): (Wait—watch out!)
 do CelestialVNState.apply_stress_panic_delta(1)
 (The purple haired girl isn't looking up from her screen at all.)
@@ -358,9 +359,9 @@ taffy (Angry): But she tripped me!
 beatrix (Dour): She was distracted securing the hygiene of the sales floor.
 beatrix (Unimpressed): You were distracted by your phone.
 beatrix (Dour): I saw the entire incident from my office.
-	beatrix (Dour): I do not tolerate excuses, nor do I tolerate my lead decorator ruining six hundred gold in dragee ingredients because she was too busy breaking confectionery phone policy.
-	do CelestialVNState.apply_stress_panic_delta(1)
-	beatrix (Exasperated): Your lack of awareness is astounding.
+beatrix (Dour): I do not tolerate excuses, nor do I tolerate my lead decorator ruining six hundred gold in dragee ingredients because she was too busy breaking confectionery phone policy.
+do CelestialVNState.apply_stress_panic_delta(1)
+beatrix (Exasperated): Your lack of awareness is astounding.
 beatrix (Dour): Just walk away, Ms. Vandermelt, and go get cleaned up.
 beatrix (Dour): Before I decide to reassign you to scrubbing the caramel vats for the rest of the week.
 taffy (Angry): (Taffy's face flushes a deep, angry red.)
@@ -375,9 +376,9 @@ join beatrix (Dour) rightmost
 beatrix (Dour): Do not mistake my lack of patience for Ms. Vandermelt's poor choices as sympathy for you, Miss Glace.
 update marzi (Cleaner Blamed)
 beatrix (Dour): The dragees are ruined.
-	beatrix (Dour Lookdown): Those ingredients ran six hundred gold total; half of that—three hundred gold—will be docked from your first paycheck.
-	do CelestialVNState.apply_stress_panic_delta(1)
-	update marzi (Cleaner Fearful)
+beatrix (Dour Lookdown): Those ingredients ran six hundred gold total; half of that—three hundred gold—will be docked from your first paycheck.
+do CelestialVNState.apply_stress_panic_delta(1)
+update marzi (Cleaner Fearful)
 beatrix (Dour): An efficient and safe worker must anticipate the movements of those around them.
 beatrix (Dour): Especially junior workers.
 beatrix (Dour): Do better.
@@ -528,7 +529,6 @@ if int({dragee_huck_story_bonus_done}) == 0:
 	set {dragee_huck_story_bonus_done} = 1
 	set {huck_points} += 10
 	(System Message\: Unlocked "Dragee toolkit" in Skills Toolbox — replay from Main Menu.)
-
 marzi (Cleaner Determined): (Marzi looks at the empty floor, then up at Huck, who is quietly wringing out his own towel.)
 marzi (Cleaner Thinking): Huck... where did you learn how to do all that?
 marzi (Cleaner Pleased): You sounded like a professional.
@@ -571,7 +571,7 @@ if int({willing}) == 1:
 	leave marzi
 	(By the afternoon, she has polished the glass displays with a microfiber cloth until they gleam like mirrors, without getting in anyone's way.)
 else:
-	audio "res://sounds_music/The_Weight_of_Stillness.mp3"
+	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	(The rest of the day is a grueling, challenging blur of physical labor.)
 	(Marzi's arms ache terribly from scrubbing sticky syrup off the floor tiles.)
 	join marzi (Cleaner Harried) left
@@ -770,9 +770,9 @@ landlord (Idle): I love everything that comes out of that shop.
 landlord (Idle): The confections taste almost magical.
 marzi (Casual Love): (Does she not know that the sweets actually ARE magical?)
 landlord (Idle): Well anyway -
-	landlord (Stern): If I find a mess during my inspections, your tenancy is over.
-	do CelestialVNState.apply_stress_panic_delta(1)
-	(Marzi gulps and her stomach twists into a tight knot.)
+landlord (Stern): If I find a mess during my inspections, your tenancy is over.
+do CelestialVNState.apply_stress_panic_delta(1)
+(Marzi gulps and her stomach twists into a tight knot.)
 update marzi (Casual Very Concerned)
 (Her thoughts race as she remembers the sticky dragee disaster from that morning.)
 (Her palms sweat against the fabric of her dress.)
@@ -822,9 +822,9 @@ al (Fatherly): The deposit and the first month are settled.
 al (Discerning): Now, don't let me down, kiddo!
 al (Discerning): It's important that you keep your new job.
 al (Worry): Keeping a roof over your head is the most important and challenging part of being an Adult.
-	al (Worry): You don't want to end up living in a tent in the woods.
-	do CelestialVNState.apply_stress_panic_delta(1)
-	update marzi (Casual Orz)
+al (Worry): You don't want to end up living in a tent in the woods.
+do CelestialVNState.apply_stress_panic_delta(1)
+update marzi (Casual Orz)
 leave al
 join rosy (Shocked) rightmost
 rosy (Shocked): AL!
@@ -843,9 +843,9 @@ join landlord (Idle) rightmost
 landlord (Idle): If you need anything, you can call me.
 update marzi (Casual Concerned)
 landlord (Idle): The rent is paid every 10 days through the online portal.
-	landlord (Stern): Make sure you have enough, or it's literally game over!
-	do CelestialVNState.apply_stress_panic_delta(1)
-	(Sweat beads down Marzi's forehead as the pressure returns full force.)
+landlord (Stern): Make sure you have enough, or it's literally game over!
+do CelestialVNState.apply_stress_panic_delta(1)
+(Sweat beads down Marzi's forehead as the pressure returns full force.)
 marzi (Casual Fear): Y..Yes Ma'am.
 marzi (Casual Fear): Game over.
 leave landlord

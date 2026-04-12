@@ -32,7 +32,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Panel" type="PanelContainer" parent="Center"]
-custom_minimum_size = Vector2(400, 220)
+custom_minimum_size = Vector2(400, 360)
 layout_mode = 2
 
 [node name="Margin" type="MarginContainer" parent="Center/Panel"]
@@ -63,6 +63,42 @@ text = "Master volume"
 [node name="VolumeSlider" type="HSlider" parent="Center/Panel/Margin/VBox"]
 unique_name_in_editor = true
 layout_mode = 2
+
+[node name="MusicVolLabel" type="Label" parent="Center/Panel/Margin/VBox"]
+layout_mode = 2
+text = "Music volume"
+
+[node name="MusicRow" type="HBoxContainer" parent="Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MusicMuteCheck" type="CheckBox" parent="Center/Panel/Margin/VBox/MusicRow"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Mute"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Center/Panel/Margin/VBox/MusicRow"]
+unique_name_in_editor = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VoiceVolLabel" type="Label" parent="Center/Panel/Margin/VBox"]
+layout_mode = 2
+text = "Voice volume"
+
+[node name="VoiceRow" type="HBoxContainer" parent="Center/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VoiceMuteCheck" type="CheckBox" parent="Center/Panel/Margin/VBox/VoiceRow"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Mute"
+
+[node name="VoiceVolumeSlider" type="HSlider" parent="Center/Panel/Margin/VBox/VoiceRow"]
+unique_name_in_editor = true
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="CloseButton" type="Button" parent="Center/Panel/Margin/VBox"]
 unique_name_in_editor = true
