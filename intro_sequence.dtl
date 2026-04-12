@@ -71,8 +71,10 @@ join marzi (Casual Concerned) left
 [voice path="res://voice/27yesdad.wav" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): Y...yes Dad?
 join al (Bill Shocked) rightmost
+[voice path="res://voice/28marzi.wav" volume="0.0"]
+al (Bill Shocked): Marzi.
 [voice path="res://voice/29decimalpoint.wav" volume="0.0" bus="Voice"]
-al (Bill Shocked): Marzi. Please tell me the decimal point on this statement is an error!
+al (Bill Shocked): Please tell me the decimal point on this statement is an error!
 [voice path="res://voice/30didyoureally.wav" volume="0.0" bus="Voice"]
 al (Bill Mad): Did you really spend your entire graduation fund on...
 [voice path="res://voice/31candy.wav" volume="0.0" bus="Voice"]
@@ -743,7 +745,7 @@ marzi (Panic Attack 1): M...My chest is feeling tight...
 do CelestialVNState.apply_stress_panic_delta(2)
 [voice path="res://voice/276whatdoido.wav" volume="0.0" bus="Voice"]
 marzi (Panic Attack 1): What do I do??
-- I'm having a heart attack!! Get Mom and Dad!!
+- I'm having a heart attack!! Get Mom and Dad!! | [heat_tooltip="Sharply raises Marzi's Heat; escalates the panic scene."]
 	label prologue_panic_choice_parents
 	do CelestialVNState.apply_stress_panic_delta(9)
 	audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3" [loop="false"]
@@ -825,7 +827,7 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Reeling): (Marzi ruminates for hours, still not fully convinced she's safe and not dying.)
 	marzi (Fretfulsleep): (Finally she is so exhausted she falls asleep into fretful dreams.)
 	set {tired} = 1
-- Splash ice cold water on my face.
+- Splash ice cold water on my face. | [heat_tooltip="Calming path; unlocks Cold Sheen. Does not spike Heat here."]
 	label prologue_panic_choice_water
 	join marzi (Reeling) left
 	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
@@ -859,7 +861,7 @@ marzi (Panic Attack 1): What do I do??
 	leave marzi
 	join marzi (Sleeping) left
 	marzi (Sleeping): (Marzi has a little trouble getting to sleep, but when she does she sleeps soundly and dreamlessly.)
-- Put on a guided meditation and breathe.
+- Put on a guided meditation and breathe. | [heat_tooltip="Resets Heat for this scene and unlocks Breath Aeration."]
 	label prologue_panic_choice_meditation
 	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Reeling): (Marzi fumbles for her phone, her fingers slick with cold sweat.)
@@ -884,12 +886,12 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Meditation): (The rhythm of her breath finally syncs with the pulsing light on her screen.)
 	marzi (Restfulsleep): (She drifts off as the heavy static in her mind settles into a soft, quiet hum.)
 	marzi (Restfulsleep): (Her dreams are filled with the scent of jasmine and the sun warming her shoulders.)
-	(System Message\: Unlocked "Diaphragmatic Breathing" in Skills Toolbox — replay from Main Menu.)
+	(System Message\: Unlocked "Breath Aeration" in Skills Toolbox — replay from Main Menu.)
 	set {breath_aeration_unlocked} = 1
 	do CelestialVNState.grant_breath_aeration_unlock_panic_if_needed()
 	do CelestialTutorial.prologue_tutorial_breath_aeration_unlocked()
 	do CelestialTutorial.prologue_tutorial_social_battery_followup()
-- Tough it out and just go to bed.
+- Tough it out and just go to bed. | [heat_tooltip="Raises Marzi's Heat; she tries to endure without a coping tool."]
 	label prologue_panic_choice_tough
 	audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3" [loop="false"]
 	(Marzi squeezes her eyes shut and pulls the thin quilt up to her chin.)
@@ -906,7 +908,7 @@ marzi (Panic Attack 1): What do I do??
 	marzi (Fretfulsleep): (By the time her eyes finally stay shut, the birds outside are already starting their pre-dawn chatter.)
 	do CelestialVNState.apply_stress_panic_delta(5)
 	set {tired} = 1
-- Name five things.
+- Name five things. | [heat_tooltip="Strongly lowers Heat in this scene; unlocks Sensory Sifting."]
 	label prologue_panic_choice_5things
 	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	(Marzi presses her hands flat against the floorboards, letting the solid surface anchor her.)
@@ -933,9 +935,9 @@ marzi (Panic Attack 1): What do I do??
 	set {panic_points} -= 10
 	set {sensory_sifting_unlocked} = 1
 	do CelestialVNState.refresh_sampler_slots()
-	(System Message\: Unlocked "Name 5 Things" in Skills Toolbox — replay from Main Menu.)
+	(System Message\: Unlocked "Sensory Sifting" in Skills Toolbox — replay from Main Menu.)
 	do CelestialTutorial.prologue_tutorial_sensory_sifting_unlocked()
-- Double check my bank app.
+- Double check my bank app. | [heat_tooltip="Very high Heat outcome; harsh financial spiral in this scene."]
 	label prologue_panic_choice_bank
 	audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3" [loop="false"]
 	(Marzi grabs her phone from the nightstand, squinting against the harsh glare of the screen.)

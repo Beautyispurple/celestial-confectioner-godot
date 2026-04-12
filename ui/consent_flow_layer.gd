@@ -42,7 +42,7 @@ We’ve collaborated with individuals with lived experience in some areas; that 
 
 const _E_REQUIRED_AGREE_LABEL := "I’ve read the above and agree — let’s play"
 
-const _OPTIONAL_CHECK_LABEL := "Optional: If I’m in crisis, I’ll use real-world crisis resources (see Pause → Safety & Support)."
+const _E_CRISIS_ACK_LABEL := "If I’m in crisis, I will use real-world crisis resources (see Pause → Safety & Support)."
 
 var _title_label: Label
 var _scroll: ScrollContainer
@@ -56,7 +56,7 @@ var _collapsible_scene: PackedScene = preload("res://ui/collapsible_section.tscn
 
 var _page_index: int = 0
 var _required_checkbox: CheckBox
-var _optional_checkbox: CheckBox
+var _crisis_ack_checkbox: CheckBox
 
 const _TITLE_FONT_SIZE := 86
 const _BODY_FONT_SIZE := 54
@@ -96,7 +96,6 @@ func _ready() -> void:
 	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_title_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_title_label.add_theme_color_override("font_color", Color.WHITE)
-	_title_label.add_theme_font_size_override("font_size", _TITLE_FONT_SIZE)
 	outer.add_child(_title_label)
 
 	_scroll = ScrollContainer.new()
@@ -171,25 +170,44 @@ func _on_exit_pressed() -> void:
 	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 
+func _title_font_px(page_idx: int) -> int:
+	if page_idx == _final_page_index:
+		return int(round(_TITLE_FONT_SIZE * 0.6))
+	return int(round(_TITLE_FONT_SIZE * 0.8))
+
+
 func _show_page(idx: int) -> void:
 	_page_index = idx
 	_title_label.text = _SCREEN_TITLES[idx]
+	_title_label.add_theme_font_size_override("font_size", _title_font_px(idx))
 
 	for c in _scroll_inner.get_children():
 		c.queue_free()
 	_required_checkbox = null
-	_optional_checkbox = null
+	_crisis_ack_checkbox = null
 
 	if idx == _final_page_index:
+		var g_btn: int = int(round(_BUTTON_FONT_SIZE * 0.6))
+		var g_notice: int = int(round(_E_NOTICE_FONT_SIZE * 0.6))
 		_continue_button.text = "I understand and agree — continue"
 		_continue_button.disabled = true
+		_continue_button.custom_minimum_size = Vector2(int(round(420 * 0.6)), int(round(86 * 0.6)))
+		_continue_button.add_theme_font_size_override("font_size", g_btn)
 		_exit_button.visible = true
+		_exit_button.custom_minimum_size = Vector2(int(round(420 * 0.6)), int(round(86 * 0.6)))
+		_exit_button.add_theme_font_size_override("font_size", g_btn)
 		_e_notice.visible = true
+		_e_notice.add_theme_font_size_override("font_size", g_notice)
 		_build_gate_page()
 	else:
 		_continue_button.text = "Continue"
 		_continue_button.disabled = false
+		_continue_button.custom_minimum_size = Vector2(420, 86)
+		_continue_button.add_theme_font_size_override("font_size", _BUTTON_FONT_SIZE)
+		_exit_button.custom_minimum_size = Vector2(420, 86)
+		_exit_button.add_theme_font_size_override("font_size", _BUTTON_FONT_SIZE)
 		_e_notice.visible = false
+		_e_notice.add_theme_font_size_override("font_size", _E_NOTICE_FONT_SIZE)
 		_build_body_pages(idx)
 
 	await get_tree().process_frame
@@ -197,7 +215,7 @@ func _show_page(idx: int) -> void:
 		_scroll.scroll_vertical = 0
 
 
-func _rtl() -> RichTextLabel:
+func _rtl(body_px: int) -> RichTextLabel:
 	var rtl := RichTextLabel.new()
 	rtl.bbcode_enabled = true
 	rtl.fit_content = true
@@ -206,7 +224,7 @@ func _rtl() -> RichTextLabel:
 	rtl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rtl.add_theme_color_override("default_color", Color.WHITE)
 	rtl.add_theme_color_override("font_selected_color", Color(0.65, 0.85, 1.0))
-	rtl.add_theme_font_size_override("normal_font_size", _BODY_FONT_SIZE)
+	rtl.add_theme_font_size_override("normal_font_size", body_px)
 	if not rtl.meta_clicked.is_connected(_on_rich_meta_clicked):
 		rtl.meta_clicked.connect(_on_rich_meta_clicked)
 	return rtl
@@ -217,7 +235,8 @@ func _on_rich_meta_clicked(meta: Variant) -> void:
 
 
 func _build_body_pages(idx: int) -> void:
-	var rtl := _rtl()
+	var body_sm: int = int(round(_BODY_FONT_SIZE * 0.8))
+	var rtl := _rtl(body_sm)
 	match idx:
 		0:
 			rtl.text = "[center]" + _BODY_A.replace("\n\n", "[br]") + "[/center]"
@@ -231,23 +250,24 @@ func _build_body_pages(idx: int) -> void:
 				col.call(&"set_title", "Crisis & support resources (USA)")
 			if col.has_method(&"set_body_bbcode"):
 				col.call(&"set_body_bbcode", "[center]" + CrisisResourcesText.USA_CRISIS_RESOURCES_BBCODE + "[/center]")
-			_style_collapsible(col)
+			var header_px: int = int(round(_HEADER_FONT_SIZE * 1.5))
+			_style_collapsible(col, header_px, body_sm)
 		_:
 			rtl.text = ""
 			_scroll_inner.add_child(rtl)
 
 
-func _style_collapsible(col: Node) -> void:
+func _style_collapsible(col: Node, header_px: int = _HEADER_FONT_SIZE, body_px: int = _BODY_FONT_SIZE) -> void:
 	var header: Button = col.get_node_or_null("HeaderButton") as Button
 	if header:
 		header.add_theme_color_override("font_color", Color.WHITE)
 		header.add_theme_color_override("font_hover_color", Color(0.85, 0.85, 0.85))
-		header.add_theme_font_size_override("font_size", _HEADER_FONT_SIZE)
+		header.add_theme_font_size_override("font_size", header_px)
 	var rt: RichTextLabel = col.get_node_or_null("BodyMargin/BodyRichText") as RichTextLabel
 	if rt:
 		rt.add_theme_color_override("default_color", Color.WHITE)
 		rt.add_theme_color_override("font_selected_color", Color(0.65, 0.85, 1.0))
-		rt.add_theme_font_size_override("normal_font_size", _BODY_FONT_SIZE)
+		rt.add_theme_font_size_override("normal_font_size", body_px)
 
 
 func _make_checkbox_icons() -> Dictionary:
@@ -275,8 +295,10 @@ func _make_checkbox_icons() -> Dictionary:
 
 
 func _build_gate_page() -> void:
+	var g_body: int = int(round(_BODY_FONT_SIZE * 0.6))
+	var g_chk: int = int(round(_CHECKBOX_FONT_SIZE * 0.6))
 	var icons := _make_checkbox_icons()
-	var prose := _rtl()
+	var prose := _rtl(g_body)
 	prose.text = "[center]" + _BODY_E_PROSE.replace("\n\n", "[br][br]").replace("\n", " ") + "[/center]"
 	_scroll_inner.add_child(prose)
 
@@ -284,7 +306,7 @@ func _build_gate_page() -> void:
 	_required_checkbox.text = _E_REQUIRED_AGREE_LABEL
 	_required_checkbox.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_required_checkbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_required_checkbox.add_theme_font_size_override("font_size", _CHECKBOX_FONT_SIZE)
+	_required_checkbox.add_theme_font_size_override("font_size", g_chk)
 	_required_checkbox.add_theme_color_override("font_color", Color.WHITE)
 	_required_checkbox.add_theme_color_override("font_pressed_color", Color.WHITE)
 	_required_checkbox.add_theme_color_override("font_hover_color", Color(0.95, 0.95, 0.95))
@@ -295,19 +317,19 @@ func _build_gate_page() -> void:
 	_required_checkbox.toggled.connect(_on_e_checkbox_changed)
 	_scroll_inner.add_child(_required_checkbox)
 
-	_optional_checkbox = CheckBox.new()
-	_optional_checkbox.text = _OPTIONAL_CHECK_LABEL
-	_optional_checkbox.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_optional_checkbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_optional_checkbox.add_theme_font_size_override("font_size", _CHECKBOX_FONT_SIZE)
-	_optional_checkbox.add_theme_color_override("font_color", Color.WHITE)
-	_optional_checkbox.add_theme_color_override("font_pressed_color", Color.WHITE)
-	_optional_checkbox.add_theme_color_override("font_hover_color", Color(0.95, 0.95, 0.95))
-	_optional_checkbox.add_theme_icon_override("unchecked", icons["unchecked"])
-	_optional_checkbox.add_theme_icon_override("checked", icons["checked"])
-	_optional_checkbox.add_theme_constant_override("check_v_offset", 2)
-	_optional_checkbox.toggled.connect(_on_e_checkbox_changed)
-	_scroll_inner.add_child(_optional_checkbox)
+	_crisis_ack_checkbox = CheckBox.new()
+	_crisis_ack_checkbox.text = _E_CRISIS_ACK_LABEL
+	_crisis_ack_checkbox.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_crisis_ack_checkbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_crisis_ack_checkbox.add_theme_font_size_override("font_size", g_chk)
+	_crisis_ack_checkbox.add_theme_color_override("font_color", Color.WHITE)
+	_crisis_ack_checkbox.add_theme_color_override("font_pressed_color", Color.WHITE)
+	_crisis_ack_checkbox.add_theme_color_override("font_hover_color", Color(0.95, 0.95, 0.95))
+	_crisis_ack_checkbox.add_theme_icon_override("unchecked", icons["unchecked"])
+	_crisis_ack_checkbox.add_theme_icon_override("checked", icons["checked"])
+	_crisis_ack_checkbox.add_theme_constant_override("check_v_offset", 2)
+	_crisis_ack_checkbox.toggled.connect(_on_e_checkbox_changed)
+	_scroll_inner.add_child(_crisis_ack_checkbox)
 
 	_refresh_e_primary()
 
@@ -317,4 +339,6 @@ func _on_e_checkbox_changed(_pressed: bool) -> void:
 
 
 func _refresh_e_primary() -> void:
-	_continue_button.disabled = not (_required_checkbox and _required_checkbox.button_pressed)
+	var req: bool = _required_checkbox != null and _required_checkbox.button_pressed
+	var crisis: bool = _crisis_ack_checkbox != null and _crisis_ack_checkbox.button_pressed
+	_continue_button.disabled = not (req and crisis)

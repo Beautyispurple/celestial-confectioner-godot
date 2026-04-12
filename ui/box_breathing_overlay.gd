@@ -285,7 +285,7 @@ func run_temper_sampler() -> void:
 	await _run_session(1, true, false)
 
 
-## Sampler: 16s inhale/exhale only; costs 2 panic, +1 social on success.
+## Sampler: 16s inhale/exhale only; on success lowers Heat by 2 and +1 Social Battery.
 func run_aeration_sampler() -> void:
 	await _run_session(1, true, true)
 
@@ -503,14 +503,16 @@ func _complete_temper_sampler_cycle() -> void:
 	_tempered.modulate.a = 0.0
 	_kill_temper_tween()
 	_temper_tween = create_tween()
-	_temper_tween.tween_property(_tempered, "modulate:a", 1.0, 0.35)
-	_temper_tween.tween_interval(0.5)
-	_temper_tween.tween_property(_tempered, "modulate:a", 0.0, 0.5)
+	_temper_tween.tween_property(_tempered, "modulate:a", 1.0, 0.28)
 	_temper_tween.tween_callback(_continue_temper_sampler_session)
+	_temper_tween.tween_property(_tempered, "modulate:a", 0.0, 0.38)
+	_temper_tween.tween_callback(
+		func() -> void:
+			_temper_tween = null
+	)
 
 
 func _continue_temper_sampler_session() -> void:
-	_temper_tween = null
 	if _finished_emitted:
 		return
 	_phase_index = Phase.INHALE_LMB

@@ -21,17 +21,32 @@ func _ready() -> void:
 	_set_edges_alpha(0.0)
 	_glitch.modulate.a = 0.0
 	CelestialVNState.panic_tier_changed.connect(_on_tier_changed)
-	_on_tier_changed(CelestialVNState.get_panic_tier())
+	CelestialVNState.breath_aeration_edge_suppress_changed.connect(_on_aeration_suppress_changed)
+	_apply_panic_visual()
 
 
-func _on_tier_changed(tier: int) -> void:
+func _on_tier_changed(_tier: int) -> void:
+	_apply_panic_visual()
+
+
+func _on_aeration_suppress_changed(_suppressed: bool) -> void:
+	_apply_panic_visual()
+
+
+func _apply_panic_visual() -> void:
 	if _pulse_tween != null and is_instance_valid(_pulse_tween):
 		_pulse_tween.kill()
 		_pulse_tween = null
 	if _glitch_tween != null and is_instance_valid(_glitch_tween):
 		_glitch_tween.kill()
 		_glitch_tween = null
-	var t: int = tier
+
+	if CelestialVNState.is_breath_aeration_edge_suppressed():
+		_set_edges_alpha(0.0)
+		_glitch.modulate.a = 0.0
+		return
+
+	var t: int = CelestialVNState.get_panic_tier()
 	if t == CelestialVNState.PanicTier.NORMAL:
 		_set_edges_alpha(0.0)
 		_glitch.modulate.a = 0.0

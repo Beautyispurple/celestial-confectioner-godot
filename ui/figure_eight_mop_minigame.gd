@@ -4,12 +4,12 @@ extends CanvasLayer
 signal finished
 
 const PATH_SAMPLES := 360
-const TRACE_TOLERANCE := 32.0
+const TRACE_TOLERANCE := 64.0
 const COVERAGE_FRAC := 0.88
 
 var _path_local: PackedVector2Array = PackedVector2Array()
 var _draw_center: Vector2 = Vector2.ZERO
-var _draw_size: Vector2 = Vector2(720, 400)
+var _draw_size: Vector2 = Vector2(1440, 800)
 
 @onready var _area: Control = $Center/DrawArea
 @onready var _path_line: Line2D = $Center/DrawArea/PathLine
@@ -21,6 +21,8 @@ var _draw_size: Vector2 = Vector2(720, 400)
 @onready var _spotless: Label = $Center/DrawArea/SpotlessLabel
 @onready var _input_catcher: Control = $InputCatcher
 
+var _instruction_override: String = ""
+
 var _drawing: bool = false
 var _covered: PackedByteArray = PackedByteArray()
 
@@ -29,13 +31,15 @@ func _ready() -> void:
 	layer = 85
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_spotless.visible = false
-	_instr.text = "Hold left mouse and trace the loop from Work → Rest → Play without lifting."
+	_apply_instruction_text()
+	if _area:
+		_area.custom_minimum_size = _draw_size
 	_build_path()
 	_path_line.points = _path_local
 	_trail.clear_points()
-	_trail.width = 10.0
+	_trail.width = 20.0
 	_trail.default_color = Color(0.35, 0.55, 0.95, 0.85)
-	_path_line.width = 3.0
+	_path_line.width = 8.0
 	_path_line.default_color = Color(0.55, 0.55, 0.62, 0.9)
 	_path_line.z_index = 0
 	_trail.z_index = 1
@@ -43,6 +47,21 @@ func _ready() -> void:
 	for i in PATH_SAMPLES:
 		_covered[i] = 0
 	_input_catcher.gui_input.connect(_on_input_catcher_gui_input)
+
+
+func set_instruction_override(text: String) -> void:
+	_instruction_override = text
+	if is_node_ready() and _instr:
+		_apply_instruction_text()
+
+
+func _apply_instruction_text() -> void:
+	if _instr == null:
+		return
+	if _instruction_override.strip_edges().is_empty():
+		_instr.text = "Hold left mouse and trace the loop from Work → Rest → Play without lifting."
+	else:
+		_instr.text = _instruction_override
 
 
 func _build_path() -> void:
@@ -86,11 +105,15 @@ func _place_labels() -> void:
 	_label_work.text = "work"
 	_label_rest.text = "rest"
 	_label_play.text = "play"
-	_label_work.position = _path_local[i_work] + Vector2(-36, -28)
-	_label_rest.position = _path_local[i_rest] + Vector2(-22, -14)
-	_label_play.position = _path_local[i_play] + Vector2(-28, 8)
-	for lbl in [_label_work, _label_rest, _label_play, _instr]:
+	_label_work.position = _path_local[i_work] + Vector2(-72, -56)
+	_label_rest.position = _path_local[i_rest] + Vector2(-44, -28)
+	_label_play.position = _path_local[i_play] + Vector2(-56, 96)
+	for lbl in [_label_work, _label_rest, _label_play]:
 		lbl.z_index = 2
+		lbl.add_theme_font_size_override("font_size", 44)
+	if _instr:
+		_instr.z_index = 2
+		_instr.add_theme_font_size_override("font_size", 36)
 	_spotless.z_index = 3
 
 
@@ -160,7 +183,7 @@ func _run_success() -> void:
 	tw.set_parallel(true)
 	tw.tween_property(_spotless, "modulate:a", 1.0, 0.35)
 	_trail.default_color = Color(0.55, 0.85, 1.0, 1.0)
-	tw.tween_property(_trail, "width", 14.0, 0.25)
+	tw.tween_property(_trail, "width", 28.0, 0.25)
 	tw.chain().tween_interval(0.55)
 	tw.tween_callback(_finish_and_exit)
 

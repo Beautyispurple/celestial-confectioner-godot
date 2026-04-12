@@ -74,7 +74,7 @@ func prologue_tutorial_breath_aeration_unlocked() -> void:
 func prologue_tutorial_sensory_sifting_unlocked() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(
-		"Name 5 Things (Sensory Sifting) is in the Sampler Box. It's effortful — one step at a time across seeing, feeling, hearing, smelling, and tasting — and when you finish, it clears Marzi's Heat completely and shields the next 2 Heat (stress hits the shield first). In real life, grounding asks for real attention; the payoff is a steadier body and mind."
+		"Sensory Sifting is in the Sampler Box — the same five-senses exercise you just practiced in the story. It's effortful: one step at a time across seeing, feeling, hearing, smelling, and tasting — and when you finish, it clears Marzi's Heat completely and shields the next 2 Heat (stress hits the shield first). In real life, grounding asks for real attention; the payoff is a steadier body and mind."
 	)
 
 
@@ -88,7 +88,7 @@ func prologue_tutorial_cold_sheen_unlocked() -> void:
 func prologue_tutorial_dragee_disposal_unlocked() -> void:
 	await _await_tutorial_layer_ready()
 	await _layer.show_plain_tutorial(
-		"The Dragee toolkit is in Marzi's Sampler Box (Skills tab). Run the flow again: name a thought, notice whether it's helpful to keep, and either save it on your Thought shelf (Life tools tab) or work through gather → tilt → trash to let it go. Completing a disposal drops Heat by 3, can count as crisis coping at max Heat, adds your \"what can I do?\" line to the Action log, and gives you three stretches of gentler Social Battery drain the next times Marzi would lose social energy (e.g. a hard phone call). Replay anytime for the same in-game benefits — the exercise is the skill."
+		"Dragee Decisions is in Marzi's Sampler Box (Skills tab). Run the flow again: name a thought, notice whether it's helpful to keep, and either save it on your Thought shelf (Life tools tab) or work through gather → tilt → trash to let it go. Completing a disposal drops Heat by 3, can count as crisis coping at max Heat, adds your \"what can I do?\" line to the Action log, and gives you three stretches of gentler Social Battery drain the next times Marzi would lose social energy (e.g. a hard phone call). Replay anytime for the same in-game benefits — the exercise is the skill."
 	)
 
 

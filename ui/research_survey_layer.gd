@@ -201,9 +201,18 @@ func _page_b2() -> void:
 	_add_likert("B10", "The breathing minigames made it clear what I should do at each step.")
 	_add_likert("B11", "The optional tools in the Sampler (besides the breathing exercises) felt worth trying.")
 	_add_likert("B12", "The optional Sampler tools were easy to understand.")
+	_scroll_box.add_child(_lbl("Voice acting", 20))
+	_scroll_box.add_child(
+		_lbl("Did the voice acting add to or subtract from your experience?", 18)
+	)
+	_add_single_choice("VA_impact", ResearchSurveyProtocol.VA_IMPACT_CHOICES)
+	_add_multiline("VA_desc", "Please describe (optional).")
 	_btn_next.text = "Next"
 	await _await_next()
 	_collect_likert_keys(["B9", "B10", "B11", "B12"])
+	_answers["VA_impact"] = _read_button_group("VA_impact")
+	var va_te := _scroll_box.find_child("VA_desc", true, false) as TextEdit
+	_answers["VA_desc"] = va_te.text.strip_edges() if va_te else ""
 
 
 func _page_c() -> void:

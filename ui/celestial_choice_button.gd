@@ -15,4 +15,5 @@ func _load_info(choice_info: Dictionary) -> void:
 	else:
 		_glass.visible = false
 		if not choice_info.get("disabled", false):
-			tooltip_text = ""
+			var ht: String = str(choice_info.get("heat_tooltip", "")).strip_edges()
+			tooltip_text = ht

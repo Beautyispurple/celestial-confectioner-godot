@@ -22,7 +22,7 @@ func _ready() -> void:
 	_style_collapsible(_col)
 	_back.add_theme_color_override("font_color", Color.WHITE)
 	_back.add_theme_color_override("font_hover_color", Color(0.9, 0.9, 0.9))
-	_back.add_theme_font_size_override("font_size", 24)
+	_back.add_theme_font_size_override("font_size", 19)
 
 
 const _TOP_COPY_BBCODE := """If you’re feeling overwhelmed, it’s okay to pause, step away, or ask for help.[br]This game is peer support practice—not therapy, not medical advice, not a diagnosis, and not crisis care. The tools here are not a replacement for professional support when you need it, and the game makes no guarantees about outcomes."""
@@ -33,10 +33,12 @@ func _style_collapsible(col: Node) -> void:
 	if header:
 		header.add_theme_color_override("font_color", Color.WHITE)
 		header.add_theme_color_override("font_hover_color", Color(0.85, 0.85, 0.85))
+		header.add_theme_font_size_override("font_size", 40)
 	var rt: RichTextLabel = col.get_node_or_null("BodyMargin/BodyRichText") as RichTextLabel
 	if rt:
 		rt.add_theme_color_override("default_color", Color.WHITE)
 		rt.add_theme_color_override("font_selected_color", Color(0.65, 0.85, 1.0))
+		rt.add_theme_font_size_override("normal_font_size", 19)
 
 
 func present() -> void:

@@ -14,6 +14,8 @@ const _RELATIONSHIP_TOAST_VALUE_STR_LEN_WARN := 8
 signal panic_tier_changed(tier: int)
 signal crisis_coping_resolved()
 signal toast_requested(label: String, signed_delta: int)
+## While true, `celestial_panic_overlay` hides orange/red edge pulse (Breath Aeration is a calm exercise).
+signal breath_aeration_edge_suppress_changed(suppressed: bool)
 
 enum PanicTier {
 	NORMAL,
@@ -40,6 +42,8 @@ var _blocking_overlay_refcount: int = 0
 ## Refcount: hide Dialogic chrome + heat warning + bag during dragee / fullscreen minigame prompts.
 var _minigame_modal_refcount: int = 0
 var _minigame_modal_saved: Array[Dictionary] = []
+
+var _breath_aeration_edge_suppress_ref: int = 0
 
 @onready var _toast_layer: CanvasLayer = null
 var _hud_layer: CanvasLayer = null
@@ -208,6 +212,24 @@ func end_minigame_modal_focus() -> void:
 	_minigame_modal_saved.clear()
 
 
+func begin_breath_aeration_edge_suppress() -> void:
+	_breath_aeration_edge_suppress_ref += 1
+	if _breath_aeration_edge_suppress_ref == 1:
+		breath_aeration_edge_suppress_changed.emit(true)
+
+
+func end_breath_aeration_edge_suppress() -> void:
+	if _breath_aeration_edge_suppress_ref <= 0:
+		return
+	_breath_aeration_edge_suppress_ref -= 1
+	if _breath_aeration_edge_suppress_ref == 0:
+		breath_aeration_edge_suppress_changed.emit(false)
+
+
+func is_breath_aeration_edge_suppressed() -> bool:
+	return _breath_aeration_edge_suppress_ref > 0
+
+
 ## Use for social battery loss so dragee disposal buff (50% for N drains) can apply.
 func apply_social_drain(raw_loss: int) -> void:
 	if raw_loss <= 0:
@@ -288,12 +310,11 @@ func _set_panic_shield_clamped(v: int) -> void:
 	_panic_shield_cache = t
 
 
-## Dialogic: one-time +2 panic when Breath Aeration unlocks (clamped to max).
+## Dialogic: one-time flag when Breath Aeration unlocks (no Heat spike — Aeration is a coping tool).
 func grant_breath_aeration_unlock_panic_if_needed() -> void:
 	if int(float(str(Dialogic.VAR.get_variable("breath_aeration_panic_grant_done", 0)))) != 0:
 		return
 	Dialogic.VAR.set_variable("breath_aeration_panic_grant_done", 1)
-	apply_direct_panic_delta(2)
 
 
 func get_panic_tier() -> int:
@@ -552,3 +573,7 @@ func debug_force_neutralize_vn_blockers() -> void:
 
 	# Force-clear overlay refcount that blocks Dialogic advance.
 	_blocking_overlay_refcount = 0
+
+	if _breath_aeration_edge_suppress_ref > 0:
+		_breath_aeration_edge_suppress_ref = 0
+		breath_aeration_edge_suppress_changed.emit(false)

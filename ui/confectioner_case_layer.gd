@@ -195,7 +195,7 @@ func _build_slot_grid() -> void:
 		var b: SamplerCandySkillSlot = _make_skill_slot_button(i)
 		row_breath.add_child(b)
 		_slot_buttons.append(b)
-	for i in [SamplerSkillsRegistry.SLOT_SENSORY_SIFTING, SamplerSkillsRegistry.SLOT_COLD_SHEEN, SamplerSkillsRegistry.SLOT_DRAGEE_TOOLKIT, SamplerSkillsRegistry.SLOT_JOURNAL]:
+	for i in [SamplerSkillsRegistry.SLOT_SENSORY_SIFTING, SamplerSkillsRegistry.SLOT_COLD_SHEEN, SamplerSkillsRegistry.SLOT_DRAGEE_DECISIONS, SamplerSkillsRegistry.SLOT_JOURNAL]:
 		var row := HBoxContainer.new()
 		row.alignment = BoxContainer.ALIGNMENT_BEGIN
 		_skill_rows.add_child(row)
@@ -210,6 +210,7 @@ func _make_skill_slot_button(idx: int) -> SamplerCandySkillSlot:
 	b.custom_minimum_size = Vector2(100, 74)
 	b.disabled = true
 	b.set_slot_text(str(def.get("label", "?")))
+	b.tooltip_text = str(def.get("tooltip", ""))
 	b.pressed.connect(_on_skill_slot_pressed.bind(idx))
 	return b
 
@@ -239,7 +240,7 @@ func _on_skill_slot_pressed(idx: int) -> void:
 			await _start_sifting()
 		SamplerSkillsRegistry.SLOT_COLD_SHEEN:
 			await _start_cold_sheen()
-		SamplerSkillsRegistry.SLOT_DRAGEE_TOOLKIT:
+		SamplerSkillsRegistry.SLOT_DRAGEE_DECISIONS:
 			await _start_dragee_fresh()
 		SamplerSkillsRegistry.SLOT_JOURNAL:
 			await _start_journal()
@@ -282,6 +283,7 @@ func _start_temper() -> void:
 
 
 func _start_aeration() -> void:
+	CelestialVNState.begin_breath_aeration_edge_suppress()
 	_show_minigame_host()
 	_breathing_slot.visible = true
 	_sifting_slot.visible = false
@@ -350,6 +352,8 @@ func _start_journal() -> void:
 func _end_minigame_if_current(kind: String) -> void:
 	if _active_minigame != kind:
 		return
+	if kind == "aeration":
+		CelestialVNState.end_breath_aeration_edge_suppress()
 	_active_minigame = ""
 	_stop_minigames()
 	_hide_minigame_host()
@@ -368,6 +372,9 @@ func _on_back_pressed() -> void:
 	if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
 		_journal.request_close()
 		return
+	var ending_kind: String = _active_minigame
 	_stop_minigames()
+	if ending_kind == "aeration":
+		CelestialVNState.end_breath_aeration_edge_suppress()
 	_active_minigame = ""
 	_hide_minigame_host()

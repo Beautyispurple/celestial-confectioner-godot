@@ -132,15 +132,28 @@ func _build_bbcode(sess: Dictionary) -> String:
 	lines.append(_format_sam_block(sess.get("post_sam", null)))
 	lines.append("")
 
-	lines.append("[b]Survey responses[/b]")
+	lines.append("[b]Survey responses (formal)[/b]")
 	var surv: Variant = sess.get("survey", null)
 	if surv is Dictionary and not (surv as Dictionary).is_empty():
-		var d: Dictionary = surv as Dictionary
-		var keys := d.keys()
-		keys.sort()
-		for k in keys:
-			var val = d[k]
-			lines.append(_nt(str(k)) + ": " + _nt(str(val)))
+		lines.append_array(_format_survey_bbcode(surv as Dictionary))
+	else:
+		lines.append(ct)
+	lines.append("")
+
+	lines.append("[b]Story choices (chronological)[/b]")
+	var pcl: Variant = sess.get("player_choice_log", null)
+	if pcl is Array:
+		var pcl_a: Array = pcl
+		if pcl_a.is_empty():
+			lines.append(ct)
+		else:
+			var n := 0
+			for item in pcl_a:
+				if item is Dictionary:
+					n += 1
+					var dd: Dictionary = item
+					var cht: String = _nt(str(dd.get("choice_text", "")))
+					lines.append("%d. %s" % [n, cht])
 	else:
 		lines.append(ct)
 	lines.append("")
@@ -209,6 +222,28 @@ func _build_bbcode(sess: Dictionary) -> String:
 	return _join_lines(lines)
 
 
+func _format_survey_bbcode(d: Dictionary) -> PackedStringArray:
+	var out: PackedStringArray = PackedStringArray()
+	for k in ResearchSurveyProtocol.survey_export_order():
+		if not d.has(k):
+			continue
+		var title: String = ResearchSurveyProtocol.survey_question_title(k)
+		if title.is_empty():
+			title = k
+		var raw: Variant = d[k]
+		var disp: String
+		if ResearchSurveyProtocol.survey_key_is_likert(k):
+			disp = ResearchSurveyProtocol.likert_label(raw)
+		else:
+			disp = str(raw).strip_edges()
+		if disp.is_empty():
+			disp = "(no answer)"
+		out.append("[i]" + _nt(k) + "[/i] — " + _nt(title))
+		out.append(_nt(disp))
+		out.append("")
+	return out
+
+
 func _format_sam_block(v: Variant) -> String:
 	if v == null:
 		return ResearchTelemetry.COULD_NOT_TRACK
@@ -236,8 +271,23 @@ func _on_print() -> void:
 func _build_plain_from_session() -> String:
 	var sess := ResearchTelemetry.get_session_copy_for_transparency()
 	sess = sess.duplicate(true)
+	var fail: Dictionary = sess.get("_failures", {}) as Dictionary
 	sess.erase("_failures")
-	return JSON.stringify(sess, "\t")
+	var parts: PackedStringArray = PackedStringArray()
+	parts.append("CELESTIAL CONFECTIONER — RESEARCH SESSION EXPORT")
+	parts.append("")
+	parts.append(_strip_bbcode_for_plain(_build_bbcode(sess)))
+	parts.append("")
+	if bool(fail.get("survey_flow", false)):
+		parts.append("Note: survey flow reported an error; some fields may be incomplete.")
+	return "\n".join(parts)
+
+
+func _strip_bbcode_for_plain(s: String) -> String:
+	var t := s
+	t = t.replace("[b]", "").replace("[/b]", "")
+	t = t.replace("[i]", "").replace("[/i]", "")
+	return t
 
 
 func _on_main_menu() -> void:

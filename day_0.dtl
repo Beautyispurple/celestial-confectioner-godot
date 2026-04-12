@@ -316,15 +316,19 @@ taffy (Surprise): My Starlight Dragees!
 taffy (Angry): Do you have any idea how many hours it took to temper those to a perfect celestial gloss?!
 taffy (Angry): What is wrong with you?!
 taffy (Angry): You absolute klutz!
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Cleaner Blamed): Oh my gosh, I am so sorry!
 marzi (Cleaner Apology): I was just cleaning the floor, I tried to warn you—!
 taffy (Phone): (She snatches her cellphone off the ground and glares at Marzi, her dark eyes narrowing.)
 taffy (Angry): You tried to warn me?
 update marzi (Cleaner Blamed)
 taffy (Angry): That's not good enough!
+do CelestialVNState.apply_stress_panic_delta(2)
 taffy (Angry): YOU'RE not good enough!
+do CelestialVNState.apply_stress_panic_delta(2)
 update marzi (Cleaner Tearful)
 taffy (Angry): You are going to have to explain to Madame Von Sweets why the front window display is ruined, you... you little scrub-brush!
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Cleaner Fearful): (Marzi stands frozen, her hands gripping the mop handle tightly, her heart pounding against her ribs.)
 (She is ten shades of petrified.)
 (Taffy takes a step closer, pointing a manicured finger at Marzi's chest.)
@@ -345,7 +349,9 @@ join taffy (Angry) rightmost
 taffy (Angry): Exactly.
 taffy (Angry): That is exactly what happened.
 taffy (Haughty): She’s a total klutz, Madame!
+do CelestialVNState.apply_stress_panic_delta(2)
 taffy (Haughty): Honestly, if this is the standard of help we are hiring now, my followers are going to notice the drop in quality.
+do CelestialVNState.apply_stress_panic_delta(2)
 taffy (Indignant): I can't be expected to work in these hazardous conditions.
 leave --All--
 (Beatrix doesn't look at the empty bowl or the ruined candy on the floor.)
@@ -360,12 +366,11 @@ beatrix (Dour): She was distracted securing the hygiene of the sales floor.
 beatrix (Unimpressed): You were distracted by your phone.
 beatrix (Dour): I saw the entire incident from my office.
 beatrix (Dour): I do not tolerate excuses, nor do I tolerate my lead decorator ruining six hundred gold in dragee ingredients because she was too busy breaking confectionery phone policy.
-do CelestialVNState.apply_stress_panic_delta(1)
 beatrix (Exasperated): Your lack of awareness is astounding.
 beatrix (Dour): Just walk away, Ms. Vandermelt, and go get cleaned up.
 beatrix (Dour): Before I decide to reassign you to scrubbing the caramel vats for the rest of the week.
 taffy (Angry): (Taffy's face flushes a deep, angry red.)
-taffy (Indignant): (She lets out an indignant huff, spins on her heel, and storms back toward the prep room, her clogs stomping against the marble.)
+taffy (Indignant): (She lets out an indignant huff, spins on her heel, and storms back toward the prep room, her wet shoes stomping against the marble.)
 leave --All--
 join marzi (Cleaner Apology) left
 marzi (Cleaner Apology): (Marzi lets out a shaky breath, her shoulders dropping an inch.)
@@ -375,13 +380,15 @@ beatrix (Dour): (Beatrix turns her attention back to Marzi, her voice smooth and
 join beatrix (Dour) rightmost
 beatrix (Dour): Do not mistake my lack of patience for Ms. Vandermelt's poor choices as sympathy for you, Miss Glace.
 update marzi (Cleaner Blamed)
+do CelestialVNState.apply_stress_panic_delta(2)
 beatrix (Dour): The dragees are ruined.
 beatrix (Dour Lookdown): Those ingredients ran six hundred gold total; half of that—three hundred gold—will be docked from your first paycheck.
-do CelestialVNState.apply_stress_panic_delta(1)
+do CelestialVNState.apply_stress_panic_delta(2)
 update marzi (Cleaner Fearful)
 beatrix (Dour): An efficient and safe worker must anticipate the movements of those around them.
 beatrix (Dour): Especially junior workers.
 beatrix (Dour): Do better.
+do CelestialVNState.apply_stress_panic_delta(1)
 update marzi (Cleaner Defeated)
 leave --All--
 (Beatrix turns gracefully and walks back toward her office, the click of the latch echoing in the quiet room.)
@@ -391,10 +398,13 @@ join marzi (Cleaner Defeated) left
 marzi (Cleaner Defeated): First day.
 marzi (Cleaner Defeated): First hour.
 marzi (Cleaner Defeated): And I'm already down three hundred gold from my first paycheck—half the six hundred in ingredients those dragees cost!
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Cleaner Tearful): I haven't even earned a single coin yet.
 marzi (Cleaner Tearful): My parents are going to kill me...
 marzi (Cleaner Tearful): I'm so stupid I can't even mop the floor right!
+do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Cleaner Tearful): Taffy was right, I'm not good enough...
+do CelestialVNState.apply_stress_panic_delta(2)
 (Footsteps approach, and Huck crouches down next to her on the marble floor.)
 join huck (Caring) rightmost
 (He holds out a fresh, dry microfiber towel from the closet.)

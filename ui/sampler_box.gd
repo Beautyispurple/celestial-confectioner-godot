@@ -42,10 +42,19 @@ var _active_minigame: String = "" # "temper" | "aeration" | "sifting" | "cold_sh
 var _handle_pulse: Tween
 var _panel_height_tween: Tween
 
+var _proximity_suppressed_until_leave: bool = false
+var _prox_enter_acc: float = 0.0
+var _prox_leave_acc: float = 0.0
+
+const _PROX_ENTER_SEC := 0.12
+const _PROX_LEAVE_SEC := 0.32
+const _PROX_CLOSED_EXTEND_FRAC := 0.35
+
 
 func _ready() -> void:
 	layer = 65
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	set_process(true)
 	add_to_group("celestial_sampler_ui")
 	_handle.add_to_group("celestial_sampler_ui")
 	_handle_panel.add_to_group("celestial_sampler_ui")
@@ -57,7 +66,7 @@ func _ready() -> void:
 	_breathing_slot.visible = false
 	_sifting_slot.visible = false
 	_cold_sheen_slot.visible = false
-	_handle.pressed.connect(toggle_open)
+	_handle.pressed.connect(_on_handle_pressed)
 	_back_button.pressed.connect(_on_back_pressed)
 	CelestialVNState.panic_tier_changed.connect(_on_tier_changed)
 	_on_tier_changed(CelestialVNState.get_panic_tier())
@@ -95,7 +104,7 @@ func _build_slot_grid() -> void:
 		row_breath.add_child(b)
 		_slot_buttons.append(b)
 	# Rows 2–5: one skill each (sensory sifting, cold sheen, dragee, journal).
-	for i in [SamplerSkillsRegistry.SLOT_SENSORY_SIFTING, SamplerSkillsRegistry.SLOT_COLD_SHEEN, SamplerSkillsRegistry.SLOT_DRAGEE_TOOLKIT, SamplerSkillsRegistry.SLOT_JOURNAL]:
+	for i in [SamplerSkillsRegistry.SLOT_SENSORY_SIFTING, SamplerSkillsRegistry.SLOT_COLD_SHEEN, SamplerSkillsRegistry.SLOT_DRAGEE_DECISIONS, SamplerSkillsRegistry.SLOT_JOURNAL]:
 		var row := HBoxContainer.new()
 		row.alignment = BoxContainer.ALIGNMENT_BEGIN
 		_skill_rows.add_child(row)
@@ -110,6 +119,7 @@ func _make_skill_slot_button(idx: int) -> SamplerCandySkillSlot:
 	b.custom_minimum_size = Vector2(100, 74)
 	b.disabled = true
 	b.set_slot_text(str(def.get("label", "?")))
+	b.tooltip_text = str(def.get("tooltip", ""))
 	b.pressed.connect(_on_skill_slot_pressed.bind(idx))
 	return b
 
@@ -187,6 +197,8 @@ func _on_panel_resized() -> void:
 
 
 func reset_for_menu() -> void:
+	if _active_minigame == "aeration":
+		CelestialVNState.end_breath_aeration_edge_suppress()
 	if _active_minigame in _MINIGAMES_BLOCKING_OVERLAY:
 		CelestialVNState.end_blocking_overlay_vn()
 	if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
@@ -377,8 +389,60 @@ func _unhandled_input(event: InputEvent) -> void:
 	if CelestialVNState.is_blocking_overlay_vn():
 		return
 	if event.is_action_pressed("celestial_sampler_toggle"):
+		_proximity_suppressed_until_leave = true
 		toggle_open()
 		get_viewport().set_input_as_handled()
+
+
+func _on_handle_pressed() -> void:
+	_proximity_suppressed_until_leave = true
+	toggle_open()
+
+
+func _proximity_zone_rect() -> Rect2:
+	var r: Rect2 = _handle_strip.get_global_rect()
+	if _open and _panel.visible:
+		r = r.merge(_panel.get_global_rect())
+	else:
+		var ext_h: float = _PANEL_OPEN_H * _PROX_CLOSED_EXTEND_FRAC
+		var below := Rect2(r.position.x, r.position.y + r.size.y, r.size.x, ext_h)
+		r = r.merge(below)
+	return r
+
+
+func _process(delta: float) -> void:
+	if _minigame_host.visible or _active_minigame != "":
+		_prox_enter_acc = 0.0
+		_prox_leave_acc = 0.0
+		return
+	var vp := get_viewport()
+	if vp == null:
+		return
+	var p: Vector2 = vp.get_mouse_position()
+	var zone: Rect2 = _proximity_zone_rect()
+	var inside: bool = zone.has_point(p)
+	if _proximity_suppressed_until_leave:
+		if not inside:
+			_proximity_suppressed_until_leave = false
+		_prox_enter_acc = 0.0
+		_prox_leave_acc = 0.0
+		return
+	if inside:
+		_prox_leave_acc = 0.0
+		if not _open:
+			_prox_enter_acc += delta
+			if _prox_enter_acc >= _PROX_ENTER_SEC:
+				_prox_enter_acc = 0.0
+				open_sampler()
+		else:
+			_prox_enter_acc = 0.0
+	else:
+		_prox_enter_acc = 0.0
+		if _open:
+			_prox_leave_acc += delta
+			if _prox_leave_acc >= _PROX_LEAVE_SEC:
+				_prox_leave_acc = 0.0
+				close_sampler()
 
 
 ## Saves that earned the Huck beat before dragee unlock was fixed: unlock migrates on load; show skill popup once on first Sampler open.
@@ -425,31 +489,48 @@ func _on_tier_changed(tier: int) -> void:
 
 
 func toggle_open() -> void:
-	_open = not _open
 	if _open:
-		ResearchTelemetry.record_event("sampler_open", {"open": true})
-		_apply_all_slot_visibility()
-		_kill_panel_height_tween()
-		_panel.visible = true
-		CelestialVNState.set_sampler_blocking_vn(true)
-		var tw := create_tween()
-		tw.tween_property(_panel, "custom_minimum_size:y", _PANEL_OPEN_H, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-		await tw.finished
-		await _maybe_show_dragee_migration_tutorial()
-		await _maybe_run_sampler_intro_chain()
+		await close_sampler()
 	else:
-		ResearchTelemetry.record_event("sampler_close", {"open": false})
-		if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
-			_journal.request_close()
-		if _minigame_host.visible:
-			await _on_back_pressed()
-		_kill_panel_height_tween()
-		var tw2 := create_tween()
-		tw2.tween_property(_panel, "custom_minimum_size:y", 0.0, 0.32).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-		await tw2.finished
-		_panel.visible = false
-		CelestialVNState.set_sampler_blocking_vn(false)
-		_fit_root_to_content()
+		await open_sampler()
+
+
+func open_sampler() -> void:
+	if _open:
+		return
+	_open = true
+	ResearchTelemetry.record_event("sampler_open", {"open": true})
+	_apply_all_slot_visibility()
+	_kill_panel_height_tween()
+	_panel.visible = true
+	CelestialVNState.set_sampler_blocking_vn(true)
+	var tw := create_tween()
+	tw.tween_property(_panel, "custom_minimum_size:y", _PANEL_OPEN_H, 0.4).set_ease(Tween.EASE_OUT).set_trans(
+		Tween.TRANS_CUBIC
+	)
+	await tw.finished
+	await _maybe_show_dragee_migration_tutorial()
+	await _maybe_run_sampler_intro_chain()
+
+
+func close_sampler() -> void:
+	if not _open:
+		return
+	_open = false
+	ResearchTelemetry.record_event("sampler_close", {"open": false})
+	if _active_minigame == "journal" and _journal != null and _journal.has_method("request_close"):
+		_journal.request_close()
+	if _minigame_host.visible:
+		await _on_back_pressed()
+	_kill_panel_height_tween()
+	var tw2 := create_tween()
+	tw2.tween_property(_panel, "custom_minimum_size:y", 0.0, 0.32).set_ease(Tween.EASE_IN).set_trans(
+		Tween.TRANS_CUBIC
+	)
+	await tw2.finished
+	_panel.visible = false
+	CelestialVNState.set_sampler_blocking_vn(false)
+	_fit_root_to_content()
 
 
 func _on_skill_slot_pressed(idx: int) -> void:
@@ -462,14 +543,14 @@ func _on_skill_slot_pressed(idx: int) -> void:
 			_start_sifting()
 		SamplerSkillsRegistry.SLOT_COLD_SHEEN:
 			_start_cold_sheen()
-		SamplerSkillsRegistry.SLOT_DRAGEE_TOOLKIT:
+		SamplerSkillsRegistry.SLOT_DRAGEE_DECISIONS:
 			_start_dragee_fresh()
 		SamplerSkillsRegistry.SLOT_JOURNAL:
 			_start_journal()
 
 
 func _start_dragee_fresh() -> void:
-	ResearchTelemetry.record_event("minigame_start", {"tool": "dragee_toolkit"})
+	ResearchTelemetry.record_event("minigame_start", {"tool": "dragee_decisions"})
 	await CelestialDrageeDisposal.run_fresh_from_sampler()
 	_on_mode_tab_selected(_mode_tabs.current_tab)
 
@@ -500,6 +581,7 @@ func _start_aeration() -> void:
 		return
 	ResearchTelemetry.record_event("minigame_start", {"tool": "breath_aeration"})
 	CelestialVNState.begin_blocking_overlay_vn()
+	CelestialVNState.begin_breath_aeration_edge_suppress()
 	await _expand_panel_for_minigame()
 	_set_back_minigame_emphasis(true)
 	_scroll_grid_visible(false)
@@ -591,6 +673,8 @@ func _end_minigame_if_current(kind: String) -> void:
 	ResearchTelemetry.record_event("minigame_complete", {"tool": _telemetry_tool_id(kind)})
 	if kind in _MINIGAMES_BLOCKING_OVERLAY:
 		CelestialVNState.end_blocking_overlay_vn()
+	if kind == "aeration":
+		CelestialVNState.end_breath_aeration_edge_suppress()
 	_active_minigame = ""
 	_set_back_minigame_emphasis(false)
 	_back_button.visible = true
@@ -633,6 +717,8 @@ func _on_back_pressed() -> void:
 		_breathing.stop_exercise()
 	if ending_kind in _MINIGAMES_BLOCKING_OVERLAY:
 		CelestialVNState.end_blocking_overlay_vn()
+	if ending_kind == "aeration":
+		CelestialVNState.end_breath_aeration_edge_suppress()
 	_active_minigame = ""
 	_set_back_minigame_emphasis(false)
 	_back_button.visible = true

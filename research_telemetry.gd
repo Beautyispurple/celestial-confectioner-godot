@@ -187,6 +187,9 @@ func _connect_signals_safe() -> void:
 		CelestialVNState.panic_tier_changed.connect(_on_panic_tier_changed)
 	if not CelestialVNState.crisis_coping_resolved.is_connected(_on_crisis_resolved):
 		CelestialVNState.crisis_coping_resolved.connect(_on_crisis_resolved)
+	if is_instance_valid(Dialogic):
+		if not Dialogic.Choices.choice_selected.is_connected(_on_dialogic_choice_selected):
+			Dialogic.Choices.choice_selected.connect(_on_dialogic_choice_selected)
 	if Dialogic.TextInput.input_shown.is_connected(_on_text_input_shown):
 		pass
 	else:
@@ -202,6 +205,9 @@ func _disconnect_signals_safe() -> void:
 		CelestialVNState.panic_tier_changed.disconnect(_on_panic_tier_changed)
 	if CelestialVNState.crisis_coping_resolved.is_connected(_on_crisis_resolved):
 		CelestialVNState.crisis_coping_resolved.disconnect(_on_crisis_resolved)
+	if is_instance_valid(Dialogic):
+		if Dialogic.Choices.choice_selected.is_connected(_on_dialogic_choice_selected):
+			Dialogic.Choices.choice_selected.disconnect(_on_dialogic_choice_selected)
 	if Dialogic.TextInput.input_shown.is_connected(_on_text_input_shown):
 		Dialogic.TextInput.input_shown.disconnect(_on_text_input_shown)
 	if Dialogic.TextInput.input_confirmed.is_connected(_on_text_input_confirmed):
@@ -222,6 +228,22 @@ func _on_text_input_shown(info: Dictionary) -> void:
 
 func _on_text_input_confirmed(input: String) -> void:
 	record_event("dialogic_text_input", {"prompt": _text_input_prompt_cache, "text": input})
+
+
+func _on_dialogic_choice_selected(info: Dictionary) -> void:
+	if not is_active():
+		return
+	var text: String = str(info.get("text", "")).strip_edges()
+	if text.is_empty():
+		return
+	record_event(
+		"player_choice",
+		{
+			"choice_text": text,
+			"event_index": info.get("event_index", -1),
+			"t_unix": Time.get_unix_time_from_system(),
+		}
+	)
 
 
 func _session_append_array(key: String, item: Variant) -> void:
@@ -299,6 +321,9 @@ func _apply_event(event_name: String, payload: Variant) -> void:
 		"post_sam":
 			if payload is Dictionary:
 				session["post_sam"] = (payload as Dictionary).duplicate(true)
+		"player_choice":
+			if payload is Dictionary:
+				_session_append_array("player_choice_log", (payload as Dictionary).duplicate(true))
 		_:
 			_session_append_array(
 				"misc_events",

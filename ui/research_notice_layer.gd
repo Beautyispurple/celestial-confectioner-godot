@@ -21,10 +21,10 @@ If you need crisis or support resources at any time, use [b]Pause → Safety & S
 
 const _CHECK_LABEL := "I understand and agree to research data collection for this build (metrics, survey, and in-game text as described above)."
 
-const _TITLE_FONT_SIZE := 86
-const _BODY_FONT_SIZE := 54
-const _CHECKBOX_FONT_SIZE := 27
-const _BUTTON_FONT_SIZE := 36
+const _TITLE_FONT_SIZE := 69 # 0.8×86
+const _BODY_FONT_SIZE := 43 # 0.8×54
+const _CHECKBOX_FONT_SIZE := 22 # 0.8×27
+const _BUTTON_FONT_SIZE := 29 # 0.8×36
 
 var _continue_button: Button
 var _checkbox: CheckBox
@@ -114,7 +114,7 @@ func _ready() -> void:
 
 	_continue_button = Button.new()
 	_continue_button.text = "Continue"
-	_continue_button.custom_minimum_size = Vector2(420, 86)
+	_continue_button.custom_minimum_size = Vector2(336, 69)
 	_continue_button.add_theme_font_size_override("font_size", _BUTTON_FONT_SIZE)
 	_continue_button.disabled = true
 	_continue_button.pressed.connect(_on_continue_pressed)
@@ -122,7 +122,7 @@ func _ready() -> void:
 
 	var exit_button := Button.new()
 	exit_button.text = "Exit to Main Menu"
-	exit_button.custom_minimum_size = Vector2(420, 86)
+	exit_button.custom_minimum_size = Vector2(336, 69)
 	exit_button.add_theme_font_size_override("font_size", _BUTTON_FONT_SIZE)
 	exit_button.pressed.connect(_on_exit_pressed)
 	button_row.add_child(exit_button)
