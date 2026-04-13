@@ -32,7 +32,6 @@ if int({tired}) == 0:
 	beatrix (Macaron): I am glad to see you are taking this opportunity seriously.
 	set {beatrix_points} += 10
 	beatrix (Idle Neutral): Punctuality is the foundation of any respectable confectionery.
-	[voice path="res://voice/178theworld.ogg" volume="0.0" bus="Voice"]
 	marzi (Casual Happy): I wouldn't miss it for the world, Madame!
 
 elif int({tired}) == 1:
