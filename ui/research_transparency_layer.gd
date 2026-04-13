@@ -5,6 +5,18 @@ signal finished_exit
 
 const GROUP_T := &"research_transparency_active"
 
+const MSG_COPIED := "Copied."
+const MSG_COPY_BLOCKED := "Copy may be blocked—text is below; select and copy manually"
+
+## Web: keep refs so JS callbacks are not GC'd (JavaScriptBridge docs).
+var _cb_web_clip_ok: Variant
+var _cb_web_clip_fail: Variant
+var _pending_web_plain: String = ""
+
+var _copy_status_label: Label
+var _manual_overlay: Control
+var _manual_text: TextEdit
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -62,6 +74,74 @@ func _ready() -> void:
 		b.add_theme_font_size_override("font_size", 20)
 		b.add_theme_color_override("font_color", Color(1, 0.96, 0.92))
 
+	_copy_status_label = Label.new()
+	_copy_status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_copy_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_copy_status_label.add_theme_font_size_override("font_size", 18)
+	_copy_status_label.visible = false
+	v.add_child(_copy_status_label)
+
+	_setup_web_clipboard_callbacks()
+
+
+func _setup_web_clipboard_callbacks() -> void:
+	if not OS.has_feature("web"):
+		return
+	if Engine.get_singleton("JavaScriptBridge") == null:
+		return
+	_cb_web_clip_ok = JavaScriptBridge.create_callback(_on_web_clip_ok)
+	_cb_web_clip_fail = JavaScriptBridge.create_callback(_on_web_clip_fail)
+
+
+func _setup_manual_modal() -> void:
+	if _manual_overlay != null:
+		return
+	_manual_overlay = Control.new()
+	_manual_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_manual_overlay.visible = false
+	_manual_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	add_child(_manual_overlay)
+
+	var dim := ColorRect.new()
+	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
+	dim.color = Color(0.05, 0.05, 0.08, 0.92)
+	dim.mouse_filter = Control.MOUSE_FILTER_STOP
+	_manual_overlay.add_child(dim)
+
+	var center := CenterContainer.new()
+	center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	center.mouse_filter = Control.MOUSE_FILTER_STOP
+	_manual_overlay.add_child(center)
+
+	var panel := PanelContainer.new()
+	panel.custom_minimum_size = Vector2(520, 400)
+	panel.mouse_filter = Control.MOUSE_FILTER_STOP
+	center.add_child(panel)
+
+	var inner := VBoxContainer.new()
+	inner.add_theme_constant_override("separation", 12)
+	panel.add_child(inner)
+
+	var hint := Label.new()
+	hint.text = "Tap the box, then Select all (Ctrl+C / Cmd+C) to copy."
+	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	hint.add_theme_font_size_override("font_size", 18)
+	hint.add_theme_color_override("font_color", Color(1, 0.96, 0.92))
+	inner.add_child(hint)
+
+	_manual_text = TextEdit.new()
+	_manual_text.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_manual_text.custom_minimum_size = Vector2(480, 280)
+	_manual_text.wrap_mode = TextEdit.LINE_WRAPPING_BOUNDARY
+	_manual_text.add_theme_font_size_override("font_size", 16)
+	inner.add_child(_manual_text)
+
+	var close_btn := Button.new()
+	close_btn.text = "Close"
+	close_btn.custom_minimum_size = Vector2(200, 44)
+	close_btn.pressed.connect(_hide_manual_modal)
+	inner.add_child(close_btn)
+
 
 func run_until_done() -> void:
 	if not ResearchTelemetry.is_active():
@@ -74,6 +154,7 @@ func run_until_done() -> void:
 	await finished_exit
 	remove_from_group(GROUP_T)
 	visible = false
+	_hide_manual_modal()
 
 
 func _find_rtl() -> RichTextLabel:
@@ -257,15 +338,135 @@ func _format_sam_block(v: Variant) -> String:
 
 func _on_print() -> void:
 	var plain := _build_plain_from_session()
+	if OS.get_name() == "Web":
+		_web_copy_export_summary(plain)
+	else:
+		_desktop_copy_export(plain)
+
+
+func _desktop_copy_export(plain: String) -> void:
 	DisplayServer.clipboard_set(plain)
 	var path: String = OS.get_cache_dir().path_join("celestial_research_session.txt")
 	var f := FileAccess.open(path, FileAccess.WRITE)
 	if f:
 		f.store_string(plain)
 		f.close()
-		OS.shell_open(path)
+		if OS.get_name() != "Web":
+			OS.shell_open(path)
 	elif OS.is_debug_build():
 		push_warning("[ResearchTransparency] Could not write export file")
+
+
+func _web_copy_export_summary(plain: String) -> void:
+	_pending_web_plain = plain
+	_hide_manual_modal()
+	_copy_status_label.visible = false
+	_copy_status_label.remove_theme_color_override("font_color")
+
+	var path: String = OS.get_cache_dir().path_join("celestial_research_session.txt")
+	var f := FileAccess.open(path, FileAccess.WRITE)
+	if f:
+		f.store_string(plain)
+		f.close()
+	elif OS.is_debug_build():
+		push_warning("[ResearchTransparency] Could not write export file (Web virtual FS)")
+
+	if not OS.has_feature("web"):
+		_web_copy_failed_all(plain)
+		return
+	var jsb: Variant = Engine.get_singleton("JavaScriptBridge")
+	if jsb == null:
+		if OS.is_debug_build():
+			push_warning("[ResearchTransparency] JavaScriptBridge unavailable")
+		_web_copy_failed_all(plain)
+		return
+
+	if _cb_web_clip_ok == null or _cb_web_clip_fail == null:
+		_try_web_exec_command_copy(jsb, plain)
+		return
+
+	var nav: Variant = JavaScriptBridge.get_interface("navigator")
+	if nav == null:
+		_try_web_exec_command_copy(jsb, plain)
+		return
+	var clip: Variant = nav.clipboard
+	if clip == null:
+		_try_web_exec_command_copy(jsb, plain)
+		return
+	if not clip.has_method("writeText"):
+		_try_web_exec_command_copy(jsb, plain)
+		return
+
+	var p: Variant = clip.writeText(plain)
+	if p == null:
+		_try_web_exec_command_copy(jsb, plain)
+		return
+	if not p.has_method("then"):
+		_try_web_exec_command_copy(jsb, plain)
+		return
+	p.then(_cb_web_clip_ok, _cb_web_clip_fail)
+
+
+func _on_web_clip_ok(_args: Array) -> void:
+	_web_copy_success(_pending_web_plain)
+
+
+func _on_web_clip_fail(_args: Array) -> void:
+	var jsb: Variant = Engine.get_singleton("JavaScriptBridge")
+	if jsb == null:
+		_web_copy_failed_all(_pending_web_plain)
+		return
+	_try_web_exec_command_copy(jsb, _pending_web_plain)
+
+
+func _try_web_exec_command_copy(jsb: Variant, plain: String) -> void:
+	## Synchronous JS: hidden textarea + execCommand('copy'). JSON embedded in JS safely.
+	var js_code := "(function(){var text = JSON.parse(" + JSON.stringify(plain) + ");"
+	js_code += "var ta=document.createElement('textarea');ta.value=text;"
+	js_code += "ta.style.position='fixed';ta.style.left='-9999px';ta.setAttribute('readonly','');"
+	js_code += "document.body.appendChild(ta);ta.focus();ta.select();"
+	js_code += "var ok=false;try{ok=document.execCommand('copy');}catch(e){}"
+	js_code += "document.body.removeChild(ta);return ok;})()"
+	var result: Variant = jsb.eval(js_code)
+	if result == true:
+		_web_copy_success(plain)
+	else:
+		_web_copy_failed_all(plain)
+
+
+func _web_copy_success(plain: String) -> void:
+	_copy_status_label.text = MSG_COPIED
+	_copy_status_label.add_theme_color_override("font_color", Color(0.35, 0.82, 0.42, 1.0))
+	_copy_status_label.visible = true
+	var jsb: Variant = Engine.get_singleton("JavaScriptBridge")
+	if jsb != null and jsb.has_method("download_buffer"):
+		jsb.download_buffer(plain.to_utf8_buffer(), "celestial_research_session.txt")
+
+
+func _web_copy_failed_all(plain: String) -> void:
+	_copy_status_label.text = MSG_COPY_BLOCKED
+	_copy_status_label.add_theme_color_override("font_color", Color(0.92, 0.65, 0.35, 1.0))
+	_copy_status_label.visible = true
+	_show_manual_modal(plain)
+
+
+func _show_manual_modal(plain: String) -> void:
+	_setup_manual_modal()
+	_manual_text.text = plain
+	_manual_overlay.visible = true
+	call_deferred("_deferred_manual_modal_focus")
+
+
+func _deferred_manual_modal_focus() -> void:
+	if _manual_text == null or not is_instance_valid(_manual_text):
+		return
+	_manual_text.grab_focus()
+	_manual_text.select_all()
+
+
+func _hide_manual_modal() -> void:
+	if _manual_overlay != null and is_instance_valid(_manual_overlay):
+		_manual_overlay.visible = false
 
 
 func _build_plain_from_session() -> String:

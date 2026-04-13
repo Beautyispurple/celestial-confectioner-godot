@@ -4,239 +4,239 @@ audio music "res://sounds_music/After_School_Shortcut.mp3"
 [style name="marzi_visual_novel_style"]
 [wait time="1.0"]
 join marzi (Casual Happy) left
-[voice path="res://voice/1hiyanice.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/1hiyanice.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Happy): Hiya! Nice to meetcha!!
-[voice path="res://voice/2mynameis.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/2mynameis.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Happy): My name is Marzipan Glace.
-[voice path="res://voice/2everyonecallsme.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/2everyonecallsme.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Carefree): Everyone just calls me Marzi though.
-[voice path="res://voice/3im22yearsold.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/3im22yearsold.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Carefree): I'm 22 years old...
-[voice path="res://voice/4mybloodtype.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/4mybloodtype.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Carefree): My blood type is AB...
-[voice path="res://voice/5mybirthday.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/5mybirthday.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Carefree): And my birthday is on February 29-
-[voice path="res://voice/6whichmakesme.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/6whichmakesme.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Carefree): Which makes me a pisces!
-[voice path="res://voice/7amonthago.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/7amonthago.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): A month ago, I did the impossible.
-[voice path="res://voice/8Igraduated.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/8Igraduated.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Amazed): I graduated confectionery trade school with a 4.0 GPA!
-[voice path="res://voice/9Iwasthekind.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/9Iwasthekind.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): I was the kind of student who needed a map to find the walk-in freezer...
-[voice path="res://voice/10buticouldstay.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/10buticouldstay.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): ...but I could stay in the zone for ten hours straight if there was a sugar sculpture on the line.
-[voice path="res://voice/11Iwasofficially.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/11Iwasofficially.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Love): I was officially a real confectioner...
-[voice path="res://voice/12wellkindof.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/12wellkindof.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Sweat): ...well...kind of...
 leave marzi
-[voice path="res://voice/13wehearrustling.wav" volume="0.0"]
+[voice path="res://voice/13wehearrustling.ogg" volume="0.0"]
 (We hear rustling.)
-[voice path="res://voice/14marzihasahandoutstretched.wav" volume="0.0"]
+[voice path="res://voice/14marzihasahandoutstretched.ogg" volume="0.0"]
 (Marzi has a hand outstretched in a fancy box of candy full with strawberry print wrappers.)
-[voice path="res://voice/15itishalfburied.wav" volume="0.0"]
+[voice path="res://voice/15itishalfburied.ogg" volume="0.0"]
 (It is half buried under sketches of tiered cakes, blown sugar sculptures, and multiple stained copies of Marzi's resume.)
-[voice path="res://voice/16sheissitting.wav" volume="0.0"]
+[voice path="res://voice/16sheissitting.ogg" volume="0.0"]
 (She is sitting at her desk typing in recipe measurement adjustments to her portfolio with her free hand.)
 join marzi (Casual Unsure) left
-[voice path="res://voice/17ithoughtthe.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/17ithoughtthe.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): I thought the hard part was over.
-[voice path="res://voice/18tickettomyown.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/18tickettomyown.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Worried): I thought the graduation money would be my ticket to my own confectionery.
-[voice path="res://voice/19ijustneedalittle.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/19ijustneedalittle.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Carefree): I just... need a little inspiration first...
 leave marzi
 [background arg="res://backgrounds/BACKGROUND_attic_afternoon.png" fade="0.0"]
-[voice path="res://voice/20days.wav" volume="0.0"]
+[voice path="res://voice/20days.ogg" volume="0.0"]
 (Days go by...)
 [background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="0.0"]
-[voice path="res://voice/21weeks.wav" volume="0.0"]
+[voice path="res://voice/21weeks.ogg" volume="0.0"]
 (Weeks go by...)
 [background arg="res://backgrounds/BACKGROUND_attic_mesy_better.png" fade="0.0"]
-[voice path="res://voice/22months.wav" volume="0.0"]
+[voice path="res://voice/22months.ogg" volume="0.0"]
 (Months later...)
-[voice path="res://voice/23marzipancomedownstairs.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/23marzipancomedownstairs.ogg" volume="0.0" bus="Voice"]
 MARZIPAN! COME DOWNSTAIRS THIS INSTANT!
 do CelestialVNState.apply_stress_panic_delta(2)
 do CelestialTutorial.prologue_tutorial_heat_meter()
 join marzi (Casual Fear) left
-[voice path="res://voice/24uhoh.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/24uhoh.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Fear): Uh oh...
-[voice path="res://voice/26beright.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/26beright.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): BE RIGHT THERE DAD!
 leave marzi
 [background arg="res://backgrounds/BACKGROUND_Family_Kitchen.jpg" fade="0.0"]
 join marzi (Casual Concerned) left
-[voice path="res://voice/27yesdad.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/27yesdad.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): Y...yes Dad?
 join al (Bill Shocked) rightmost
-[voice path="res://voice/28marzi.wav" volume="0.0"]
+[voice path="res://voice/28marzi.ogg" volume="0.0"]
 al (Bill Shocked): Marzi.
-[voice path="res://voice/29decimalpoint.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/29decimalpoint.ogg" volume="0.0" bus="Voice"]
 al (Bill Shocked): Please tell me the decimal point on this statement is an error!
-[voice path="res://voice/30didyoureally.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/30didyoureally.ogg" volume="0.0" bus="Voice"]
 al (Bill Mad): Did you really spend your entire graduation fund on...
-[voice path="res://voice/31candy.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/31candy.ogg" volume="0.0" bus="Voice"]
 al (Bill Disappointed): ...candy?
-[voice path="res://voice/32itsnotjustcandy.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/32itsnotjustcandy.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): It's not just candy, Dad!
 - Appeal to him logically
-	[voice path="res://voice/33itsresearch.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/33itsresearch.ogg" volume="0.0" bus="Voice"]
 	marzi (Casual Miffed): It's research!
-	[voice path="res://voice/33howamisupposed.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/33howamisupposed.ogg" volume="0.0" bus="Voice"]
 	marzi (Casual Carefree): How am I supposed to revolutionize the confectionery world if I don't study the perfect matcha ganache?
 	leave al
 	join rosy (Shocked) rightmost
-	[voice path="res://voice/36marzireally.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/36marzireally.ogg" volume="0.0" bus="Voice"]
 	rosy (Shocked): Marzi?! Really?!
 	set {al_points} -= 5
 	set {rosy_points} -= 5
 - Appeal to him emotionally
-	[voice path="res://voice/35imnervousabout.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/35imnervousabout.ogg" volume="0.0" bus="Voice"]
 	marzi (Casual Tears): I'm nervous about my portfolio quality so I was sniffing out the competition...
-	[voice path="res://voice/35amazingsale.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/35amazingsale.ogg" volume="0.0" bus="Voice"]
 	marzi (Casual Orz): ...AND THERE WAS AN AMAZING SALE!
 	leave al
 	join rosy (Shocked) rightmost
-	[voice path="res://voice/36marzireally.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/36marzireally.ogg" volume="0.0" bus="Voice"]
 	rosy (Shocked): Marzi?! Really?!
-	[voice path="res://voice/37althoughasale.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/37althoughasale.ogg" volume="0.0" bus="Voice"]
 	rosy (Scheming): Although...a sale you say...
-	[voice path="res://voice/38nononevermind.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/38nononevermind.ogg" volume="0.0" bus="Voice"]
 	rosy (Disappointed): No, no... nevermind.
 	set {al_points} -= 5
 	set {rosy_points} -= 5
 - Own up to it
-	[voice path="res://voice/39butyoureright.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/39butyoureright.ogg" volume="0.0" bus="Voice"]
 	marzi (Casual Apologetic): But you're right, Dad.
-	[voice path="res://voice/40igotcarried.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/40igotcarried.ogg" volume="0.0" bus="Voice"]
 	marzi (Casual Apologetic): I got carried away trying to perfect my portfolio.
 	leave al
 	join rosy (Approval) rightmost
-	[voice path="res://voice/41atleastyou.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/41atleastyou.ogg" volume="0.0" bus="Voice"]
 	rosy (Approval): Well at least you seem to be able to take some accountability.
 	set {rosy_points} += 5
 	set {al_points} += 5
 if int({rosy_points}) == 55:
-	[voice path="res://voice/42butitsreally.wav" volume="0.0"]
+	[voice path="res://voice/42butitsreally.ogg" volume="0.0"]
 	rosy (Disappointed): ...but it's not really enough.
 marzi (Casual Apologetic): ...
-[voice path="res://voice/43aflowercantbloom.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/43aflowercantbloom.ogg" volume="0.0" bus="Voice"]
 rosy (Disappointed): Sweetheart, a flower can't bloom if it doesn't have roots in the dirt.
-[voice path="res://voice/44weloveyourpassion.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/44weloveyourpassion.ogg" volume="0.0" bus="Voice"]
 rosy (Disappointed): We love your passion, but your 'research' drained your entire savings...
 rosy (Disappointed): ...and you're going to have to deal with the consequences of your childish decisions.
-[voice path="res://voice/46youvebeenlocked.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/46youvebeenlocked.ogg" volume="0.0" bus="Voice"]
 rosy (Disappointed): You've been locked up in your bedroom for months...
-[voice path="res://voice/47youvebeenspending.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/47youvebeenspending.ogg" volume="0.0" bus="Voice"]
 rosy: You've been spending more time shopping for sweets, outfits and fidget toys than you have been applying for jobs.
 leave rosy
 join al (Worry) rightmost
-[voice path="res://voice/48momandiagreed.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/48momandiagreed.ogg" volume="0.0" bus="Voice"]
 al (Worry): Mom and I agreed on a timeline, Marzi.
-[voice path="res://voice/49youneed.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/49youneed.ogg" volume="0.0" bus="Voice"]
 al (Worry): You need a steady job.
-[voice path="res://voice/50arealroutine.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/50arealroutine.ogg" volume="0.0" bus="Voice"]
 al (Worry): A real routine.
-[voice path="res://voice/51ifyoudonthave.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/51ifyoudonthave.ogg" volume="0.0" bus="Voice"]
 al (Worry): If you don't have a paying position by the end of the month...
-[voice path="res://voice/52weregoingtokick.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/52weregoingtokick.ogg" volume="0.0" bus="Voice"]
 al (Worry): ...we are going to kick you out of the house, Marzipan.
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/52eghh.wav" volume="0.0"]
+[voice path="res://voice/52eghh.ogg" volume="0.0"]
 marzi (Casual Very Concerned): !!!
-[voice path="res://voice/53wecant.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/53wecant.ogg" volume="0.0" bus="Voice"]
 al (Worry): We can't keep funding this chaos.
-[voice path="res://voice/54endofthe.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/54endofthe.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Very Concerned): E...End of the month? But I-I just need more time... my portfolio really isn't rea-
 leave --All--
-[voice path="res://voice/55chaiwalks.wav" volume="0.0"]
+[voice path="res://voice/55chaiwalks.ogg" volume="0.0"]
 (Chai, Marzi's older brother walks into the room, balancing a squirming Toddler on his hip and a tablet in his other hand.)
-[voice path="res://voice/56thetoddleris.wav" volume="0.0"]
+[voice path="res://voice/56thetoddleris.ogg" volume="0.0"]
 (The toddler is Marzi's sister, Madeline.)
 join chai rightmost
-[voice path="res://voice/57idsayim.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/57idsayim.ogg" volume="0.0" bus="Voice"]
 chai (Exasperated): I'd say i'm surprised you spent all that money on candy...
-[voice path="res://voice/58butimnot.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/58butimnot.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): But I'm not.
 leave --All--
 join madeline rightmost
-[voice path="res://voice/59candyiwantcandytoomarzi.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/59candyiwantcandytoomarzi.ogg" volume="0.0" bus="Voice"]
 madeline (Happy): CANDY!!! I WANT CANDY TOO MARZI!!
 leave madeline
 join chai (Relaxed) rightmost
-[voice path="res://voice/60lookifyoure.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/60lookifyoure.ogg" volume="0.0" bus="Voice"]
 chai (Relaxed): Look, if you're going to blow your entire life savings on sugar, you might as well go straight to the source.
-[voice path="res://voice/61haveyoubeento.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/61haveyoubeento.ogg" volume="0.0" bus="Voice"]
 chai (Relaxed): Have you been to Starlight City before?
 join marzi (Casual Orz) left
-[voice path="res://voice/62noihavent.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/62noihavent.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Orz): No...I..I haven't.
-[voice path="res://voice/63butthatswhere.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/63butthatswhere.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Serious): But that's where the legendary confectionery, The Gilded Macaron is.
-[voice path="res://voice/64anyconfectioner.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/64anyconfectioner.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Cowlick): Any confectioner who knows their salt from their sugar knows that...
 marzi (Casual Concerned): ...
-[voice path="res://voice/65wellyoumight.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/65wellyoumight.ogg" volume="0.0" bus="Voice"]
 chai (Exasperated): Well you might not have been searching the job boards...
-[voice path="res://voice/66butihave.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/66butihave.ogg" volume="0.0" bus="Voice"]
 chai (Relaxed): ...but I have.
-[voice path="res://voice/67theresanew.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/67theresanew.ogg" volume="0.0" bus="Voice"]
 chai (Relaxed): There's a new listing for a job opening.
-[voice path="res://voice/68thatwouldbe.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/68thatwouldbe.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Amazed): Oh wow! That would be my dream job!
-[voice path="res://voice/69butwhatifmyportfolio.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/69butwhatifmyportfolio.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Worried): B...But what if my portfolio isn't good enough?
-[voice path="res://voice/70whatifthey.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/70whatifthey.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Wingding): What if they don't like me??
-[voice path="res://voice/71illbelivingin.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/71illbelivingin.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Orz): I'll be living in a tent in the woods!!!
 marzi (Casual Orz): ...
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/72idontevenown.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/72idontevenown.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Tears): I DON'T EVEN OWN A TENT!
-[voice path="res://voice/73lookatme.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/73lookatme.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): Look at me please Marzi.
-[voice path="res://voice/74letsdothree.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/74letsdothree.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): Let's do three deep breaths together, okay?
 set {breath_tempering_unlocked} = 1
 do CelestialTutorial.prologue_tutorial_sampler_box()
 (System Message\: You can follow along with Marzi as she practices skills if you wish, or you can just enjoy the story!)
-[voice path="res://voice/75inthrough.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/75inthrough.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): In through the nose...2...3...4...
-[voice path="res://voice/76hold234.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/76hold234.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): Hold...2...3...4...
-[voice path="res://voice/77out234.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/77out234.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): Out...2...3...4...
-[voice path="res://voice/76hold234.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/76hold234.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): Hold...2...3...4...
 leave --All--
-[voice path="res://voice/79marziregains.wav" volume="0.0"]
+[voice path="res://voice/79marziregains.ogg" volume="0.0"]
 (Marzi regains her composure as they breathe in rhythm together.)
 do CelestialTutorial.prologue_tutorial_breath_tempering_unlocked()
 join chai (Understanding) rightmost
 join marzi (Casual Trust) left
-[voice path="res://voice/81theylllikeyou.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/81theylllikeyou.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): They'll like you Marzi.
-[voice path="res://voice/82noonehasapassion.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/82noonehasapassion.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): No one has a passion for confectionery arts more intense than you.
-[voice path="res://voice/83youveprepared.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/83youveprepared.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): You've prepared enough, okay?
-[voice path="res://voice/84itstimeto.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/84itstimeto.ogg" volume="0.0" bus="Voice"]
 chai (Love): It's time to put that preparation into action.
 join marzi (Casual Confident) left
-[voice path="res://voice/85yourright.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/85yourright.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): You're right, Chai...
-[voice path="res://voice/86icandothis.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/86icandothis.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): I can do this!
 leave --All--
-[voice path="res://voice/87chaitosses.wav" volume="0.0"]
+[voice path="res://voice/87chaitosses.ogg" volume="0.0"]
 (Chai smiles and tosses her a transit card.)
-[voice path="res://voice/88ivealreadylooked.wav" volume="0.0"]
+[voice path="res://voice/88ivealreadylooked.ogg" volume="0.0"]
 join chai rightmost
 chai (Relaxed): I already looked up the bus routes for you.
-[voice path="res://voice/89gogetem.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/89gogetem.ogg" volume="0.0" bus="Voice"]
 chai (Relaxed): Go get 'em, confectionery genius.
 leave --All--
 [background arg="res://backgrounds/SCENE_bus_ticket.png" fade="3.0" wait="true"]
@@ -247,181 +247,181 @@ label prologue_gm
 [background arg="res://backgrounds/BACKGROUND_gm_outside.png" fade="3.0" wait="true"]
 [wait time="2.0"]
 join marzi (Casual Amazed) left
-[voice path="res://voice/90omigosh.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/90omigosh.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Anticipation): Omigosh WOW!
-[voice path="res://voice/91sothisis.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/91sothisis.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Anticipation): So this is the legendary Gilded Macaron...
-[voice path="res://voice/92itsevenbetter.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/92itsevenbetter.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Love): It's even better than I'd imagined!
-[voice path="res://voice/93lookatthat.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/93lookatthat.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Love): Look at that carousel made of isomalt!
-[voice path="res://voice/94itssointricate.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/94itssointricate.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Amazed): It's so intricate...
-[voice path="res://voice/95icantwaitto.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/95icantwaitto.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Amazed): I can't wait to make something like that.
-[voice path="res://voice/96okaymarzi.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/96okaymarzi.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): Okay Marzi, this is it.
-[voice path="res://voice/97itsyourbig.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/97itsyourbig.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): It's your big chance!
-[voice path="res://voice/98sodont.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/98sodont.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Sweat): So don't blow it...
 leave marzi
-[voice path="res://voice/99marzipushes.wav" volume="0.0"]
+[voice path="res://voice/99marzipushes.ogg" volume="0.0"]
 (Marzi pushes open the heavy door.)
 [background arg="res://backgrounds/BACKGROUND_gm_inside.png" fade="0.0"]
 [wait time="1.5"]
-[voice path="res://voice/100shegazes.wav" volume="0.0"]
+[voice path="res://voice/100shegazes.ogg" volume="0.0"]
 (She gazes wide eyed at all the confections around her.)
-[voice path="res://voice/101theshopis.wav" volume="0.0"]
+[voice path="res://voice/101theshopis.ogg" volume="0.0"]
 (The shop is breathtaking.)
 join marzi (Casual Love) left
-[voice path="res://voice/102amidreaming.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/102amidreaming.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Love): (Am...am I dreaming?!)
-[voice path="res://voice/103noimusthave.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/103noimusthave.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Love): (No, I must have died on the bus ride and gone to heaven!!)
 leave marzi
-[voice path="res://voice/104shemarvels.wav" volume="0.0"]
+[voice path="res://voice/104shemarvels.ogg" volume="0.0"]
 (She marvels at the surprisingly massive interior of the shop.)
-[voice path="res://voice/105itisfulledto.wav" volume="0.0"]
+[voice path="res://voice/105itisfulledto.ogg" volume="0.0"]
 (It is filled to the brim with perfect quality confections.)
-[voice path="res://voice/106undulating.wav" volume="0.0"]
+[voice path="res://voice/106undulating.ogg" volume="0.0"]
 (Undulating blown sugar globes hang in the air with a curious and brightly colored mist swirling within.)
-[voice path="res://voice/107theyhangin.wav" volume="0.0"]
+[voice path="res://voice/107theyhangin.ogg" volume="0.0"]
 (They hang in the air as if by magic.)
-[voice path="res://voice/108thereareglowing.wav" volume="0.0"]
+[voice path="res://voice/108thereareglowing.ogg" volume="0.0"]
 (There are glowing, levitating, and sparkling truffles in a rainbow of colors.)
-[voice path="res://voice/109marzileansin.wav" volume="0.0"]
+[voice path="res://voice/109marzileansin.ogg" volume="0.0"]
 (Marzi leans in to have a closer look at the cotton candy.)
-[voice path="res://voice/110itswirls.wav" volume="0.0"]
+[voice path="res://voice/110itswirls.ogg" volume="0.0"]
 (It swirls and twinkles, like each sugar cloud held it's own galaxy inside.)
-[voice path="res://voice/111thereareimpressive.wav" volume="0.0"]
+[voice path="res://voice/111thereareimpressive.ogg" volume="0.0"]
 (There are impressive display showpieces of modeling chocolate trees with marzipan fruits hanging from the branches...)
-[voice path="res://voice/112pulledsugar.wav" volume="0.0"]
+[voice path="res://voice/112pulledsugar.ogg" volume="0.0"]
 (...Pulled sugar birds are in nestled in the branches.)
-[voice path="res://voice/113theytilt.wav" volume="0.0"]
+[voice path="res://voice/113theytilt.ogg" volume="0.0"]
 (They tilt their heads and fix their shiny button eyes on Marzi, tweeting and cooing at her.)
-[voice path="res://voice/114marzipinches.wav" volume="0.0"]
+[voice path="res://voice/114marzipinches.ogg" volume="0.0"]
 (Marzi pinches her wrist.)
 join marzi (Casual Surprised) left
-[voice path="res://voice/115ouch.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/115ouch.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Surprised): Ouch!
-[voice path="res://voice/116imnotdreaming.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/116imnotdreaming.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Amazed): (I'm not dreaming and I'm not dead!)
-[voice path="res://voice/117thisisreal.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/117thisisreal.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Love): (This is real.)
-[voice path="res://voice/118thisisreeeal.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/118thisisreeeal.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Anticipation): (THIS IS REEEEAL!!!)
-[voice path="res://voice/119iknewthe.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/119iknewthe.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Amazed): (I knew The Gilded Macaron was supposed to be legendary...)
-[voice path="res://voice/120butididnt.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/120butididnt.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Amazed): (But I didn't think it was literally magical!)
 leave marzi
-[voice path="res://voice/121awomanclears.wav" volume="0.0"]
+[voice path="res://voice/121awomanclears.ogg" volume="0.0"]
 (A woman clears her throat and you hear her footsteps echo on the marble.)
 join beatrix (Macaron) rightmost
-[voice path="res://voice/122welcometothe.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/122welcometothe.ogg" volume="0.0" bus="Voice"]
 beatrix (Macaron): Welcome! Welcome to The Gilded Macaron, my dear!
-[voice path="res://voice/123dostepright.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/123dostepright.ogg" volume="0.0" bus="Voice"]
 beatrix (Happy): Do step right in, please!
-[voice path="res://voice/124Iammadame.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/124Iammadame.ogg" volume="0.0" bus="Voice"]
 beatrix (Idle Neutral): I am Madame Beatrix Von Sweets, owner and operator of this humble establishment.
-[voice path="res://voice/125apleasureto.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/125apleasureto.ogg" volume="0.0" bus="Voice"]
 beatrix (Idle Neutral): A pleasure to meet you.
 join marzi (Casual Happy) left
 - Um...Um...Hi...Um...
 	set {beatrix_points} -= 3
-	[voice path="res://voice/127wellarent.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/127wellarent.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): Well aren't you such an... interesting girl!
-	[voice path="res://voice/128withafashion.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/128withafashion.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): With a fashion sense to match!
-	[voice path="res://voice/129ecclecticpalette.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/129ecclecticpalette.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): You must have a very eclectic palette.
-	[voice path="res://voice/130wehavean.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/130wehavean.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): We have an extra fresh batch of turkish delights that I think you'll love.
-	[voice path="res://voice/131ourinhouse.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/131ourinhouse.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): Our in house confectioners have enchanted them so that you feel the chill of falling snowflakes when you take a bite.
-	[voice path="res://voice/132wouldyoulike.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/132wouldyoulike.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): Would you like to try a sample before you purchase?
 - Hiya! Nice to meet you too!
 	set {beatrix_points} += 1
-	[voice path="res://voice/134mywhata.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/134mywhata.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): My, what a confident girl you are!
-	[voice path="res://voice/128withafashion.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/128withafashion.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): With a fashion sense to match!
-	[voice path="res://voice/136boldpalette.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/136boldpalette.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): You must have a very bold palette.
-	[voice path="res://voice/137mightirecommend.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/137mightirecommend.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): Might I recommend our salted soft caramels?
-	[voice path="res://voice/131ourinhouse.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/131ourinhouse.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): Our in house confectioners have have enchanted them so they don't stick to your teeth!
-	[voice path="res://voice/132wouldyoulike.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/132wouldyoulike.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): Would you like to try a sample before you purchase?
 - A pleasure to meet you as well, Madame.
 	set {beatrix_points} += 5
 	beatrix (Idle Neutral): Ah, such pleasant manners.
-	[voice path="res://voice/142ararityin.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/142ararityin.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): A rarity in today's youth.
-	[voice path="res://voice/143impeccablefashion.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/143impeccablefashion.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): Impeccable fashion sense as well I see.
-	[voice path="res://voice/144refinedpalette.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/144refinedpalette.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): You must have a very refined palette.
-	[voice path="res://voice/145imustofcourse.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/145imustofcourse.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): I must of course then recommend our house made macarons.
-	[voice path="res://voice/146youwont.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/146youwont.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): You won't find another comparable.
-	[voice path="res://voice/147Ipersonallyoversee.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/147Ipersonallyoversee.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): I personally oversee all the enchantments on our macarons.
-	[voice path="res://voice/148werotate.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/148werotate.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): We rotate the flavor profiles and effects out every day.
-	[voice path="res://voice/149todaystheme.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/149todaystheme.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): Today's theme is weather, so the yellow macarons taste like sundew-nice for warming up in the evening before bed.
-	[voice path="res://voice/151theblueones.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/151theblueones.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): The blue ones tastes like a summer shower and you don't need a drink to wash it down.
-	[voice path="res://voice/152greenislightning.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/152greenislightning.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): Green is lightning, white is hail, you get the picture.
-	[voice path="res://voice/132wouldyoulike.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/132wouldyoulike.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): Would you like to try a sample before you purchase, young miss?
-[voice path="res://voice/136thatissuch.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/136thatissuch.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Apologetic): Oh wow, that is such a tempting offer Madame Sweets.
-[voice path="res://voice/137butimactually.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/137butimactually.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Serious): But I'm actually not a customer.
-[voice path="res://voice/138immarzipan.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/138immarzipan.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Serious): I'm Marzipan Glace. Marzi for short.
-[voice path="res://voice/139isawthejob.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/139isawthejob.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Happy): I saw the job posting about an opening in the confectionery.
-[voice path="res://voice/140ibroughtmy.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/140ibroughtmy.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Happy): I brought my portfolio and my confectionery school diploma!
 leave --All--
 audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
-[voice path="res://voice/141thetemperature.wav" volume="0.0"]
+[voice path="res://voice/141thetemperature.ogg" volume="0.0"]
 (The temperature in the room suddenly seems to drop ten degrees.)
-[voice path="res://voice/142beatrixradiant.wav" volume="0.0"]
+[voice path="res://voice/142beatrixradiant.ogg" volume="0.0"]
 (Beatrix's radiant smile vanishes instantly...)
-[voice path="res://voice/143andisreplaced.wav" volume="0.0"]
+[voice path="res://voice/143andisreplaced.ogg" volume="0.0"]
 (... and is replaced by a cold, calculating stare.)
-[voice path="res://voice/144shepulls.wav" volume="0.0"]
+[voice path="res://voice/144shepulls.ogg" volume="0.0"]
 (She pulls a golden cell phone out of her pocket...)
-[voice path="res://voice/145herposturestiffening.wav" volume="0.0"]
+[voice path="res://voice/145herposturestiffening.ogg" volume="0.0"]
 (...her posture stiffening into absolute rigidity.)
-[voice path="res://voice/146whenshespeaks.wav" volume="0.0"]
+[voice path="res://voice/146whenshespeaks.ogg" volume="0.0"]
 (When she speaks again, her voice is flat and clipped.)
 join beatrix (Unimpressed) rightmost
-[voice path="res://voice/147ajobapplicant.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/147ajobapplicant.ogg" volume="0.0" bus="Voice"]
 beatrix (Unimpressed): A job applicant. I see.
 do CelestialVNState.apply_stress_panic_delta(2)
 join marzi (Casual Concerned) left
-[voice path="res://voice/148ifeelsosmall.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/148ifeelsosmall.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): (I feel so small right now...what happened to make her switch like that?)
-[voice path="res://voice/149comeonmarzi.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/149comeonmarzi.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): (Come on Marzi, don't let this deter you from your big chance!)
-[voice path="res://voice/150yesmadame.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/150yesmadame.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): Yes Madame. I just graduated and-
 leave --All--
-[voice path="res://voice/151beatrixholds.wav" volume="0.0"]
+[voice path="res://voice/151beatrixholds.ogg" volume="0.0"]
 (Beatrix holds up a single, immaculate finger to silence her.)
-[voice path="res://voice/152shestepscloser.wav" volume="0.0"]
+[voice path="res://voice/152shestepscloser.ogg" volume="0.0"]
 (She steps closer to Marzi, and takes the portfolio from her hands.)
-[voice path="res://voice/153sheinspects.wav" volume="0.0"]
+[voice path="res://voice/153sheinspects.ogg" volume="0.0"]
 (She inspects it like a hawk inspects a field mouse.)
 join beatrix (Dour Lookdown) rightmost
 beatrix (Dour Lookdown): A confectionery trade school. How... functional.
@@ -429,151 +429,151 @@ do CelestialVNState.apply_stress_panic_delta(2)
 beatrix (Dour Lookdown): I take it you have no grounding in the the Etheric Arts?
 beatrix (Dour Lookdown): You’ve never been invited to a Consortium or sat for the Ordained examinations...
 beatrix (Dour Lookdown): Never summoned a dough-mon?
-[voice path="res://voice/154beatrixgestures.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/154beatrixgestures.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): (Beatrix gestures sharply towards the overstuffed portfolio, which has a few rogue formula sketches sticking out of the zipper.)
-[voice path="res://voice/155yourpresentation.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/155yourpresentation.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): Your presentation is chaotic at best.
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/156thereispowdered.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/156thereispowdered.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): There is powdered sugar on your left shoe.
-[voice path="res://voice/157andidontknow.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/157andidontknow.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): And I don't know If I would have chosen THAT outfit for introductions with a prospective employer...
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/158butidothink.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/158butidothink.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): But I do think my customers would enjoy your style...
-[voice path="res://voice/159manyofthem.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/159manyofthem.ogg" volume="0.0" bus="Voice"]
 beatrix (Idle Dour): Many of them come in after shopping at the boutique next door.
-[voice path="res://voice/160youalsohave.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/160youalsohave.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): You also have ink-or perhaps food coloring-smudged on your wrist.
-[voice path="res://voice/161irunatightship.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/161irunatightship.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): I run a tight ship around here, Ms. Glace.
-[voice path="res://voice/162doyoureally.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/162doyoureally.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): Do you really think you can work to the high standards required to keep The Gilded Macaron's flawless reputation?
 do CelestialVNState.apply_stress_panic_delta(2)
 join marzi (Casual Concerned) left
-[voice path="res://voice/163marzitriestohide.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/163marzitriestohide.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): (Marzi tries to hide her stained wrist behind her back.)
-[voice path="res://voice/164iknowilook.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/164iknowilook.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): I...I know I look a little scattered, but I'm a fast learner, and I promise I'll work hard!
-[voice path="res://voice/165methodsunconventional.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/165methodsunconventional.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): My methods can be somewhat... unconventional, but the proof is in the pudding, Madame Sweets...
-[voice path="res://voice/166abletoearn.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/166abletoearn.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): ...and I was able to earn a 4.0 GPA.
-[voice path="res://voice/167imalsovery.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/167imalsovery.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): I'm also very creative and i have so many ideas for-
-[voice path="res://voice/168letmestop.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/168letmestop.ogg" volume="0.0" bus="Voice"]
 beatrix (Exasperated): Let me stop you right there.
-[voice path="res://voice/169imnotlooking.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/169imnotlooking.ogg" volume="0.0" bus="Voice"]
 beatrix (Exasperated): I'm not looking for my junior staff to reinvent the wheel.
-[voice path="res://voice/170thewheelwhich.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/170thewheelwhich.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): The wheel, which as you can see, is rolling flawlessly the way it is.
-[voice path="res://voice/171noyoumustprove.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/171noyoumustprove.ogg" volume="0.0" bus="Voice"]
 beatrix (Idle Dour): No, you must first prove you are even capable of the basics.
-[voice path="res://voice/172hereyesbore.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/172hereyesbore.ogg" volume="0.0" bus="Voice"]
 beatrix (Idle Dour): (Her eyes bore into the core of Marzi's soul...)
-[voice path="res://voice/173andmarzicantell.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/173andmarzicantell.ogg" volume="0.0" bus="Voice"]
 beatrix (Idle Dour): (...and Marzi can tell she is being sized up in ways she doesn't comprehend.)
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/174youhavetoprove.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/174youhavetoprove.ogg" volume="0.0" bus="Voice"]
 beatrix (Idle Dour): You have to prove you can follow the recipe of true success.
-[voice path="res://voice/175onebadreview.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/175onebadreview.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): One bad review on SweetSnap...
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/176onemisfired.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/176onemisfired.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): ...One misfired enchantment...
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/177andmyentirelegacy.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/177andmyentirelegacy.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): ...And my entire legacy crumbles.
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/178theworld.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/178theworld.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): The world out there-
-[voice path="res://voice/179shetapsher.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/179shetapsher.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): (She taps her cell phone screen.)
-[voice path="res://voice/180iswaiting.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/180iswaiting.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): -is waiting for me to fail.
-[voice path="res://voice/181marzisconfidence.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/181marzisconfidence.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Worried): (Marzi's confidence starts to falter.)
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/182rightiunderstand.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/182rightiunderstand.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Worried): R...Right...I understand...
-[voice path="res://voice/183yourelookingfor.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/183yourelookingfor.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Worried): You're looking for someone more experienced...
-[voice path="res://voice/184illjust.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/184illjust.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Worried): I...I'll just-
-[voice path="res://voice/185hold.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/185hold.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): Hold.
-[voice path="res://voice/186beatrixsighs.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/186beatrixsighs.ogg" volume="0.0" bus="Voice"]
 beatrix (Unimpressed): (Beatrix sighs, rubbing her temples as if fighting a chronic headache.)
-[voice path="res://voice/187shelooksmarzi.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/187shelooksmarzi.ogg" volume="0.0" bus="Voice"]
 beatrix (Unimpressed): (She looks Marzi up and down one last time, an exhausted resignation in her eyes.)
-audio "res://voice/188youremessy.wav"
+audio "res://voice/188youremessy.ogg"
 beatrix (Dour Lookdown): You're...messy...
-[voice path="res://voice/189youlackfocus.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/189youlackfocus.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): ...you lack focus...
-[voice path="res://voice/190imgoingtohave.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/190imgoingtohave.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): I'm going to need to spend considerable time with your training...
-[voice path="res://voice/191howeverthecopper.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/191howeverthecopper.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): However the copper cauldrons require hand-polishing.
-[voice path="res://voice/192themarblefloors.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/192themarblefloors.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): The marble floors need scrubbing.
-[voice path="res://voice/193thedisplaycases.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/193thedisplaycases.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): The display cases need daily cleaning.
-[voice path="res://voice/194ifyouwant.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/194ifyouwant.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): If you want to stand a chance at surviving in my prep room-
-[voice path="res://voice/194wewillstart.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/194wewillstart.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): -We will start by infusing discipline in you like seeding a boiling syrup.
-[voice path="res://voice/195iwillmoldyou.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/195iwillmoldyou.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): I will mold you like these chocolate sculptures, Ms. Glace, from the bottom molecule to the top.
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/196ohumthankyou.wav" volume="0.0"]
+[voice path="res://voice/196ohumthankyou.ogg" volume="0.0"]
 marzi (Casual Amazed): Oh! Um, T...Thank you! I promise, I will work harder than anyone!
-[voice path="res://voice/197illprovetoyou.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/197illprovetoyou.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Amazed): I'll prove to you that I have what it takes to be a world class confectioner!
-[voice path="res://voice/198iwontletyoudown.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/198iwontletyoudown.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Amazed): I won't let you down!
-[voice path="res://voice/199weshallsee.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/199weshallsee.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): We shall see about that, Ms. Glace...
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/200yourshiftstarts.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/200yourshiftstarts.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): Your shift starts at 5AM tomorrow morning.
-[voice path="res://voice/201ifyouarelate.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/201ifyouarelate.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): If you are late, I will find another applicant.
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/202thatmeans.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/202thatmeans.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): That means 15 minutes early, Ms. Glace.
-[voice path="res://voice/203andforheaven.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/203andforheaven.ogg" volume="0.0" bus="Voice"]
 beatrix (Dour Lookdown): And for heaven's sake, don't you dare touch a single utensil until you have earned the right.
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/204yesmaam.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/204yesmaam.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Fear): Yes, Ma'am!
 leave --All--
-[voice path="res://voice/205beatrixhands.wav" volume="0.0"]
+[voice path="res://voice/205beatrixhands.ogg" volume="0.0"]
 (Beatrix hands Marzi's portfolio over to her and she walks towards the exit, leaving the wonderous scents and mystical confections behind her.)
-[voice path="res://voice/206oncemoreshe.wav" volume="0.0"]
+[voice path="res://voice/206oncemoreshe.ogg" volume="0.0"]
 (Once more she pushes open the heavy doors to the street.)
 [background arg="res://backgrounds/BACKGROUND_gm_outside.png" fade="0.0"]
 join marzi (Casual Orz) left
-[voice path="res://voice/207thatwasso.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/207thatwasso.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Orz): (That was sooo much harder than I thought it would be!)
-[voice path="res://voice/208butididit.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/208butididit.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Happy): (But I did it!!)
-[voice path="res://voice/209ireallydidit.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/209ireallydidit.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Happy): (I really did it!!)
-[voice path="res://voice/210whatwasup.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/210whatwasup.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): (What was up with that lady though?)
-[voice path="res://voice/211arfirstshe.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/211arfirstshe.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): (At first she seemed so nice...)
-[voice path="res://voice/212dididosomethingwrong.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/212dididosomethingwrong.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Orz): (Did I do something wrong?)
-[voice path="res://voice/213ihopeshesnot.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/213ihopeshesnot.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Orz): (I hope she's not going to be a nightmare boss...)
-[voice path="res://voice/214evenso.wav" volume="0.0"]
+[voice path="res://voice/214evenso.ogg" volume="0.0"]
 marzi (Casual Confident): (Even so!)
-[voice path="res://voice/215thisisthe.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/215thisisthe.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): (This is the opportunity of a lifetime!)
-[voice path="res://voice/216andidont.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/216andidont.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Sweat): (And I don't have to go live in the woods!)
-[voice path="res://voice/217icantwait.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/217icantwait.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Happy): I can't wait to tell Chai!
 leave --All--
 [background arg="res://backgrounds/SCENE_bus_ticket.png" fade="3.0" wait="true"]
@@ -582,197 +582,197 @@ leave --All--
 [wait time="3.0"]
 label prologue_kitchen
 [background arg="res://backgrounds/BACKGROUND_Family_Kitchen.jpg" fade="3.0" wait="true"]
-[voice path="res://voice/218backhome.wav" volume="0.0"]
+[voice path="res://voice/218backhome.ogg" volume="0.0"]
 (Back home the table is set perfectly, though Marzi's side has a few stray sprinkles and a notebook filled with recipes and illustrations of different confections flipped open.)
-[voice path="res://voice/219madeline.wav" volume="0.0"]
+[voice path="res://voice/219madeline.ogg" volume="0.0"]
 (Madeline is smashing peas into her highchair tray while Chai tries to distract her with a spoon airplane.)
-[voice path="res://voice/220rosieisbusy.wav" volume="0.0"]
+[voice path="res://voice/220rosieisbusy.ogg" volume="0.0"]
 (Rosy is busy serving sanshoku don to the rest of the family, while Al raises his glass in toast.)
 join al (Pleased) rightmost
-[voice path="res://voice/221tomarzi.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/221tomarzi.ogg" volume="0.0" bus="Voice"]
 al (Pleased): To Marzi!
-[voice path="res://voice/222whomanagedto.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/222whomanagedto.ogg" volume="0.0" bus="Voice"]
 al (Pleased): Who managed to land a job at the most prestigious confectionery in Starlight City on her very first try!
 leave al
 join rosy (Hugging) rightmost
-[voice path="res://voice/223weresoproud.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/223weresoproud.ogg" volume="0.0" bus="Voice"]
 rosy (Hugging): We are so proud of you, sweetheart!
-[voice path="res://voice/224weknewyou.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/224weknewyou.ogg" volume="0.0" bus="Voice"]
 rosy (Hugging): We knew you just needed a little push.
 leave --All--
-[voice path="res://voice/225marzistabs.wav" volume="0.0"]
+[voice path="res://voice/225marzistabs.ogg" volume="0.0"]
 (Marzi stabs a piece of chicken with her fork, looking a little green.)
 join marzi (Casual Unsure) left
-[voice path="res://voice/226thanksguys.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/226thanksguys.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): Thanks, guys.
-[voice path="res://voice/227itswell.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/227itswell.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): It's...well, it's going to be a lot of floor scrubbing at first.
-[voice path="res://voice/228madamevonsweets.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/228madamevonsweets.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): Madame Von Sweets is...intense.
-[voice path="res://voice/229shedoesntwantme.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/229shedoesntwantme.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): She doesn't want me touching the cooking utensils until I "prove myself"...
-[voice path="res://voice/230thatskindofweird.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/230thatskindofweird.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): That's kind of...weird, right?
 join madeline (Carefree) rightmost
-[voice path="res://voice/231marzi.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/231marzi.ogg" volume="0.0" bus="Voice"]
 madeline (Carefree): Marzi!
-[voice path="res://voice/232notouch.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/232notouch.ogg" volume="0.0" bus="Voice"]
 madeline (Mischevious): NO TOUCH!
 leave madeline
 join rosy (Idle) rightmost
-[voice path="res://voice/232maddyeat.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/232maddyeat.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): Maddy, please eat the peas and you can have purin after.
 leave rosy
 join madeline (Happy) rightmost
-[voice path="res://voice/233waaa.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/233waaa.ogg" volume="0.0" bus="Voice"]
 madeline (Happy): Waaaah!
-[voice path="res://voice/234purinpurin.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/234purinpurin.ogg" volume="0.0" bus="Voice"]
 madeline (Happy): PURIN! PURIN! JIGGLY PURIN!
 leave madeline
-[voice path="res://voice/235madlineputs.wav" volume="0.0"]
+[voice path="res://voice/235madlineputs.ogg" volume="0.0"]
 (Madeline puts her face up to the smushed peas on her highchair table and begins loudly vacuuming them up.)
 join rosy (Idle) rightmost
-[voice path="res://voice/236nowquit.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/236nowquit.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): Now, quit complaining Marzi!
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/237thisisa.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/237thisisa.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): This is a great opportunity.
-[voice path="res://voice/238andobviously.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/238andobviously.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): And obviously Madame Sweets knows what she's doing.
-[voice path="res://voice/239soyoujustdo.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/239soyoujustdo.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): So you just do as she says.
 do CelestialVNState.apply_stress_panic_delta(2)
 join marzi (Casual Apologetic) left
-[voice path="res://voice/240yesmom.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/240yesmom.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Apologetic): Yes, Mom.
 leave rosy
 join al (Pleased) rightmost
-[voice path="res://voice/241sinceyoureworking.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/241sinceyoureworking.ogg" volume="0.0" bus="Voice"]
 al (Pleased): Since you're working downtown now, the commute from the attic isn't really practical anymore.
-[voice path="res://voice/242yourmomandi.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/242yourmomandi.ogg" volume="0.0" bus="Voice"]
 al (Pleased): Your mom and I have decided to cover the security deposit and first month's rent for an apartment near the shop.
-[voice path="res://voice/243marzidropsherfork.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/243marzidropsherfork.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Surprised): (Marzi drops her fork, her eyes widen to saucers.)
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/244waitreally.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/244waitreally.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Surprised): Wait, really?
-[voice path="res://voice/245youdreallydo.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/245youdreallydo.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Surprised): You'd really do that?!
-[voice path="res://voice/246ithoughtyoud.wav" volume="0.0"]
+[voice path="res://voice/246ithoughtyoud.ogg" volume="0.0"]
 marzi (Casual Surprised): I thought you were just going to kick me out high and dry and I'd have to go live in a tent in the woods!
 leave al
 join chai (Exasperated) rightmost
-[voice path="res://voice/247marziithink.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/247marziithink.ogg" volume="0.0" bus="Voice"]
 chai (Exasperated): Marzi, I'm pretty sure Mom and Dad just said that so you'd take getting a job seriously...
-[voice path="res://voice/248andithink.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/248andithink.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): ...and I think you kind of catastrophized that whole tent in the woods scenario...
 leave chai
 join rosy (Idle) rightmost
-[voice path="res://voice/249considerita.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/249considerita.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): Consider it an investment in your roots.
-[voice path="res://voice/250allwewantis.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/250allwewantis.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): All we want is for you to grow and really bloom, Marzi.
-[voice path="res://voice/251andyouwerent.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/251andyouwerent.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): And you weren't growing all alone up in that attic.
-[voice path="res://voice/252wehopehaving.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/252wehopehaving.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): We hope having your own "pot" will give you some space to flourish.
-[voice path="res://voice/253butremember.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/253butremember.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): But remember Marzi-
-[voice path="res://voice/254youhavetohold.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/254youhavetohold.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): You have to hold this job down to pay the monthly rent.
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/255noimpulsive.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/255noimpulsive.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): No impulsive quitting...
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/256nogivingup.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/256nogivingup.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): No giving up because it's hard or you're having trouble with a coworker...
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/257noblowingyourpaycheck.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/257noblowingyourpaycheck.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): No blowing your paycheck on imported candy.
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/257marziswallowshard.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/257marziswallowshard.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Sweat): (Marzi swallows hard, the crushing weight of Beatrix's cold stare flashing in her mind.)
-[voice path="res://voice/258right.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/258right.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Sweat): Right.
-[voice path="res://voice/259absolutely.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/259absolutely.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): Absolutely...
-[voice path="res://voice/260icanbedisciplined.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/260icanbedisciplined.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): I can be disciplined...
-[voice path="res://voice/261icanbeanadult.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/261icanbeanadult.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): I can be an adult...
-[voice path="res://voice/262icanbe.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/262icanbe.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): (I can be...)
-[voice path="res://voice/263normal.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/263normal.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Unsure): (...normal.)
 do CelestialVNState.apply_stress_panic_delta(2)
 leave rosy
 join al (Fatherly) rightmost
-[voice path="res://voice/264thenitssettled.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/264thenitssettled.ogg" volume="0.0" bus="Voice"]
 al (Fatherly): Then it's settled.
-[voice path="res://voice/265illlookinto.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/265illlookinto.ogg" volume="0.0" bus="Voice"]
 al (Fatherly): I'll look in to rentals near the shop.
 leave --All--
 label prologue_panic_choice
 [background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="5.0" wait="true"]
 audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
-[voice path="res://voice/266thatnightmarzi.wav" volume="0.0"]
+[voice path="res://voice/266thatnightmarzi.ogg" volume="0.0"]
 (That night, Marzi tosses and turns in bed, staring at the ceiling.)
 join marzi (Reeling) left
-[voice path="res://voice/267everythingishappening.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/267everythingishappening.ogg" volume="0.0" bus="Voice"]
 marzi (Reeling): Everything is happening really fast...
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/268iknowipromisedmom.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/268iknowipromisedmom.ogg" volume="0.0" bus="Voice"]
 marzi (Reeling): I know I promised Mom and Dad that I could do this...
-[voice path="res://voice/269butwhatificant.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/269butwhatificant.ogg" volume="0.0" bus="Voice"]
 marzi (Reeling): But what if I can't?
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/270whatifileteveryonedown.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/270whatifileteveryonedown.ogg" volume="0.0" bus="Voice"]
 marzi (Reeling): What if I let everyone down?
 do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Reeling): ...
-[voice path="res://voice/271whatifiletmyselfdown.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/271whatifiletmyselfdown.ogg" volume="0.0" bus="Voice"]
 marzi (Reeling): What if I let myself down...?
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/272theressomuchridingonmedoingwell.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/272theressomuchridingonmedoingwell.ogg" volume="0.0" bus="Voice"]
 marzi (Reeling): There's so much riding on me doing well...
-[voice path="res://voice/273somuchpressure.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/273somuchpressure.ogg" volume="0.0" bus="Voice"]
 marzi (Reeling): So much pressure...
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/274ii.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/274ii.ogg" volume="0.0" bus="Voice"]
 marzi (Reeling): I...I...
-[voice path="res://voice/275mychestisfeelingtight.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/275mychestisfeelingtight.ogg" volume="0.0" bus="Voice"]
 marzi (Panic Attack 1): M...My chest is feeling tight...
 do CelestialVNState.apply_stress_panic_delta(2)
-[voice path="res://voice/276whatdoido.wav" volume="0.0" bus="Voice"]
+[voice path="res://voice/276whatdoido.ogg" volume="0.0" bus="Voice"]
 marzi (Panic Attack 1): What do I do??
 - I'm having a heart attack!! Get Mom and Dad!! | [heat_tooltip="Sharply raises Marzi's Heat; escalates the panic scene."]
 	label prologue_panic_choice_parents
 	do CelestialVNState.apply_stress_panic_delta(9)
 	audio music "res://sounds_music/Seven_Seconds_To_Shock.mp3" [loop="false"]
-	[voice path="res://voice/277momdad.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/277momdad.ogg" volume="0.0" bus="Voice"]
 	marzi (Panic Attack 1): MOM! DAD!
-	[voice path="res://voice/278help.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/278help.ogg" volume="0.0" bus="Voice"]
 	marzi (Panic Attack 1): HELP!
-	[voice path="res://voice/279helpme.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/279helpme.ogg" volume="0.0" bus="Voice"]
 	marzi (Panic Attack 1): HELP ME!
-	[voice path="res://voice/280icantbreathe.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/280icantbreathe.ogg" volume="0.0" bus="Voice"]
 	marzi (Panic Attack 1): I CAN'T BREATHE!
 	join rosy (Shocked) rightmost
-	[voice path="res://voice/281marziwhatonearth.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/281marziwhatonearth.ogg" volume="0.0" bus="Voice"]
 	rosy (Shocked): Marzi! What on earth is going on?
-	[voice path="res://voice/282mommy.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/282mommy.ogg" volume="0.0" bus="Voice"]
 	marzi (Reeling): Mommy! My chest is tight!
-	[voice path="res://voice/280icantbreathe.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/280icantbreathe.ogg" volume="0.0" bus="Voice"]
 	marzi (Reeling): I can't breathe!
-	[voice path="res://voice/283imhavingaheartattack.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/283imhavingaheartattack.ogg" volume="0.0" bus="Voice"]
 	marzi (Panic Attack 1): I'm having a heart attack!
 	leave rosy
 	join al (Care) rightmost
-	[voice path="res://voice/284whatisallthis.wav" volume="0.0"]
+	[voice path="res://voice/284whatisallthis.ogg" volume="0.0"]
 	al (Care): What is all the commotion Marzi?
-	[voice path="res://voice/285daddyimdying.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/285daddyimdying.ogg" volume="0.0" bus="Voice"]
 	marzi (Hysterical): Daddy! I'm dying! Help me!
-	[voice path="res://voice/28marzi.wav" volume="0.0" bus="Voice"]
+	[voice path="res://voice/28marzi.ogg" volume="0.0" bus="Voice"]
 	al (Fatherly): Marzi! Calm down and tell me what's going on!?
 	leave al
 	join rosy (Discerning) rightmost

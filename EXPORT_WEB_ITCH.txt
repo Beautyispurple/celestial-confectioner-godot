@@ -1,0 +1,64 @@
+Celestial Confectioner — Web export for itch.io (Godot 4.6)
+============================================================
+
+1) Install export templates
+   - Editor → Manage Export Templates → download templates matching your engine version (4.6.x).
+
+2) Export
+   - Project → Export → select your Web preset → Export Project.
+   - Default output folder: build/web/ (index.html, .wasm, .pck, etc.).
+
+3) Presets in export_presets.cfg
+   - Web (itch.io): Compatibility renderer, single-threaded (works on itch without extra HTTP headers).
+   - Web (threaded + cross-origin): enables threads + PWA cross-origin isolation in the generated page.
+     Use only if your host sends Cross-Origin-Opener-Policy / Cross-Origin-Embedder-Policy (see Godot
+     "Exporting for the Web"). itch.io often does not; prefer the itch.io preset unless you self-host.
+
+4) Zip for itch.io
+   - Create a zip of the *contents* of build/web (index.html at the root of the zip, not a nested
+     "web" folder).
+   - itch.io project page: Kind of project → HTML; upload the zip; set viewport / fullscreen as you prefer.
+
+5) Project settings note
+   - 3D physics is set to GodotPhysics3D to avoid known Jolt issues with single-threaded Web exports.
+   - Editor still uses Forward+; the Web preset adds Compatibility only for that export.
+
+6) Research / release builds
+   - release_mode.gd: set IS_RESEARCH_RELEASE to false for a general public build without research UI
+     and telemetry, if that matches your release.
+
+7) Local test
+   - Serve build/web over HTTP or HTTPS (not file://) for realistic clipboard behavior, e.g.:
+     python -m http.server --directory build/web
+     then open http://localhost:8000/
+
+8) HTTPS links in-game
+   - OS.shell_open() for https URLs is used in consent/support UI; it should open a new tab in the
+     browser.
+
+9) Research session — “Copy / export summary” (Web UX)
+   - Desktop builds: DisplayServer.clipboard_set, a text file under the OS cache dir, and OS.shell_open
+     on that file (normal desktop behavior).
+   - Web builds: OS.shell_open is not used for the session export file (no folder reveal). The flow uses
+     the browser Clipboard API (navigator.clipboard.writeText) from the same click handler, with
+     fallbacks: hidden textarea + document.execCommand('copy'), then an in-game modal with selectable
+     text if both fail (e.g. iframe Permissions Policy blocking clipboard on some embedded players).
+   - After a successful copy (Clipboard API or execCommand), the build also triggers a download of
+     celestial_research_session.txt via JavaScriptBridge.download_buffer so players get a file even when
+     the virtual FS is not exposed.
+   - Do not rely on DisplayServer.clipboard_get() after set on Web to verify the real OS clipboard;
+     paste into an external app to confirm. Godot’s Web clipboard behavior is discussed in engine issues
+     such as https://github.com/godotengine/godot/issues/81252
+
+10) itch.io embedded player and clipboard
+   - Embedded games run inside an iframe. The Clipboard API may be blocked unless the host sets an
+     appropriate allow/Permissions Policy; the game cannot change itch’s iframe from inside the export.
+     If copy fails, the UI shows a warning and the manual-copy modal with the full text.
+
+11) Manual regression checklist (Copy / export summary)
+   - Browsers: Chrome, Edge, Firefox (latest stable).
+   - Context (a): same build served locally or on a simple HTTPS host (not file://).
+   - Context (b): same build uploaded to itch.io, played in the browser HTML player.
+   - For each cell: open DevTools → Console; click “Copy / export summary”; confirm no unexpected errors
+     (clipboard, permissions, iframe). Confirm “Copied.” appears on success, or the blocked message +
+     manual modal when appropriate. Optionally confirm paste and file download.
