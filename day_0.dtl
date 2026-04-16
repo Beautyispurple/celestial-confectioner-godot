@@ -452,8 +452,11 @@ marzi (Cleaner Thinking): (hmm...am I up for this?)
 		marzi (Cleaner Determined): I'm feeling okay. Let's keep going.
 	- I feel bad. | [response_kind="irrational"]
 		marzi (Cleaner Tearful): It feels pretty bad...It's like there is a weight in the center of my heart.
-		huck (Idle): Okay, let's just notice that for a second without judging it.
-		huck (Idle): Without avoiding it.
+		huck (Idle): Yeah. Okay.
+		huck (Idle): Before we go further—where are you holding that? Chest, throat, stomach, hands—somewhere else?
+		huck (Idle): If it's loud, we don't have to argue with it.
+		huck (Idle): We can let it be there for a second—like weather passing over the shop window.
+		huck (Idle): You don't have to make it mean anything yet.
 		[wait time="10.0"]
 		huck (Idle): Good.
 	- Actually, I want to stop. | [response_kind="irrational"]
@@ -475,8 +478,9 @@ marzi (Cleaner Thinking): (hmm...am I up for this?)
 	- I need to stop, Huck. | [response_kind="irrational"]
 		jump negative_thought_opt_out
 	
-	huck (Plucky): Okay, now let's imagine each starlight dragee has your negative thought printed on it with a rubber etch roller.
-	huck (Plucky): Just like a conversation heart, or a logo.
+	huck (Plucky): Okay, now let's imagine we're rolling your negative thought onto each starlight dragee with an edible-ink roller.
+	huck (Plucky): Same idea as when a confectioner prints a logo on a chocolate lentil.
+	huck (Plucky): Like a conversation heart—if conversation hearts were rude.
 	(Marzi's brow furrows as she focuses on a sopping wet dragee on the floor.)
 	(The words, "{negative_thought_game.thought_1}" appear on the surface.)
 	marzi (Cleaner Thinking): Okay Huck, I got it.
@@ -492,7 +496,8 @@ marzi (Cleaner Thinking): (hmm...am I up for this?)
 				jump negative_thought_opt_out
 			jump negative_thought_feeling_check
 		- Save it on the shelf for later. | [response_kind="rational"]
-			huck (Caring): Smart. You can revisit it anytime from the Sampler → Life tools.
+			huck (Caring): Shelf means "not today," not "forever."
+			huck (Caring): You can revisit it anytime from the Sampler → Life tools when you're ready.
 			do CelestialDrageeDisposal.run_story_shelf_for_later()
 			if int({dragee_flow_result_code}) == 0:
 				jump negative_thought_opt_out
