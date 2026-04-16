@@ -27,7 +27,7 @@ if int({tired}) == 0:
 	(She approaches the heavy front doors, but they are already propped open.)
 	join beatrix (Idle Neutral) rightmost
 	beatrix (Idle Neutral): Twenty minutes ahead of schedule, Ms. Glace.
-	marzi (Casual Surprised): Oh! Good morning, Madame Sweets!
+	marzi (Casual Surprised): Oh! Good morning, Madame Von Sweets!
 	beatrix (Idle Neutral): I see you managed to find the establishment without getting distracted.
 	beatrix (Macaron): I am glad to see you are taking this opportunity seriously.
 	set {beatrix_points} += 10
@@ -69,8 +69,8 @@ elif int({tired}) == 1:
 	beatrix (Dour Lookdown): Given your chaotic presentation yesterday, Ms. Glace...
 	beatrix (Unimpressed): ...I consider your exact, down-to-the-second arrival a minor miracle.
 	marzi (Casual Tired): (Pant... pant...)
-	marzi (Casual Tired): I'm here, Madame Sweets. Ready to work.
-	beatrix (Dour Lookdown): Try to catch your breath before you contaminate my show room with your panting.
+	marzi (Casual Tired): I'm here, Madame Von Sweets. Ready to work.
+	beatrix (Dour Lookdown): Try to catch your breath before you contaminate my showroom with your panting.
 	beatrix (Dour Lookdown): And stand up straight. You look like an unwrapped caramel that has completely lost its shape.
 	beatrix (Dour Lookdown): If those dark circles under your eyes are any indication, I expect your focus to be as blurry as your vision today.
 	do CelestialVNState.apply_stress_panic_delta(1)
@@ -100,9 +100,9 @@ marzi (Casual Amazed): (Even the little apron pockets are shaped perfectly for h
 marzi (Casual Amazed): (Did she magically tailor this just for me overnight?)
 beatrix (Dour Lookdown): Stop dawdling and go get changed in the ladies' dressing room.
 beatrix (Dour): When you are finished, report to the staff lounge and find Huck.
-beatrix (Dour): He will show show you around and give you your tasks.
+beatrix (Dour): He will show you around and give you your tasks.
 beatrix (Dour Lookdown): Do exactly as you are told.
-marzi (Casual Happy): Yes, Madame Sweets!
+marzi (Casual Happy): Yes, Madame Von Sweets!
 leave --All--
 (Marzi hurries down the hallway and ducks into the dressing room.)
 [background arg="res://backgrounds/BACKGROUND_gm_changing_room.png" fade="5.0" wait="true"]
@@ -141,8 +141,7 @@ leave marzi
 (She wanders right past the first door, and then the second, her eyes tracing the copper flow lines on the ceiling.)
 (She knows professional spaces are often a maze of heavy doors and localized climate control.)
 join marzi (Cleaner Thinking) left
-marzi (Cleaner Thinking): If the boiling station is too close to the chocolate station,
-marzi (Cleaner Thinking): ...The steam from the sugar kettles will cause the chocolate to seize and become a gritty mess.
+marzi (Cleaner Thinking): If the boiling station is too close to the chocolate station, the steam from the sugar kettles will cause the chocolate to seize and become a gritty mess.
 leave marzi
 (She stops short as the hallway dead-ends at a massive double door.)
 (She blinks, shaking off her daydream, and reads the gleaming plaque mounted above it.)
@@ -191,21 +190,21 @@ marzi (Cleaner Thinking): I thought you moved away!
 (He lets out a warm, easy laugh that bounces off the curved walls, instantly softening her nerves.)
 huck (Plucky): A regular ol' Sugar sorcerer in training, at your service.
 huck (Caring): I DID move away, to Silken Reach.
-huck (Idle): I only moved back recently when Madame Sweets offered me a position.
+huck (Idle): I only moved back recently when Madame Von Sweets offered me a position.
 huck (Caring): There is no other confectionery in the world where you can also train in manna manipulation.
 marzi (Cleaner Unsure): I feel silly for asking...but...
 marzi (Cleaner Unsure): What is manna manipulation?
 huck (Sincere): Don't feel silly, you can ask me all the questions you want.
 huck (Happy): But you already know the answer to this one!
 huck (Trust): People also call it magic.
-huck (Anticipation): But don't let Madame Sweets hear you call it that.
+huck (Anticipation): But don't let Madame Von Sweets hear you call it that.
 huck (Sincere): Here, we call it manna manipulation.
 marzi (Cleaner Celebrate): So it really was mag...
 marzi (Cleaner Thinking): um I mean manna manipulation in the boutique yesterday...
 huck (Idle): Oh, it's actually used everywhere in confectionery.
 huck (Idle): You're going to see a lot of it.
 huck (Apologetic): But it takes a really long time before you get trained in it.
-huck (Idle): Madame Sweets wants us to learn how to do the job without it first.
+huck (Idle): Madame Von Sweets wants us to learn how to do the job without it first.
 huck (Idle): It's an important part of the process.
 huck (Plucky): So anyway...
 huck (Caring): Come on, I'll show you the ropes.
@@ -224,7 +223,7 @@ huck (Plucky): Without a clean sales floor, we have nothing!
 (He grabs a bright yellow mop bucket from beneath the shelves and wheels it out.)
 huck (Idle): Madame is very particular about the floors, especially out in the main storefront.
 huck (Idle): We get a lot of foot traffic, and sugar dust makes everything sticky if you don't stay on top of it.
-huck (Fear): Oh, and fair warning, Madame Sweets enchants all of the surfaces in the confectionery.
+huck (Fear): Oh, and fair warning, Madame Von Sweets enchants all of the surfaces in the confectionery.
 huck (Caring): The dirt and grime glows bright neon green when you turn off the lights.
 huck (Plucky): And trust me, she checks.
 huck (Idle): Every. Day.
@@ -434,26 +433,26 @@ huck (Sincere): I noticed that you were being really hard on yourself just now.
 huck (Sincere): Maybe we can talk through it as we clean up these dragees?
 huck (Sincere): Try and clear up some of that negative self talk?
 label negative_thought
-marzi (Cleaner Thinking): (hmm...am I up for this?
+marzi (Cleaner Thinking): (hmm...am I up for this?)
 - No thanks Huck, I'm not really up to it right now. | [response_kind="irrational"]
 	label negative_thought_opt_out
 	huck (Idle): Okay Marzi, no problem.
 	huck (Caring): We can just focus on getting the floor clean.
 	jump negative_thought_end
-- Yes! Lets do this! | [response_kind="rational"]
+- Yes! Let's do this! | [response_kind="rational"]
 	marzi (Cleaner Determined): Okay, Huck.
 	marzi (Cleaner Determined): How do we do this?
-	huck (Idle): Alright, lets start by telling me one negative thought that you're having about yourself right now?
+	huck (Idle): Alright, let's start by telling me one negative thought that you're having about yourself right now?
 	[text_input text="What is your negative thought?" var="negative_thought_game.thought_1" placeholder="I'm not good enough."]
 	huck (Sad): "{negative_thought_game.thought_1}", thanks for trusting me with that thought.
 	huck (Caring): You did such a great job holding steady through a really tough moment.
 	huck (Caring): Identifying our negative thoughts about ourselves isn't easy.
 	huck (Idle): How are you feeling right now?
 	- I feel okay. | [response_kind="rational"]
-		marzi (Cleaner Determined): I'm feeling okay. Lets keep going.
+		marzi (Cleaner Determined): I'm feeling okay. Let's keep going.
 	- I feel bad. | [response_kind="irrational"]
 		marzi (Cleaner Tearful): It feels pretty bad...It's like there is a weight in the center of my heart.
-		huck (Idle): Okay, lets just notice that for a second without judging it.
+		huck (Idle): Okay, let's just notice that for a second without judging it.
 		huck (Idle): Without avoiding it.
 		[wait time="10.0"]
 		huck (Idle): Good.
@@ -467,23 +466,22 @@ marzi (Cleaner Thinking): (hmm...am I up for this?
 		marzi (Cleaner Tearful): Right now it feels like it is...
 		marzi (Cleaner Thinking): But when I really think about it...
 		marzi (Cleaner Defeated): No. It's not true.
-		huck (Caring): Lets just notice what that brings up for us for a minute, no judgement.
+		huck (Caring): Let's just notice what that brings up for us for a minute, no judgement.
 	- Yes the thought is true. | [response_kind="irrational"]
 		marzi (Cleaner Unsure): Yeah Huck...
 		marzi (Cleaner Unsure): When I really think about it.
 		marzi (Cleaner Unsure): The thought is actually true...
-		huck (Caring): Lets just notice what that brings up for us for a minute, no judgement.
+		huck (Caring): Let's just notice what that brings up for us for a minute, no judgement.
 	- I need to stop, Huck. | [response_kind="irrational"]
 		jump negative_thought_opt_out
 	
-	huck (Plucky): Okay, now lets imagine each starlight dragee has your negative thought printed on it with a rubber etch roller.
+	huck (Plucky): Okay, now let's imagine each starlight dragee has your negative thought printed on it with a rubber etch roller.
 	huck (Plucky): Just like a conversation heart, or a logo.
 	(Marzi's brow furrows as she focuses on a sopping wet dragee on the floor.)
 	(The words, "{negative_thought_game.thought_1}" appear on the surface.)
 	marzi (Cleaner Thinking): Okay Huck, I got it.
 	marzi (Cleaner Thinking): Now what?
-	huck (Plucky): Let me ask, does holding on to this thought improve your life, help you reach your goals or live by what you value?
-	huck (Plucky): Is the negative thought "{negative_thought_game.thought_1}" helpful?
+	huck (Plucky): Last one, then: does "{negative_thought_game.thought_1}" feel safe to keep carrying with you, and is it genuinely helping—or is it mostly making today harder?
 	- No the thought is not helpful. | [response_kind="rational"]
 		marzi (Cleaner Thinking): No, the thought isn't safe or helpful.
 		huck (Idle): Okay. You can work through letting it go when you're ready — or tuck it on your thought shelf and come back later. What feels right?
@@ -501,7 +499,7 @@ marzi (Cleaner Thinking): (hmm...am I up for this?
 			jump negative_thought_feeling_check
 	- Yes the thought is helpful. | [response_kind="irrational"]
 		marzi (Cleaner Thinking): Yes, it is safe.
-		marzi (Cleaner Thinking): And its is pretty helpful.
+		marzi (Cleaner Thinking): And it's pretty helpful.
 		huck (Idle): Okay. We'll set that thought on your shelf for when you're ready to revisit it.
 		do CelestialDrageeDisposal.run_story_helpful()
 		if int({dragee_flow_result_code}) == 0:
@@ -590,10 +588,10 @@ else:
 	(By the afternoon, she manages to polish the glass displays with a microfiber cloth, but it drains every last ounce of her energy.)
 audio music "res://sounds_music/After_School_Shortcut.mp3"
 
-(At the end of the workday, Madame Beatrix Von Sweets calls the staff together for a meeting).
+(At the end of the workday, Madame Beatrix Von Sweets calls the staff together for a meeting.)
 join marzi (Cleaner Idle) left
 join beatrix (Dour) rightmost
-beatrix (Dour): The floor is acceptable, though this mornings disaster remains a stain on the ledger.
+beatrix (Dour): The floor is acceptable, though this morning's disaster remains a stain on the ledger.
 (She taps the screen of her golden cellphone with a sharp, mechanical rhythm).
 leave beatrix
 join taffy (Haughty) rightmost
@@ -633,7 +631,7 @@ huck (Sincere): There's no need to make her feel worse than she already does...
 	(Taffy gawks at the bag of gold in Marzi's hands but quickly regains her composure)
 	leave beatrix
 	join taffy (Surprise) rightmost
-	taffy (Surprise): No, Madame Sweets. I apologize.
+	taffy (Surprise): No, Madame Von Sweets. I apologize.
 	update taffy (Indignant)
 	(Taffy bows deeply, but the corner of her mouth betrays her disdain)
 	update taffy (Devious)
@@ -665,7 +663,7 @@ huck (Sincere): There's no need to make her feel worse than she already does...
 	(Taffy glares at Marzi, her face turning red with embarrassment and fury)
 	leave beatrix
 	join taffy (Angry) rightmost
-	taffy (Angry): I certainly will be paying attention from now on, Madame Sweets.
+	taffy (Angry): I certainly will be paying attention from now on, Madame Von Sweets.
 	(Taffy bows stiffly, her knuckles white as she grips her silk cloth)
 	update taffy (Devious)
 	(She shoots Marzi a vicious dirty look before hanging up her apron)
@@ -676,7 +674,7 @@ leave taffy
 leave beatrix
 join huck (Caring) rightmost
 huck (Caring): You’re running on empty, Marzi.
-huck (Sincere): Come on, Let’s get you home.
+huck (Sincere): Come on, let's get you home.
 leave --All--
 (Marzi hangs up her apron and follows Huck out the front door.)
 (The bus ride home is a quiet blur.)
@@ -686,12 +684,18 @@ leave --All--
 
 if int({bonus_received}) == 1:
 	marzi (Cleaner Pleased): (I survived day one... and I can't believe I earned that much gold!)
-	marzi (Cleaner Pleased): (That bonus completely covers the overdraft fee from my account.)
+	if int({prologue_bank_overdraft_path}) == 1:
+		marzi (Cleaner Pleased): (That bonus completely covers the overdraft fee from my account.)
+	else:
+		marzi (Cleaner Pleased): (That extra gold still softens the bite of the dragee dock on my first paycheck.)
 	marzi (Cleaner Pleased): (I can actually breathe a little easier now.)
 else:
 	audio music "res://sounds_music/The_Weight_of_Stillness.mp3"
 	marzi (Cleaner Tired): (I survived day one... barely.)
-	marzi (Cleaner Defeated): (But my paycheck was so severely impacted by the overdraft and the dragee incident with Taffy...)
+	if int({prologue_bank_overdraft_path}) == 1:
+		marzi (Cleaner Defeated): (But my paycheck was so severely impacted by the overdraft and the dragee incident with Taffy...)
+	else:
+		marzi (Cleaner Defeated): (But the dragee mess and what's docked from my first paycheck still make today feel brutally expensive.)
 	marzi (Cleaner Defeated): (I worked my absolute hardest today, but it feels like I earned next to nothing.)
 
 
@@ -712,7 +716,7 @@ al (Fatherly): You’re late, but at least you’re still upright!
 al (Fatherly): I hope you didn't let the boss work you too hard on the first day.
 (Pinching the bridge of her nose as the hum of the shift still rings in her ears).
 marzi (Casual Sweat): It was awful! A whirlwind of mop buckets and cold stares, Dad.
-marzi (Casual Sweat): Madame Sweets is incredibly strict, and the other confectioners didn't exactly roll out the red carpet for me.
+marzi (Casual Sweat): Madame Von Sweets is incredibly strict, and the other confectioners didn't exactly roll out the red carpet for me.
 marzi (Cleaner Tearful): I just want to go to bed and sleep forever!
 marzi (Casual Apologetic): It was so mortifying...
 
@@ -883,7 +887,7 @@ chai (Understanding): Remember that every "hello" is a little bit of power leavi
 (He picks Marzi's virtual pet up off of the desk and puts a new battery into the plastic casing.)
 chai (Understanding): You have to let it recharge.
 chai (Understanding): There is only so much you can do in a day, so it's important to rest and prioritize which neighbors you want to chat with.
-marzi (Casual Unsure): Thank you Dad, Chai. I'll remember that.
+marzi (Casual Unsure): Thanks, Chai. I'll remember that.
 (Marzi finally crams the box shut and tapes the flaps down securely.)
 chai (Love): Congratulations on your new apartment Marzi.
 update marzi (Casual Happy)

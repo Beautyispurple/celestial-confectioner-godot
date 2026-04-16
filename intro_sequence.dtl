@@ -17,7 +17,7 @@ marzi (Casual Carefree): My blood type is AB...
 [voice path="res://voice/5mybirthday.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Carefree): And my birthday is on February 29-
 [voice path="res://voice/6whichmakesme.ogg" volume="0.0" bus="Voice"]
-marzi (Casual Carefree): Which makes me a pisces!
+marzi (Casual Carefree): Which makes me a Pisces!
 [voice path="res://voice/7amonthago.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): A month ago, I did the impossible.
 [voice path="res://voice/8Igraduated.ogg" volume="0.0" bus="Voice"]
@@ -34,7 +34,7 @@ leave marzi
 [voice path="res://voice/13wehearrustling.ogg" volume="0.0"]
 (We hear rustling.)
 [voice path="res://voice/14marzihasahandoutstretched.ogg" volume="0.0"]
-(Marzi has a hand outstretched in a fancy box of candy full with strawberry print wrappers.)
+(Marzi has a hand outstretched toward a fancy box of candy with strawberry-print wrappers.)
 [voice path="res://voice/15itishalfburied.ogg" volume="0.0"]
 (It is half buried under sketches of tiered cakes, blown sugar sculptures, and multiple stained copies of Marzi's resume.)
 [voice path="res://voice/16sheissitting.ogg" volume="0.0"]
@@ -157,7 +157,7 @@ leave --All--
 (The toddler is Marzi's sister, Madeline.)
 join chai rightmost
 [voice path="res://voice/57idsayim.ogg" volume="0.0" bus="Voice"]
-chai (Exasperated): I'd say i'm surprised you spent all that money on candy...
+chai (Exasperated): I'd say I'm surprised you spent all that money on candy...
 [voice path="res://voice/58butimnot.ogg" volume="0.0" bus="Voice"]
 chai (Understanding): But I'm not.
 leave --All--
@@ -293,11 +293,11 @@ leave marzi
 [voice path="res://voice/109marzileansin.ogg" volume="0.0"]
 (Marzi leans in to have a closer look at the cotton candy.)
 [voice path="res://voice/110itswirls.ogg" volume="0.0"]
-(It swirls and twinkles, like each sugar cloud held it's own galaxy inside.)
+(It swirls and twinkles, like each sugar cloud held its own galaxy inside.)
 [voice path="res://voice/111thereareimpressive.ogg" volume="0.0"]
 (There are impressive display showpieces of modeling chocolate trees with marzipan fruits hanging from the branches...)
 [voice path="res://voice/112pulledsugar.ogg" volume="0.0"]
-(...Pulled sugar birds are in nestled in the branches.)
+(...Pulled sugar birds are nestled in the branches.)
 [voice path="res://voice/113theytilt.ogg" volume="0.0"]
 (They tilt their heads and fix their shiny button eyes on Marzi, tweeting and cooing at her.)
 [voice path="res://voice/114marzipinches.ogg" volume="0.0"]
@@ -335,7 +335,7 @@ join marzi (Casual Happy) left
 	[voice path="res://voice/128withafashion.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): With a fashion sense to match!
 	[voice path="res://voice/129ecclecticpalette.ogg" volume="0.0" bus="Voice"]
-	beatrix (Idle Neutral): You must have a very eclectic palette.
+	beatrix (Idle Neutral): You must have a very eclectic palate.
 	[voice path="res://voice/130wehavean.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): We have an extra fresh batch of turkish delights that I think you'll love.
 	[voice path="res://voice/131ourinhouse.ogg" volume="0.0" bus="Voice"]
@@ -349,11 +349,11 @@ join marzi (Casual Happy) left
 	[voice path="res://voice/128withafashion.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): With a fashion sense to match!
 	[voice path="res://voice/136boldpalette.ogg" volume="0.0" bus="Voice"]
-	beatrix (Idle Neutral): You must have a very bold palette.
+	beatrix (Idle Neutral): You must have a very bold palate.
 	[voice path="res://voice/137mightirecommend.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): Might I recommend our salted soft caramels?
 	[voice path="res://voice/131ourinhouse.ogg" volume="0.0" bus="Voice"]
-	beatrix (Idle Neutral): Our in house confectioners have have enchanted them so they don't stick to your teeth!
+	beatrix (Idle Neutral): Our in house confectioners have enchanted them so they don't stick to your teeth!
 	[voice path="res://voice/132wouldyoulike.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): Would you like to try a sample before you purchase?
 - A pleasure to meet you as well, Madame.
@@ -364,7 +364,7 @@ join marzi (Casual Happy) left
 	[voice path="res://voice/143impeccablefashion.ogg" volume="0.0" bus="Voice"]
 	beatrix (Idle Neutral): Impeccable fashion sense as well I see.
 	[voice path="res://voice/144refinedpalette.ogg" volume="0.0" bus="Voice"]
-	beatrix (Idle Neutral): You must have a very refined palette.
+	beatrix (Idle Neutral): You must have a very refined palate.
 	[voice path="res://voice/145imustofcourse.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): I must of course then recommend our house made macarons.
 	[voice path="res://voice/146youwont.ogg" volume="0.0" bus="Voice"]
@@ -376,13 +376,13 @@ join marzi (Casual Happy) left
 	[voice path="res://voice/149todaystheme.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): Today's theme is weather, so the yellow macarons taste like sundew-nice for warming up in the evening before bed.
 	[voice path="res://voice/151theblueones.ogg" volume="0.0" bus="Voice"]
-	beatrix (Macaron): The blue ones tastes like a summer shower and you don't need a drink to wash it down.
+	beatrix (Macaron): The blue ones taste like a summer shower and you don't need a drink to wash it down.
 	[voice path="res://voice/152greenislightning.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): Green is lightning, white is hail, you get the picture.
 	[voice path="res://voice/132wouldyoulike.ogg" volume="0.0" bus="Voice"]
 	beatrix (Macaron): Would you like to try a sample before you purchase, young miss?
 [voice path="res://voice/136thatissuch.ogg" volume="0.0" bus="Voice"]
-marzi (Casual Apologetic): Oh wow, that is such a tempting offer Madame Sweets.
+marzi (Casual Apologetic): Oh wow, that is such a tempting offer Madame Von Sweets.
 [voice path="res://voice/137butimactually.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Serious): But I'm actually not a customer.
 [voice path="res://voice/138immarzipan.ogg" volume="0.0" bus="Voice"]
@@ -426,7 +426,7 @@ leave --All--
 join beatrix (Dour Lookdown) rightmost
 beatrix (Dour Lookdown): A confectionery trade school. How... functional.
 do CelestialVNState.apply_stress_panic_delta(2)
-beatrix (Dour Lookdown): I take it you have no grounding in the the Etheric Arts?
+beatrix (Dour Lookdown): I take it you have no grounding in the Etheric Arts?
 beatrix (Dour Lookdown): You’ve never been invited to a Consortium or sat for the Ordained examinations...
 beatrix (Dour Lookdown): Never summoned a dough-mon?
 [voice path="res://voice/154beatrixgestures.ogg" volume="0.0" bus="Voice"]
@@ -456,7 +456,7 @@ marzi (Casual Concerned): (Marzi tries to hide her stained wrist behind her back
 [voice path="res://voice/164iknowilook.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Concerned): I...I know I look a little scattered, but I'm a fast learner, and I promise I'll work hard!
 [voice path="res://voice/165methodsunconventional.ogg" volume="0.0" bus="Voice"]
-marzi (Casual Confident): My methods can be somewhat... unconventional, but the proof is in the pudding, Madame Sweets...
+marzi (Casual Confident): My methods can be somewhat... unconventional, but the proof is in the pudding, Madame Von Sweets...
 [voice path="res://voice/166abletoearn.ogg" volume="0.0" bus="Voice"]
 marzi (Casual Confident): ...and I was able to earn a 4.0 GPA.
 [voice path="res://voice/167imalsovery.ogg" volume="0.0" bus="Voice"]
@@ -548,7 +548,7 @@ do CelestialVNState.apply_stress_panic_delta(2)
 marzi (Casual Fear): Yes, Ma'am!
 leave --All--
 [voice path="res://voice/205beatrixhands.ogg" volume="0.0"]
-(Beatrix hands Marzi's portfolio over to her and she walks towards the exit, leaving the wonderous scents and mystical confections behind her.)
+(Beatrix hands Marzi's portfolio over to her and she walks towards the exit, leaving the wondrous scents and mystical confections behind her.)
 [voice path="res://voice/206oncemoreshe.ogg" volume="0.0"]
 (Once more she pushes open the heavy doors to the street.)
 [background arg="res://backgrounds/BACKGROUND_gm_outside.png" fade="0.0"]
@@ -638,7 +638,7 @@ do CelestialVNState.apply_stress_panic_delta(2)
 [voice path="res://voice/237thisisa.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): This is a great opportunity.
 [voice path="res://voice/238andobviously.ogg" volume="0.0" bus="Voice"]
-rosy (Idle): And obviously Madame Sweets knows what she's doing.
+rosy (Idle): And obviously Madame Von Sweets knows what she's doing.
 [voice path="res://voice/239soyoujustdo.ogg" volume="0.0" bus="Voice"]
 rosy (Idle): So you just do as she says.
 do CelestialVNState.apply_stress_panic_delta(2)
@@ -710,7 +710,7 @@ join al (Fatherly) rightmost
 [voice path="res://voice/264thenitssettled.ogg" volume="0.0" bus="Voice"]
 al (Fatherly): Then it's settled.
 [voice path="res://voice/265illlookinto.ogg" volume="0.0" bus="Voice"]
-al (Fatherly): I'll look in to rentals near the shop.
+al (Fatherly): I'll look into rentals near the shop.
 leave --All--
 label prologue_panic_choice
 [background arg="res://backgrounds/BACKGROUND_attic_night.png" fade="5.0" wait="true"]
@@ -974,6 +974,7 @@ marzi (Panic Attack 1): What do I do??
 	(She spends the rest of the night shivering under the thin blanket, staring blankly at the wall as her mind cycles through every catastrophic failure waiting for her.)
 	(By the time the gray morning light bleeds through the tiny window, she hasn't closed her eyes for a single second.)
 	set {gold_coin} -= 335.0
+	set {prologue_bank_overdraft_path} = 1
 	set {tired} = 1
 	set {panic_points} = 11
 	# emit trigger_achievement_out_of_sight
