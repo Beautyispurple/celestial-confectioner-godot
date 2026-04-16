@@ -10,7 +10,7 @@ extends CanvasLayer
 @onready var _main_menu_button: Button = $Center/MainPanel/Margin/VBox/MainMenuButton
 @onready var _exit_button: Button = $Center/MainPanel/Margin/VBox/ExitButton
 @onready var _slots: Control = $SaveSlotsBrowser
-@onready var _options: Control = $OptionsPopup
+@onready var _options: OptionsPopup = $OptionsPopup
 @onready var _safety: Control = $SafetySupportPanel
 @onready var _quit_confirm: ConfirmationDialog = $QuitConfirm
 @onready var _main_menu_confirm: ConfirmationDialog = $MainMenuConfirm
@@ -156,7 +156,7 @@ func handle_escape_toggle() -> bool:
 		_main_panel.visible = true
 		return true
 	if _options.visible:
-		_options._apply_and_close()
+		_options.hide_options()
 		return true
 	if _slots.is_open():
 		_slots.hide_browser()

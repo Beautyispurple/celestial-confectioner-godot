@@ -90,6 +90,10 @@ func _first_control_in_group(group_name: String) -> Control:
 
 func _start_arrow_flash() -> void:
 	_kill_flash()
+	if GameSaveManager.is_reduce_motion_enabled():
+		if _arrow:
+			_arrow.modulate.a = 1.0
+		return
 	_flash_tween = create_tween()
 	_flash_tween.set_loops()
 	_flash_tween.tween_property(_arrow, "modulate:a", 0.35, 0.38)

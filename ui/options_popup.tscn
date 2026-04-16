@@ -32,7 +32,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Panel" type="PanelContainer" parent="Center"]
-custom_minimum_size = Vector2(400, 360)
+custom_minimum_size = Vector2(480, 440)
 layout_mode = 2
 
 [node name="Margin" type="MarginContainer" parent="Center/Panel"]
@@ -50,55 +50,128 @@ theme_override_constants/separation = 12
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Options"
+horizontal_alignment = 1
 
-[node name="FullscreenCheck" type="CheckBox" parent="Center/Panel/Margin/VBox"]
+[node name="TabContainer" type="TabContainer" parent="Center/Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Audio" type="VBoxContainer" parent="Center/Panel/Margin/VBox/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+metadata/_tab_index = 0
+
+[node name="VolLabel" type="Label" parent="Center/Panel/Margin/VBox/TabContainer/Audio"]
+layout_mode = 2
+text = "Master volume"
+
+[node name="MasterSlider" type="HSlider" parent="Center/Panel/Margin/VBox/TabContainer/Audio"]
+unique_name_in_editor = true
+layout_mode = 2
+
+[node name="MusicVolLabel" type="Label" parent="Center/Panel/Margin/VBox/TabContainer/Audio"]
+layout_mode = 2
+text = "Music volume"
+
+[node name="MusicRow" type="HBoxContainer" parent="Center/Panel/Margin/VBox/TabContainer/Audio"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MusicMuteCheck" type="CheckBox" parent="Center/Panel/Margin/VBox/TabContainer/Audio/MusicRow"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Mute"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Center/Panel/Margin/VBox/TabContainer/Audio/MusicRow"]
+unique_name_in_editor = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VoiceVolLabel" type="Label" parent="Center/Panel/Margin/VBox/TabContainer/Audio"]
+layout_mode = 2
+text = "Voice volume"
+
+[node name="VoiceRow" type="HBoxContainer" parent="Center/Panel/Margin/VBox/TabContainer/Audio"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VoiceMuteCheck" type="CheckBox" parent="Center/Panel/Margin/VBox/TabContainer/Audio/VoiceRow"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Mute"
+
+[node name="VoiceVolumeSlider" type="HSlider" parent="Center/Panel/Margin/VBox/TabContainer/Audio/VoiceRow"]
+unique_name_in_editor = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Video" type="VBoxContainer" parent="Center/Panel/Margin/VBox/TabContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+metadata/_tab_index = 1
+
+[node name="FullscreenCheck" type="CheckBox" parent="Center/Panel/Margin/VBox/TabContainer/Video"]
 unique_name_in_editor = true
 layout_mode = 2
 text = "Fullscreen"
 
-[node name="VolLabel" type="Label" parent="Center/Panel/Margin/VBox"]
-layout_mode = 2
-text = "Master volume"
-
-[node name="VolumeSlider" type="HSlider" parent="Center/Panel/Margin/VBox"]
+[node name="VSyncCheck" type="CheckBox" parent="Center/Panel/Margin/VBox/TabContainer/Video"]
 unique_name_in_editor = true
 layout_mode = 2
+text = "VSync"
 
-[node name="MusicVolLabel" type="Label" parent="Center/Panel/Margin/VBox"]
-layout_mode = 2
-text = "Music volume"
-
-[node name="MusicRow" type="HBoxContainer" parent="Center/Panel/Margin/VBox"]
+[node name="Gameplay" type="VBoxContainer" parent="Center/Panel/Margin/VBox/TabContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
+metadata/_tab_index = 2
 
-[node name="MusicMuteCheck" type="CheckBox" parent="Center/Panel/Margin/VBox/MusicRow"]
+[node name="TextSpeedLabel" type="Label" parent="Center/Panel/Margin/VBox/TabContainer/Gameplay"]
+layout_mode = 2
+text = "Text speed (lower = faster)"
+
+[node name="TextSpeedSlider" type="HSlider" parent="Center/Panel/Margin/VBox/TabContainer/Gameplay"]
 unique_name_in_editor = true
 layout_mode = 2
-text = "Mute"
 
-[node name="MusicVolumeSlider" type="HSlider" parent="Center/Panel/Margin/VBox/MusicRow"]
-unique_name_in_editor = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VoiceVolLabel" type="Label" parent="Center/Panel/Margin/VBox"]
-layout_mode = 2
-text = "Voice volume"
-
-[node name="VoiceRow" type="HBoxContainer" parent="Center/Panel/Margin/VBox"]
+[node name="Accessibility" type="VBoxContainer" parent="Center/Panel/Margin/VBox/TabContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
+metadata/_tab_index = 3
 
-[node name="VoiceMuteCheck" type="CheckBox" parent="Center/Panel/Margin/VBox/VoiceRow"]
+[node name="UIScaleLabel" type="Label" parent="Center/Panel/Margin/VBox/TabContainer/Accessibility"]
+layout_mode = 2
+text = "UI scale"
+
+[node name="UIScaleSlider" type="HSlider" parent="Center/Panel/Margin/VBox/TabContainer/Accessibility"]
 unique_name_in_editor = true
 layout_mode = 2
-text = "Mute"
 
-[node name="VoiceVolumeSlider" type="HSlider" parent="Center/Panel/Margin/VBox/VoiceRow"]
+[node name="HighContrastCheck" type="CheckBox" parent="Center/Panel/Margin/VBox/TabContainer/Accessibility"]
 unique_name_in_editor = true
 layout_mode = 2
-size_flags_horizontal = 3
+text = "High contrast UI"
+
+[node name="ReduceMotionCheck" type="CheckBox" parent="Center/Panel/Margin/VBox/TabContainer/Accessibility"]
+unique_name_in_editor = true
+layout_mode = 2
+text = "Reduce motion"
+
+[node name="ColorblindLabel" type="Label" parent="Center/Panel/Margin/VBox/TabContainer/Accessibility"]
+layout_mode = 2
+text = "Color vision filter"
+
+[node name="ColorblindOption" type="OptionButton" parent="Center/Panel/Margin/VBox/TabContainer/Accessibility"]
+unique_name_in_editor = true
+layout_mode = 2
+
+[node name="ColorblindStrengthLabel" type="Label" parent="Center/Panel/Margin/VBox/TabContainer/Accessibility"]
+layout_mode = 2
+text = "Filter strength"
+
+[node name="ColorblindStrengthSlider" type="HSlider" parent="Center/Panel/Margin/VBox/TabContainer/Accessibility"]
+unique_name_in_editor = true
+layout_mode = 2
 
 [node name="CloseButton" type="Button" parent="Center/Panel/Margin/VBox"]
 unique_name_in_editor = true

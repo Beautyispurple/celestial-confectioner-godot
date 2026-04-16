@@ -36,6 +36,7 @@ ReleaseMode="*res://release_mode.gd"
 ResearchConsentState="*res://research_consent_state.gd"
 ResearchTelemetry="*res://research_telemetry.gd"
 SkillPracticeContext="*res://skill_practice_context.gd"
+ColorAccessibilityOverlay="*res://color_accessibility_overlay.gd"
 
 [dialogic]
 

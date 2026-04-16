@@ -3,6 +3,7 @@ extends Control
 const CONFECTIONER_CASE_SCRIPT := preload("res://ui/confectioner_case_layer.gd")
 
 @onready var _load_slots: Control = $SaveSlotsBrowser
+@onready var _options: OptionsPopup = $OptionsPopup
 
 var _confectioner_case: CanvasLayer
 
@@ -31,6 +32,11 @@ func _on_debug_playtest_pressed() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if _options.visible:
+		if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ESCAPE:
+			_options.hide_options()
+			get_viewport().set_input_as_handled()
+		return
 	if not _load_slots.is_open():
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ESCAPE:
@@ -41,6 +47,10 @@ func _input(event: InputEvent) -> void:
 func _on_start_button_pressed() -> void:
 	GameSaveManager.pending_load_slot = -1
 	get_tree().change_scene_to_file("res://game_scene.tscn")
+
+
+func _on_options_button_pressed() -> void:
+	_options.present()
 
 
 func _on_load_game_button_pressed() -> void:

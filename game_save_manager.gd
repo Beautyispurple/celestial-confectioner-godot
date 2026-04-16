@@ -160,81 +160,141 @@ func _restore_journal(data: Variant) -> void:
 		j.call("load_save_data", data)
 
 
-func load_options() -> Dictionary:
-	var cfg := ConfigFile.new()
-	if cfg.load(OPTIONS_PATH) != OK:
-		return {
-			"fullscreen": false,
-			"master_db": 0.0,
-			"music_db": 0.0,
-			"voice_db": 0.0,
-			"music_muted": false,
-			"voice_muted": false,
-		}
+func _default_options() -> Dictionary:
 	return {
-		"fullscreen": bool(cfg.get_value("audio_video", "fullscreen", false)),
-		"master_db": float(cfg.get_value("audio_video", "master_db", 0.0)),
-		"music_db": float(cfg.get_value("audio_video", "music_db", 0.0)),
-		"voice_db": float(cfg.get_value("audio_video", "voice_db", 0.0)),
-		"music_muted": bool(cfg.get_value("audio_video", "music_muted", false)),
-		"voice_muted": bool(cfg.get_value("audio_video", "voice_muted", false)),
+		"fullscreen": false,
+		"vsync": true,
+		"master_db": 0.0,
+		"music_db": 0.0,
+		"voice_db": 0.0,
+		"music_muted": false,
+		"voice_muted": false,
+		"text_letter_speed": 0.01,
+		"ui_scale": 1.0,
+		"high_contrast": false,
+		"reduce_motion": false,
+		"colorblind_preset": 0,
+		"colorblind_strength": 0.0,
 	}
 
 
-func save_options(
-	fullscreen: bool,
-	master_db: float,
-	music_db: float,
-	voice_db: float,
-	music_muted: bool,
-	voice_muted: bool,
-) -> void:
+func load_options() -> Dictionary:
+	var o: Dictionary = _default_options()
+	var cfg := ConfigFile.new()
+	if cfg.load(OPTIONS_PATH) != OK:
+		return o
+	o["fullscreen"] = bool(cfg.get_value("audio_video", "fullscreen", o["fullscreen"]))
+	o["vsync"] = bool(cfg.get_value("audio_video", "vsync", o["vsync"]))
+	o["master_db"] = float(cfg.get_value("audio_video", "master_db", o["master_db"]))
+	o["music_db"] = float(cfg.get_value("audio_video", "music_db", o["music_db"]))
+	o["voice_db"] = float(cfg.get_value("audio_video", "voice_db", o["voice_db"]))
+	o["music_muted"] = bool(cfg.get_value("audio_video", "music_muted", o["music_muted"]))
+	o["voice_muted"] = bool(cfg.get_value("audio_video", "voice_muted", o["voice_muted"]))
+	o["text_letter_speed"] = float(cfg.get_value("gameplay", "text_letter_speed", o["text_letter_speed"]))
+	o["ui_scale"] = float(cfg.get_value("accessibility", "ui_scale", o["ui_scale"]))
+	o["high_contrast"] = bool(cfg.get_value("accessibility", "high_contrast", o["high_contrast"]))
+	o["reduce_motion"] = bool(cfg.get_value("accessibility", "reduce_motion", o["reduce_motion"]))
+	o["colorblind_preset"] = int(cfg.get_value("accessibility", "colorblind_preset", o["colorblind_preset"]))
+	o["colorblind_strength"] = float(cfg.get_value("accessibility", "colorblind_strength", o["colorblind_strength"]))
+	return o
+
+
+func save_options_dict(o: Dictionary) -> void:
 	var cfg := ConfigFile.new()
 	cfg.load(OPTIONS_PATH)
-	cfg.set_value("audio_video", "fullscreen", fullscreen)
-	cfg.set_value("audio_video", "master_db", master_db)
-	cfg.set_value("audio_video", "music_db", music_db)
-	cfg.set_value("audio_video", "voice_db", voice_db)
-	cfg.set_value("audio_video", "music_muted", music_muted)
-	cfg.set_value("audio_video", "voice_muted", voice_muted)
+	cfg.set_value("audio_video", "fullscreen", bool(o.get("fullscreen", false)))
+	cfg.set_value("audio_video", "vsync", bool(o.get("vsync", true)))
+	cfg.set_value("audio_video", "master_db", float(o.get("master_db", 0.0)))
+	cfg.set_value("audio_video", "music_db", float(o.get("music_db", 0.0)))
+	cfg.set_value("audio_video", "voice_db", float(o.get("voice_db", 0.0)))
+	cfg.set_value("audio_video", "music_muted", bool(o.get("music_muted", false)))
+	cfg.set_value("audio_video", "voice_muted", bool(o.get("voice_muted", false)))
+	cfg.set_value("gameplay", "text_letter_speed", float(o.get("text_letter_speed", 0.01)))
+	cfg.set_value("accessibility", "ui_scale", float(o.get("ui_scale", 1.0)))
+	cfg.set_value("accessibility", "high_contrast", bool(o.get("high_contrast", false)))
+	cfg.set_value("accessibility", "reduce_motion", bool(o.get("reduce_motion", false)))
+	cfg.set_value("accessibility", "colorblind_preset", int(o.get("colorblind_preset", 0)))
+	cfg.set_value("accessibility", "colorblind_strength", float(o.get("colorblind_strength", 0.0)))
 	cfg.save(OPTIONS_PATH)
 
 
-func apply_options(
-	fullscreen: bool,
-	master_db: float,
-	music_db: float,
-	voice_db: float,
-	music_muted: bool,
-	voice_muted: bool,
-) -> void:
-	if fullscreen:
+func is_reduce_motion_enabled() -> bool:
+	return bool(load_options().get("reduce_motion", false))
+
+
+var _high_contrast_theme: Theme
+
+
+func _get_high_contrast_theme() -> Theme:
+	if _high_contrast_theme != null:
+		return _high_contrast_theme
+	var t := Theme.new()
+	t.set_color("font_color", "Label", Color(1.0, 1.0, 1.0, 1.0))
+	t.set_color("font_shadow_color", "Label", Color(0.0, 0.0, 0.0, 0.85))
+	t.set_constant("shadow_offset_x", "Label", 1)
+	t.set_constant("shadow_offset_y", "Label", 1)
+	t.set_color("font_color", "Button", Color(1.0, 1.0, 0.95, 1.0))
+	t.set_color("font_hover_color", "Button", Color(1.0, 1.0, 0.5, 1.0))
+	t.set_color("font_pressed_color", "Button", Color(0.9, 0.9, 1.0, 1.0))
+	t.set_color("font_color", "CheckBox", Color(1.0, 1.0, 1.0, 1.0))
+	t.set_color("font_color", "LineEdit", Color(1.0, 1.0, 1.0, 1.0))
+	_high_contrast_theme = t
+	return t
+
+
+func _apply_audio_video(o: Dictionary) -> void:
+	if bool(o.get("fullscreen", false)):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	if bool(o.get("vsync", true)):
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	var master_idx := AudioServer.get_bus_index("Master")
 	if master_idx >= 0:
-		AudioServer.set_bus_volume_db(master_idx, master_db)
+		AudioServer.set_bus_volume_db(master_idx, float(o.get("master_db", 0.0)))
 	var music_idx := AudioServer.get_bus_index("Music")
 	if music_idx >= 0:
-		AudioServer.set_bus_volume_db(music_idx, music_db)
-		AudioServer.set_bus_mute(music_idx, music_muted)
+		AudioServer.set_bus_volume_db(music_idx, float(o.get("music_db", 0.0)))
+		AudioServer.set_bus_mute(music_idx, bool(o.get("music_muted", false)))
 	var voice_idx := AudioServer.get_bus_index("Voice")
 	if voice_idx >= 0:
-		AudioServer.set_bus_volume_db(voice_idx, voice_db)
-		AudioServer.set_bus_mute(voice_idx, voice_muted)
+		AudioServer.set_bus_volume_db(voice_idx, float(o.get("voice_db", 0.0)))
+		AudioServer.set_bus_mute(voice_idx, bool(o.get("voice_muted", false)))
+
+
+func _apply_gameplay(o: Dictionary) -> void:
+	var letter_speed: float = clampf(float(o.get("text_letter_speed", 0.01)), 0.005, 0.12)
+	ProjectSettings.set_setting("dialogic/text/letter_speed", letter_speed)
+	var d: Node = get_node_or_null("/root/Dialogic")
+	if d == null or not d.has_method(&"get_subsystem"):
+		return
+	var txt: Variant = d.get_subsystem("Text")
+	if txt != null and txt.has_method(&"update_text_speed"):
+		txt.update_text_speed(letter_speed)
+
+
+func _apply_accessibility(o: Dictionary) -> void:
+	var w: Window = get_tree().root as Window
+	if w != null:
+		w.content_scale_factor = clampf(float(o.get("ui_scale", 1.0)), 0.75, 1.5)
+		if bool(o.get("high_contrast", false)):
+			w.theme = _get_high_contrast_theme()
+		else:
+			w.theme = null
+	var overlay: Node = get_node_or_null("/root/ColorAccessibilityOverlay")
+	if overlay != null and overlay.has_method(&"set_colorblind"):
+		var preset: int = int(o.get("colorblind_preset", 0))
+		var strength: float = clampf(float(o.get("colorblind_strength", 0.0)), 0.0, 1.0)
+		overlay.call(&"set_colorblind", preset, strength)
 
 
 func apply_stored_options() -> void:
 	var o := load_options()
-	apply_options(
-		o["fullscreen"] as bool,
-		o["master_db"] as float,
-		o["music_db"] as float,
-		o["voice_db"] as float,
-		o["music_muted"] as bool,
-		o["voice_muted"] as bool,
-	)
+	_apply_audio_video(o)
+	_apply_gameplay(o)
+	_apply_accessibility(o)
 
 
 ## OR unlock flags across all Dialogic save slots (for Confectioner's Case). Does not load into runtime Dialogic.

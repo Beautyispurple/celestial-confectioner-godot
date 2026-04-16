@@ -41,6 +41,11 @@ func _apply_panic_visual() -> void:
 		_glitch_tween.kill()
 		_glitch_tween = null
 
+	if GameSaveManager.is_reduce_motion_enabled():
+		_set_edges_alpha(0.0)
+		_glitch.modulate.a = 0.0
+		return
+
 	if CelestialVNState.is_breath_aeration_edge_suppressed():
 		_set_edges_alpha(0.0)
 		_glitch.modulate.a = 0.0

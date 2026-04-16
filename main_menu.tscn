@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cpwrl856ln0qg" path="res://sounds_music/opening.mp3" id="3_fu7sn"]
 [ext_resource type="PackedScene" uid="uid://2k5rftvl2txp" path="res://ui/save_slots_browser.tscn" id="4_slots"]
 [ext_resource type="Texture2D" uid="uid://cxyycwe5w4kmy" path="res://ui/icons/bag_backpack_icon.svg" id="5_case_icon"]
+[ext_resource type="PackedScene" uid="uid://dmkw7options" path="res://ui/options_popup.tscn" id="6_options"]
 
 [node name="MainMenu" type="Control" unique_id=3100339]
 layout_mode = 3
@@ -52,6 +53,15 @@ offset_top = 365.0
 offset_right = 440.0
 offset_bottom = 465.0
 
+[node name="OptionsButton" type="Button" parent="." unique_id=310033901]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 485.0
+offset_right = 440.0
+offset_bottom = 585.0
+focus_mode = 0
+
 [node name="QuitButton" type="Button" parent="." unique_id=1818799747]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -68,6 +78,14 @@ autoplay = true
 [node name="SaveSlotsBrowser" parent="." unique_id=1395962582 instance=ExtResource("4_slots")]
 layout_mode = 1
 
+[node name="OptionsPopup" parent="." instance=ExtResource("6_options")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ConfectionerCaseButton" type="TextureButton" parent="." unique_id=2015835775]
 layout_mode = 0
 offset_left = 1700.0
@@ -83,5 +101,6 @@ stretch_mode = 5
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="LoadGameButton" to="." method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="ConfectionerCaseButton" to="." method="_on_confectioner_case_pressed"]
